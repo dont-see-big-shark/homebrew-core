@@ -1,23 +1,25 @@
 class Cog < Formula
   desc "Containers for machine learning"
   homepage "https://cog.run/"
-  url "https://github.com/replicate/cog/archive/refs/tags/v0.9.9.tar.gz"
-  sha256 "c9aefa24bad319c6ec97aeaf386f30eeb58c30c683437559095bac74ba8235bd"
+  url "https://github.com/replicate/cog/archive/refs/tags/v0.9.12.tar.gz"
+  sha256 "6ed976976b0fed8e3424966aa1b66703116cbc4adf677ba0b317b4de1942cd4e"
   license "Apache-2.0"
   head "https://github.com/replicate/cog.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "e077b04ff219ccce0871aaf483b31ccfe5d12c4ffd8213ba625f3c84f4b28d27"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "39f6c14cc1406434f6daf857e140cd0c32c9dca41d2bb47c70ceb302a9574937"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "ffa397c2cce6a0a0a0b6551c9433b1753d9acb18f126bcee338d933dcdfef5d3"
-    sha256 cellar: :any_skip_relocation, sonoma:         "ed1e7a5fbac0c1637937fe48ea13a467253b4fb8bff1c472da5f20dd527f8a67"
-    sha256 cellar: :any_skip_relocation, ventura:        "36db3c75182cfae1bc351e79389c6265dd3b9f47d8f08092ac6040bc03901f88"
-    sha256 cellar: :any_skip_relocation, monterey:       "50815946cb5c01be4be77f085d7517aad3791eb41b002fa7c27c11bd06853564"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "1055ac6f845d93dcb0b036851027ee8b41d739a625162cda48507c54dc69ca2d"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "05e2fe7ffecc1dc79c75e29c630f67796c815d2512d5bf6e811c3cfcec7301a4"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "7ce7f37f656297f1e266a65bb343a7661b8857f00512cefe766a6c0977c0c353"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "4744371ef704a082baaf7dbdc01abd0abb144c63205dd222e8cc10774ea74681"
+    sha256 cellar: :any_skip_relocation, sonoma:         "2e449ae46005e38b07ed89c40f206c8ec5953b60764311be3e3a5a34ceb4af14"
+    sha256 cellar: :any_skip_relocation, ventura:        "600d716bf3a5f4ef175946c992bb6586ebb474ec2bc8c541de5f689068e213e3"
+    sha256 cellar: :any_skip_relocation, monterey:       "8de83b1302c1104d7e5085bb778bab125eaaf9139b03c45c8cf94b19909801bd"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "4044f9f7bdd7338d2fd5ae0a7e62837d718ad18e1fe38b586208c0b69a415153"
   end
 
   depends_on "go" => :build
   depends_on "python@3.12" => :build
+
+  conflicts_with "cocogitto", because: "both install `cog` binaries"
 
   def install
     python3 = "python3.12"

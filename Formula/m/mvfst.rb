@@ -1,38 +1,39 @@
 class Mvfst < Formula
   desc "QUIC transport protocol implementation"
   homepage "https://github.com/facebookincubator/mvfst"
-  url "https://github.com/facebookincubator/mvfst/archive/refs/tags/v2024.06.10.00.tar.gz"
-  sha256 "cc75889429a66463cc8e607ba09d584fb4e6d2e69b1127a538043b367c54a1ae"
+  url "https://github.com/facebookincubator/mvfst/archive/refs/tags/v2024.06.24.00.tar.gz"
+  sha256 "0a8c9bf9c9e1e293e56c0bd05e60606b2b299245510442a2e9af01519c040041"
   license "MIT"
   head "https://github.com/facebookincubator/mvfst.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sonoma:   "be4948a70ea561cd2668d2fd0b03901cbc39b0c7f97be0197eb581ddbfcea37a"
-    sha256 cellar: :any,                 arm64_ventura:  "9a7a6a4267f1acae8a10e3249f59fd64b64ea6b95de74ec3a3cf827ea0613ff2"
-    sha256 cellar: :any,                 arm64_monterey: "a089eccb1602966e8d20a927d1d422e1950e548e97731570a16f9579575374fd"
-    sha256 cellar: :any,                 sonoma:         "e4e3fefcc348980921d219d9a6c086fa552e86f78b87d9c4e31e8f7293784f11"
-    sha256 cellar: :any,                 ventura:        "e4a7e5c2fcda18f69b3b6c929b0eabcd63b901d6b7deb5916790dbe999a97e44"
-    sha256 cellar: :any,                 monterey:       "da3c5a32e67a863c955630b8e850fca487155b368c4a4bb2418e3410a561493d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "7f7529e16f5abbc86cced50d243fd76fba8e6845740dce5e4cd57d8e1e053b4b"
+    sha256 cellar: :any,                 arm64_sonoma:   "e95ba454bff90b1e912387094cd2360aa875df317aa11b3c5a3a870776bc76b7"
+    sha256 cellar: :any,                 arm64_ventura:  "bf904cfbcf0ab00225add25ab3fdf04be6e320d4cd6e142b218c54f19fe9237a"
+    sha256 cellar: :any,                 arm64_monterey: "963783b8ee6e80452ac57eed6ef73687076cb7b29599d85be62b18a82d7ab5c4"
+    sha256 cellar: :any,                 sonoma:         "c11d28004fd8e013c6fef31860d5842b514e32b22a183ca8a1a355b7408ad38c"
+    sha256 cellar: :any,                 ventura:        "a1477e17eb46829c63847d497ccb1e009b0aca5afa9233c7abd14461e5258272"
+    sha256 cellar: :any,                 monterey:       "4c3ff578d4390710716de16b367a0e560188ee775bbe345c459b75f46beeaaeb"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "08abdf897368c5a3ac25fafec38612eef560a131584fd6a6e56627f445f4e520"
   end
 
   depends_on "cmake" => [:build, :test]
   depends_on "googletest" => :test
-  depends_on "boost"
+  depends_on "double-conversion"
   depends_on "fizz"
   depends_on "fmt"
   depends_on "folly"
   depends_on "gflags"
   depends_on "glog"
+  depends_on "libsodium"
   depends_on "openssl@3"
 
   def install
     shared_args = ["-DBUILD_SHARED_LIBS=ON", "-DCMAKE_INSTALL_RPATH=#{rpath}"]
-    shared_args << "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-undefined,dynamic_lookup" if OS.mac?
-    system "cmake", "-S", ".", "-B", "_build",
-                    "-DBUILD_TESTS=OFF",
-                    "-DCMAKE_POSITION_INDEPENDENT_CODE=ON",
-                    *shared_args, *std_cmake_args
+    linker_flags = %w[-undefined dynamic_lookup -dead_strip_dylibs]
+    linker_flags << "-ld_classic" if OS.mac? && MacOS.version == :ventura
+    shared_args << "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,#{linker_flags.join(",")}" if OS.mac?
+
+    system "cmake", "-S", ".", "-B", "_build", "-DBUILD_TESTS=OFF", *shared_args, *std_cmake_args
     system "cmake", "--build", "_build"
     system "cmake", "--install", "_build"
   end

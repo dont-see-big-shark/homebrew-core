@@ -2,19 +2,18 @@ class Cbmc < Formula
   desc "C Bounded Model Checker"
   homepage "https://www.cprover.org/cbmc/"
   url "https://github.com/diffblue/cbmc.git",
-      tag:      "cbmc-5.95.1",
-      revision: "731338d5d82ac86fc447015e0bd24cdf7a74c442"
+      tag:      "cbmc-6.0.1",
+      revision: "0761608baaa477b502c43a213a1cb31639756e95"
   license "BSD-4-Clause"
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "176b682268a962b7177ae2b19cffdbd17689d731a1f13f6762251ec9e1bda57c"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "a4c24510b758c604c0fea80c400498f74ed606665c72614203a354deba1b8fab"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "0496f976a0002300be584cc24e4f6d873336719dddec34fd8cddb9d3b384b3c5"
-    sha256 cellar: :any_skip_relocation, sonoma:         "feecd518e6cff4086219c51cca9e1e5c2fdfb231d3da0ea5544c319aa472203b"
-    sha256 cellar: :any_skip_relocation, ventura:        "8ecb77e007217f76396bc17440b965f4f69e5202ccb35851f46903e068afb58d"
-    sha256 cellar: :any_skip_relocation, monterey:       "c6e0416b6abf6c9379e6902083ba475d4c698d6861a6b6555299916f8d8357fc"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "4fb3dc3778bb81da39aa613e84278e9b33a798204d65c76a0eff91109dcb624a"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "66acf01f024060d938502b52547b76d85ec17cec4a9943cddba8dc6a715064ce"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "f802386943fe3366bd7dc59f4c569d43d4c1340bd597dfa232528cc1fe9b327e"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "13445c9f823acda295337c06f26abd95d119de1e70c4dbe025c576a0d7e96ec0"
+    sha256 cellar: :any_skip_relocation, sonoma:         "828fc6aa82d12e11209a359e266a65cdcd959dfee0cb02cb54ca6869a06b8d4f"
+    sha256 cellar: :any_skip_relocation, ventura:        "ed9b7b4e9997cc57f950f2494f2a06653b04da4b123b1f1697c159b72205983b"
+    sha256 cellar: :any_skip_relocation, monterey:       "3d4ca4617591f98c492428364e8fda7d0f9163af727ab4ec6b24e32675212dc6"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "ae0c0bcad5a001a192d688484cec2051265ed29151f1198204265fee3c0d4dbe"
   end
 
   depends_on "cmake" => :build

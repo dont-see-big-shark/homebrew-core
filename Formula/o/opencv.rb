@@ -4,7 +4,7 @@ class Opencv < Formula
   url "https://github.com/opencv/opencv/archive/refs/tags/4.9.0.tar.gz"
   sha256 "ddf76f9dffd322c7c3cb1f721d0887f62d747b82059342213138dc190f28bc6c"
   license "Apache-2.0"
-  revision 9
+  revision 12
 
   livecheck do
     url :stable
@@ -12,21 +12,24 @@ class Opencv < Formula
   end
 
   bottle do
-    sha256 arm64_sonoma:   "31d00359e95a3ab3291dc1317cfb9a2fe4dee729b59edde05fc820c37cae1ae3"
-    sha256 arm64_ventura:  "fd3d269d7b85ff844f501cf2b86a09f987dacb41273e1d60cf4651473a1b2a71"
-    sha256 arm64_monterey: "40124369c395a61c620a2ee5e3a93b0cdbb04d1cdb6102a1686c2b539576ad66"
-    sha256 sonoma:         "dceae5bbd6f21b6d430f7a3369c5e30c3d05fb3b3054ba7e2fcc688d515101fd"
-    sha256 ventura:        "8eababdcdd49d727055b59fae7b82094b5f8f1914497dffb20a121deaf7917f6"
-    sha256 monterey:       "9ada06261c61f19e89d4fe4831837354971ca6057951876cb2c047c5eacd3dfb"
-    sha256 x86_64_linux:   "0a7e17e7a32afc0cf0b631db12f8c47d465582c6f9c02129b9b61e6b4f4ab7b7"
+    sha256 arm64_sonoma:   "912667fc2a05cb49ae5727564f76f7489277947335ee245f73496fe3fc92b0ac"
+    sha256 arm64_ventura:  "696ad3154be36061b812a900822b163008d2bb2a115e9d72c1e6b98cfdfff756"
+    sha256 arm64_monterey: "ce84c65b02a9291010934a33d9053821e7bf9ed32addd287d0587c39e524578e"
+    sha256 sonoma:         "5b3020942612a977b2cb0ea36e9c502190005ed1bc462c561b3c8425cb3100b7"
+    sha256 ventura:        "73ff2d1a229aaad8f4d6e9cc8e706d3d3bfcd61a2ed0f4379c4f996c25c81784"
+    sha256 monterey:       "be179de9a4dafbff1d72497b47c764a3fb77751cfbddf4ef9314d86dface91c6"
+    sha256 x86_64_linux:   "0655d0d978edc75e0d37954d6edefabf1f5b587cf8c6c7c6c1e9a554625edef0"
   end
 
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
   depends_on "python-setuptools" => :build
+  depends_on "abseil"
   depends_on "ceres-solver"
   depends_on "eigen"
   depends_on "ffmpeg@6"
+  depends_on "freetype"
+  depends_on "gflags"
   depends_on "glog"
   depends_on "harfbuzz"
   depends_on "jpeg-turbo"
@@ -40,10 +43,25 @@ class Opencv < Formula
   depends_on "protobuf"
   depends_on "python@3.12"
   depends_on "tbb"
+  depends_on "tesseract"
   depends_on "vtk"
   depends_on "webp"
 
   uses_from_macos "zlib"
+
+  on_macos do
+    depends_on "glew"
+    depends_on "imath"
+    depends_on "jsoncpp"
+    depends_on "libarchive"
+  end
+
+  on_linux do
+    depends_on "cairo"
+    depends_on "gdk-pixbuf"
+    depends_on "glib"
+    depends_on "gtk+3"
+  end
 
   fails_with gcc: "5" # ffmpeg is compiled with GCC
 

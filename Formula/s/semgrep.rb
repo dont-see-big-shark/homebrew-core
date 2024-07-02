@@ -4,8 +4,8 @@ class Semgrep < Formula
   desc "Easily detect and prevent bugs and anti-patterns in your codebase"
   homepage "https://semgrep.dev"
   url "https://github.com/semgrep/semgrep.git",
-      tag:      "v1.75.0",
-      revision: "2e0ca3f1d50f7fd9372828ad0fc5fc6df474ee01"
+      tag:      "v1.78.0",
+      revision: "3b7bfaad2d847d9b965f1432d4b76784bc88409b"
   license "LGPL-2.1-only"
   head "https://github.com/semgrep/semgrep.git", branch: "develop"
 
@@ -15,13 +15,13 @@ class Semgrep < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sonoma:   "63ef0a9050590466811f716b6c4c61f4e8c3bf751b8e9520f70b61d3e825991a"
-    sha256 cellar: :any,                 arm64_ventura:  "b0279768fa772e7f9dd88dd022f497fe2c1d3b36fb5f87bd34a94e1d788f22e3"
-    sha256 cellar: :any,                 arm64_monterey: "c71526363b00f821a37e392a26fc392342cea6a247d3697cbb5cd8f4442b76f1"
-    sha256 cellar: :any,                 sonoma:         "57b8b947d2b02f3cbd8e38f2d1b7b0b8b0290f8f5b950c4be564c439b99cdccc"
-    sha256 cellar: :any,                 ventura:        "aee1d81cc8377ea123b198cf9d904d29256884004546efbf1d6b051cd8ad97bc"
-    sha256 cellar: :any,                 monterey:       "f8baa93512142fffbe0310a841324064fa1cfa067d03f40d771b3d4922c0c2be"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "771ca9ba00ca8d99b3c823a9f24b8af83e5203af9fbf4771f9dcf089d8a41131"
+    sha256 cellar: :any,                 arm64_sonoma:   "6d6623f871175d622243324eb4eca73a9c3e3f59aca029e5d4db5ce845d71216"
+    sha256 cellar: :any,                 arm64_ventura:  "1b00207deb8222823183de4b19d732d7c254e4203e585b930b193696743b493a"
+    sha256 cellar: :any,                 arm64_monterey: "3faa872a95b2954306231f0a10888912603e30679b3ea2909c122d1d477fb272"
+    sha256 cellar: :any,                 sonoma:         "6d9520bc2dcabbe897fb671af7e6345215521d1ca1fd1e1de23a032875700825"
+    sha256 cellar: :any,                 ventura:        "6ca124d84617d7c1d9301b2f5b92f95c95038484f9b17b37f4aebf4c175ae6c3"
+    sha256 cellar: :any,                 monterey:       "96beec22c987963338d3c220f83bb62b9989387e7b7653d6a20a184402e88028"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "4a4b10e800c6ee9ac2234578696781a801a887c2dea4c1d6a543a747f3b55b6e"
   end
 
   depends_on "autoconf" => :build
@@ -128,8 +128,8 @@ class Semgrep < Formula
   end
 
   resource "packaging" do
-    url "https://files.pythonhosted.org/packages/ee/b5/b43a27ac7472e1818c4bafd44430e69605baefe1f34440593e0332ec8b4d/packaging-24.0.tar.gz"
-    sha256 "eb82c5e3e56209074766e6885bb04b8c38a0c015d0a30036ebe7ece34c9989e9"
+    url "https://files.pythonhosted.org/packages/51/65/50db4dda066951078f0a96cf12f4b9ada6e4b811516bf0262c0f4f7064d4/packaging-24.1.tar.gz"
+    sha256 "026ed72c8ed3fcce5bf8950572258698927fd1dbda10a5e981cdf0ac37f4f002"
   end
 
   resource "peewee" do
@@ -178,13 +178,13 @@ class Semgrep < Formula
   end
 
   resource "typing-extensions" do
-    url "https://files.pythonhosted.org/packages/e8/fb/4217a963512b9646274fe4ce0aebc8ebff09bbb86c458c6163846bb65d9d/typing_extensions-4.12.1.tar.gz"
-    sha256 "915f5e35ff76f56588223f15fdd5938f9a1cf9195c0de25130c627e4d597f6d1"
+    url "https://files.pythonhosted.org/packages/df/db/f35a00659bc03fec321ba8bce9420de607a1d37f8342eee1863174c69557/typing_extensions-4.12.2.tar.gz"
+    sha256 "1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8"
   end
 
   resource "urllib3" do
-    url "https://files.pythonhosted.org/packages/7a/50/7fd50a27caa0652cd4caf224aa87741ea41d3265ad13f010886167cfcc79/urllib3-2.2.1.tar.gz"
-    sha256 "d0570876c61ab9e520d776c38acbbb5b05a776d3f9ff98a5c8fd5162a444cf19"
+    url "https://files.pythonhosted.org/packages/43/6d/fa469ae21497ddc8bc93e5877702dca7cb8f911e337aca7452b5724f1bb6/urllib3-2.2.2.tar.gz"
+    sha256 "dd505485549a7a552833da5e6063639d0d177c04f23bc3864e41e5dc5f612168"
   end
 
   resource "wcmatch" do

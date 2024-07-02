@@ -1,8 +1,8 @@
 class Znapzend < Formula
   desc "ZFS backup with remote capabilities and mbuffer integration"
   homepage "https://www.znapzend.org/"
-  url "https://github.com/oetiker/znapzend/releases/download/v0.23.0/znapzend-0.23.0.tar.gz"
-  sha256 "e6cef1b8eb2ee3a8d286616779f19c52e3ee042094d9c9f376fd6c086a42a091"
+  url "https://github.com/oetiker/znapzend/releases/download/v0.23.2/znapzend-0.23.2.tar.gz"
+  sha256 "69928caacde7468e5154d81197e257cd0c85ee3eedb3192be67fdfe486defefe"
   license "GPL-3.0-or-later"
   head "https://github.com/oetiker/znapzend.git", branch: "master"
 
@@ -15,13 +15,13 @@ class Znapzend < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "e4a41f3d27cb69b7a6f450839b3e5648a0bd71505a2450878070958b9a89fdd4"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "35779d2320ef769397f8521ff193670353c7c6a4495f0022114aa2925e6534d3"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "c4100c82ded93ec73240d0ad972296ca4b51e8b4e4d23d191f7ed74816fc16ef"
-    sha256 cellar: :any_skip_relocation, sonoma:         "0010a95ca7ba4bc12c62954266b685a6d80edcbede5c4218d44bc932300bb10b"
-    sha256 cellar: :any_skip_relocation, ventura:        "e0b1f9b8203b07ccd978db5cbd5eea347b0401877b0e51395c1feab62b827ac1"
-    sha256 cellar: :any_skip_relocation, monterey:       "584e879590b61c583a868913c3d963f7a4bef650dcb3912beab809cbfc5655e0"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "655a9a5a5d7ebf4104be79df075f52bc715325e692d5a44250bef742416f8fff"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "894fb42d2fab9740dc12eb446afc08a6884aeff713dfedc7bb4f36758ecbc541"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "d8381b64efa6aceba6574825aa1f3088fd32ffbccc0b2ebda001b6a30e8d1931"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "e827d72e828c64112d249b8e138b12ab69545d3125b4a548e0b850440054d543"
+    sha256 cellar: :any_skip_relocation, sonoma:         "d1a7026501925fc170e5968391f773f994cf9b0698277e7ca7b3a9c1eedd9da5"
+    sha256 cellar: :any_skip_relocation, ventura:        "39cbe0e4c321ffec7a04efca7b964ce7a5b3ed3565d5d1684cda645e321eea8e"
+    sha256 cellar: :any_skip_relocation, monterey:       "2fc87dc230cf7f66d84062ed1d5ffa1abe5cdb463998834edc0a717825b55a7b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "51c313e2b172e1a50338a811d4d344ff9259cd9e973b9890d7819a4bd846f352"
   end
 
   uses_from_macos "perl", since: :big_sur

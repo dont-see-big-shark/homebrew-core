@@ -6,7 +6,7 @@ class AstrometryNet < Formula
   url "https://github.com/dstndstn/astrometry.net/releases/download/0.95/astrometry.net-0.95.tar.gz"
   sha256 "b8239e39b44d6877b0427edeffd95efc258520044ff5afdd0fb1a89ff8f1afc0"
   license "BSD-3-Clause"
-  revision 1
+  revision 2
 
   livecheck do
     url :stable
@@ -14,13 +14,13 @@ class AstrometryNet < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sonoma:   "0abb91d2795ab69b56150eed0bff0fa88a8c3c5444a7fb2422cf04bde2e91300"
-    sha256 cellar: :any,                 arm64_ventura:  "737e218aff30454c7d4612e9c39afd8b122352096bb31e582bef1f241be5a5a8"
-    sha256 cellar: :any,                 arm64_monterey: "6347a4edbc9060417c3e34b67bfe421bda57a830712f2ff7ac52057164e3b216"
-    sha256 cellar: :any,                 sonoma:         "78aedc0a6bc704c1389af6bd1f619ee0f1be866280d9d01343e6813706e6435d"
-    sha256 cellar: :any,                 ventura:        "bedf5b70775e9621c702f9476bf63abf7b3ecf040f241f59cb9918435bfad118"
-    sha256 cellar: :any,                 monterey:       "75c31c171f4a998864575be6c1b4dae8be056413f59652eac83e6924a540263c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "925b6431debcb4a5266f00f77aceeba043ee15d652236428ac3ee91a048fe0ed"
+    sha256 cellar: :any,                 arm64_sonoma:   "681664bdc8381e23fe4210d23e12950648f2c0b356fa897047ebabbae7aa18be"
+    sha256 cellar: :any,                 arm64_ventura:  "0049fe69dcfa6a6a822f73dcf126e347510d50269d50034c15b7594aff317de1"
+    sha256 cellar: :any,                 arm64_monterey: "f99643266e57f488814848732bf1ef8400f5c2a8cd1f326f54fa0237a489006f"
+    sha256 cellar: :any,                 sonoma:         "574dae103e0381b66d6b94e2bd4b7bb4ec4806d72f6601712ca3e67ba82cdef3"
+    sha256 cellar: :any,                 ventura:        "069e7081981b182a91479b4ae449a9a542fe4000301cb405c8b0ad8a60cd6e6a"
+    sha256 cellar: :any,                 monterey:       "b90eb143ad2c5af39f8e4ec6981490e1aba97ba2780788abf8716c72b51f7e95"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "e3d547674c49913efdb2fc5bce77af258e727d22dc29db604e0a209935d10068"
   end
 
   depends_on "pkg-config" => :build
@@ -37,8 +37,18 @@ class AstrometryNet < Formula
   depends_on "wcslib"
 
   resource "fitsio" do
-    url "https://files.pythonhosted.org/packages/aa/03/d7d0b77f938627cb46f6d91257d859c78459fbb5b155899d6c4c78970faa/fitsio-1.2.1.tar.gz"
-    sha256 "c64f60588f25fb2ba499854082bca73b0eda43b32ed6091f09dfcbcb72a911a6"
+    url "https://files.pythonhosted.org/packages/6a/94/edcf29d321985d565f8365e3349aa2283431d45913b909d69d648645f931/fitsio-1.2.4.tar.gz"
+    sha256 "d57fe347c7657dc1f78c7969a55ecb4fddb717ae1c66d9d22046c171203ff678"
+  end
+
+  # Support numpy 2.0
+  patch do
+    url "https://github.com/dstndstn/astrometry.net/commit/5640e60401ac6961449d64ec0256c326b1d26216.patch?full_index=1"
+    sha256 "7486d9dac6bf7261f2cd459af028426dfb29c0b3c23c840889ef9ba083c42be3"
+  end
+  patch do
+    url "https://github.com/dstndstn/astrometry.net/commit/7991b0d20280e8fc6a9b17d5669312eee69e4c43.patch?full_index=1"
+    sha256 "4fa0feec1bd4159749789c5f115dd0e99e6a92e6032b90da273560a9064419d5"
   end
 
   def install
