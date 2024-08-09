@@ -1,30 +1,25 @@
-require "language/node"
-
 class GruntCli < Formula
   desc "JavaScript Task Runner"
   homepage "https://gruntjs.com/"
-  url "https://registry.npmjs.org/grunt-cli/-/grunt-cli-1.4.3.tgz"
-  sha256 "c7ffc367ad7d019ef34e98913dfdbcf05dcf03f2e32dc88fba8f650b1dae83bd"
+  url "https://registry.npmjs.org/grunt-cli/-/grunt-cli-1.5.0.tgz"
+  sha256 "4f7f52cf9f3bc62ebc7ae60d2db5c7f896cb0915ad1202dab9285d6117d7536d"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "a27383381fa985abeef768ab7661d31d1cf18ef09bdb38acc36d3ff4c94b9f31"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "7e878a48df0184f262a7d4a0d4967b7623f9327e29206faaf90758664de3dd19"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "38f67054b492a11847be41d443b32c017fdbb9b94265ce42299675ea8742ef99"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "8eafad607c94848c1bd74eca2a52b92533f399247c85d4de923ff12367ce2cda"
-    sha256 cellar: :any_skip_relocation, sonoma:         "99e5dec59e3eab4cc5aba30bec85be15771a1cb2f976db86cc2730b2ff405020"
-    sha256 cellar: :any_skip_relocation, ventura:        "1caa9aaf12306e326ffeabc633855bec97c1a537506d8bc09a88a8869e4fd909"
-    sha256 cellar: :any_skip_relocation, monterey:       "af276cc7570d11abe7da586cc0dfcee75947df3b58bcd29892722d8654649668"
-    sha256 cellar: :any_skip_relocation, big_sur:        "e1be76f2bb72f2cc111627400cf586487b8515a0051b96c4d8138da773d1ac73"
-    sha256 cellar: :any_skip_relocation, catalina:       "e1be76f2bb72f2cc111627400cf586487b8515a0051b96c4d8138da773d1ac73"
-    sha256 cellar: :any_skip_relocation, mojave:         "e1be76f2bb72f2cc111627400cf586487b8515a0051b96c4d8138da773d1ac73"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "b45f26c253f18a68abd0e318d4a5634d371cace863b5b086fc8187d05ee5f5f7"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "2dd1c3cbca5634e0af5e6f0cdecde2700c3b28fef7995b59527cbc225cc133a7"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "2dd1c3cbca5634e0af5e6f0cdecde2700c3b28fef7995b59527cbc225cc133a7"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "2dd1c3cbca5634e0af5e6f0cdecde2700c3b28fef7995b59527cbc225cc133a7"
+    sha256 cellar: :any_skip_relocation, sonoma:         "be6201a69eafbd7b9d93fa919cd410dc0c8e03eef63f686836690fdee13b9fe0"
+    sha256 cellar: :any_skip_relocation, ventura:        "be6201a69eafbd7b9d93fa919cd410dc0c8e03eef63f686836690fdee13b9fe0"
+    sha256 cellar: :any_skip_relocation, monterey:       "be6201a69eafbd7b9d93fa919cd410dc0c8e03eef63f686836690fdee13b9fe0"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "b9383dff764eb6833c08ecf8ac67a869c40c5830ec27471577094357feabac56"
   end
 
   depends_on "node"
 
   def install
-    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
+    system "npm", "install", *std_npm_args
     bin.install_symlink Dir["#{libexec}/bin/*"]
   end
 
@@ -47,7 +42,7 @@ class GruntCli < Formula
       };
     EOS
 
-    system "npm", "install", *Language::Node.local_npm_install_args
+    system "npm", "install", *std_npm_args(prefix: false)
     system bin/"grunt"
     assert_predicate testpath/"output.txt", :exist?, "output.txt was not generated"
   end

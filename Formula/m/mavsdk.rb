@@ -2,10 +2,10 @@ class Mavsdk < Formula
   desc "API and library for MAVLink compatible systems written in C++17"
   homepage "https://mavsdk.mavlink.io"
   url "https://github.com/mavlink/MAVSDK.git",
-      tag:      "v2.12.2",
-      revision: "e6de742abc41b6f3717ec1df0749dc151247be03"
+      tag:      "v2.12.3",
+      revision: "fda7259d846bb5c8a6328dc574909be4a558fc06"
   license "BSD-3-Clause"
-  revision 1
+  revision 2
 
   livecheck do
     url :stable
@@ -13,13 +13,13 @@ class Mavsdk < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sonoma:   "25caee40e37a167991d7b6212620cdade2249e90a3ab175d41c9a48064f28d28"
-    sha256 cellar: :any,                 arm64_ventura:  "bd7cb8908bed9b84470a0b39d32ef6fc4b4d364f68805dd9e27cadca7e5fcf02"
-    sha256 cellar: :any,                 arm64_monterey: "4c1632ebdd83eecc008fbd9afc9d491e5876d4ca4ae35656506724e852df9c9c"
-    sha256 cellar: :any,                 sonoma:         "947299f5ca098b5350ae85de88ebceb6e032c022e98d08fba72d26cb67f48482"
-    sha256 cellar: :any,                 ventura:        "e39ce781de67813e323601de1b48b5a49267f2ac1591941cc3ba599cfb529223"
-    sha256 cellar: :any,                 monterey:       "91a940266d8198c0b8ab628487a1662870a06ebcaab136b9942581ecfe64aa70"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "79a5b21e5456557b6ec4d1599b585f3e43914039248e4d5d20581a693b7e9e46"
+    sha256 cellar: :any,                 arm64_sonoma:   "59455372a164411cec96eae01fa4276b329b133562d053e668d2a4078bbdf1e3"
+    sha256 cellar: :any,                 arm64_ventura:  "f56a3ba06b07cea0f05e743eff50d61da3284ae09a7ca74e3d63b3453e84a520"
+    sha256 cellar: :any,                 arm64_monterey: "df21a6b3b51b35e9b28982578ed8ba4098cdeb05187adfc860283ea312a7d68f"
+    sha256 cellar: :any,                 sonoma:         "2a074771c0e3b9fdac0e399ddcf323e321896177e5275e0857535a0e8d707aa6"
+    sha256 cellar: :any,                 ventura:        "5ac6628b685302b8f2b8dea62211405379f8ad5bb22b7c4a1591bf67d448634b"
+    sha256 cellar: :any,                 monterey:       "6f2d9f9498d41f60201a3eecf7cb60d1f2a1a7b46bb2e4e4eac08bc3e83316a9"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "8d156074d18ac43e50bd6a2e160d3c2bd47a7673a560f3645338924803ff8188"
   end
 
   depends_on "cmake" => :build
@@ -51,7 +51,9 @@ class Mavsdk < Formula
 
   fails_with gcc: "5"
 
-  # MAVLINK_GIT_HASH in https://github.com/mavlink/MAVSDK/blob/v#{version}/third_party/mavlink/CMakeLists.txt
+  # ver={version} && \
+  # curl -s https://raw.githubusercontent.com/mavlink/MAVSDK/v$ver/third_party/mavlink/CMakeLists.txt && \
+  # | grep 'MAVLINK_GIT_HASH'
   resource "mavlink" do
     url "https://github.com/mavlink/mavlink.git",
         revision: "f1d42e2774cae767a1c0651b0f95e3286c587257"

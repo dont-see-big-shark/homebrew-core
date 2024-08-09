@@ -1,21 +1,21 @@
-require "language/node"
 require "json"
 
 class Babel < Formula
   desc "Compiler for writing next generation JavaScript"
   homepage "https://babeljs.io/"
-  url "https://registry.npmjs.org/@babel/core/-/core-7.24.8.tgz"
-  sha256 "345ef64b74e9114e98296b8ac835490d1bfa648849cb9c3e6c62e7c9804cb790"
+  url "https://registry.npmjs.org/@babel/core/-/core-7.25.2.tgz"
+  sha256 "6873c15a448a1ad6cd7a5b845d20e2348e04abc1a2261354ad3c702689a4ad0a"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "a52251dd5c1478e11f349827c3d6f08d3303586729a47b1f10aea129134cbd11"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "a52251dd5c1478e11f349827c3d6f08d3303586729a47b1f10aea129134cbd11"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "a52251dd5c1478e11f349827c3d6f08d3303586729a47b1f10aea129134cbd11"
-    sha256 cellar: :any_skip_relocation, sonoma:         "a52251dd5c1478e11f349827c3d6f08d3303586729a47b1f10aea129134cbd11"
-    sha256 cellar: :any_skip_relocation, ventura:        "a52251dd5c1478e11f349827c3d6f08d3303586729a47b1f10aea129134cbd11"
-    sha256 cellar: :any_skip_relocation, monterey:       "a52251dd5c1478e11f349827c3d6f08d3303586729a47b1f10aea129134cbd11"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "72a45f3f3a9af0629b432d275b8971f02f37c01048906cf7fd6d6e32f355fac0"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "6dd5647d696698bb8a880823ddb5211d2a3fad7746e08c28623ca535a5052078"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "6dd5647d696698bb8a880823ddb5211d2a3fad7746e08c28623ca535a5052078"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "6dd5647d696698bb8a880823ddb5211d2a3fad7746e08c28623ca535a5052078"
+    sha256 cellar: :any_skip_relocation, sonoma:         "6dd5647d696698bb8a880823ddb5211d2a3fad7746e08c28623ca535a5052078"
+    sha256 cellar: :any_skip_relocation, ventura:        "6dd5647d696698bb8a880823ddb5211d2a3fad7746e08c28623ca535a5052078"
+    sha256 cellar: :any_skip_relocation, monterey:       "6dd5647d696698bb8a880823ddb5211d2a3fad7746e08c28623ca535a5052078"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "093bd57c05ed3a658e43bbe8f83d3321c01f7a365d2e5e38f70325cafc23024f"
   end
 
   depends_on "node"
@@ -30,10 +30,10 @@ class Babel < Formula
     buildpath.install resource("babel-cli")
 
     cd buildpath/"node_modules/@babel/core" do
-      system "npm", "install", *Language::Node.local_npm_install_args, "--production"
+      system "npm", "install", *std_npm_args(prefix: false), "--production"
     end
 
-    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
+    system "npm", "install", *std_npm_args
     bin.install_symlink Dir["#{libexec}/bin/*"]
   end
 

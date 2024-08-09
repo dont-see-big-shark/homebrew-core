@@ -66,11 +66,11 @@ class LuajitOpenresty < Formula
     end
 
     # Having an empty Lua dir in lib/share can mess with other Homebrew Luas.
-    %W[#{lib}/lua #{share}/lua].each { |d| rm_rf d }
+    %W[#{lib}/lua #{share}/lua].each { |d| rm_r(d) }
   end
 
   test do
-    system "#{bin}/luajit", "-e", <<~EOS
+    system bin/"luajit", "-e", <<~EOS
       local ffi = require("ffi")
       ffi.cdef("int printf(const char *fmt, ...);")
       ffi.C.printf("Hello %s!\\n", "#{ENV["USER"]}")

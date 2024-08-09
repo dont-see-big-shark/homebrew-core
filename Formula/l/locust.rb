@@ -3,18 +3,18 @@ class Locust < Formula
 
   desc "Scalable user load testing tool written in Python"
   homepage "https://locust.io/"
-  url "https://files.pythonhosted.org/packages/60/46/615406ab9a2e3114deed02cf04194f479c296a63c1494822b76e00dd1d7b/locust-2.29.1.tar.gz"
-  sha256 "2e0628a59e2689a50cb4735a9a43709e30f2da7ed276c15d877c5325507f44b1"
+  url "https://files.pythonhosted.org/packages/20/38/0e4fe4b17f42939bd283fc036bcdd4780f12cbca75496c314398c6ba3471/locust-2.31.2.tar.gz"
+  sha256 "a31f8e1d24535494eb809bd8dfd545ada9514df4581b69bdc2ecf3e109b7a1dd"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sonoma:   "a301931339faa08c05c2554cbbc1f6bdad3737f47f9bba2ca44c18f654ad2f89"
-    sha256 cellar: :any,                 arm64_ventura:  "f4917c3fe5a83f24442fa1f849f533d0c4025093ad2bb3c83718f142336dde9a"
-    sha256 cellar: :any,                 arm64_monterey: "6d8d34d7cdcdde99af748f2dd9e252d28a60ac2e8cf7bf4c841923b257db9ab7"
-    sha256 cellar: :any,                 sonoma:         "14553f10b52f4e91f0f795e9a0a1f135a08f646b936a81d6c4dc15e0721f891b"
-    sha256 cellar: :any,                 ventura:        "0fee16db179dc480962802d9d800eb54e8dddaf152f5a7c2c2a3b45b353bcc33"
-    sha256 cellar: :any,                 monterey:       "6555b37575b7a58c4bb8777b598c103d2ee1b5fe5b68dc39edc518380b52e1c5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "97b52116e9fc941b69408152f81df0e1e1a4ac25a82c6ccbe964ee248618fbc4"
+    sha256 cellar: :any,                 arm64_sonoma:   "69f930b1fc565c4cb0a2f26d17a0235f2ef2c61bb63ebdd759670ffecfa8ee25"
+    sha256 cellar: :any,                 arm64_ventura:  "ac21e88d0e5389ef4f4ee8a14b9e9666868d4cadd968cc27effd7164923fb2d9"
+    sha256 cellar: :any,                 arm64_monterey: "55a71aaa2b26a078407c2687666baecf71f2e6dc5421f0962279580bb0616c14"
+    sha256 cellar: :any,                 sonoma:         "430c019efa2e3d7391343a6205867616082ac7832459e1af84e7760237420d6a"
+    sha256 cellar: :any,                 ventura:        "18adac4f952a69934d75b9eedd0647926a9f27802a4b6a24a337bb8ee35d0374"
+    sha256 cellar: :any,                 monterey:       "4f71d423ca2e09ad94b9ab1984943e72be236389618f82c304e642149f74ff6a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "f321afe0380b2674c5723788da7f9122a24237efe5e9da57a59f7eeede42ac86"
   end
 
   depends_on "cmake" => :build # for pyzmq
@@ -109,8 +109,8 @@ class Locust < Formula
   end
 
   resource "pyzmq" do
-    url "https://files.pythonhosted.org/packages/c4/9a/0e2ab500fd5a5a41e7d003e4a49faa7a0333db13e54498a3cf749b9eedd0/pyzmq-26.0.3.tar.gz"
-    sha256 "dba7d9f2e047dfa2bca3b01f4f84aa5246725203d6284e3790f2ca15fba6b40a"
+    url "https://files.pythonhosted.org/packages/39/a3/3f8dac25b443ca527eddd9559b390bfb539f6ee6fb0b824427315dfe585d/pyzmq-26.1.0.tar.gz"
+    sha256 "6c5aeea71f018ebd3b9115c7cb13863dd850e98ca6b9258509de1246461a7e7f"
   end
 
   resource "requests" do
@@ -119,8 +119,8 @@ class Locust < Formula
   end
 
   resource "setuptools" do
-    url "https://files.pythonhosted.org/packages/0d/9d/c587bea18a7e40099857015baee4cece7aca32cd404af953bdeb95ac8e47/setuptools-70.1.1.tar.gz"
-    sha256 "937a48c7cdb7a21eb53cd7f9b59e525503aa8abaf3584c730dc5f7a5bec3a650"
+    url "https://files.pythonhosted.org/packages/5e/11/487b18cc768e2ae25a919f230417983c8d5afa1b6ee0abd8b6db0b89fa1d/setuptools-72.1.0.tar.gz"
+    sha256 "8d243eff56d095e5817f796ede6ae32941278f542e0f941867cc05ae52b162ec"
   end
 
   resource "urllib3" do
@@ -139,11 +139,14 @@ class Locust < Formula
   end
 
   resource "zope-interface" do
-    url "https://files.pythonhosted.org/packages/09/06/7c1202972bc99dd1b731c3c01157855cbc8d0944894c3b234473b1f4119c/zope.interface-6.4.post2.tar.gz"
-    sha256 "1c207e6f6dfd5749a26f5a5fd966602d6b824ec00d2df84a7e9a924e8933654e"
+    url "https://files.pythonhosted.org/packages/ab/45/70929649a48b49a71a470bdd84e078110fb5a91e5d74bfe07d65e02b4f03/zope.interface-7.0.1.tar.gz"
+    sha256 "f0f5fda7cbf890371a59ab1d06512da4f2c89a6ea194e595808123c863c38eff"
   end
 
   def install
+    # skip frontend build
+    ENV["SKIP_PRE_BUILD"] = "true"
+
     virtualenv_install_with_resources
   end
 

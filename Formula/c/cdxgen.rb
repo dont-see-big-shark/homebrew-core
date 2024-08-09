@@ -1,26 +1,24 @@
-require "language/node"
-
 class Cdxgen < Formula
   desc "Creates CycloneDX Software Bill-of-Materials (SBOM) for projects"
   homepage "https://github.com/CycloneDX/cdxgen"
-  url "https://registry.npmjs.org/@cyclonedx/cdxgen/-/cdxgen-10.8.1.tgz"
-  sha256 "61247d7d6bceb19fa66f731ca968bb184ee1df00af8eecba8b4fbcb1a93444e6"
+  url "https://registry.npmjs.org/@cyclonedx/cdxgen/-/cdxgen-10.9.2.tgz"
+  sha256 "3557be151bd4c3ad39ead01a61aa4a4e374e0a6103377c04ac1f1e5538e2664d"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "88ab1815d56a8718808cb3582a6fe9bcd2c16b39dfdf45c209c66d42a16d391c"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "ec381ab4517ee731f91a59b13641b70046b5313b882740eb7af0542798d09573"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "7c30861a34a49712ffd311e48a1199025f3e23e1473c62a336101e44d752498a"
-    sha256 cellar: :any_skip_relocation, sonoma:         "8f0051e054c3892866969d1c6b3806e0fc34bce88874d678d3d84139eaa38514"
-    sha256 cellar: :any_skip_relocation, ventura:        "690765b3bfc2a762f3d0005e11a9361182d2dd6b7920d8baff34541eb2fe5c4e"
-    sha256 cellar: :any_skip_relocation, monterey:       "7204c21212f4afc150e2579d65441a6721e7396c410e19ea5256cedb5dd48b2a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "115546e196ec429c7d4f98c622c73edc9fd298be6bf6f179c8ff284b5ed85b77"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "2be1a8e6308dc814f7782e3d7d8086dc93dfb3238fd1b9b33b0e2d8f7fe1e5d7"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "c4fc0040d3e3d0fad4387b2e6cee5144f294eb4cc5b40f003fa0d3fb10c355f7"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "25e6013b4c0f81768441e9e8b25a44fb5be159b739f88aaea73c542206b8c4ce"
+    sha256 cellar: :any_skip_relocation, sonoma:         "a268e5fe619ab9d2723f361fca5e630e46fc417088971b7ba86adef6730c9960"
+    sha256 cellar: :any_skip_relocation, ventura:        "09b6978462676b37e0efdc3b9ed75b079620f90458e110aaeaf4433a2203d029"
+    sha256 cellar: :any_skip_relocation, monterey:       "7f8d41dcbc043a58b2a46f94999f29c4e2ad831ee3ea60fa314d64dfab5c3932"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "fdc62149a9154969ebc99df77cc7eb7a21fee99bc6f89029aab5071564ae021c"
   end
 
   depends_on "node"
 
   def install
-    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
+    system "npm", "install", *std_npm_args
     bin.install_symlink Dir["#{libexec}/bin/*"]
 
     # Remove incompatible pre-built binaries
@@ -33,10 +31,6 @@ class Cdxgen < Formula
 
       rm f
     end
-
-    # remove pre-built osquery plugin for macos intel builds
-    osquery_plugin = node_modules/"@cyclonedx/cdxgen-plugins-bin-darwin-amd64/plugins/osquery"
-    osquery_plugin.rmtree if OS.mac? && Hardware::CPU.intel?
   end
 
   test do

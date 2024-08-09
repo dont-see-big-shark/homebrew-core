@@ -1,19 +1,19 @@
 class Murex < Formula
   desc "Bash-like shell designed for greater command-line productivity and safer scripts"
   homepage "https://murex.rocks"
-  url "https://github.com/lmorg/murex/archive/refs/tags/v6.1.8300.tar.gz"
-  sha256 "7d84fcb03c59e7f8f848713f1a464a3212d24311ddc733da0db65c27e7d1488f"
+  url "https://github.com/lmorg/murex/archive/refs/tags/v6.2.4000.tar.gz"
+  sha256 "c5e04bf1a43c6a3c326e302f8739df1440a5cee164f47ec8b1b549a8c5e5cfb4"
   license "GPL-2.0-only"
   head "https://github.com/lmorg/murex.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "ba75743647a87370aad957b1c4877b51e6da0967c773c8b3f6d327f27ee18ec5"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "ae664c4c3511600cb624997f40fd0700c124682f0432c7436448a28c50d5760c"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "9c261fa2bb9f05e7d3b9d2d2edbb8549280e40bc07f70a8fb1db172c61e34742"
-    sha256 cellar: :any_skip_relocation, sonoma:         "04d780fd52634a217e40d4ba57bbaf09d98e915971fa21bad4eb7baa64172318"
-    sha256 cellar: :any_skip_relocation, ventura:        "b56dc474b069ff5c20f6955c7921a800d899b8d6725cac67c3f8a2a30a8b8144"
-    sha256 cellar: :any_skip_relocation, monterey:       "5cb663013a03209719bbc0ccfe589af692d4a7d9afc8adc89697fba3b6244616"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "3817707b8c33a254ed62eb51593d5e7b97f85aac1a8d38c31618535b1cfeb592"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "5d220eeefcc70016a436d826a89fe6311f9b9df7c1eedce4803dc152b6a4b423"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "a863eb03b5f3ec4f3184717314a626a060846ecf01d0f7f569a84286b1536f7c"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "5e3feac19c44d8f730102a592e2aa5458805e59876c9d5029d0b97611c5eab35"
+    sha256 cellar: :any_skip_relocation, sonoma:         "7a0639c95e75b8e643e9bcd1e493657d3393b190edde6745a7a893f825f2fa73"
+    sha256 cellar: :any_skip_relocation, ventura:        "f82c9c8cc596d7184263186b6a275315cba463eaf81b9d05cd0de7713da5d9c3"
+    sha256 cellar: :any_skip_relocation, monterey:       "2eb59bfec60bc31699881f2caefad3b0b224ad30b3f061508d6140bfab57236c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "f6dbf6d3c17017adbfbca80608992b16d3087c695f6c74fb31f321d761ec7fb7"
   end
 
   depends_on "go" => :build

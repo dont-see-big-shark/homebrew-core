@@ -1,51 +1,48 @@
-require "language/node"
-
 class CodeServer < Formula
   desc "Access VS Code through the browser"
   homepage "https://github.com/coder/code-server"
-  url "https://registry.npmjs.org/code-server/-/code-server-4.22.1.tgz"
-  sha256 "46638c295b35b5212ed3e4a5d92206fec6e3c75f5d69f24764413e6358aaca6b"
+  url "https://registry.npmjs.org/code-server/-/code-server-4.91.1.tgz"
+  sha256 "caff899580267b4020c9cde70eda1f0d465f6ee6c134177ad4334de783918ccc"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "cd9c1f70af7184bac8deacdf574f9608238f4c85c2800cc4b9ac4c4ad764118c"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "dab831d6f21fff3144e8b2f7621ba2976dd23851494d040c9f1d8f5959fdc872"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "64e8d962e04dc008ede631c079af35aa46427a8be0b0f21bf872f1e4c919ec2b"
-    sha256 cellar: :any_skip_relocation, sonoma:         "a7780c06a13f7b3323ca8211a57f10aef6cca0752dc76b50d395cbb9fb6b7f44"
-    sha256 cellar: :any_skip_relocation, ventura:        "d555718239d6dd531372e6905d0410cca3aaccd622a361d64c061fc50159339c"
-    sha256 cellar: :any_skip_relocation, monterey:       "43fc915929936b884e9883dd9fe2ba8b93721007ad63cee9a0ab1adfd37205f5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "2b94aec49c9b1563d88b4f941939733c74bade22953221e99fb9c76e40ea1456"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "6552a8d502d4ec0449d6cf7fe11850a49e8e6d7868322e4111534edc714f17cb"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "d98325dd95798edb060b780660b45820c14157c17d53b92a2b5cd49603b8d864"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "21d1c6efae8b0465bbcd83dcd56abb4d43764bb702334aa65aaa73d81edf2ca4"
+    sha256 cellar: :any_skip_relocation, sonoma:         "592294a1a8feffcea9f4500337ef9eb5132024d0347c28ccb457d49e25193961"
+    sha256 cellar: :any_skip_relocation, ventura:        "3cf716bdda8bf22b70e15b036984dc8f2d86cb269f5a52974ad0c7e2b45b53fd"
+    sha256 cellar: :any_skip_relocation, monterey:       "2da8171b6ac28da15ab8601baddbc17f01461da314fa2a607c8fe1fa416f8f62"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "118464890162921266db09f853b3798af699af8519c9badc11c65db8ced8b6f6"
   end
 
-  depends_on "yarn" => :build
-  depends_on "node@18"
+  depends_on "node@20"
 
   uses_from_macos "python" => :build
 
   on_linux do
     depends_on "pkg-config" => :build
+    depends_on "krb5"
     depends_on "libsecret"
     depends_on "libx11"
     depends_on "libxkbfile"
   end
 
   def install
-    node = Formula["node@18"]
-    system "npm", "install", *Language::Node.local_npm_install_args, "--unsafe-perm", "--omit", "dev"
+    # Fix broken node-addon-api: https://github.com/nodejs/node/issues/52229
+    ENV.append "CXXFLAGS", "-DNODE_API_EXPERIMENTAL_NOGC_ENV_OPT_OUT"
 
-    # @parcel/watcher bundles all binaries for other platforms & architectures
-    # This deletes the non-matching architecture otherwise brew audit will complain.
-    arch_string = (Hardware::CPU.intel? ? "x64" : Hardware::CPU.arch.to_s)
-    prebuilds = buildpath/"lib/vscode/node_modules/@parcel/watcher/prebuilds"
-    # Homebrew only supports glibc-based Linuxes, avoid missing linkage to musl libc
-    (prebuilds/"linux-x64/node.napi.musl.node").unlink
-    current_prebuild = prebuilds/"#{OS.kernel_name.downcase}-#{arch_string}"
-    unneeded_prebuilds = prebuilds.glob("*") - [current_prebuild]
-    unneeded_prebuilds.map(&:rmtree)
+    system "npm", "install", *std_npm_args
+    bin.install_symlink libexec.glob("bin/*")
 
-    libexec.install Dir["*"]
-    env = { PATH: "#{node.opt_bin}:$PATH" }
-    (bin/"code-server").write_env_script "#{libexec}/out/node/entry.js", env
+    # Remove incompatible pre-built binaries
+    os = OS.kernel_name.downcase
+    arch = Hardware::CPU.intel? ? "x64" : Hardware::CPU.arch.to_s
+    vscode = libexec/"lib/node_modules/code-server/lib/vscode"
+    vscode.glob("{,extensions/}node_modules/@parcel/watcher/prebuilds/*")
+          .each { |dir| rm_r(dir) if dir.basename.to_s != "#{os}-#{arch}" }
+    vscode.glob("{,extensions/}node_modules/@parcel/watcher/prebuilds/linux-x64/*.musl.node")
+          .map(&:unlink)
   end
 
   def caveats
@@ -65,7 +62,7 @@ class CodeServer < Formula
   test do
     # See https://github.com/cdr/code-server/blob/main/ci/build/test-standalone-release.sh
     system bin/"code-server", "--extensions-dir=.", "--install-extension", "wesbos.theme-cobalt2"
-    assert_match "wesbos.theme-cobalt2",
-      shell_output("#{bin}/code-server --extensions-dir=. --list-extensions")
+    output = shell_output("#{bin}/code-server --extensions-dir=. --list-extensions")
+    assert_match "wesbos.theme-cobalt2", output
   end
 end

@@ -2,7 +2,7 @@ class Grpc < Formula
   desc "Next generation open source RPC library and framework"
   homepage "https://grpc.io/"
   license "Apache-2.0"
-  revision 2
+  revision 4
   head "https://github.com/grpc/grpc.git", branch: "master"
 
   stable do
@@ -29,13 +29,13 @@ class Grpc < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sonoma:   "1de3d3705a06c17ecc692b74d255e632334067f07f0207f12a71fa215018d188"
-    sha256 cellar: :any,                 arm64_ventura:  "35abf8314902bbc02547fe5b0124efa5275840693a4c7fbf0891d956fd9945e3"
-    sha256 cellar: :any,                 arm64_monterey: "318b7a529f81c98f3b490198f81042fff85ba1c0ac64f4c3e41a7c791f5beeea"
-    sha256 cellar: :any,                 sonoma:         "b027b68386e4c03db9b9f164dd8e0263bb2edc0b6fc21624c0c6c3310876d388"
-    sha256 cellar: :any,                 ventura:        "99390215b1fee6570a3bae8bcda9f7850a2a3eb59d631bfafd14a7229c79fabf"
-    sha256 cellar: :any,                 monterey:       "a0cd61c1bbdc07a01d3f9213f7158b0a22319334c0674d03feb2640ac0585b24"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "2cfd927d0a0c478f3e8f4c2e59121ee5d97d09131fc47c414663517afaa4f18e"
+    sha256 cellar: :any,                 arm64_sonoma:   "c9d9996cd5fc3ea4ab38b6de3c02cf4fc09bcc7c35cab5bdcafdfead0591be0c"
+    sha256 cellar: :any,                 arm64_ventura:  "9bfb08b7e237d5627661646aa3cd69661107e03d252507d11cd999eeda84e99b"
+    sha256 cellar: :any,                 arm64_monterey: "8deaf1f1399b7fa007b835d707d832d8d642caf737a9b29bcb50c4793b644d61"
+    sha256 cellar: :any,                 sonoma:         "236c463aac549d09b77c98bf5453be0b25eb4a1e610c69f7d17d5767c48599cd"
+    sha256 cellar: :any,                 ventura:        "bf63524eea14cdf767ace3bf474740f8a23326643b3b9d481f1b383c77bca6ab"
+    sha256 cellar: :any,                 monterey:       "ebadd34a7782281b7f1166d4e6cb0f293663e5a0fd91a3b59409318eff7ea12d"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "a48893c79556662762c551476b92a7eca91fc350a44ad22f2fd51576e076376b"
   end
 
   depends_on "autoconf" => :build

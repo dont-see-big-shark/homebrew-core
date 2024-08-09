@@ -24,13 +24,12 @@ class Lci < Formula
   conflicts_with "lolcode", because: "both install `lci` binaries"
 
   def install
-    mkdir "build" do
-      system "cmake", "..", *std_cmake_args
-      system "make", "install"
-    end
+    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 
   test do
-    assert_match "[I, 2]", pipe_output("#{bin}/lci", "Append [1] [2]\n")
+    assert_match "[I, 2]", pipe_output(bin/"lci", "Append [1] [2]\n")
   end
 end

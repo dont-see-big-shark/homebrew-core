@@ -1,18 +1,18 @@
 class Pymupdf < Formula
   desc "Python bindings for the PDF toolkit and renderer MuPDF"
   homepage "https://pymupdf.readthedocs.io/en/latest/"
-  url "https://files.pythonhosted.org/packages/66/52/c87b39831b8989e251464b0db4bbae39a1238829152d863ef224882fdd0e/PyMuPDF-1.24.7.tar.gz"
-  sha256 "a34ceae204f215bad51f49dd43987116c6a6269fc03d8770224f7067013b59b8"
+  url "https://files.pythonhosted.org/packages/09/48/862dcbe3cc3f11394c2fc9c5021bf8023b4c917213b63553fb8f15764c95/PyMuPDF-1.24.9.tar.gz"
+  sha256 "3692a5e824f10dc09bbddabab207f7cd5979831e48dd2f4de1be21e441767473"
   license "AGPL-3.0-only"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sonoma:   "d2a3f10e5baae3d875abdca306dee174005678b2c434bda91d078397c23a8750"
-    sha256 cellar: :any,                 arm64_ventura:  "5c0d8476de88622f4f1b4e841906c3baa522c36b35324bba95fa20f1678bbfd8"
-    sha256 cellar: :any,                 arm64_monterey: "202d9bb9f63fa2eb13791ca51e846990f341b1b0294dc481faf054d480c4f999"
-    sha256 cellar: :any,                 sonoma:         "179e01413aaebf796430cc0299de30c50d16545cfb073267ac929eb9971b4b4c"
-    sha256 cellar: :any,                 ventura:        "d421f7d12aef093e46dbefe77d0b304804edbe7430d34811370141c96ee31730"
-    sha256 cellar: :any,                 monterey:       "ea29f5bd2fed27fb2f3ee3a8381763c598a5661417071966a1ab26e87b56f1c0"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "e772d9e5fdb3c3ff90253c4a89546200b0a7a828aa9d69f5155658ae52da1c96"
+    sha256 cellar: :any,                 arm64_sonoma:   "f543b5454110f9b2f181ca8e11e27eccc81dc0b1f11adb8ad848fdaf45e44ea5"
+    sha256 cellar: :any,                 arm64_ventura:  "f9a1c7dcf13f13e9f6e093407aa698cbe42be881e14be295babb0e8491ebb569"
+    sha256 cellar: :any,                 arm64_monterey: "2dbe9279e862867b39c5ba0032b077d220ec1b71846b8a5f252cfbcf3de15c8f"
+    sha256 cellar: :any,                 sonoma:         "33e0783b39c9bf13547bd329bcc49ad2795ae05df8b64a90c9a578799fd6a8da"
+    sha256 cellar: :any,                 ventura:        "1147a501badc1f10b75b14da7300f544732fb1ad39aa4b1f00d52b73d62dac19"
+    sha256 cellar: :any,                 monterey:       "f2ed85726735323c5e17f04ede5753ffdaad84af1662ca5a1fe8de00ff2f586a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "211a5272d9d51c8f35c998321cc83cf427e4c1fbc10ff994972ebeedd8557c02"
   end
 
   depends_on "freetype" => :build
@@ -26,8 +26,8 @@ class Pymupdf < Formula
   end
 
   resource "pymupdfb" do
-    url "https://files.pythonhosted.org/packages/bc/5d/ca7ef871a342710142805fab3992bb32befce94bed29e7f38d38d0748f25/PyMuPDFb-1.24.6.tar.gz"
-    sha256 "f5a40b1732d65a1e519916d698858b9ce7473e23edf9001ddd085c5293d59d30"
+    url "https://files.pythonhosted.org/packages/0c/6c/1d3e88cd7b6a0f074ad6cec0dc32f9c023acd98b328eb23a183517e80e2b/PyMuPDFb-1.24.9.tar.gz"
+    sha256 "5505f07b3dded6e791ab7d10d01f0687e913fc75edd23fdf2825a582b6651558"
   end
 
   def install

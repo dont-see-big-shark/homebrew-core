@@ -3,8 +3,8 @@ class Checkov < Formula
 
   desc "Prevent cloud misconfigurations during build-time for IaC tools"
   homepage "https://www.checkov.io/"
-  url "https://files.pythonhosted.org/packages/8b/99/5a5a1218a553f456d350324e3d4ecbf2b7f61f752314ea7fcb15bd510f49/checkov-3.2.180.tar.gz"
-  sha256 "a594cea7e95044127196b6c677898fcd88023ea1a33c256f2333bb057184d98d"
+  url "https://files.pythonhosted.org/packages/c6/f8/c58bc734940512739d76adc6d9f63c9214d194a40b554fa70474b6d1f2af/checkov-3.2.210.tar.gz"
+  sha256 "281a0e07f9c60af2303305e3675aff2f2b9047a79e11431bfc01b851080c0518"
   license "Apache-2.0"
 
   livecheck do
@@ -17,13 +17,13 @@ class Checkov < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sonoma:   "5ca132075a1e20efc0a7f11ef31178babf278788b500574887043c77983bfd37"
-    sha256 cellar: :any,                 arm64_ventura:  "673434ee09c507b8f5f34f255f63f6ae754fc95c2079709e64e36bea8325f795"
-    sha256 cellar: :any,                 arm64_monterey: "2f8af77ef4a250dc6bf67f560ced91b0dbbac1794a58406f0420a68963b8986c"
-    sha256 cellar: :any,                 sonoma:         "64243388721ccfa8fdd97401fc5161c0b2558f36c4972dccec868fdeb25dee9d"
-    sha256 cellar: :any,                 ventura:        "71f806796bdaab7160934113f36664430ff6447af438e686a7dacbca045637c9"
-    sha256 cellar: :any,                 monterey:       "8c3df8ffd3fce21d161724fe5f1d6924f83c7aad8612a506be9d6c481c3b71df"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "2940fac3a6b30065ddff1d22d5d5a4f646af0c2360cc5bcbf43f85be6b03bf9e"
+    sha256 cellar: :any,                 arm64_sonoma:   "08a3550290029c3e241a63cc3d4284efd0435d80ab74cde7238c549daf609dbe"
+    sha256 cellar: :any,                 arm64_ventura:  "4282d7f1a16d51e9f0c7d135bc28da30465772ac8e4a94423a797bb02704872f"
+    sha256 cellar: :any,                 arm64_monterey: "c21aa97b7d7632dca7d0f298af8c874801c327a5f735968be6df9430d68a9e08"
+    sha256 cellar: :any,                 sonoma:         "a7d0011a1feed38950ba6f527977e6b5524a823724055107a53e86704ffba09c"
+    sha256 cellar: :any,                 ventura:        "a215c9367550b34e706c130a7799317acf445d37b6418867539229c8dae6734b"
+    sha256 cellar: :any,                 monterey:       "bad75c1e2c9ef03b3903ddedb50a713af7f588cc6925daef673bf2528f2c14e6"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "9201874862913ad2a5c9f90c3544880574bca7b94cb915876771b2a722650397"
   end
 
   depends_on "cmake" => :build # for igraph
@@ -71,8 +71,8 @@ class Checkov < Formula
   end
 
   resource "bc-detect-secrets" do
-    url "https://files.pythonhosted.org/packages/0b/6b/f9dd98a34012e58cba7642c44132b620c9bd4cab37fc07d4efe2b81ac9b3/bc-detect-secrets-1.5.13.tar.gz"
-    sha256 "682d77312d1d2839a3996f814841d92afad08d2f47db95473b87006302b91163"
+    url "https://files.pythonhosted.org/packages/8e/fd/21ee4081b7b2c15515183a1b487bbd41a84180735c34b39c2c7665b0cfe9/bc-detect-secrets-1.5.15.tar.gz"
+    sha256 "0d7b2854e0c0672c95347bc4d310f5fbe245bd6154d8adf78a78204409432100"
   end
 
   resource "bc-jsonpath-ng" do
@@ -116,8 +116,8 @@ class Checkov < Formula
   end
 
   resource "cachetools" do
-    url "https://files.pythonhosted.org/packages/b3/4d/27a3e6dd09011649ad5210bdf963765bc8fa81a0827a4fc01bafd2705c5b/cachetools-5.3.3.tar.gz"
-    sha256 "ba29e2dfa0b8b556606f097407ed1aa62080ee108ab0dc5ec9d6a723a007d105"
+    url "https://files.pythonhosted.org/packages/a7/3f/ea907ec6d15f68ea7f381546ba58adcb298417a59f01a2962cb5e486489f/cachetools-5.4.0.tar.gz"
+    sha256 "b8adc2e7c07f105ced7bc56dbb6dfbe7c4a00acce20e2227b3f355be89bc6827"
   end
 
   resource "cffi" do
@@ -141,8 +141,8 @@ class Checkov < Formula
   end
 
   resource "cloudsplaining" do
-    url "https://files.pythonhosted.org/packages/36/41/10330ab113c1d40a48f32f536579aff5025ea975098f37def13fd7fdaef6/cloudsplaining-0.6.2.tar.gz"
-    sha256 "02fc4f8482b701b0b19b7ad543b579ba50f31b3e0389bb9f6973391891d6ecd1"
+    url "https://files.pythonhosted.org/packages/84/0b/b232db103402bc27a9216909c6a9a3d308936e5895e5cadfb6783bccd719/cloudsplaining-0.6.3.tar.gz"
+    sha256 "f8763ecde24de928cfb3ecd16972c96f48c2a576750c1db4451c9e098ceaf203"
   end
 
   resource "colorama" do
@@ -296,13 +296,13 @@ class Checkov < Formula
   end
 
   resource "policy-sentry" do
-    url "https://files.pythonhosted.org/packages/ca/f1/496838fb09f5bb76d178616bf6c5029634d33a115e1702550f623a9d6ea6/policy_sentry-0.12.14.tar.gz"
-    sha256 "4c71d8e6a827168f1283d51f5b502aeb66ba2f8aaf89088f0a40e0460bd29cec"
+    url "https://files.pythonhosted.org/packages/0b/76/52009505879c765ad57c68a9e2a53fc7bcee886b6ccba8f9f981b85a7c18/policy_sentry-0.12.15.tar.gz"
+    sha256 "93532cdc085d122b090cdd741852a646fd796c3607232a7cc5e8aa9ac5480198"
   end
 
   resource "prettytable" do
-    url "https://files.pythonhosted.org/packages/19/d3/7cb826e085a254888d8afb4ae3f8d43859b13149ac8450b221120d4964c9/prettytable-3.10.0.tar.gz"
-    sha256 "9665594d137fb08a1117518c25551e0ede1687197cf353a4fdc78d27e1073568"
+    url "https://files.pythonhosted.org/packages/4c/90/e1c8c06235d53c3adaae74d295669612beea5f5a2052b3184a763e7bdd62/prettytable-3.10.2.tar.gz"
+    sha256 "29ec6c34260191d42cd4928c28d56adec360ac2b1208a26c7e4f14b90cc8bc84"
   end
 
   resource "py-serializable" do
@@ -361,8 +361,8 @@ class Checkov < Formula
   end
 
   resource "regex" do
-    url "https://files.pythonhosted.org/packages/7a/db/5ddc89851e9cc003929c3b08b9b88b429459bf9acbf307b4556d51d9e49b/regex-2024.5.15.tar.gz"
-    sha256 "d3ee02d9e5f482cc8309134a91eeaacbdd2261ba111b0fef3748eeb4913e6a2c"
+    url "https://files.pythonhosted.org/packages/3f/51/64256d0dc72816a4fe3779449627c69ec8fee5a5625fd60ba048f53b3478/regex-2024.7.24.tar.gz"
+    sha256 "9cfd009eed1a46b27c14039ad5bbc5e71b6367c5b2e6d5f5da0ea91600817506"
   end
 
   resource "requests" do
@@ -371,8 +371,8 @@ class Checkov < Formula
   end
 
   resource "rpds-py" do
-    url "https://files.pythonhosted.org/packages/36/a2/83c3e2024cefb9a83d832e8835f9db0737a7a2b04ddfdd241c650b703db0/rpds_py-0.19.0.tar.gz"
-    sha256 "4fdc9afadbeb393b4bbbad75481e0ea78e4469f2e1d713a90811700830b553a9"
+    url "https://files.pythonhosted.org/packages/2f/fe/5217efe981c2ae8647b503ba3b8f55efc837df62f63667572b4bb75b30bc/rpds_py-0.19.1.tar.gz"
+    sha256 "31dd5794837f00b46f4096aa8ccaa5972f73a938982e32ed817bb520c465e520"
   end
 
   resource "rustworkx" do
@@ -451,8 +451,8 @@ class Checkov < Formula
   end
 
   resource "urllib3" do
-    url "https://files.pythonhosted.org/packages/c8/93/65e479b023bbc46dab3e092bda6b0005424ea3217d711964ccdede3f9b1b/urllib3-1.26.19.tar.gz"
-    sha256 "3e3d753a8618b86d7de333b4223005f68720bcd6a7d2bcb9fbd2229ec7c1e429"
+    url "https://files.pythonhosted.org/packages/af/47/b215df9f71b4fdba1025fc05a77db2ad243fa0926755a52c5e71659f4e3c/urllib3-2.0.7.tar.gz"
+    sha256 "c97dfde1f7bd43a71c8d2a58e369e9b2bf692d1334ea9f9cae55add7d0dd0f84"
   end
 
   resource "wcwidth" do

@@ -26,8 +26,8 @@ class Jmeter < Formula
 
   def install
     # Remove windows files
-    rm_f Dir["bin/*.bat"]
-    prefix.install_metafiles
+    rm(Dir["bin/*.bat"])
+
     libexec.install Dir["*"]
     (bin/"jmeter").write_env_script libexec/"bin/jmeter", JAVA_HOME: Formula["openjdk@21"].opt_prefix
 

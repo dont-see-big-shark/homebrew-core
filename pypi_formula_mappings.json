@@ -1,4 +1,7 @@
 {
+  "aider": {
+    "exclude_packages": ["certifi", "cffi", "numpy", "pillow", "scipy"]
+  },
   "aiven-client": {
     "exclude_packages": ["certifi"]
   },
@@ -75,7 +78,8 @@
     "exclude_packages": ["certifi"]
   },
   "awscli": {
-    "extra_packages": ["setuptools", "wheel"]
+    "exclude_packages": ["cryptography"],
+    "extra_packages": ["flit-core", "setuptools", "wheel"]
   },
   "awscurl": {
     "exclude_packages": ["certifi", "cryptography"]
@@ -163,7 +167,7 @@
   },
   "charmcraft": {
     "extra_packages": ["jeepney", "secretstorage"],
-    "exclude_packages": ["certifi", "cryptography"]
+    "exclude_packages": ["certifi", "cryptography", "pygit2"]
   },
   "chatblade": {
     "exclude_packages": ["certifi"]
@@ -214,12 +218,14 @@
   },
   "cryptography": {
     "exclude_packages": ["cffi", "pycparser"],
-    "extra_packages": ["setuptools-rust"]
+    "extra_packages": ["maturin", "setuptools-rust"]
   },
   "cycode": {
     "exclude_packages": ["certifi"]
   },
   "datalad": {
+    "package_name": "datalad[misc]",
+    "extra_packages": ["jeepney", "secretstorage"],
     "exclude_packages": ["certifi", "cryptography"]
   },
   "datasette": {
@@ -290,6 +296,7 @@
     "exclude_packages": ["certifi"]
   },
   "fastapi": {
+    "package_name": "fastapi[standard]",
     "exclude_packages": ["certifi"]
   },
   "fdroidserver": {
@@ -466,7 +473,7 @@
   },
   "mapproxy": {
     "exclude_packages": ["certifi", "pillow"],
-    "extra_packages": ["pyproj", "setuptools"]
+    "extra_packages": ["pyproj"]
   },
   "mat2": {
     "exclude_packages": ["pygobject"]
@@ -538,7 +545,12 @@
     "exclude_packages": ["certifi", "numpy", "torch"]
   },
   "openstackclient": {
-    "extra_packages": ["python-barbicanclient", "python-cloudkittyclient", "python-designateclient", "python-glanceclient", "python-heatclient", "python-ironicclient", "python-magnumclient", "python-manilaclient", "python-mistralclient", "python-octaviaclient"],
+    "extra_packages": [
+      "python-barbicanclient", "python-cloudkittyclient", "python-designateclient",
+      "python-glanceclient", "python-heatclient", "python-ironicclient",
+      "python-magnumclient", "python-manilaclient", "python-mistralclient",
+      "python-octaviaclient", "setuptools"
+    ],
     "exclude_packages": ["certifi", "cryptography"]
   },
   "organize-tool": {
@@ -768,6 +780,9 @@
   },
   "sysaidmin": {
     "exclude_packages": ["certifi"]
+  },
+  "tartufo": {
+    "exclude_packages": ["pygit2"]
   },
   "theharvester": {
     "exclude_packages": ["certifi"]

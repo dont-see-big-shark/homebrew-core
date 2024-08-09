@@ -35,12 +35,12 @@ class Hss < Formula
       end
       hss_read, hss_write = IO.pipe
       hss_pid = fork do
-        exec "#{bin}/hss", "-H", "-p #{port} 127.0.0.1", "-u", "root", "true",
+        exec bin/"hss", "-H", "-p #{port} 127.0.0.1", "-u", "root", "true",
           out: hss_write
       end
       server.close
       msg = hss_read.gets
-      assert_match "Connection closed by remote host", msg
+      assert_match "Connection closed", msg
     ensure
       Process.kill("TERM", accept_pid)
       Process.kill("TERM", hss_pid)

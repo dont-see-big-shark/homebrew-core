@@ -44,7 +44,7 @@ class AppstreamGlib < Formula
     # Find our docbook catalog
     ENV["XML_CATALOG_FILES"] = "#{etc}/xml/catalog"
 
-    system "meson", *std_meson_args, "build", "-Dbuilder=false", "-Drpm=false", "-Ddep11=false"
+    system "meson", "setup", "build", "-Dbuilder=false", "-Drpm=false", "-Ddep11=false", *std_meson_args
     system "meson", "compile", "-C", "build", "--verbose"
     system "meson", "install", "-C", "build"
   end
@@ -82,7 +82,7 @@ class AppstreamGlib < Formula
     flags << "-lintl" if OS.mac?
     system ENV.cc, "test.c", "-o", "test", *flags
     system "./test"
-    system "#{bin}/appstream-util", "--help"
+    system bin/"appstream-util", "--help"
   end
 end
 

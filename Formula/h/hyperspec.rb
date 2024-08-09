@@ -1,7 +1,7 @@
 class Hyperspec < Formula
   desc "Common Lisp ANSI-standard Hyperspec"
   homepage "https://www.lispworks.com/documentation/common-lisp.html"
-  url "http://ftp.lispworks.com/pub/software_tools/reference/HyperSpec-7-0.tar.gz"
+  url "https://ftp.lispworks.com/pub/software_tools/reference/HyperSpec-7-0.tar.gz"
   version "7.0"
   sha256 "1ac1666a9dc697dbd8881262cad4371bcd2e9843108b643e2ea93472ba85d7c3"
 
@@ -14,7 +14,8 @@ class Hyperspec < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "f97fdd5f56b2c8d2ea223a0ce5950c225c198e3e1157d7bd8c7d691c65773404"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, all: "f528285d6545dd593f7feb49112d92aabe5a85afb16d4f9f44f09851bd4f8112"
   end
 
   def install

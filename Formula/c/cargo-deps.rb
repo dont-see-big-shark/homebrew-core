@@ -1,10 +1,9 @@
 class CargoDeps < Formula
   desc "Cargo subcommand to building dependency graphs of Rust projects"
-  homepage "https://github.com/mrcnski/cargo-deps"
-  url "https://github.com/mrcnski/cargo-deps/archive/refs/tags/v1.5.1.tar.gz"
-  sha256 "b570902b2225f1cf8af5a33d3b77ac4bf04161ef7e9573731eed97715efa9fd3"
+  homepage "https://crates.io/crates/cargo-deps"
+  url "https://static.crates.io/crates/cargo-deps/cargo-deps-1.5.1.crate"
+  sha256 "958e78d8463edf62018d7d5e6f1c5866d59084a4f224c3be01f6eca8a2d3df47"
   license "BSD-3-Clause"
-  head "https://github.com/mrcnski/cargo-deps.git", branch: "master"
 
   bottle do
     sha256 cellar: :any_skip_relocation, arm64_sonoma:   "6817f6aba18ea54427289043559801aabc573370c80aed691e9ae78893046348"
@@ -21,7 +20,7 @@ class CargoDeps < Formula
   deprecate! date: "2024-01-19", because: :repo_removed
 
   depends_on "rust" => :build
-  depends_on "rustup-init" => :test
+  depends_on "rustup" => :test
 
   def install
     system "cargo", "install", *std_cargo_args
@@ -30,10 +29,9 @@ class CargoDeps < Formula
   test do
     # Show that we can use a different toolchain than the one provided by the `rust` formula.
     # https://github.com/Homebrew/homebrew-core/pull/134074#pullrequestreview-1484979359
-    ENV["RUSTUP_INIT_SKIP_PATH_CHECK"] = "yes"
-    rustup_init = Formula["rustup-init"].bin/"rustup-init"
-    system rustup_init, "-y", "--profile", "minimal", "--default-toolchain", "beta", "--no-modify-path"
-    ENV.prepend_path "PATH", HOMEBREW_CACHE/"cargo_cache/bin"
+    ENV.prepend_path "PATH", Formula["rustup"].bin
+    system "rustup", "default", "beta"
+    system "rustup", "set", "profile", "minimal"
 
     crate = testpath/"demo-crate"
     mkdir crate do

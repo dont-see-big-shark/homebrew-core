@@ -50,7 +50,7 @@ class Aarch64ElfGcc < Formula
       system "make", "install-target-libgcc"
 
       # FSF-related man pages may conflict with native gcc
-      (share/"man/man7").rmtree
+      rm_r(share/"man/man7")
     end
   end
 
@@ -63,7 +63,7 @@ class Aarch64ElfGcc < Formula
         return i;
       }
     EOS
-    system "#{bin}/aarch64-elf-gcc", "-c", "-o", "test-c.o", "test-c.c"
+    system bin/"aarch64-elf-gcc", "-c", "-o", "test-c.o", "test-c.c"
     assert_match "file format elf64-littleaarch64",
                  shell_output("#{Formula["aarch64-elf-binutils"].bin}/aarch64-elf-objdump -a test-c.o")
   end

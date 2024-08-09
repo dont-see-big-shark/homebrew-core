@@ -1,19 +1,19 @@
 class Futhark < Formula
   desc "Data-parallel functional programming language"
   homepage "https://futhark-lang.org/"
-  url "https://github.com/diku-dk/futhark/archive/refs/tags/v0.25.17.tar.gz"
-  sha256 "5ec6402ac08e5cc03438c70dc3339e7de7cfd1962d1c877854e47d154d7e036f"
+  url "https://github.com/diku-dk/futhark/archive/refs/tags/v0.25.19.tar.gz"
+  sha256 "0203e40ade19a208785386887ca8d8a9e0d378e4d1dceed88b130e20e56acbc8"
   license "ISC"
   head "https://github.com/diku-dk/futhark.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "33adc28b50596b15fa1f347ee4636b80a5066aeb6b43a051f78563d0a9d2c338"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "851d692bcaf21e5319b17683d1551cf3d01664cfd219ee5f660e86d90b322593"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "110b0b03e1a97e2b2bd69057bccc853738379038a506f8fff22814be80d8ce9f"
-    sha256 cellar: :any_skip_relocation, sonoma:         "dea51e187f4dd4a2c27e247f8fb58686781902dcfee23c3672f6f042101b8cef"
-    sha256 cellar: :any_skip_relocation, ventura:        "36417734afa63c9dcab6010fd6a3b87d03d2130afc721aa0a42daf5b01c320da"
-    sha256 cellar: :any_skip_relocation, monterey:       "39708dd33c97b9ea65ef529ec856fa42b9331b93bbc27ba2277c1f15671ee8d2"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "c36c11017e9939d20b4e2dff019056edc9f1db2a50d345dda2254f74f763b368"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "df98d3992eebf2dbde9c1d93b1c03668f3511ed2ffd4c5da463b60706c028b2b"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "aa7a893c47c3deea3f05bc57e43befec73c777a07ffa30abb58b700183f6e5e2"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "d447614bb2420563617920346f38743e9cd415c20f955dc7408105aac52032c6"
+    sha256 cellar: :any_skip_relocation, sonoma:         "ca89c31abf281f04a5ef59de17dc342821045a3bdd44c808589d536e31d2a7ab"
+    sha256 cellar: :any_skip_relocation, ventura:        "d20202fcbf522fc331cf3767050481309e98617b56c7eb8b1abea123b0a854b2"
+    sha256 cellar: :any_skip_relocation, monterey:       "0fe890b9ad704d9c62dec368d393e7e6e73b1370d7bd1b2e3f23ff4957ee53aa"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "e8d5df1b17113ab63b5bf3971fe8d7db69ab94695176c48b85b4607695fbe761"
   end
 
   depends_on "cabal-install" => :build
@@ -35,7 +35,7 @@ class Futhark < Formula
     (testpath/"test.fut").write <<~EOS
       def main (n: i32) = reduce (*) 1 (1...n)
     EOS
-    system "#{bin}/futhark", "c", "test.fut"
+    system bin/"futhark", "c", "test.fut"
     assert_equal "3628800i32", pipe_output("./test", "10", 0).chomp
   end
 end

@@ -125,11 +125,11 @@ class GccAT10 < Formula
     # Rename man7.
     Dir.glob(man7/"*.7") { |file| add_suffix file, version_suffix }
     # Even when we disable building info pages some are still installed.
-    info.rmtree
+    rm_r(info)
 
     # Work around GCC install bug
     # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=105664
-    rm_rf Dir[bin/"*-gcc-tmp"]
+    rm_r(Dir[bin/"*-gcc-tmp"])
   end
 
   def add_suffix(file, suffix)
@@ -163,7 +163,7 @@ class GccAT10 < Formula
       specs = libgcc/"specs"
       ohai "Creating the GCC specs file: #{specs}"
       specs_orig = Pathname.new("#{specs}.orig")
-      rm_f [specs_orig, specs]
+      rm([specs_orig, specs])
 
       system_header_dirs = ["#{HOMEBREW_PREFIX}/include"]
 
@@ -223,7 +223,7 @@ class GccAT10 < Formula
         return 0;
       }
     EOS
-    system "#{bin}/gcc-#{version.major}", "-o", "hello-c", "hello-c.c"
+    system bin/"gcc-#{version.major}", "-o", "hello-c", "hello-c.c"
     assert_equal "Hello, world!\n", `./hello-c`
 
     (testpath/"hello-cc.cc").write <<~EOS
@@ -238,7 +238,7 @@ class GccAT10 < Formula
         return 0;
       }
     EOS
-    system "#{bin}/g++-#{version.major}", "-o", "hello-cc", "hello-cc.cc"
+    system bin/"g++-#{version.major}", "-o", "hello-cc", "hello-cc.cc"
     assert_equal "Hello, world!\n", `./hello-cc`
 
     (testpath/"test.f90").write <<~EOS
@@ -252,7 +252,7 @@ class GccAT10 < Formula
       write(*,"(A)") "Done"
       end
     EOS
-    system "#{bin}/gfortran-#{version.major}", "-o", "test", "test.f90"
+    system bin/"gfortran-#{version.major}", "-o", "test", "test.f90"
     assert_equal "Done\n", `./test`
   end
 end

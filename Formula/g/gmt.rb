@@ -19,10 +19,16 @@ class Gmt < Formula
   end
 
   depends_on "cmake" => :build
+
   depends_on "fftw"
   depends_on "gdal"
+  depends_on "geos"
   depends_on "netcdf"
+  depends_on "openblas"
   depends_on "pcre2"
+
+  uses_from_macos "curl"
+  uses_from_macos "zlib"
 
   resource "gshhg" do
     url "https://github.com/GenericMappingTools/gshhg-gmt/releases/download/2.3.7/gshhg-gmt-2.3.7.tar.gz"
@@ -79,7 +85,7 @@ class Gmt < Formula
   end
 
   test do
-    system "#{bin}/gmt pscoast -R0/360/-70/70 -Jm1.2e-2i -Ba60f30/a30f15 -Dc -G240 -W1/0 -P > test.ps"
-    assert_predicate testpath/"test.ps", :exist?
+    cmd = "#{bin}/gmt pscoast -R0/360/-70/70 -Jm1.2e-2i -Ba60f30/a30f15 -Dc -G240 -W1/0 -P"
+    refute_predicate shell_output(cmd), :empty?
   end
 end

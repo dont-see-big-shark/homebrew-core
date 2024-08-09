@@ -4,6 +4,7 @@ class SingBox < Formula
   url "https://github.com/SagerNet/sing-box/archive/refs/tags/v1.9.3.tar.gz"
   sha256 "ab3d321860f973151e773c0c4a1478ab31ed63d89e17c7ac618cf50b232dd1c4"
   license "GPL-3.0-or-later"
+  head "https://github.com/SagerNet/sing-box.git", branch: "dev-next"
 
   bottle do
     sha256 cellar: :any_skip_relocation, arm64_sonoma:   "010c94e09c29476535780e6b6a891a65034a0e17c5672ada9691c9562270440a"
@@ -45,7 +46,7 @@ class SingBox < Formula
         ]
       }
     EOS
-    server = fork { exec "#{bin}/sing-box", "run", "-D", testpath, "-c", testpath/"shadowsocks.json" }
+    server = fork { exec bin/"sing-box", "run", "-D", testpath, "-c", testpath/"shadowsocks.json" }
 
     sing_box_port = free_port
     (testpath/"config.json").write <<~EOS
@@ -68,8 +69,8 @@ class SingBox < Formula
         ]
       }
     EOS
-    system "#{bin}/sing-box", "check", "-D", testpath, "-c", "config.json"
-    client = fork { exec "#{bin}/sing-box", "run", "-D", testpath, "-c", "config.json" }
+    system bin/"sing-box", "check", "-D", testpath, "-c", "config.json"
+    client = fork { exec bin/"sing-box", "run", "-D", testpath, "-c", "config.json" }
 
     sleep 3
     begin

@@ -1,6 +1,6 @@
 class Movgrab < Formula
   desc "Downloader for youtube, dailymotion, and other video websites"
-  homepage "https://sites.google.com/site/columscode/home/movgrab"
+  homepage "https://github.com/ColumPaget/Movgrab"
   url "https://github.com/ColumPaget/Movgrab/archive/refs/tags/3.1.2.tar.gz"
   sha256 "30be6057ddbd9ac32f6e3d5456145b09526cc6bd5e3f3fb3999cc05283457529"
   license "GPL-3.0-or-later"
@@ -69,6 +69,6 @@ class Movgrab < Formula
   end
 
   test do
-    system "#{bin}/movgrab", "--version"
+    system bin/"movgrab", "--version"
   end
 end

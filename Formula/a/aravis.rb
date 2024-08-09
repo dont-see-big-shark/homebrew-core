@@ -1,6 +1,6 @@
 class Aravis < Formula
   desc "Vision library for genicam based cameras"
-  homepage "https://wiki.gnome.org/Projects/Aravis"
+  homepage "https://github.com/AravisProject/aravis"
   url "https://github.com/AravisProject/aravis/releases/download/0.8.31/aravis-0.8.31.tar.xz"
   sha256 "9c4ebe6273ed3abe466cb6ed8fa5c132bdd7e9a9298ca43fa0212c4311a084da"
   license "LGPL-2.1-or-later"
@@ -32,7 +32,12 @@ class Aravis < Formula
   uses_from_macos "zlib"
 
   on_macos do
+    depends_on "at-spi2-core"
+    depends_on "cairo"
+    depends_on "gdk-pixbuf"
     depends_on "gettext"
+    depends_on "harfbuzz"
+    depends_on "pango"
   end
 
   def install

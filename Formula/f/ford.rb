@@ -3,20 +3,19 @@ class Ford < Formula
 
   desc "Automatic documentation generator for modern Fortran programs"
   homepage "https://github.com/Fortran-FOSS-Programmers/ford"
-  url "https://files.pythonhosted.org/packages/fe/45/fbb50a9ce7fb8740b8365fae80d7a3247202c6698672b67acdea188751f4/FORD-7.0.6.tar.gz"
-  sha256 "662d0cab60234743ed7b863fbb980e0af909f31e0205011d7978ea2dedc3e952"
+  url "https://files.pythonhosted.org/packages/a2/00/1dee70777917617df2c63bef8db8ec4e8a68495fae0d77b9208cdda6b458/ford-7.0.8.tar.gz"
+  sha256 "b9d0695eac1779f73078776e11f5e6c7dbf22e5c9e3dff4a5e7fbe92a0740562"
   license "GPL-3.0-or-later"
-  revision 1
   head "https://github.com/Fortran-FOSS-Programmers/ford.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "3386d8cc4f37dfa3e73f486c98689b4a0e05406b4d191209a45761a5a908ab03"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "27435d9550543d93472e829e55ec8ce5bf7ccd3ecb099599be42a63bc01b194d"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "fd5bb0e9e66a8ff21a094d3cd1a0760d5a551bfd8bc7613fae54bbfcebec33dd"
-    sha256 cellar: :any_skip_relocation, sonoma:         "4433ddbac554a53a95e953dec38fd51096e2df839b96c8e8c651a5bf677f875c"
-    sha256 cellar: :any_skip_relocation, ventura:        "5d2ac1f779a55e3b2b79d73c0633de1043dad9b85feb67ae78b78d382bef467d"
-    sha256 cellar: :any_skip_relocation, monterey:       "e5eb67c563a17d422fd9ad274d52e34d2ddcdf9e1490cbcd2c90ef1c397b9953"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "cc534d0defa8049f075162df856d0e8305b31b4fa6f3cc46310184c68f535f90"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "c1351443ffecad4a799bb3072b3ec517b9520758a43044d0c1bd29343dbd251e"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "6686763de4492e4b8dd3aeffff68d3a671d3c453cd33854adf3f645b68537148"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "53f2ad95e85e83908deb35d7b756d49e8d0849bb0e8dbb8a462c2a7db127fced"
+    sha256 cellar: :any_skip_relocation, sonoma:         "65053a6afd1013e8ee8d994746d82960c0ba145edfa29d64c1a028511103721f"
+    sha256 cellar: :any_skip_relocation, ventura:        "cae5da7ad6598c1a11bb0d93651aa8ab2e26e168ec433ec00739366f85ca9ae6"
+    sha256 cellar: :any_skip_relocation, monterey:       "cff651a8796c4de58bb68c80deb90da87c2c8a5fd923d09b32dce6942a597d9b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "241bf2424a18c68f48519af4e36afed61bcc68ba3c84af093460c53ca2623cf8"
   end
 
   depends_on "graphviz"
@@ -128,8 +127,8 @@ class Ford < Formula
       source: false
       graph: true
       search: true
-      extra_mods: json_module: http://jacobwilliams.github.io/json-fortran/
-                  futility: http://cmacmackin.github.io
+      extra_mods: json_module: https://jacobwilliams.github.io/json-fortran/
+                  futility: https://cmacmackin.github.io
       license: by-nc
       extra_filetypes: sh #
       max_frontpage_items: 4

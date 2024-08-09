@@ -2,7 +2,7 @@ class PariElldata < Formula
   desc "J.E. Cremona elliptic curve data for PARI/GP"
   homepage "https://pari.math.u-bordeaux.fr/packages.html"
   url "https://pari.math.u-bordeaux.fr/pub/pari/packages/elldata.tgz"
-  # Refer to http://pari.math.u-bordeaux.fr/packages.html#packages for most recent package date
+  # Refer to https://pari.math.u-bordeaux.fr/packages.html#packages for most recent package date
   version "20210301"
   sha256 "dd551e64932d4ab27b3f2b2d1da871c2353672fc1a74705c52e3c0de84bd0cf6"
   license "GPL-2.0-or-later"
@@ -18,8 +18,8 @@ class PariElldata < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, all: "7ed2f57963daa0d3f904f0cb3371c47f48364a2a192ad58f9b773a6b2f6dd417"
+    rebuild 2
+    sha256 cellar: :any_skip_relocation, all: "5bb7d32ce0c2deef2a58ffecd2781fa23f718a90aff73ceb6e94a3169c71d006"
   end
 
   depends_on "pari"

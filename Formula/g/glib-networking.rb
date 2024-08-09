@@ -18,9 +18,14 @@ class GlibNetworking < Formula
   depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
+
   depends_on "glib"
   depends_on "gnutls"
   depends_on "gsettings-desktop-schemas"
+
+  on_macos do
+    depends_on "gettext"
+  end
 
   link_overwrite "lib/gio/modules"
 
@@ -28,10 +33,12 @@ class GlibNetworking < Formula
     # stop gnome.post_install from doing what needs to be done in the post_install step
     ENV["DESTDIR"] = "/"
 
-    system "meson", *std_meson_args, "build",
-                    "-Dlibproxy=disabled",
-                    "-Dopenssl=disabled",
-                    "-Dgnome_proxy=disabled"
+    args = %w[
+      -Dlibproxy=disabled
+      -Dopenssl=disabled
+      -Dgnome_proxy=disabled
+    ]
+    system "meson", "setup", "build", *args, *std_meson_args
     system "meson", "compile", "-C", "build", "--verbose"
     system "meson", "install", "-C", "build"
   end

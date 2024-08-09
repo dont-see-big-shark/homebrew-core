@@ -7,16 +7,14 @@ class GnuSed < Formula
   license "GPL-3.0-or-later"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "1c4c92a7683dcbd3d251bf2e541ed46151401423cc9cbf30db9ce7185dc218a3"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "5abaf39c16d02125db97d14cd36a96cf1a20a87821199cb38a55134fd4e0aaef"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "20ae3f853a32e7f7f0f340e8c751ab7350888a655bfe7c5c20e5746c61a24fd7"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "d7c89842a90d03dbb497bc1ded17b7d732fe20eaf69613fd4abb48820ab80895"
-    sha256 cellar: :any_skip_relocation, sonoma:         "6ab6bc1628639ff2789fe20e4dd690e4bfe047d3a772bbb7b5d57efe88787951"
-    sha256 cellar: :any_skip_relocation, ventura:        "a1ac59a9a6fa20c6c904e047df3ee4d0b4e57c0a5df3821b17b8cd82bcc67b5a"
-    sha256 cellar: :any_skip_relocation, monterey:       "f5e2460ad86516b2517f1e77d672a4fd6ad30b158c470cccbb3b6464f228674d"
-    sha256 cellar: :any_skip_relocation, big_sur:        "c1c63d995d132a82fadc80b470eecfe816cb86c8cd716f01de5f003bc1199fcc"
-    sha256 cellar: :any_skip_relocation, catalina:       "fb5ee7317d987d9ac7f2ee357736a9bc594c88b5fbbca4f6a65046f1c2898c44"
-    sha256                               x86_64_linux:   "8abd5b48de6b706c1ce7c2f7b8775420f63078ba294bd5ad801e458776228bbc"
+    rebuild 2
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "5ffd49517ed790e52a088e720de77f1dd4de4e88816fb6a1d244be3f6b01314d"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "3770e9098033bc1f32427d3b6502a1ab10082b3945e204286c87060d82d03d19"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "e41980dc2d528301c562ed7ec59ee8bcfe43d1f9a4dc734652e9c216ac3fbdf4"
+    sha256 cellar: :any_skip_relocation, sonoma:         "4d10e5703feb75bc37e450178f2c6bdc3a6b2cf9eb72594cfab90f89b270136c"
+    sha256 cellar: :any_skip_relocation, ventura:        "66f640fbd1291801c04dc8af37378c051aa1ddbb3a620df2b4b85b9f0f6df80e"
+    sha256 cellar: :any_skip_relocation, monterey:       "0f63397072520ce4c163974de6f0313a9117d106890c8cb0fb9344c723543674"
+    sha256                               x86_64_linux:   "6ecac3ffdd0517ed1516ff18d79d4ea44f761b6fb2a5040c124bb51da35c03e1"
   end
 
   conflicts_with "ssed", because: "both install share/info/sed.info"
@@ -27,10 +25,13 @@ class GnuSed < Formula
       --disable-dependency-tracking
     ]
 
-    args << if OS.mac?
-      "--program-prefix=g"
+    args += if OS.mac?
+      %w[--program-prefix=g]
     else
-      "--without-selinux"
+      %w[
+        --disable-acl
+        --without-selinux
+      ]
     end
     system "./configure", *args
     system "make", "install"
@@ -40,7 +41,7 @@ class GnuSed < Formula
       (libexec/"gnuman/man1").install_symlink man1/"gsed.1" => "sed.1"
     end
 
-    libexec.install_symlink "gnuman" => "man"
+    (libexec/"gnubin").install_symlink "../gnuman" => "man"
   end
 
   def caveats
@@ -56,15 +57,16 @@ class GnuSed < Formula
   end
 
   test do
-    (testpath/"test.txt").write "Hello world!"
+    test_file = testpath/"test.txt"
+    test_file.write "Hello world!"
     if OS.mac?
-      system "#{bin}/gsed", "-i", "s/world/World/g", "test.txt"
-      assert_match "Hello World!", File.read("test.txt")
+      system bin/"gsed", "-i", "s/world/World/g", "test.txt"
+      assert_match "Hello World!", test_file.read
 
-      system "#{opt_libexec}/gnubin/sed", "-i", "s/world/World/g", "test.txt"
+      system opt_libexec/"gnubin/sed", "-i", "s/world/World/g", "test.txt"
     else
-      system "#{bin}/sed", "-i", "s/world/World/g", "test.txt"
+      system bin/"sed", "-i", "s/world/World/g", "test.txt"
     end
-    assert_match "Hello World!", File.read("test.txt")
+    assert_match "Hello World!", test_file.read
   end
 end

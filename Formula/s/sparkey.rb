@@ -37,9 +37,10 @@ class Sparkey < Formula
   end
 
   test do
-    system "#{bin}/sparkey", "createlog", "-c", "snappy", "test.spl"
-    system "echo foo.bar | #{bin}/sparkey appendlog -d . test.spl"
-    system "#{bin}/sparkey", "writehash", "test.spl"
-    system "#{bin}/sparkey get test.spi foo | grep ^bar$"
+    system bin/"sparkey", "createlog", "-c", "snappy", "test.spl"
+    assert_empty pipe_output("#{bin}/sparkey appendlog -d . test.spl 2>&1", "foo.bar")
+
+    system bin/"sparkey", "writehash", "test.spl"
+    assert_empty shell_output("#{bin}/sparkey get test.spi foo", 2)
   end
 end

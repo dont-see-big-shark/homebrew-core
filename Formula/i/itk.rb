@@ -23,6 +23,7 @@ class Itk < Formula
   end
 
   depends_on "cmake" => :build
+
   depends_on "double-conversion"
   depends_on "fftw"
   depends_on "gdcm"
@@ -31,6 +32,13 @@ class Itk < Formula
   depends_on "libpng"
   depends_on "libtiff"
   depends_on "vtk"
+
+  uses_from_macos "expat"
+  uses_from_macos "zlib"
+
+  on_macos do
+    depends_on "glew"
+  end
 
   on_linux do
     depends_on "alsa-lib"
@@ -41,7 +49,7 @@ class Itk < Formula
 
   def install
     # Avoid CMake trying to find GoogleTest even though tests are disabled
-    (buildpath/"Modules/ThirdParty/GoogleTest").rmtree
+    rm_r(buildpath/"Modules/ThirdParty/GoogleTest")
 
     args = %W[
       -DBUILD_SHARED_LIBS=ON
@@ -88,7 +96,7 @@ class Itk < Formula
     system "cmake", "--install", "build"
 
     # Remove the bundled JRE installed by SCIFIO ImageIO plugin
-    (lib/"jre").rmtree if OS.linux? || Hardware::CPU.intel?
+    rm_r(lib/"jre") if OS.linux? || Hardware::CPU.intel?
   end
 
   test do

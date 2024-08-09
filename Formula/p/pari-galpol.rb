@@ -2,7 +2,7 @@ class PariGalpol < Formula
   desc "Galois polynomial database for PARI/GP"
   homepage "https://pari.math.u-bordeaux.fr/packages.html"
   url "https://pari.math.u-bordeaux.fr/pub/pari/packages/galpol.tgz"
-  # Refer to http://pari.math.u-bordeaux.fr/packages.html#packages for most recent package date
+  # Refer to https://pari.math.u-bordeaux.fr/packages.html#packages for most recent package date
   version "20180625"
   sha256 "562af28316ee335ee38c1172c2d5ecccb79f55c368fb9f2c6f40fc0f416bb01b"
   license "GPL-2.0-or-later"
@@ -18,8 +18,8 @@ class PariGalpol < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, all: "133eb8e5276c678accb4f6a5b014ec43e86133aa5ea747d563037cb6f6e86863"
+    rebuild 2
+    sha256 cellar: :any_skip_relocation, all: "e025e273d014cf89f901fd09c2fc60bf7d1e48650f930d6072bc33330e5ced97"
   end
 
   depends_on "pari"

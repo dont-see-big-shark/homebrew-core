@@ -1,25 +1,24 @@
-require "language/node"
-
 class Lanraragi < Formula
   desc "Web application for archival and reading of manga/doujinshi"
   homepage "https://github.com/Difegue/LANraragi"
-  url "https://github.com/Difegue/LANraragi/archive/refs/tags/v.0.9.10.tar.gz"
-  sha256 "03d00928a84705e7b89a667c6aea85b529ca1d1c08a153e0c2e2922ec64fd0d1"
+  url "https://github.com/Difegue/LANraragi/archive/refs/tags/v.0.9.21.tar.gz"
+  sha256 "ed2d704d058389eb4c97d62080c64fa96fcc230be663ec8958f35764d229c463"
   license "MIT"
   head "https://github.com/Difegue/LANraragi.git", branch: "dev"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sonoma:   "80a79b140793a3a5ccf020fd0424c409516008a3d2fc792df709d28c21ff647f"
-    sha256 cellar: :any,                 arm64_ventura:  "ba0e853e04297c1e1e17108478b25955a8d44f50b1d93a1252bcbf95aa372370"
-    sha256 cellar: :any,                 arm64_monterey: "ee17141271cc1b784fbfb3fcab13365a593d2638c2c79cce39db09103d4fa8e2"
-    sha256 cellar: :any,                 sonoma:         "53e1105e464caf48d2415dc1a72906b5ca0269bba802ee74c2a229a2338052ec"
-    sha256 cellar: :any,                 ventura:        "c01bccd2a47abe5eb01dfb81c1462cdc2212a8797978e8c8ac5bdc174d00eff8"
-    sha256 cellar: :any,                 monterey:       "bfe35ab57f4cb2257dca6079a07a34e2e4cccbb0ed45635ca5b21909806d9e8d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "f2daa2c275346d68bdddf3368e47e5d93a6568a915caa99fc5acdf78769724b0"
+    sha256 cellar: :any,                 arm64_sonoma:   "2a804967f1f97f008cf3d98c42a2e92204e3bedac38112a4e1c6ad9f3d228e60"
+    sha256 cellar: :any,                 arm64_ventura:  "ecec3c669e6bdb4e641961ff6a06e1d7e26d67c7d181e8118c89e2617355d1d5"
+    sha256 cellar: :any,                 arm64_monterey: "a1d3874f3e673370ccbd79e8364b046d98c6ed994836457355fb8f1df13f8c7a"
+    sha256 cellar: :any,                 sonoma:         "9780c6975588959ca66332bc34b25a2e8c51c023659cba40d7fbef9dc2a36ece"
+    sha256 cellar: :any,                 ventura:        "2f724d8529c7dbfd3bd770e229486d96817bd8eb11aa4ae943fa3be1fd5fda19"
+    sha256 cellar: :any,                 monterey:       "151a3319103602148c858f33b4a0d283af7eec42a9b56afc3e8d2785e65f4d77"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "34fa6e2e6af797dbdb0b6c1bc05e9b0349509827d7038430152b51e87b6cbd30"
   end
 
   depends_on "nettle" => :build
   depends_on "pkg-config" => :build
+
   depends_on "cpanminus"
   depends_on "ghostscript"
   depends_on "giflib"
@@ -33,6 +32,11 @@ class Lanraragi < Formula
   depends_on "zstd"
 
   uses_from_macos "libarchive"
+  uses_from_macos "libffi"
+
+  on_macos do
+    depends_on "lz4"
+  end
 
   resource "libarchive-headers" do
     on_macos do
@@ -47,8 +51,8 @@ class Lanraragi < Formula
   end
 
   def install
-    ENV.prepend_create_path "PERL5LIB", "#{libexec}/lib/perl5"
-    ENV.prepend_path "PERL5LIB", "#{libexec}/lib"
+    ENV.prepend_create_path "PERL5LIB", libexec/"lib/perl5"
+    ENV.prepend_path "PERL5LIB", libexec/"lib"
 
     # On Linux, use the headers provided by the libarchive formula rather than the ones provided by Apple.
     ENV["CFLAGS"] = if OS.mac?
@@ -80,7 +84,7 @@ class Lanraragi < Formula
     end
 
     system "cpanm", "Config::AutoConf", "--notest", "-l", libexec
-    system "npm", "install", *Language::Node.local_npm_install_args
+    system "npm", "install", *std_npm_args(prefix: false)
     system "perl", "./tools/install.pl", "install-full"
 
     prefix.install "README.md"

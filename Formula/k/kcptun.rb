@@ -1,8 +1,8 @@
 class Kcptun < Formula
   desc "Stable & Secure Tunnel based on KCP with N:M multiplexing and FEC"
   homepage "https://github.com/xtaci/kcptun"
-  url "https://github.com/xtaci/kcptun/archive/refs/tags/v20240713.tar.gz"
-  sha256 "d9c00ac7f1523cec2fb7f0950429e3cc50f1b7b798931b1f6e4f52c5e347dec0"
+  url "https://github.com/xtaci/kcptun/archive/refs/tags/v20240807.tar.gz"
+  sha256 "d29194ef0a18cc5a997b21687a759d4a684544fb66fbf0a56203db318277edf8"
   license "MIT"
   head "https://github.com/xtaci/kcptun.git", branch: "master"
 
@@ -16,13 +16,13 @@ class Kcptun < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "0ff4d6a6ec2d8a41d856152c2e7962f21f79c30efd7d4217a21e4ba2ed30d191"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "20f890f7503cddfca3feb13ae3bad98db9654453a683fb4f13e0d8a47b1adc85"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "1a80d4d4c70a4d18c703843204e8a741c2f197481eeb719a57e1e1ae9d7f306d"
-    sha256 cellar: :any_skip_relocation, sonoma:         "ef1bec449e0dc0e8c22a79971d2e107efbfba64d24c012a032c907c39a1e903f"
-    sha256 cellar: :any_skip_relocation, ventura:        "7b50f88d18e7e8bf2666de9319a1bf932b4b932190d970266b3d30c12bd2c83a"
-    sha256 cellar: :any_skip_relocation, monterey:       "d4c9ad5b7f8dba53a1732ba7e0736aeaaa8aff2a8c82734d994079904dfc968d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "5b52a518259d955c87b834c50873f2dbedabe4bcba436efecfcca0533142aa18"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "4f143aa30f5366e95ada382cc8619816f84ad18fae283a73f70936fba9ea9499"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "2bea7f4c49bf20c0fd865e8139ab3b152bf78cdfcc3050dc8e3c537871c32726"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "cd040f28775de0778a81d54f0327bb22951b4f45f93428a7e9e63a9b6eab27fa"
+    sha256 cellar: :any_skip_relocation, sonoma:         "d3faba0f8b19c0e51d4754a91415b29a47651e2772742dec2ec0fdaf2894dde2"
+    sha256 cellar: :any_skip_relocation, ventura:        "0ce827e70154d116fe50696a0fef839c15287b05b3ac01be41e0e34284ccc94a"
+    sha256 cellar: :any_skip_relocation, monterey:       "8e10c9008e0d439be052ea4503147d855038dd850e00a3420e8d646343353665"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "19fd661eeac0305bfbdcc145fbb0977e3382b4929cab68f5258e222d69757dc5"
   end
 
   depends_on "go" => :build
@@ -32,7 +32,7 @@ class Kcptun < Formula
     system "go", "build", *std_go_args(ldflags:, output: bin/"kcptun_client"), "./client"
     system "go", "build", *std_go_args(ldflags:, output: bin/"kcptun_server"), "./server"
 
-    etc.install "examples/local.json" => "kcptun_client.json"
+    etc.install "dist/local.json.example" => "kcptun_client.json"
   end
 
   service do

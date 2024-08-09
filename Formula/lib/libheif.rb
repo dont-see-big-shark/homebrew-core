@@ -1,28 +1,30 @@
 class Libheif < Formula
   desc "ISO/IEC 23008-12:2017 HEIF file format decoder and encoder"
   homepage "https://www.libde265.org/"
-  url "https://github.com/strukturag/libheif/releases/download/v1.17.6/libheif-1.17.6.tar.gz"
-  sha256 "8390baf4913eda0a183e132cec62b875fb2ef507ced5ddddc98dfd2f17780aee"
+  url "https://github.com/strukturag/libheif/releases/download/v1.18.2/libheif-1.18.2.tar.gz"
+  sha256 "c4002a622bec9f519f29d84bfdc6024e33fd67953a5fb4dc2c2f11f67d5e45bf"
   license "LGPL-3.0-only"
-  revision 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_sonoma:   "d3e6043da49e8af564ff89e35885c1a66ed9c8e9c1f133ca89ed592261737b04"
-    sha256 cellar: :any,                 arm64_ventura:  "a3f34efc3e3ac4b36e3950b6fdb0f89493ce815f7126aa4cc4f97b69e4ab9d0d"
-    sha256 cellar: :any,                 arm64_monterey: "884eaad8e17d3b772e7bd7db7422e7cb896253b295815dc33c0b85fc2f3291ba"
-    sha256 cellar: :any,                 sonoma:         "440c4bd0f9626ef2129e3589e5419f493f69cb82cd4c3fe2dd86790b099f8c0e"
-    sha256 cellar: :any,                 ventura:        "fd1df7cacc463f08a5d43063189c93789409fb0cecce1c156d28c93edd4489ec"
-    sha256 cellar: :any,                 monterey:       "09ecdec8c4360a73d3bfcec2d21e4068754ac2cc5b77be6c50133c1f31ff86ec"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "30417c8829022c3b2114bce3f9fb89a346ec1217efcf29db813a1c1b20bc84ba"
+    sha256 cellar: :any,                 arm64_sonoma:   "3ac03a6aa83b0c636c640cd953082d5e06f06d2fa74d7a50914812bf6bd73203"
+    sha256 cellar: :any,                 arm64_ventura:  "392d7fd61637d1912c95ad3f1629dac3da032f49d01d966c9813d0f65e36d994"
+    sha256 cellar: :any,                 arm64_monterey: "c43506ecb80ccd6f46951d459579e4af1ebeb4a91ae800681f26f28457b17ec4"
+    sha256 cellar: :any,                 sonoma:         "8243388a035f0666bb9cbb1950b0c2cb3d0ffd06640e8eb8baae9f82b1f1e64e"
+    sha256 cellar: :any,                 ventura:        "352eeaa2087cf976407e06b883825374c033299c339e507b8525fad82bef3613"
+    sha256 cellar: :any,                 monterey:       "9aa1dbd3f239169fc2de33fdf18a2b4ffadcca81d9121264ccbb4054ce8374ef"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "054df00dc283e020bd17612943df5e0c5143fe3d89122d87c8c97cd14eb534fa"
   end
 
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
+
   depends_on "aom"
   depends_on "jpeg-turbo"
   depends_on "libde265"
   depends_on "libpng"
+  depends_on "libtiff"
   depends_on "shared-mime-info"
+  depends_on "webp"
   depends_on "x265"
 
   def install

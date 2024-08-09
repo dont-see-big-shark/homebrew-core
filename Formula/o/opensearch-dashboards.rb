@@ -1,5 +1,3 @@
-require "language/node"
-
 class OpensearchDashboards < Formula
   desc "Open source visualization dashboards for OpenSearch"
   homepage "https://opensearch.org/docs/dashboards/index/"
@@ -44,7 +42,7 @@ class OpensearchDashboards < Formula
                 "pid.file: #{var}/run/opensearchDashboards.pid"
 
       (etc/"opensearch-dashboards").install Dir["config/*"]
-      rm_rf Dir["{config,data,plugins}"]
+      rm_r(Dir["{config,data,plugins}"])
 
       prefix.install Dir["*"]
     end

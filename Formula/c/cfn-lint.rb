@@ -3,8 +3,8 @@ class CfnLint < Formula
 
   desc "Validate CloudFormation templates against the CloudFormation spec"
   homepage "https://github.com/aws-cloudformation/cfn-lint/"
-  url "https://files.pythonhosted.org/packages/32/d2/3b639095535e2576d6e0f6b464559a072a7488f3a2656d798e59c46ffbb8/cfn_lint-1.6.1.tar.gz"
-  sha256 "3698d332b8ea190c3b97e01c658b85ed962a6665b1185784f97774770a950edd"
+  url "https://files.pythonhosted.org/packages/ab/e2/acdd3ac92785cda95ed2f67721abdce4da876ca1f67db5efbbf9bc928fed/cfn_lint-1.9.6.tar.gz"
+  sha256 "c2ebd44ce3a412144f7d147f9fd5e3c6a9daec8db61f8cdc1670d05d38c4708a"
   license "MIT-0"
 
   livecheck do
@@ -13,13 +13,13 @@ class CfnLint < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sonoma:   "9ec107598e54b71f9a3aba2623f357a0c192c5cea36034cb9e3d9bcb7e7f3796"
-    sha256 cellar: :any,                 arm64_ventura:  "85b5f11d385cb925c962055aa9fd885ca57624f83ea2d1a7bf37300af5f5a2bd"
-    sha256 cellar: :any,                 arm64_monterey: "bb9c64b29cdf3c112a25e4000c7f0a4efc189e6689a9b4bb9bec8f0ced5fbc99"
-    sha256 cellar: :any,                 sonoma:         "fcfc1eda22cd46576e1d367547ea94f49f2f0dffdab8ffc5ad89f17f5cec457d"
-    sha256 cellar: :any,                 ventura:        "d0350aaa0aeb1164feaed8e407da0be14b0e15b572d3adaa3799979ab2ca972c"
-    sha256 cellar: :any,                 monterey:       "103aa95e1aa2fef972e484a2243bdb933b8ae9046c0c77a005715d600230b33e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "a8b8b1df55e89de67a254cfd9d84ab3f47b40c7bb930c959cc2c8c78f72eb25b"
+    sha256 cellar: :any,                 arm64_sonoma:   "eb538f0b1d0105ded40c56622665fc493098eb92b8ee8d8b0c6ffe2007c501a2"
+    sha256 cellar: :any,                 arm64_ventura:  "93c9dc09a8cb6dd566d5cf65acd98155158825c358453096bfe0dd3ada6ddf85"
+    sha256 cellar: :any,                 arm64_monterey: "6c0388c9cd7997e933efa433fc27618bad27508ed3a08426a94e0339952f479e"
+    sha256 cellar: :any,                 sonoma:         "2295690ed4608af000f71f8c397937edb42532de8a8c84ec69ef16463f9a52da"
+    sha256 cellar: :any,                 ventura:        "8890073e345e9563ca95d7a972625937ed72d4d0f952695f4dde83619bdedb67"
+    sha256 cellar: :any,                 monterey:       "bd7c1686678a6074650e7f776b54d82134d34d2d32b70ae08d7943be61a68094"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "b06f4fd0481dee0b6f62fe3a86dea1327bbf875be9f89de89527edf1a372aa2b"
   end
 
   depends_on "rust" => :build
@@ -32,8 +32,8 @@ class CfnLint < Formula
   end
 
   resource "attrs" do
-    url "https://files.pythonhosted.org/packages/e3/fc/f800d51204003fa8ae392c4e8278f256206e7a919b708eef054f5f4b650d/attrs-23.2.0.tar.gz"
-    sha256 "935dc3b529c262f6cf76e50877d35a4bd3c1de194fd41f47a2b7ae8f19971f30"
+    url "https://files.pythonhosted.org/packages/fc/0f/aafca9af9315aee06a89ffde799a10a582fe8de76c563ee80bbcdc08b3fb/attrs-24.2.0.tar.gz"
+    sha256 "5cfb1b9148b5b086569baec03f20d7b6bf3bcacc9a42bebf87ffaaca362f6346"
   end
 
   resource "aws-sam-translator" do
@@ -42,13 +42,13 @@ class CfnLint < Formula
   end
 
   resource "boto3" do
-    url "https://files.pythonhosted.org/packages/9e/86/9372b4ead787e34210b7704b01634602ec07a252691e8258c2e6b027951a/boto3-1.34.143.tar.gz"
-    sha256 "b590ce80c65149194def43ebf0ea1cf0533945502507837389a8d22e3ecbcf05"
+    url "https://files.pythonhosted.org/packages/54/4d/ab9ef9ebda797bf162cc489756682044e293a23153eb2339aa7c7faf0ae5/boto3-1.34.157.tar.gz"
+    sha256 "7ef19ed38cba9863b58430fb4a66a72a5c250304f234bd1c16b860f9bf25677b"
   end
 
   resource "botocore" do
-    url "https://files.pythonhosted.org/packages/11/ab/a1407fc195e82bc754bde0f3c9f80b64de878169a10b50ae216099d5c04c/botocore-1.34.143.tar.gz"
-    sha256 "059f032ec05733a836e04e869c5a15534420102f93116f3bc9a5b759b0651caf"
+    url "https://files.pythonhosted.org/packages/ae/d9/e04875f81b82d20ccfaa9fe7db4f794187561eb5c1c4946e999ba1590dd2/botocore-1.34.157.tar.gz"
+    sha256 "5628a36cec123cdc8c1158d05a7b06aa5e53649ad73796c50ef3fb51199785fb"
   end
 
   resource "jmespath" do
@@ -102,8 +102,8 @@ class CfnLint < Formula
   end
 
   resource "pyyaml" do
-    url "https://files.pythonhosted.org/packages/cd/e5/af35f7ea75cf72f2cd079c95ee16797de7cd71f29ea7c68ae5ce7be1eda0/PyYAML-6.0.1.tar.gz"
-    sha256 "bfdf460b1736c775f2ba9f6a92bca30bc2095067b8a9d77876d1fad6cc3b4a43"
+    url "https://files.pythonhosted.org/packages/54/ed/79a089b6be93607fa5cdaedf301d7dfb23af5f25c398d5ead2525b063e17/pyyaml-6.0.2.tar.gz"
+    sha256 "d584d9ec91ad65861cc08d42e834324ef890a082e591037abe114850ff7bbc3e"
   end
 
   resource "referencing" do
@@ -112,13 +112,13 @@ class CfnLint < Formula
   end
 
   resource "regex" do
-    url "https://files.pythonhosted.org/packages/7a/db/5ddc89851e9cc003929c3b08b9b88b429459bf9acbf307b4556d51d9e49b/regex-2024.5.15.tar.gz"
-    sha256 "d3ee02d9e5f482cc8309134a91eeaacbdd2261ba111b0fef3748eeb4913e6a2c"
+    url "https://files.pythonhosted.org/packages/3f/51/64256d0dc72816a4fe3779449627c69ec8fee5a5625fd60ba048f53b3478/regex-2024.7.24.tar.gz"
+    sha256 "9cfd009eed1a46b27c14039ad5bbc5e71b6367c5b2e6d5f5da0ea91600817506"
   end
 
   resource "rpds-py" do
-    url "https://files.pythonhosted.org/packages/36/a2/83c3e2024cefb9a83d832e8835f9db0737a7a2b04ddfdd241c650b703db0/rpds_py-0.19.0.tar.gz"
-    sha256 "4fdc9afadbeb393b4bbbad75481e0ea78e4469f2e1d713a90811700830b553a9"
+    url "https://files.pythonhosted.org/packages/55/64/b693f262791b818880d17268f3f8181ef799b0d187f6f731b1772e05a29a/rpds_py-0.20.0.tar.gz"
+    sha256 "d72a210824facfdaf8768cf2d7ca25a042c30320b3020de2fa04640920d4e121"
   end
 
   resource "s3transfer" do
@@ -132,8 +132,8 @@ class CfnLint < Formula
   end
 
   resource "sympy" do
-    url "https://files.pythonhosted.org/packages/cb/f5/8c7d91ce35816b72c2dd061dc4a33f00f59053aeffe881d42aed17279381/sympy-1.13.0.tar.gz"
-    sha256 "3b6af8f4d008b9a1a6a4268b335b984b23835f26d1d60b0526ebc71d48a25f57"
+    url "https://files.pythonhosted.org/packages/ca/99/5a5b6f19ff9f083671ddf7b9632028436167cd3d33e11015754e41b249a4/sympy-1.13.1.tar.gz"
+    sha256 "9cebf7e04ff162015ce31c9c6c9144daa34a93bd082f54fd8f12deca4f47515f"
   end
 
   resource "typing-extensions" do

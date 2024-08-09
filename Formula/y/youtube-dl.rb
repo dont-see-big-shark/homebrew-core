@@ -43,7 +43,7 @@ class YoutubeDl < Formula
     if build.head?
       system "make", "PREFIX=#{prefix}", "MANDIR=#{man}", "PYTHON=#{python3}", "install"
       fish_completion.install prefix/"etc/fish/completions/youtube-dl.fish"
-      (prefix/"etc/fish").rmtree
+      rm_r(prefix/"etc/fish")
     else
       virtualenv_install_with_resources
       # Handle "ERROR: Unable to extract uploader id" until new release
@@ -68,8 +68,8 @@ class YoutubeDl < Formula
 
   test do
     # commit history of homebrew-core repo
-    system "#{bin}/youtube-dl", "--simulate", "https://www.youtube.com/watch?v=pOtd1cbOP7k"
+    system bin/"youtube-dl", "--simulate", "https://www.youtube.com/watch?v=pOtd1cbOP7k"
     # homebrew playlist
-    system "#{bin}/youtube-dl", "--simulate", "--yes-playlist", "https://www.youtube.com/watch?v=pOtd1cbOP7k&list=PLMsZ739TZDoLj9u_nob8jBKSC-mZb0Nhj"
+    system bin/"youtube-dl", "--simulate", "--yes-playlist", "https://www.youtube.com/watch?v=pOtd1cbOP7k&list=PLMsZ739TZDoLj9u_nob8jBKSC-mZb0Nhj"
   end
 end

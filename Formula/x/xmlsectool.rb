@@ -11,19 +11,20 @@ class Xmlsectool < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "08f56219830aaf82a142dd338e4fd6ebc48f48ade7cc1a23646d78cc7ca7d48f"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, all: "6c42353cf1c6d33627c02421b5bff7f9ad5527a889ec24801b73fa407fd6d0ca"
   end
 
   depends_on "openjdk"
 
   def install
     prefix.install "doc/LICENSE.txt"
-    rm_rf "doc"
+    rm_r("doc")
     libexec.install Dir["*"]
     (bin/"xmlsectool").write_env_script "#{libexec}/xmlsectool.sh", JAVA_HOME: Formula["openjdk"].opt_prefix
   end
 
   test do
-    system "#{bin}/xmlsectool", "--listAlgorithms"
+    system bin/"xmlsectool", "--listAlgorithms"
   end
 end

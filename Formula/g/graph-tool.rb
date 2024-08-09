@@ -4,8 +4,8 @@ class GraphTool < Formula
   desc "Efficient network analysis for Python 3"
   homepage "https://graph-tool.skewed.de/"
   # TODO: Update build for matplotlib>=3.9.0 to use `--config-settings=setup-args=...` for system dependencies
-  url "https://downloads.skewed.de/graph-tool/graph-tool-2.72.tar.bz2"
-  sha256 "7c89c4cf26ae24f4e3394e17011d139080dba408e58beae9cc7fbe8b3b6e9c74"
+  url "https://downloads.skewed.de/graph-tool/graph-tool-2.76.tar.bz2"
+  sha256 "3d8178c582b11a82b6f88811424c55765fdbfbcc2d977340ecbb3132ed8d21e4"
   license "LGPL-3.0-or-later"
 
   livecheck do
@@ -14,13 +14,13 @@ class GraphTool < Formula
   end
 
   bottle do
-    sha256                               arm64_sonoma:   "a7182c401f27711457be9d1f6959292f7cd297898e3ad4ae1d0d4d5aa0e1789a"
-    sha256                               arm64_ventura:  "a36b759ccc255960dfe93eaf1c02147176218473dc563bed22ce406b7b8b8abe"
-    sha256                               arm64_monterey: "29a8c043f8f046678dbbe99c6076aba5880e2ac08c8487c36f7d9f22aa412fe6"
-    sha256                               sonoma:         "e75e57aef77131a94ef784d958d250a1bd861823bde135b1867179dbabf10d15"
-    sha256                               ventura:        "da1fc1ffe8a816c167cdc23574a33fa9e8b6e5aa9e6fdfe624715699ff368f0c"
-    sha256                               monterey:       "210c0c4f7cec976d0290e6d9ce056cc42bf2d1261f67d9bcb0e33b2ae4ae20a9"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "8cb761dea58d28d41b75605a5d8b27508160172f1496f2096bd8be0396c82f8c"
+    sha256                               arm64_sonoma:   "46fc385c6ce027093e601b9652db74bf645c9ed50c299f0f790cb14006be99bf"
+    sha256                               arm64_ventura:  "951ef1cdc8945848ab43245e7ec6272688adcaa9478d6cf8cb300588e1dfb77c"
+    sha256                               arm64_monterey: "8553c1bbf3d5eb3b0a995db2762ee7b36a91af3b313cfe3bc00f7546c816be87"
+    sha256                               sonoma:         "9907fcdc24d46fa4b9e4b96ebb97eaa633cdc71b77e7bc48f6294b01368a4d68"
+    sha256                               ventura:        "317d7501d626bec31d149cb1967e0fe9641311254515bee8274bd2c4f7cb0605"
+    sha256                               monterey:       "4c29b81e3a6c13bd02253f5e7f20d4f8f9fb1abc5a4109f8c516871dcdf895e3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "6035d315a72dbfebcdd522eaaa214332dbfa074d9caaa6a98053277fe4f07a05"
   end
 
   depends_on "ninja" => :build
@@ -75,8 +75,8 @@ class GraphTool < Formula
   end
 
   resource "matplotlib" do
-    url "https://files.pythonhosted.org/packages/22/06/9e8ba6ec8b716a215404a5d1938b61f5a28001be493cf35344dda9a4072a/matplotlib-3.9.1.tar.gz"
-    sha256 "de06b19b8db95dd33d0dc17c926c7c9ebed9f572074b6fac4f65068a6814d010"
+    url "https://files.pythonhosted.org/packages/27/c3/b4dbf9ed2a024a5514fa8a2606867a3716c9adfd457d138865145a940a65/matplotlib-3.9.1.post1.tar.gz"
+    sha256 "c91e585c65092c975a44dc9d4239ba8c594ba3c193d7c478b6d178c4ef61f406"
   end
 
   resource "packaging" do
@@ -95,8 +95,8 @@ class GraphTool < Formula
   end
 
   resource "setuptools" do
-    url "https://files.pythonhosted.org/packages/65/d8/10a70e86f6c28ae59f101a9de6d77bf70f147180fbf40c3af0f64080adc3/setuptools-70.3.0.tar.gz"
-    sha256 "f171bab1dfbc86b132997f26a119f6056a57950d058587841a0082e8830f9dc5"
+    url "https://files.pythonhosted.org/packages/5e/11/487b18cc768e2ae25a919f230417983c8d5afa1b6ee0abd8b6db0b89fa1d/setuptools-72.1.0.tar.gz"
+    sha256 "8d243eff56d095e5817f796ede6ae32941278f542e0f941867cc05ae52b162ec"
   end
 
   resource "six" do
@@ -105,8 +105,8 @@ class GraphTool < Formula
   end
 
   resource "zstandard" do
-    url "https://files.pythonhosted.org/packages/5d/91/2162ab4239b3bd6743e8e407bc2442fca0d326e2d77b3f4a88d90ad5a1fa/zstandard-0.22.0.tar.gz"
-    sha256 "8226a33c542bcb54cd6bd0a366067b610b41713b64c9abec1bc4533d69f51e70"
+    url "https://files.pythonhosted.org/packages/ed/f6/2ac0287b442160a89d726b17a9184a4c615bb5237db763791a7fd16d9df1/zstandard-0.23.0.tar.gz"
+    sha256 "b2d8c62d08e7255f68f7a740bae85b3c9b8e5466baa9cbf7f57f1cde0ac6bc09"
   end
 
   def python3

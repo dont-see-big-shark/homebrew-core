@@ -1,8 +1,8 @@
 class Questdb < Formula
   desc "Time Series Database"
   homepage "https://questdb.io"
-  url "https://github.com/questdb/questdb/releases/download/8.0.1/questdb-8.0.1-no-jre-bin.tar.gz"
-  sha256 "4ba8ba5cbc45a48c58025c42bbe300ce730b9015afa7c415c6079dfab602593d"
+  url "https://github.com/questdb/questdb/releases/download/8.1.0/questdb-8.1.0-no-jre-bin.tar.gz"
+  sha256 "9aa7cbf9ba120b192d613f294ead798bc6c92f8f19c4a9a6d7282d04886cd308"
   license "Apache-2.0"
 
   livecheck do
@@ -11,19 +11,19 @@ class Questdb < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "458851d5c14f843de01710bc4e6b5ec7f2a159345c71913b9ef4ee735b99c882"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "458851d5c14f843de01710bc4e6b5ec7f2a159345c71913b9ef4ee735b99c882"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "458851d5c14f843de01710bc4e6b5ec7f2a159345c71913b9ef4ee735b99c882"
-    sha256 cellar: :any_skip_relocation, sonoma:         "458851d5c14f843de01710bc4e6b5ec7f2a159345c71913b9ef4ee735b99c882"
-    sha256 cellar: :any_skip_relocation, ventura:        "458851d5c14f843de01710bc4e6b5ec7f2a159345c71913b9ef4ee735b99c882"
-    sha256 cellar: :any_skip_relocation, monterey:       "458851d5c14f843de01710bc4e6b5ec7f2a159345c71913b9ef4ee735b99c882"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "2c02e9e85196edc9ddc3c13495d4f7a9a9f77adab8a8513760a0b8ff7b093fdf"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "8225dbc461417c9199e96bb08c0666be61805b7ec3b34c6b86b21b3f17758a41"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "8225dbc461417c9199e96bb08c0666be61805b7ec3b34c6b86b21b3f17758a41"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "8225dbc461417c9199e96bb08c0666be61805b7ec3b34c6b86b21b3f17758a41"
+    sha256 cellar: :any_skip_relocation, sonoma:         "8225dbc461417c9199e96bb08c0666be61805b7ec3b34c6b86b21b3f17758a41"
+    sha256 cellar: :any_skip_relocation, ventura:        "8225dbc461417c9199e96bb08c0666be61805b7ec3b34c6b86b21b3f17758a41"
+    sha256 cellar: :any_skip_relocation, monterey:       "8225dbc461417c9199e96bb08c0666be61805b7ec3b34c6b86b21b3f17758a41"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "4e954ecc2c804e5504fc95050336a86af94639fe8164b4cf221e49d23a5be1a6"
   end
 
   depends_on "openjdk"
 
   def install
-    rm_rf "questdb.exe"
+    rm_r("questdb.exe")
     libexec.install Dir["*"]
     (bin/"questdb").write_env_script libexec/"questdb.sh", Language::Java.overridable_java_home_env
     inreplace libexec/"questdb.sh", "/usr/local/var/questdb", var/"questdb"

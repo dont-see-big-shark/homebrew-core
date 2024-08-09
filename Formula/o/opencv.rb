@@ -4,6 +4,7 @@ class Opencv < Formula
   url "https://github.com/opencv/opencv/archive/refs/tags/4.10.0.tar.gz"
   sha256 "b2171af5be6b26f7a06b1229948bbb2bdaa74fcf5cd097e0af6378fce50a6eb9"
   license "Apache-2.0"
+  revision 2
   head "https://github.com/opencv/opencv.git", branch: "4.x"
 
   livecheck do
@@ -12,13 +13,13 @@ class Opencv < Formula
   end
 
   bottle do
-    sha256 arm64_sonoma:   "8031982299b0e441f71a44410029bf22b6808a366ecd30f23b9811d42fab521d"
-    sha256 arm64_ventura:  "fa9251fa7a911abd017421ba0c51dee7397b7a18e0aefccc2dc18964546c2120"
-    sha256 arm64_monterey: "f1bbb6747490a4f6674fddab6d344d4304297712e209ea51d13e6d30213263c7"
-    sha256 sonoma:         "7f8dc0a72cf52b1373d80a6a7c659f7ad8158cdeeb830167c5a2690c329829be"
-    sha256 ventura:        "4b05d990ad1a3b8a68ec0e2b635ac910db07d96b6c2860a9289f9204246f0897"
-    sha256 monterey:       "50936e22b41f5d386fa282177fc2d50600396f879dcb7f4af479051422a9f0c0"
-    sha256 x86_64_linux:   "8167249db3953cf746015391fbb29b7513c2d36085f6f712050098abfca371de"
+    sha256 arm64_sonoma:   "087aa72ff67a7df062a9463e45f6acf646982c38ee36443b40a806f5cb1d653d"
+    sha256 arm64_ventura:  "baf32606d984f076f3e30ae3f0b200e485929e7bf49ccf256383af874084af68"
+    sha256 arm64_monterey: "4242b2999d6c39680656dfb1cad8ad91c98d96c0e5b60f0805547a5f7bef6a68"
+    sha256 sonoma:         "36fac819be67e8ea339c268818e6637e7645a5bb6aea30210435959e1be3a249"
+    sha256 ventura:        "c964dfd611d940d044247c9bb482b455f46481e11de40e38212319ebd4d29fb4"
+    sha256 monterey:       "02a9f4b1b83d67427cb02beae50b5a756ddba1658baf384fe8fd8ecc65ec5a2d"
+    sha256 x86_64_linux:   "14c66ade7d9c213182934fc9c21dea7bb3517f2a25b14d1b5965eea60c8a10fe"
   end
 
   depends_on "cmake" => :build
@@ -85,7 +86,7 @@ class Opencv < Formula
 
     # Remove bundled libraries to make sure formula dependencies are used
     libdirs = %w[ffmpeg libjasper libjpeg libjpeg-turbo libpng libtiff libwebp openexr openjpeg protobuf tbb zlib]
-    libdirs.each { |l| (buildpath/"3rdparty"/l).rmtree }
+    libdirs.each { |l| rm_r(buildpath/"3rdparty"/l) }
 
     args = %W[
       -DCMAKE_CXX_STANDARD=17

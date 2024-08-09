@@ -1,5 +1,3 @@
-require "language/node"
-
 class WebtorrentCli < Formula
   desc "Command-line streaming torrent client"
   homepage "https://webtorrent.io/"
@@ -23,14 +21,14 @@ class WebtorrentCli < Formula
   depends_on "node"
 
   def install
-    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
+    system "npm", "install", *std_npm_args
     bin.install_symlink Dir["#{libexec}/bin/*"]
 
     # Remove incompatible pre-built binaries
     os = OS.kernel_name.downcase
     arch = Hardware::CPU.intel? ? "x64" : Hardware::CPU.arch.to_s
     libexec.glob("lib/node_modules/webtorrent-cli/node_modules/{bufferutil,utp-native,utf-8-validate}/prebuilds/*")
-           .each { |dir| dir.rmtree if dir.basename.to_s != "#{os}-#{arch}" }
+           .each { |dir| rm_r(dir) if dir.basename.to_s != "#{os}-#{arch}" }
 
     # Replace universal binaries with their native slices
     deuniversalize_machos

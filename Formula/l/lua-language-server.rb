@@ -3,19 +3,19 @@ class LuaLanguageServer < Formula
   homepage "https://github.com/LuaLS/lua-language-server"
   # pull from git tag to get submodules
   url "https://github.com/LuaLS/lua-language-server.git",
-      tag:      "3.9.3",
-      revision: "2dfb12ad3759acb7ff47b4c5c54ad0a62c598b22"
+      tag:      "3.10.3",
+      revision: "aaf16240f77bb75a3d8db89c2a99934c8b6022ee"
   license "MIT"
   head "https://github.com/LuaLS/lua-language-server.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "09045a3dfe473dc9ec8a11d993256ba83332a2e0d810fda527ee34f77ae3806e"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "352091ae25cf329ce6a64111cbb124f0110952d75bbbb0f11369b2fa420cbeb6"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "0e0d76d1f27e1189df3145b30518ece7068a83cf74fbc46a3ba786012443fb8c"
-    sha256 cellar: :any_skip_relocation, sonoma:         "da3d84870bbf2461e890c38ffef9b5ab66baed861c0af52002b2794be81086f5"
-    sha256 cellar: :any_skip_relocation, ventura:        "0aba95a07236ca6a2b4fac35738427c8e2445050dc35fbf0ea9472347c8d0a10"
-    sha256 cellar: :any_skip_relocation, monterey:       "bce06665199dbe57a218c088e285fb15bb840959e25401b7cdd825d2790989d2"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "b33c2309ea248ef5912df5046e7b3f2218182b01951befa3c612073b009eee92"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "7cc84f4dc8437eff86c028944ddd4bbe7ce51094ed3c5acb6bfd5948a36f5f61"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "5e089fa48575fdfd8af99ca752322dd41fd9761a6940de3d3ec7fb215e8dbd19"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "935320a0cba5882d7e973a7d53b4bd8885ec900d52e707d5dcc18e306a8f3fca"
+    sha256 cellar: :any_skip_relocation, sonoma:         "35709d4bce6a5d1f56914261c5746e7326bc1d695a0b0adfb2d6296dcec52c51"
+    sha256 cellar: :any_skip_relocation, ventura:        "2489278cdd1fbb32e3a3993f3f116bc665a67d88b87d3323803a3a813fd25f7c"
+    sha256 cellar: :any_skip_relocation, monterey:       "fa5baf7af8c38e893650d7aa78e2ef7c94f7d09252f002c7c51967397731cee3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "35e9ffaaa7526f94abdbd9301dfee8b961e327be2da191715d1d5acec5c022c7"
   end
 
   depends_on "ninja" => :build
@@ -49,16 +49,11 @@ class LuaLanguageServer < Formula
   end
 
   test do
-    require "pty"
-    output = /^Content-Length: \d+\s*$/
-
-    stdout, stdin, lua_ls = PTY.spawn bin/"lua-language-server"
+    pid = spawn bin/"lua-language-server", "--logpath=."
     sleep 5
-    stdin.write "\n"
-    sleep 25
-    assert_match output, stdout.readline
+    assert_predicate testpath/"service.log", :exist?
+    refute_predicate testpath/"service.log", :empty?
   ensure
-    Process.kill "TERM", lua_ls
-    Process.wait lua_ls
+    Process.kill "TERM", pid
   end
 end

@@ -3,6 +3,7 @@ class Fastme < Formula
   homepage "http://www.atgc-montpellier.fr/fastme/"
   url "https://gite.lirmm.fr/atgc/FastME/raw/v2.1.6.3/tarball/fastme-2.1.6.3.tar.gz"
   sha256 "09a23ea94e23c0821ab75f426b410ec701dac47da841943587443a25b2b85030"
+  license "GPL-3.0-or-later"
   revision 1
 
   livecheck do
@@ -43,7 +44,7 @@ class Fastme < Formula
       D 4.0 5.0 6.0 0.0
     EOS
 
-    system "#{bin}/fastme", "-i", "test.dist"
+    system bin/"fastme", "-i", "test.dist"
     assert_predicate testpath/"test.dist_fastme_tree.nwk", :exist?
   end
 end

@@ -22,7 +22,8 @@ class GhcAT810 < Formula
 
   keg_only :versioned_formula
 
-  deprecate! date: "2023-11-16", because: :unmaintained
+  # Original deprecation date: 2023-11-16
+  disable! date: "2024-07-26", because: :unmaintained
 
   depends_on "python@3.10" => :build
   depends_on "sphinx-doc" => :build
@@ -125,7 +126,7 @@ class GhcAT810 < Formula
   end
 
   def post_install
-    system "#{bin}/ghc-pkg", "recache"
+    system bin/"ghc-pkg", "recache"
   end
 
   test do

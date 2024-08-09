@@ -1,19 +1,19 @@
 class Poutine < Formula
   desc "Security scanner that detects vulnerabilities in build pipelines"
   homepage "https://boostsecurityio.github.io/poutine/"
-  url "https://github.com/boostsecurityio/poutine/archive/refs/tags/v0.13.0.tar.gz"
-  sha256 "d36f1e5849599d5b56a8838818a1dc41e30e113a5f1a098607cf40b32e5639fb"
+  url "https://github.com/boostsecurityio/poutine/archive/refs/tags/v0.15.0.tar.gz"
+  sha256 "85a8ac9a59996ac2749ee0422748c72b38ea033df85956f660004c63d30192ea"
   license "Apache-2.0"
   head "https://github.com/boostsecurityio/poutine.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "cc8d260725a77263604bc08485eb37f1738577175e69c44043491289b11b2ecc"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "74ed2b5adbbdc796e284b38769bfa4bab796348f26b57279d897e658a508ada7"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "8d7005fb53c259e8db333a56704e471c7bacd07a11e622550883f863768aa87d"
-    sha256 cellar: :any_skip_relocation, sonoma:         "2d8af7029d02d05ff9c3f76e2727c8f63a752d9d04f7198b08d89433c993f3a1"
-    sha256 cellar: :any_skip_relocation, ventura:        "78c635b84df8386a38c56639f0bee52ac8b7e8f0bac3e87d1b7a241fd4ff277d"
-    sha256 cellar: :any_skip_relocation, monterey:       "deb3d82f09e410df4b11fe230790ea2ecc85d310487dbb206c0a16588c0cd643"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "d0b9d689c1a7811a4e465afefcb7b3ef8f5b7a1d297035742108352b98f06b52"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "83ffdf6d0949e8546688d70ade14ef959bbba1589bd9b83877f3e65f89dd2aa2"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "782cb225e983f4330057f8ca2bdea3d45e05b8f1f7603f1d04607caebd7b718c"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "913ee25646a1087a758189cbf748c8e9f2dfdb4974858ee2b6b7422bdf9d9851"
+    sha256 cellar: :any_skip_relocation, sonoma:         "d76916d6c914a375302d428c69577e8e98889a06c7f824a79ecc32b8d1f493df"
+    sha256 cellar: :any_skip_relocation, ventura:        "7080a4fe59b2ecf2fd808424e58b79ef19834113103ed6768eaa282aa1938029"
+    sha256 cellar: :any_skip_relocation, monterey:       "0e969044d34aa5698ce451c3563919b17ecfae2af608f0f167800df397d6fa03"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "aabd7fbd1c32b13811176e1969f2c7ede3cef946db8b81649d2b12f44151aa3d"
   end
 
   depends_on "go" => :build

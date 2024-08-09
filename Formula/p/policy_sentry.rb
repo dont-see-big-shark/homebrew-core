@@ -3,21 +3,22 @@ class PolicySentry < Formula
 
   desc "Generate locked-down AWS IAM Policies"
   homepage "https://policy-sentry.readthedocs.io/en/latest/"
-  url "https://files.pythonhosted.org/packages/ca/f1/496838fb09f5bb76d178616bf6c5029634d33a115e1702550f623a9d6ea6/policy_sentry-0.12.14.tar.gz"
-  sha256 "4c71d8e6a827168f1283d51f5b502aeb66ba2f8aaf89088f0a40e0460bd29cec"
+  url "https://files.pythonhosted.org/packages/52/4f/02922c178ca4acbe21f5d1252209ccc05bb70d515ca406925ae7e34e164f/policy_sentry-0.13.1.tar.gz"
+  sha256 "6bb0133d897a45349aed78942459b4f583542051bb181e3a64464d13af8190b0"
   license "MIT"
   head "https://github.com/salesforce/policy_sentry.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sonoma:   "5430188c83ed9429ab4969ab0ece7e1b09819ee073c658fec973c7af363a146a"
-    sha256 cellar: :any,                 arm64_ventura:  "4e39fffb802e74b35a40e5291623a6487197af4cf5883b20a75739d719c8eb48"
-    sha256 cellar: :any,                 arm64_monterey: "f39ebd81cc45f012f06a037f325a7a1b90e1a1c77156330380ee603143d744a7"
-    sha256 cellar: :any,                 sonoma:         "50be8b80434439e8047a62a8acd0164e98c1453ee9922623eab0a5f40523675c"
-    sha256 cellar: :any,                 ventura:        "8ffba8af4e314b16f3656176d65e63cd9422c443a26924fb8ef479f5421e9742"
-    sha256 cellar: :any,                 monterey:       "0da424bec7b1fef03a830ec302be01ad0a71f5f3d1b4d771be065a91391c90f6"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "56640ff5306923b4be3ea82bcb7870973b9feac18f994feeeb38d763528df255"
+    sha256 cellar: :any,                 arm64_sonoma:   "3d3b67e46bde2e7338a0165d5804dd76f5ba8f28d5a18a73e151d44d21e61c5d"
+    sha256 cellar: :any,                 arm64_ventura:  "04b8a0d17f02680cbdc9c3328b45dc34483ac6d9e9fc89fd0b6e15aed7daed3e"
+    sha256 cellar: :any,                 arm64_monterey: "28b56f86a2cd72411a7dd642f0bcc1ab6cdc829ec552aa8110af42e27bf59ba5"
+    sha256 cellar: :any,                 sonoma:         "08aaffc8c9830148c33341c3312908a2d4326d4c1a983c22dceae4c8130d72fb"
+    sha256 cellar: :any,                 ventura:        "576ef01673eb1a9e5df742566a302405ca33b06882988a22edd4e2bec6bd6566"
+    sha256 cellar: :any,                 monterey:       "7195d0717de66eee2537186bb70b2aa4209c29e00da50fb7918029a42ac3ad64"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "fb66e234ebb1dfa044f306966ae0cf7b8506b270c652bdf08c373d7fb90bc554"
   end
 
+  depends_on "rust" => :build # for orjson
   depends_on "certifi"
   depends_on "libyaml"
   depends_on "python@3.12"
@@ -40,6 +41,11 @@ class PolicySentry < Formula
   resource "idna" do
     url "https://files.pythonhosted.org/packages/21/ed/f86a79a07470cb07819390452f178b3bef1d375f2ec021ecfc709fc7cf07/idna-3.7.tar.gz"
     sha256 "028ff3aadf0609c1fd278d8ea3089299412a7a8b9bd005dd08b9f8285bcb5cfc"
+  end
+
+  resource "orjson" do
+    url "https://files.pythonhosted.org/packages/70/24/8be1c9f6d21e3c510c441d6cbb6f3a75f2538b42a45f0c17ffb2182882f1/orjson-3.10.6.tar.gz"
+    sha256 "e54b63d0a7c6c54a5f5f726bc93a2078111ef060fec4ecbf34c5db800ca3b3a7"
   end
 
   resource "pyyaml" do
@@ -74,7 +80,9 @@ class PolicySentry < Formula
   test do
     assert_match version.to_s, shell_output("#{bin}/policy_sentry --version")
 
-    system bin/"policy_sentry", "initialize"
-    assert_predicate testpath/".policy_sentry/iam-definition.json", :exist?
+    test_file = testpath/"policy_sentry.yml"
+    output = shell_output("#{bin}/policy_sentry create-template -o #{test_file} -t actions")
+    assert_match "write-policy template file written to: #{test_file}", output
+    assert_match "mode: actions", test_file.read
   end
 end

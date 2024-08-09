@@ -1,26 +1,18 @@
-require "language/node"
-
 class AwsCdk < Formula
   desc "AWS Cloud Development Kit - framework for defining AWS infra as code"
   homepage "https://github.com/aws/aws-cdk"
-  url "https://registry.npmjs.org/aws-cdk/-/aws-cdk-2.149.0.tgz"
-  sha256 "c504cfd69cd60ed2f30349260c0ccbce07f8f38208c4bbbf1e4a082d77c7b4ab"
+  url "https://registry.npmjs.org/aws-cdk/-/aws-cdk-2.151.0.tgz"
+  sha256 "7ed033d426ba3c8daca3d6413da68348f6424e16b40d360dba4ea2a954f54b93"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "e3cbd3b42170953cb88dd164904d87c0d93e625bfb51ec012700dab2131fd01d"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "e3cbd3b42170953cb88dd164904d87c0d93e625bfb51ec012700dab2131fd01d"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "e3cbd3b42170953cb88dd164904d87c0d93e625bfb51ec012700dab2131fd01d"
-    sha256 cellar: :any_skip_relocation, sonoma:         "e3cbd3b42170953cb88dd164904d87c0d93e625bfb51ec012700dab2131fd01d"
-    sha256 cellar: :any_skip_relocation, ventura:        "e3cbd3b42170953cb88dd164904d87c0d93e625bfb51ec012700dab2131fd01d"
-    sha256 cellar: :any_skip_relocation, monterey:       "e3cbd3b42170953cb88dd164904d87c0d93e625bfb51ec012700dab2131fd01d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "75c3bad8f79ded4d8d5db28618aa60dc88e157ef35729b72a3a53e4abb38a10f"
+    sha256 cellar: :any_skip_relocation, all: "214f579968f44cb92d56b981ec8876c80fadf920734e267179999457b05d4b36"
   end
 
   depends_on "node"
 
   def install
-    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
+    system "npm", "install", *std_npm_args
     bin.install_symlink Dir["#{libexec}/bin/*"]
 
     # Replace universal binaries with native slices.

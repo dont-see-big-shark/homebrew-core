@@ -23,7 +23,6 @@ class Nebula < Formula
     system "make", "service"
     bin.install "./nebula"
     bin.install "./nebula-cert"
-    prefix.install_metafiles
   end
 
   service do
@@ -35,14 +34,14 @@ class Nebula < Formula
   end
 
   test do
-    system "#{bin}/nebula-cert", "ca", "-name", "testorg"
-    system "#{bin}/nebula-cert", "sign", "-name", "host", "-ip", "192.168.100.1/24"
+    system bin/"nebula-cert", "ca", "-name", "testorg"
+    system bin/"nebula-cert", "sign", "-name", "host", "-ip", "192.168.100.1/24"
     (testpath/"config.yml").write <<~EOS
       pki:
         ca: #{testpath}/ca.crt
         cert: #{testpath}/host.crt
         key: #{testpath}/host.key
     EOS
-    system "#{bin}/nebula", "-test", "-config", "config.yml"
+    system bin/"nebula", "-test", "-config", "config.yml"
   end
 end

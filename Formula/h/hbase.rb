@@ -42,7 +42,7 @@ class Hbase < Formula
 
   def install
     java_home = Language::Java.java_home("11")
-    rm_f Dir["bin/*.cmd", "conf/*.cmd"]
+    rm(Dir["bin/*.cmd", "conf/*.cmd"])
     libexec.install %w[bin conf lib hbase-webapps]
 
     # Some binaries have really generic names (like `test`) and most seem to be
@@ -161,12 +161,12 @@ class Hbase < Formula
     ENV["HBASE_CONF_DIR"] = testpath/"conf"
     ENV["HBASE_PID_DIR"]  = testpath/"pid"
 
-    system "#{bin}/start-hbase.sh"
+    system bin/"start-hbase.sh"
     sleep 15
     begin
       assert_match "Zookeeper", pipe_output("nc 127.0.0.1 #{port} 2>&1", "stats")
     ensure
-      system "#{bin}/stop-hbase.sh"
+      system bin/"stop-hbase.sh"
     end
   end
 end

@@ -88,6 +88,42 @@ jobs:
           TESTING_FORMULAE: ${{ steps.formulae-detect.outputs.formulae_to_fetch }}
         run: brew test-bot --only-bottles-fetch --testing-formulae="$TESTING_FORMULAE"
 
+  report_analytics:
+    runs-on: ubuntu-latest
+    needs: formulae_detect
+    if: github.repository_owner == 'Homebrew' && github.event_name == 'pull_request'
+    steps:
+      - name: Publish Analytics to Summary
+        env:
+          TESTING_FORMULAE: ${{needs.formulae_detect.outputs.testing_formulae}}
+        run: |
+          if [[ -z "$TESTING_FORMULAE" ]]
+          then
+              exit 0
+          fi
+
+          {
+            DATA_30="$(curl -s https://formulae.brew.sh/api/analytics/install/homebrew-core/30d.json)"
+            DATA_90="$(curl -s https://formulae.brew.sh/api/analytics/install/homebrew-core/90d.json)"
+            DATA_1="$(curl -s https://formulae.brew.sh/api/analytics/install/homebrew-core/365d.json)"
+            ERROR_DATA="$(curl -s https://formulae.brew.sh/api/analytics/build-error/30d.json)"
+
+            echo "### Analytics about: ${TESTING_FORMULAE}"
+            echo "<details><summary>Click to expand</summary>"
+            echo ""
+            echo "| Formula | Errors | 30d | 90d | 365d |"
+            echo "|---|---|---|---|---|"
+            for formula in ${TESTING_FORMULAE//,/ }
+            do
+                FORMULA_30="$(echo "$DATA_30" | jq -r ".formulae[\"$formula\"][0].count")"
+                FORMULA_90="$(echo "$DATA_90" | jq -r ".formulae[\"$formula\"][0].count")"
+                FORMULA_1="$(echo "$DATA_1" | jq -r ".formulae[\"$formula\"][0].count")"
+                FORMULA_ERROR="$(echo "$ERROR_DATA" | jq -r ".items[] | select(.formula == \"$formula\").count")"
+                echo "| $formula | $FORMULA_ERROR | $FORMULA_30 | $FORMULA_90 | $FORMULA_1 |"
+            done
+            echo "</details>"
+          } >> "$GITHUB_STEP_SUMMARY"
+
   setup_tests:
     permissions:
       pull-requests: read

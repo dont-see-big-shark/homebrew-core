@@ -1,5 +1,3 @@
-require "language/node"
-
 class AnsibleLanguageServer < Formula
   desc "Language Server for Ansible Files"
   homepage "https://github.com/ansible/vscode-ansible"
@@ -20,7 +18,7 @@ class AnsibleLanguageServer < Formula
   depends_on "node"
 
   def install
-    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
+    system "npm", "install", *std_npm_args
     bin.install_symlink Dir["#{libexec}/bin/*"]
   end
 
@@ -39,7 +37,7 @@ class AnsibleLanguageServer < Formula
       }
     JSON
 
-    Open3.popen3("#{bin}/ansible-language-server", "--stdio") do |stdin, stdout|
+    Open3.popen3(bin/"ansible-language-server", "--stdio") do |stdin, stdout|
       stdin.write "Content-Length: #{json.size}\r\n\r\n#{json}"
       sleep 3
       assert_match(/^Content-Length: \d+/i, stdout.readline)

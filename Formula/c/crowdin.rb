@@ -1,8 +1,8 @@
 class Crowdin < Formula
   desc "Command-line tool that allows to manage your resources with crowdin.com"
   homepage "https://support.crowdin.com/cli-tool/"
-  url "https://github.com/crowdin/crowdin-cli/releases/download/4.0.0/crowdin-cli.zip"
-  sha256 "ecac905279763bfada40b70fe55b0c097df4f38327e8715fc6326692c0245817"
+  url "https://github.com/crowdin/crowdin-cli/releases/download/4.1.1/crowdin-cli.zip"
+  sha256 "129446127f9cb5e16de2d9fbd1bc9c22b2088e4f9950eda7e522b5e0773642ad"
   license "MIT"
 
   livecheck do
@@ -11,13 +11,13 @@ class Crowdin < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "1b19b41212f20f9c517123e7741ec126a5c45fa683ae0677c758283c77a0874d"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "1b19b41212f20f9c517123e7741ec126a5c45fa683ae0677c758283c77a0874d"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "1b19b41212f20f9c517123e7741ec126a5c45fa683ae0677c758283c77a0874d"
-    sha256 cellar: :any_skip_relocation, sonoma:         "1b19b41212f20f9c517123e7741ec126a5c45fa683ae0677c758283c77a0874d"
-    sha256 cellar: :any_skip_relocation, ventura:        "1b19b41212f20f9c517123e7741ec126a5c45fa683ae0677c758283c77a0874d"
-    sha256 cellar: :any_skip_relocation, monterey:       "1b19b41212f20f9c517123e7741ec126a5c45fa683ae0677c758283c77a0874d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "767084eb6bf6d0fe6e748df225bb2fa7e29ad890e8d86d75d8b716fdc0d14916"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "4c1fd43e8a5b439262c0e32e0247c814a3dff85ba34a4f684fb3fb52cefd2f1d"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "4c1fd43e8a5b439262c0e32e0247c814a3dff85ba34a4f684fb3fb52cefd2f1d"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "4c1fd43e8a5b439262c0e32e0247c814a3dff85ba34a4f684fb3fb52cefd2f1d"
+    sha256 cellar: :any_skip_relocation, sonoma:         "4c1fd43e8a5b439262c0e32e0247c814a3dff85ba34a4f684fb3fb52cefd2f1d"
+    sha256 cellar: :any_skip_relocation, ventura:        "4c1fd43e8a5b439262c0e32e0247c814a3dff85ba34a4f684fb3fb52cefd2f1d"
+    sha256 cellar: :any_skip_relocation, monterey:       "4c1fd43e8a5b439262c0e32e0247c814a3dff85ba34a4f684fb3fb52cefd2f1d"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "e6f011ecfcdbc0e3e02477208447de2f08248628ee190ea85b4c549197602e53"
   end
 
   depends_on "openjdk"

@@ -4,8 +4,8 @@ class Samba < Formula
   # option. The shared folder appears in the guest as "\\10.0.2.4\qemu".
   desc "SMB/CIFS file, print, and login server for UNIX"
   homepage "https://www.samba.org/"
-  url "https://download.samba.org/pub/samba/stable/samba-4.20.2.tar.gz"
-  sha256 "f969ffed58ccf3e85cbbcc0e33a1726d025c2b40f42a653b1125b82b92d2e0e5"
+  url "https://download.samba.org/pub/samba/stable/samba-4.20.4.tar.gz"
+  sha256 "3a92e97eaeb345b6b32232f503e14d34f03a7aa64c451fe8c258a11bbda908e5"
   license "GPL-3.0-or-later"
 
   livecheck do
@@ -14,13 +14,13 @@ class Samba < Formula
   end
 
   bottle do
-    sha256 arm64_sonoma:   "dbc4652d66ee296a45b800b7561bea8d298890aeda5769497ae48c22cab9aa52"
-    sha256 arm64_ventura:  "e640bd9bc121644ba2975c391ef3f4d9a72e202d22f52d88ab086010d0cbd818"
-    sha256 arm64_monterey: "3d13cc668f58122170770689cfe4f9f0cb5af56656aa400b06bc86833e044748"
-    sha256 sonoma:         "74f8233c0a347add0740f7b06f66bd388317d869c5e2f385e4780dc6ecb1ad5d"
-    sha256 ventura:        "0d94fb1010ff4dffb7f524dfd51bdac411e45cdfad093475b86c26dfd790eda4"
-    sha256 monterey:       "e32554b6a7e5e0628185ee4cfab3375c727e7d3f92eb86161c1e171442cec21b"
-    sha256 x86_64_linux:   "6518e50946f700bd797cd7bd3ff2059c33b59ef4a6dbf5396da3acb78bbb635e"
+    sha256 arm64_sonoma:   "ede773cb95bf6e0c7dc8657b5adbe58fe6fdff564895cdf1bc1bd3fe66bcf3d1"
+    sha256 arm64_ventura:  "62a859f4d1125e5d31f868149809016804ffe77ee0d0a358a1ffc3d625437c4e"
+    sha256 arm64_monterey: "21db0f4be3b70967f7ba146d09779f9c40c2ebd5a2814c9d3cb11fad8a5b5eeb"
+    sha256 sonoma:         "17a0f6638ff67e615fed0eace9b7654556cb61246bebc7020fbec8a5e31b0d3f"
+    sha256 ventura:        "5bb3e19312e790920ad4220c8e798ce5e780360e53349d617a5521973b161c22"
+    sha256 monterey:       "89fec77ea5a3c19fcc8a84e3ee316b86a5275663e221a107936c1e0e6ecd9877"
+    sha256 x86_64_linux:   "3b5fb16d9a48740aba18a88bff2f089f98ac032881da0a9e502c85c8ec3102d1"
   end
 
   depends_on "bison" => :build
@@ -53,6 +53,7 @@ class Samba < Formula
 
   conflicts_with "jena", because: "both install `tdbbackup` binaries"
   conflicts_with "puzzles", because: "both install `net` binaries"
+  conflicts_with "tdb", because: "both install `tdbrestore`, `tdbtool` binaries"
 
   resource "Parse::Yapp" do
     url "https://cpan.metacpan.org/authors/id/W/WB/WBRASWELL/Parse-Yapp-1.21.tar.gz"

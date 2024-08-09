@@ -1,8 +1,8 @@
 class VaultCli < Formula
   desc "Subversion-like utility to work with Jackrabbit FileVault"
   homepage "https://jackrabbit.apache.org/filevault/index.html"
-  url "https://search.maven.org/remotecontent?filepath=org/apache/jackrabbit/vault/vault-cli/3.7.2/vault-cli-3.7.2-bin.tar.gz"
-  sha256 "3bc74bc82424aeaa4e1bd4d2cadab9d93c87bda5e67e09207140da5a4ba674b6"
+  url "https://search.maven.org/remotecontent?filepath=org/apache/jackrabbit/vault/vault-cli/3.8.0/vault-cli-3.8.0-bin.tar.gz"
+  sha256 "ecc0f14c1d92481236d72f9fdd044121a5d9e9fdbf10471b25492cf97ea6303f"
   license "Apache-2.0"
   head "https://github.com/apache/jackrabbit-filevault.git", branch: "master"
 
@@ -12,14 +12,14 @@ class VaultCli < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "8b7fef79facae5e12cf12b3a793e88781a3c6d4c9de2085a8f8bb3f693fc6618"
+    sha256 cellar: :any_skip_relocation, all: "269fe1199854432b8ae7b35f62a3a32d32d5a4909a6ecaff5d1d25f365ac103d"
   end
 
   depends_on "openjdk"
 
   def install
     # Remove windows files
-    rm_f Dir["bin/*.bat"]
+    rm(Dir["bin/*.bat"])
 
     libexec.install Dir["*"]
     bin.install Dir["#{libexec}/bin/*"]
@@ -28,6 +28,6 @@ class VaultCli < Formula
 
   test do
     # Bad test, but we're limited without a Jackrabbit repo to speak to...
-    system "#{bin}/vlt", "--version"
+    system bin/"vlt", "--version"
   end
 end

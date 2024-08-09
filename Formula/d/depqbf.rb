@@ -29,7 +29,7 @@ class Depqbf < Formula
   end
 
   resource "picosat" do
-    url "http://fmv.jku.at/picosat/picosat-960.tar.gz"
+    url "https://fmv.jku.at/picosat/picosat-960.tar.gz"
     sha256 "edb3184a04766933b092713d0ae5782e4a3da31498629f8bb2b31234a563e817"
   end
 
@@ -47,6 +47,6 @@ class Depqbf < Formula
   end
 
   test do
-    system "#{bin}/depqbf", "-h"
+    system bin/"depqbf", "-h"
   end
 end

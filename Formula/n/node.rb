@@ -1,8 +1,8 @@
 class Node < Formula
   desc "Platform built on V8 to build network applications"
   homepage "https://nodejs.org/"
-  url "https://nodejs.org/dist/v22.4.1/node-v22.4.1.tar.xz"
-  sha256 "65fc857f5aa8256aafc900b344c0115c9aeae25a02541fd5ce0dbd4dfd1c5fb9"
+  url "https://nodejs.org/dist/v22.6.0/node-v22.6.0.tar.xz"
+  sha256 "37259d618d5565ca55acc2585045c7e1c5b9965a3d4eb44c0a237fdae84b9d44"
   license "MIT"
   head "https://github.com/nodejs/node.git", branch: "main"
 
@@ -12,13 +12,13 @@ class Node < Formula
   end
 
   bottle do
-    sha256 arm64_sonoma:   "216cf9f3decc10a3ff2f8c05261589b266b4dbe1d90ed0b89d2dcb6de6435ddf"
-    sha256 arm64_ventura:  "482166f8932d89c8ba3947efd9ec66df6566336cb52e6d4c607ea152098f6ffc"
-    sha256 arm64_monterey: "9c920df74e4e0b165e40fe9f9d19ea3fa1cc7c70034de776d39585d508938c32"
-    sha256 sonoma:         "d20bc9e22395c5b7b0c9886598b24f9ded801fe089c3bbcb7bc54b7f9c150a3a"
-    sha256 ventura:        "29fd803f5f21529244452ff88ded4a8e0fbd97d2c25776a7feff79bdfbbb9629"
-    sha256 monterey:       "d92e3a02327d989ecc327a7cc1707b6fdf988a3efe873b7f1e42d66cefc266a1"
-    sha256 x86_64_linux:   "ca40d979c2d42346861c3921d184a735732b4ab362fccfea1f69fe8cc11f5c12"
+    sha256 arm64_sonoma:   "111d292b26d74900ecc3b8b6a21a12ffb910e53a2871a37dbbb26e55339fd8f2"
+    sha256 arm64_ventura:  "825e78d28f61c643f3ae8c651c70596556d71889325a4ede364af24ec8f54537"
+    sha256 arm64_monterey: "1abf183e19384809e15c20aa585ae19319945d6f55c6fe1987f629826c5c0fe7"
+    sha256 sonoma:         "3cefab8f0c14c13991cc7ec581611b6a07c0d45bc485faad380fb4a70f07fe11"
+    sha256 ventura:        "a394573380523b376cb513940d1eae885ec5b3f6ea2b327ac3d54a63751079c9"
+    sha256 monterey:       "495fb08253eb39e45c7dfade17267d8716656c57046531b3a884b8a991f924f2"
+    sha256 x86_64_linux:   "2f7a3bd6e7400e8725e58e25df3715b72b72864610c34241e725c2e1683c99d4"
   end
 
   depends_on "pkg-config" => :build
@@ -49,8 +49,8 @@ class Node < Formula
   # We track major/minor from upstream Node releases.
   # We will accept *important* npm patch releases when necessary.
   resource "npm" do
-    url "https://registry.npmjs.org/npm/-/npm-10.8.1.tgz"
-    sha256 "b8807aebb9656758e2872fa6e7c564b506aa2faa9297439a478d471d2fe32483"
+    url "https://registry.npmjs.org/npm/-/npm-10.8.2.tgz"
+    sha256 "c8c61ba0fa0ab3b5120efd5ba97fdaf0e0b495eef647a97c4413919eda0a878b"
   end
 
   def install
@@ -113,7 +113,7 @@ class Node < Formula
     # This copies back over the vanilla `package.json` to fix this issue.
     cp bootstrap/"package.json", libexec/"lib/node_modules/npm"
     # These symlinks are never used & they've caused issues in the past.
-    rm_rf libexec/"share"
+    rm_r libexec/"share" if (libexec/"share").exist?
 
     bash_completion.install bootstrap/"lib/utils/completion.sh" => "npm"
   end
@@ -122,7 +122,7 @@ class Node < Formula
     node_modules = HOMEBREW_PREFIX/"lib/node_modules"
     node_modules.mkpath
     # Kill npm but preserve all other modules across node updates/upgrades.
-    rm_rf node_modules/"npm"
+    rm_r node_modules/"npm" if (node_modules/"npm").exist?
 
     cp_r libexec/"lib/node_modules/npm", node_modules
     # This symlink doesn't hop into homebrew_prefix/bin automatically so
@@ -140,7 +140,7 @@ class Node < Formula
       # Dirs must exist first: https://github.com/Homebrew/legacy-homebrew/issues/35969
       mkdir_p HOMEBREW_PREFIX/"share/man/#{man}"
       # still needed to migrate from copied file manpages to symlink manpages
-      rm_f Dir[HOMEBREW_PREFIX/"share/man/#{man}/{npm.,npm-,npmrc.,package.json.,npx.}*"]
+      rm(Dir[HOMEBREW_PREFIX/"share/man/#{man}/{npm.,npm-,npmrc.,package.json.,npx.}*"])
       ln_sf Dir[node_modules/"npm/man/#{man}/{npm,package-,shrinkwrap-,npx}*"], HOMEBREW_PREFIX/"share/man/#{man}"
     end
 

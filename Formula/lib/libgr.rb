@@ -1,35 +1,50 @@
 class Libgr < Formula
   desc "GR framework: a graphics library for visualisation applications"
   homepage "https://gr-framework.org/"
-  url "https://github.com/sciapp/gr/archive/refs/tags/v0.73.6.tar.gz"
-  sha256 "00f6265e8d7c27a74a7a717006e7f18d4193748e1a36ca5d3f6749b5dd48dc09"
+  url "https://github.com/sciapp/gr/archive/refs/tags/v0.73.7.tar.gz"
+  sha256 "2584727b1413a337ef14daae1e61bdc5c946403031695b42ecfbf8bc1888d132"
   license "MIT"
 
   bottle do
-    sha256 arm64_sonoma:   "4c22d40e0f3e5fb0571d5ff87dee56a64dc34b4670d3f488813b5068d91c2896"
-    sha256 arm64_ventura:  "704cbaa41f7a660ea98424f2c76fc691acfc4ed78c1853db9fa5dfecd8e2b957"
-    sha256 arm64_monterey: "28b481d782e3f2c04497df7e7c7c66698c0b44818bccaaf571fa7c8169a7bcfd"
-    sha256 sonoma:         "30998f6669c1b44db819e82a3158f48c9b4a91da0f1db5463736918bef278538"
-    sha256 ventura:        "6b82df8b7eb80400d56931a88b51d40debbd46765449d53daa8165eef67063e2"
-    sha256 monterey:       "9aeaf67006a567d70739884c8befec0ed6ec68cfed1b1a09f901a6d62face91d"
-    sha256 x86_64_linux:   "434265f56a364a14daff6c3635baea530d4290c8057c29f46d83e1b02d5ddc39"
+    rebuild 1
+    sha256 arm64_sonoma:   "4471760a40d20c1eb0d1fa65fed678e6e37d66afe0fdadd0aa9fd4b0f6e7322f"
+    sha256 arm64_ventura:  "370d2ce18f6706f4c7ce9577c99efb4aa781429186d2e506897497e0d9054397"
+    sha256 arm64_monterey: "7071d26de1baf237f7fa72be8fcbe732c377b30b4b974c8c13fed86459a836ef"
+    sha256 sonoma:         "cad628cd58e7b8168d18a63b88947720236861b0d5838d36bd60df89ee6e59a0"
+    sha256 ventura:        "c12411fc3f1e60f1f5d4d79b8846cf0ddc9a3ec5fbb2cf4db31cd9a140c09b7f"
+    sha256 monterey:       "ba798422f8b3d7fa987c8c4e7f44ddd6d248c81501c989cb75b72ba104c68bcc"
+    sha256 x86_64_linux:   "cf780f036ec41d094e62928cc6e85067a68ad7915515da9ffe2e7f83d09b5f8a"
   end
 
   depends_on "cmake" => :build
   depends_on "cairo"
-  depends_on "ffmpeg@6"
+  depends_on "freetype"
   depends_on "glfw"
+  depends_on "jpeg-turbo"
+  depends_on "libpng"
   depends_on "libtiff"
+  depends_on "pixman"
   depends_on "qhull"
   depends_on "qt"
   depends_on "zeromq"
 
+  uses_from_macos "zlib"
+
+  on_macos do
+    depends_on "ffmpeg"
+  end
+
+  on_linux do
+    depends_on "ffmpeg@6"
+    depends_on "libx11"
+    depends_on "libxt"
+    depends_on "mesa"
+  end
+
   def install
-    mkdir "build" do
-      system "cmake", "..", *std_cmake_args
-      system "make"
-      system "make", "install"
-    end
+    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
   end
 
   test do

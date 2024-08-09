@@ -44,7 +44,7 @@ class Volk < Formula
     ENV.prepend_path "PYTHONPATH", buildpath/"venv"/Language::Python.site_packages(python3)
 
     # Avoid falling back to bundled cpu_features
-    (buildpath/"cpu_features").rmtree
+    rm_r(buildpath/"cpu_features")
 
     # Avoid references to the Homebrew shims directory
     inreplace "lib/CMakeLists.txt" do |s|
@@ -61,7 +61,7 @@ class Volk < Formula
   end
 
   test do
-    system "#{bin}/volk_modtool", "--help"
-    system "#{bin}/volk_profile", "--iter", "10"
+    system bin/"volk_modtool", "--help"
+    system bin/"volk_profile", "--iter", "10"
   end
 end

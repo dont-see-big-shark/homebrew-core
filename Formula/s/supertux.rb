@@ -39,6 +39,7 @@ class Supertux < Formula
   uses_from_macos "zlib"
 
   on_linux do
+    depends_on "mesa"
     depends_on "openal-soft"
   end
 
@@ -55,9 +56,9 @@ class Supertux < Formula
     system "cmake", "--install", "build"
 
     # Remove unnecessary files
-    (share/"applications").rmtree
-    (share/"pixmaps").rmtree
-    (prefix/"MacOS").rmtree if OS.mac?
+    rm_r(share/"applications")
+    rm_r(share/"pixmaps")
+    rm_r(prefix/"MacOS") if OS.mac?
   end
 
   test do

@@ -9,6 +9,11 @@ class Udptunnel < Formula
   sha256 "45c0e12045735bc55734076ebbdc7622c746d1fe4e6f7267fa122e2421754670"
   license "BSD-3-Clause"
 
+  livecheck do
+    url :homepage
+    regex(/href=.*?udptunnel[._-]v?(\d+(?:\.\d+)+)\.t/i)
+  end
+
   bottle do
     rebuild 2
     sha256 cellar: :any_skip_relocation, arm64_sonoma:   "68d39772c6215367e95610b65557e2055741cc6f1647f0c203ecb1e2bef0a617"
@@ -43,6 +48,14 @@ class Udptunnel < Formula
   end
 
   test do
-    system "#{bin}/udptunnel -h; true"
+    assert_equal <<~EOS, shell_output("#{bin}/udptunnel -h 2>&1", 2)
+      Usage: #{bin}/udptunnel -s TCP-port [-r] [-v] UDP-addr/UDP-port[/ttl]
+          or #{bin}/udptunnel -c TCP-addr[/TCP-port] [-r] [-v] UDP-addr/UDP-port[/ttl]
+           -s: Server mode.  Wait for TCP connections on the port.
+           -c: Client mode.  Connect to the given address.
+           -r: RTP mode.  Connect/listen on ports N and N+1 for both UDP and TCP.
+               Port numbers must be even.
+           -v: Verbose mode.  Specify -v multiple times for increased verbosity.
+    EOS
   end
 end

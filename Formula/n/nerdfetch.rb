@@ -1,13 +1,13 @@
 class Nerdfetch < Formula
   desc "POSIX *nix fetch script using Nerdfonts"
   homepage "https://github.com/ThatOneCalculator/NerdFetch"
-  url "https://github.com/ThatOneCalculator/NerdFetch/archive/refs/tags/v8.1.2.tar.gz"
-  sha256 "aa7c63d190963dee9fa1bc68e426d56d965d544b0d1ce0b38a55d26278d71dd2"
+  url "https://github.com/ThatOneCalculator/NerdFetch/archive/refs/tags/v8.2.1.tar.gz"
+  sha256 "e35d661099f31d06180d110d70c9f2b0660f14b941e77f36cae3304ab7c724a3"
   license "MIT"
   head "https://github.com/ThatOneCalculator/NerdFetch.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "b7f835fa0d1a49c346c49285bdba6d75c79ecce135415a980e12010ad39aa767"
+    sha256 cellar: :any_skip_relocation, all: "fd5e6088f2918b3879be5b8a188f608d8bcb4fbb72a4f99e8895c4ed4c162b30"
   end
 
   def install
@@ -16,6 +16,6 @@ class Nerdfetch < Formula
 
   test do
     user = ENV["USER"]
-    assert_match user.to_s, shell_output("#{bin}/nerdfetch")
+    assert_match user.to_s, shell_output(bin/"nerdfetch")
   end
 end

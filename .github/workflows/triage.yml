@@ -224,6 +224,7 @@ jobs:
                 apache-pulsar|\
                 arangodb|\
                 aws-sdk-cpp|\
+                cbmc|\
                 cp2k|\
                 deno|\
                 dotnet|\
@@ -241,17 +242,21 @@ jobs:
                 mpich|\
                 node|\
                 nwchem|\
+                octave|\
+                opencascade|\
+                pcl|\
                 ponyc|\
                 pytorch|\
-                rust|\
-                swift|\
-                texlive|\
                 qt|\
                 root|\
+                rtabmap|\
+                rust|\
                 souffle|\
+                swift|\
+                texlive|\
                 v8|\
                 vtk\
-                )(@[0-9]+)?.rb"
+                )(@[0-9.]+)?.rb"
               keep_if_no_match: true
               allow_any_match: true
 
@@ -302,7 +307,7 @@ jobs:
                 unbound|\
                 xz|\
                 zstd\
-                )(@[0-9]+)?.rb"
+                ).rb"
               keep_if_no_match: true
               allow_any_match: true
 
@@ -358,7 +363,6 @@ jobs:
                 mesa|\
                 minizip|\
                 mpfr|\
-                mysql-connector-c\\+\\+|\
                 nss|\
                 numpy|\
                 open-mpi|\

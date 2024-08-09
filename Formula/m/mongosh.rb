@@ -1,27 +1,26 @@
-require "language/node"
-
 class Mongosh < Formula
   desc "MongoDB Shell to connect, configure, query, and work with your MongoDB database"
   homepage "https://github.com/mongodb-js/mongosh"
-  url "https://registry.npmjs.org/@mongosh/cli-repl/-/cli-repl-2.2.12.tgz"
-  sha256 "7e4dd7b9b607caab6e5fd6ff246e9cf86b616a795cccab259f98041978efda69"
+  url "https://registry.npmjs.org/@mongosh/cli-repl/-/cli-repl-2.2.15.tgz"
+  sha256 "544bb681fb419d83bd4e6b00bcd7ccebd0922cc84dfa7c86fb9f64c65dc9c049"
   license "Apache-2.0"
 
   bottle do
-    sha256                               arm64_sonoma:   "a0da1e8f33850a06f3f335c7d602996634d71dfe511976d06762cd5e318f7ba7"
-    sha256                               arm64_ventura:  "aaf31e578b6854d10bb556e66ef158f0069e181c693ec31c3d81ec4bef32ce4e"
-    sha256                               arm64_monterey: "97b2972b51ab15666763cd2d835d1961a034fc80dd504634f991c22f778ed428"
-    sha256                               sonoma:         "6218e4ee296f66e97abbdc52f9bbbb339187664390ce9f7fbd4f6bbb9c024b67"
-    sha256                               ventura:        "d630d1b387951fb63b03669c3eefb0bd83d69d0428f19854f67cf857ebc6b119"
-    sha256                               monterey:       "4d70a2c03a0d0c142dd81d9987fe763b44228e4dd74c409a79924d639d78d860"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "afbf38a9996c5fca2f1cbff989ca30a54ad0e8e1790c0c35f52f99473421e9dc"
+    rebuild 1
+    sha256                               arm64_sonoma:   "e3f40fb59b554d89e5c672bede9d3ecfc2556ffa1300bb225ccfe70dc2545547"
+    sha256                               arm64_ventura:  "0e3e42bc45f5a8ae6b92c3dfd86e763e172bf193188104dd2d619f08e9e0bd58"
+    sha256                               arm64_monterey: "6bd6dfaef251caf2be2207e2f72618f06f7d386f094c8ca2b3ea59e580312236"
+    sha256                               sonoma:         "709211ff5a166f97d561a69fa84249198fd1fd6df238c4b3645dc837c3ceb761"
+    sha256                               ventura:        "918f8fba8ff250bc2092465a889a1ca7851d27dc3c52ebfaba364d7161d8b83a"
+    sha256                               monterey:       "ea1c67a938f8a6116fc7b43e1f041af108edac9784a222c9580387c18cb103e7"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "8829a24d8188f6655278791d3f722e05a02652a7e81943e101035460bd584825"
   end
 
   depends_on "node"
 
   def install
-    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
-    (bin/"mongosh").write_env_script libexec/"bin/mongosh", PATH: "#{Formula["node"].opt_bin}:$PATH"
+    system "npm", "install", *std_npm_args
+    bin.install_symlink Dir["#{libexec}/bin/*"]
   end
 
   test do

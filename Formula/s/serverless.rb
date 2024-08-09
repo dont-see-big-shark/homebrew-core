@@ -1,16 +1,14 @@
-require "language/node"
-
 class Serverless < Formula
   desc "Build applications with serverless architectures"
   homepage "https://www.serverless.com/"
   url "https://github.com/serverless/serverless/archive/refs/tags/v3.39.0.tar.gz"
   sha256 "8f9f90af64b4ddf9df872b6a998ce943d82a479d0f138f804a0e84d4f24b74e3"
   license "MIT"
-  head "https://github.com/serverless/serverless.git", branch: "main"
+  head "https://github.com/serverless/serverless.git", branch: "v3"
 
   livecheck do
     url :stable
-    strategy :github_latest
+    regex(/^v?(3(?:\.\d+)+)$/i)
   end
 
   bottle do
@@ -23,11 +21,15 @@ class Serverless < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "a06872b8191f9c75f9b346aa19a134db12ac6641683039ffe87eecebf8df9582"
   end
 
+  # v3 will be maintained through 2024
+  # Ref: https://www.serverless.com/framework/docs/guides/upgrading-v4#license-changes
+  deprecate! date: "2024-12-31", because: "uses proprietary licensed software in v4"
+
   depends_on "node"
 
   def install
-    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
-    bin.install_symlink Dir[libexec/"bin/*"]
+    system "npm", "install", *std_npm_args
+    bin.install_symlink libexec.glob("bin/*")
 
     # Delete incompatible Linux CPython shared library included in dependency package.
     # Raise an error if no longer found so that the unused logic can be removed.
@@ -47,7 +49,7 @@ class Serverless < Formula
         region: eu-west-1
     EOS
 
-    system("#{bin}/serverless", "config", "credentials", "--provider", "aws", "--key", "aa", "--secret", "xx")
+    system bin/"serverless", "config", "credentials", "--provider", "aws", "--key", "aa", "--secret", "xx"
     output = shell_output("#{bin}/serverless package 2>&1")
     assert_match "Packaging homebrew-test for stage dev", output
   end

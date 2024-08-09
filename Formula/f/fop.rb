@@ -7,7 +7,8 @@ class Fop < Formula
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "1b6a33e57663ce5811f9e82fa1c093cf01a971a07a341ba13fc22c7c3d5d6841"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, all: "69e353f9fb01a721daa25ca0ef2df097a7f24de2025e43d8a912ea6bf2dc9a02"
   end
 
   depends_on "openjdk"
@@ -18,7 +19,7 @@ class Fop < Formula
   end
 
   def install
-    rm_rf Dir["fop/*.bat"] # Remove Windows files.
+    rm_r(Dir["fop/*.bat"]) # Remove Windows files.
     libexec.install Dir["*"]
 
     executable = libexec/"fop/fop"

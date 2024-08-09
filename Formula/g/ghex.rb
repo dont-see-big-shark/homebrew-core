@@ -21,12 +21,20 @@ class Ghex < Formula
   depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "pkg-config" => :build
+
+  depends_on "cairo"
+  depends_on "glib"
   depends_on "gtk4"
   depends_on "hicolor-icon-theme"
   depends_on "libadwaita"
+  depends_on "pango"
+
+  on_macos do
+    depends_on "gettext"
+  end
 
   def install
-    args = std_meson_args + %W[
+    args = %W[
       -Dmmap-buffer-backend=#{OS.linux?}
       -Ddirect-buffer-backend=#{OS.linux?}
     ]
@@ -34,7 +42,7 @@ class Ghex < Formula
     # ensure that we don't run the meson post install script
     ENV["DESTDIR"] = "/"
 
-    system "meson", *args, "build"
+    system "meson", "setup", "build", *args, *std_meson_args
     system "meson", "compile", "-C", "build", "--verbose"
     system "meson", "install", "-C", "build"
   end

@@ -1,8 +1,8 @@
 class TraefikAT2 < Formula
   desc "Modern reverse proxy"
   homepage "https://traefik.io/"
-  url "https://github.com/traefik/traefik/releases/download/v2.11.6/traefik-v2.11.6.src.tar.gz"
-  sha256 "0c3c39b7f4a9884fbbaa4fbed264b13bcb5c9acc6e3070e0395b487b753d32ee"
+  url "https://github.com/traefik/traefik/releases/download/v2.11.8/traefik-v2.11.8.src.tar.gz"
+  sha256 "e95c47584ee9bd041215de0fcf3627215a4ef48a1cca06fdb638132428521fa2"
   license "MIT"
 
   livecheck do
@@ -11,13 +11,13 @@ class TraefikAT2 < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "7a1e62cf5359649b47084718c073818143ed7c1fc951d03066a7e7ceea163f24"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "4fdff11653504d113fb2555cbef79dcc746a18b00f53aa0b847d6810f5e4cc6e"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "03c482e6284333ec713fbcc423b7fffda99c3b06c989b691f3b60a511ef11eee"
-    sha256 cellar: :any_skip_relocation, sonoma:         "fe8e85d8bfae0cf12507b43bbeda44c3bd8f6093162531ea97487aa5427598a7"
-    sha256 cellar: :any_skip_relocation, ventura:        "ab6a67854f60bc4b21f8e4dd6ce72689680f493593af373b96ab6665c89bf3fb"
-    sha256 cellar: :any_skip_relocation, monterey:       "c97d8e8fb67f7efc6e93a8ae208c80c1bbeb8bf34b55c80e187c404fdfa00905"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "7cdd37ed59cecc0e06d6aa6a3fc2d35313c700ffee07c8fbc0ba3879fe798992"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "e763d4f0ecc6401d3128fd3c8e27bcf764c30daf101ce9c84f98f398ef548572"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "03da36cfd4d51683eace476095fdef8a5f24c1b9dc18126b47e95fbdeb7c7df5"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "060d93f2519f2fa293af5a5e34cfef2182b066d32c8a1733093d3f421f67a071"
+    sha256 cellar: :any_skip_relocation, sonoma:         "f686dc34a568994212435ac77ec4897793a829c4a5a52058b2a802abf5819d09"
+    sha256 cellar: :any_skip_relocation, ventura:        "5cab168f0602cc5eb18676da415479975c60b4ec9887ae1619b316d583bcd431"
+    sha256 cellar: :any_skip_relocation, monterey:       "efdb850021685ecf3568c8cfb3cf556218aab39876aa65d00c327dc63e1a5df8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "550b2e89ea0ec136b929380f3fe23a0ddcffe2fec1d452aa58483fa21ec315c8"
   end
 
   keg_only :versioned_formula

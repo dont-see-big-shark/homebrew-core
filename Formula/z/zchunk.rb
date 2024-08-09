@@ -1,19 +1,19 @@
 class Zchunk < Formula
   desc "Compressed file format for efficient deltas"
   homepage "https://github.com/zchunk/zchunk"
-  url "https://github.com/zchunk/zchunk/archive/refs/tags/1.4.0.tar.gz"
-  sha256 "6def0481935006052774e034a22c18a1b668b8c93510188673138312003890eb"
+  url "https://github.com/zchunk/zchunk/archive/refs/tags/1.5.1.tar.gz"
+  sha256 "2c187055e2206e62cef4559845e7c2ec6ec5a07ce1e0a6044e4342e0c5d7771d"
   license "BSD-2-Clause"
   head "https://github.com/zchunk/zchunk.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any, arm64_sonoma:   "4b8d09fb872cdd7e740982a9e1e765c70b993e586512018a585211946d3a7a24"
-    sha256 cellar: :any, arm64_ventura:  "d6866cd3eb34f506fe9c359103a20df2c3222670f13826b1683d65dc0122044b"
-    sha256 cellar: :any, arm64_monterey: "090d2064ae2e53c60451a67b4668382c6bdb3fa3a8c057e6ce5435771e90b4b4"
-    sha256 cellar: :any, sonoma:         "5d8ea3878c25c1adaf8313fbc165a2b0899be58e9e987139cf549c10c2535a21"
-    sha256 cellar: :any, ventura:        "2ed8820304fd30bdd834731914903e03cfc7faf8628bc01043b1a4056efd76e9"
-    sha256 cellar: :any, monterey:       "31ef62e3d9c9320b3c86674266408d8f54a68f2ff619cf0ca63425a445a3029c"
-    sha256               x86_64_linux:   "85b5b0ba7e45d7adb12c8adac25ac50eb3091dfc59a44d9c782c188ca46def38"
+    sha256 cellar: :any, arm64_sonoma:   "716e3b4a5e310ef2c2e28981287ad44c34ffb65d8017c266a94e2b2740158263"
+    sha256 cellar: :any, arm64_ventura:  "02c1e7311098a207e3c5acdaf951c1f0f79d732190bd26697384de3d297c7a17"
+    sha256 cellar: :any, arm64_monterey: "54b3a061081d1d37df726b7453e24a6e68d7916afc752fa3ef251a2233aa96ea"
+    sha256 cellar: :any, sonoma:         "07d03afa6c20b2f462ff04f2de17da192bd1be0970cee9606e40b6b735e11894"
+    sha256 cellar: :any, ventura:        "9573ef44975ddcd9cd08a67183a3e244303386fad0af7111467dd00f46d5ca5b"
+    sha256 cellar: :any, monterey:       "8cc7d00b71b7972981f2360d819c07e6e8da894c5995035ebd77073b911562c6"
+    sha256               x86_64_linux:   "65da8bdeab902d65867eda5a3fbda3b6a490827c111872589520e97349b810ee"
   end
 
   depends_on "meson" => :build

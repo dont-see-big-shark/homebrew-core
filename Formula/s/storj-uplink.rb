@@ -1,8 +1,8 @@
 class StorjUplink < Formula
   desc "Uplink CLI for the Storj network"
   homepage "https://storj.io"
-  url "https://github.com/storj/storj/archive/refs/tags/v1.108.1.tar.gz"
-  sha256 "f9b4b3095007b53ba0a8ba50de91f0d017b89153cdeefef6f8e6aff0d11cc27b"
+  url "https://github.com/storj/storj/archive/refs/tags/v1.110.2.tar.gz"
+  sha256 "99a124aceb28e854523c57a6358a880b3065901f631b2007f03f1be7a69a81a1"
   license "AGPL-3.0-only"
 
   # Upstream creates stable releases and marks them as "pre-release" before
@@ -18,13 +18,13 @@ class StorjUplink < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "c7aa21907776f2468d78d70579f002d89cdf43c347f2ae5d8588d79571cb0ead"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "6895c14233f45802e94bbc7a85e2b1d3d709b68b8c93fdc2c7a07f78d6aa9f94"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "cfaff3e670bcad5bc8bc738086a63552bc66423fba19c4b2fc0aab160d989a4d"
-    sha256 cellar: :any_skip_relocation, sonoma:         "cba445cee2c83ddcfbd8987e8d0793e72fcc7cc3bec6160b0cdc08d42c9996e3"
-    sha256 cellar: :any_skip_relocation, ventura:        "9857d6e48abe0954c005771a43ede2d1ad686fc9acffa6216d9a7c9e6b630de3"
-    sha256 cellar: :any_skip_relocation, monterey:       "1633e568a089ff2006169d7f537dfbb7f46edd3c76d171450e606e5132aadba2"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "1af4fc6b1fbbdd1a7a83abda3ea10fe44ecb65aa1c43190867daab35ad3c7798"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "40a35e055d6acb7a9e9c47f87a8abfb017f23ea48f7303c570df36ea72ba319e"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "f6fb7224cd5970cf37f3ce481ade045d8a5b68a3fd15ed747427dce2f28162aa"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "bdd5c8ff0fe4c9bee04018b45196992ab692b9824f0fb726b2f04bc690a1417c"
+    sha256 cellar: :any_skip_relocation, sonoma:         "3443f4120ab68a53a03a71a1ac715a1aab1f15094d4cfadb3d2dd57b46d8b9bb"
+    sha256 cellar: :any_skip_relocation, ventura:        "3c451e704674dc66a4e74518ed2938d536242858b53a64dd8cafd12d30f83504"
+    sha256 cellar: :any_skip_relocation, monterey:       "b550dc3d1c2868975b44143d32cec340c2b273455f1cb86d2a7d37bd36bb1522"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "930e3d9ee9001b619db5a489d1ee036429cdf94da6cf4cf2cafa12af3c25b52b"
   end
 
   depends_on "go" => :build

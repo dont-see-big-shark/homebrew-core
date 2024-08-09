@@ -1,10 +1,8 @@
-require "language/node"
-
 class Renovate < Formula
   desc "Automated dependency updates. Flexible so you don't need to be"
   homepage "https://github.com/renovatebot/renovate"
-  url "https://registry.npmjs.org/renovate/-/renovate-37.431.0.tgz"
-  sha256 "1f93da9463a7cdaf586989207d72b40ac973ee1909f0db69efc58a74df1b8548"
+  url "https://registry.npmjs.org/renovate/-/renovate-38.23.0.tgz"
+  sha256 "c69a74c4c28af68267e8201f76bc98e8de48bbe51ee94d7fa6be4811c3cb27f1"
   license "AGPL-3.0-only"
 
   # There are thousands of renovate releases on npm and the page the `Npm`
@@ -19,13 +17,13 @@ class Renovate < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "56d55eb17c9f10107b1e561373b181ca6d9d40ae3bc3a9b0eacf81b4b509a3a6"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "c8395609ba8e470799a44e11737cf2e6a30c9cca8b90574c6fb2b5cf4ca96649"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "cb954d24311a77b4395cb077f148d7dbd88ab0ff2273a17a3ca3d3bea1623310"
-    sha256 cellar: :any_skip_relocation, sonoma:         "ba1874fb5144c09b6a7166aa1740b0db69dbd936018f6f002178d614166ef6d0"
-    sha256 cellar: :any_skip_relocation, ventura:        "b9b836734570f5e3d9e69e6575e59266ff12ab72f4460c191d2c2568d5e585d3"
-    sha256 cellar: :any_skip_relocation, monterey:       "360efbef36becaea3c952f8bcf579880a7b30afca809ba064b7fefc2ec73a067"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "90ebf1a505de9814f843aa7d7823caedd69121f0a389dc211f2cfa79b70ba4a9"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "34f0fa4e8d5b1746ffd7fef37db2e78d018fd2b457996442a980c254bd97b962"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "b36d5dee1bc59b0d77858e7757373231799dfa4a78d9cffce38189ee8176d2f2"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "f150fd1019f848f23bd5455bd43b5173b965eb9f30a1a1f98c97047db06b70aa"
+    sha256 cellar: :any_skip_relocation, sonoma:         "5b195cc5dd1bcd1799914837eb276ca27912667e1e6454e5777e0d816126204e"
+    sha256 cellar: :any_skip_relocation, ventura:        "4e2ad0fa5a60c2abe3fe6ca69b34354a148ac3cd0f42587e2af4a83efeeccccd"
+    sha256 cellar: :any_skip_relocation, monterey:       "cf9a13f36c9f20d8aaab683cf9db7b2005846f636779242dcfa84b1746448278"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "540c0c296bac6b3112c8e71930734e8195f1be6cfcc417a0a5e3e27ad5ecb9f8"
   end
 
   depends_on "node"
@@ -33,7 +31,7 @@ class Renovate < Formula
   uses_from_macos "git", since: :monterey
 
   def install
-    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
+    system "npm", "install", *std_npm_args
     bin.install_symlink Dir["#{libexec}/bin/*"]
   end
 

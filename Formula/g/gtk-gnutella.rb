@@ -23,11 +23,11 @@ class GtkGnutella < Formula
 
     system "./build.sh", "--prefix=#{prefix}", "--disable-nls"
     system "make", "install"
-    rm_rf share/"pixmaps"
-    rm_rf share/"applications"
+    rm_r(share/"pixmaps")
+    rm_r(share/"applications")
   end
 
   test do
-    system "#{bin}/gtk-gnutella", "--version"
+    system bin/"gtk-gnutella", "--version"
   end
 end

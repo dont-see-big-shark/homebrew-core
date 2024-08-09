@@ -3,19 +3,19 @@ class Fwupd < Formula
 
   desc "Firmware update daemon"
   homepage "https://github.com/fwupd/fwupd"
-  url "https://github.com/fwupd/fwupd/releases/download/1.9.21/fwupd-1.9.21.tar.xz"
-  sha256 "a0b56ed11f0ae8045b465535d468b14a230535a30d4a703ff9113fc5dd236ba4"
+  url "https://github.com/fwupd/fwupd/releases/download/1.9.23/fwupd-1.9.23.tar.xz"
+  sha256 "bf1d55ed502e2b38e5dff4f6103f87130752401038afb034cddc99330aafba57"
   license "LGPL-2.1-or-later"
   head "https://github.com/fwupd/fwupd.git", branch: "main"
 
   bottle do
-    sha256 arm64_sonoma:   "3b71c06edc83018a6760a66a3c02cbf946e967819c1affeb461805311e738cd3"
-    sha256 arm64_ventura:  "edb6db918af662fb570dd70d82908992e978cb1862713c4a2008ba116debae7d"
-    sha256 arm64_monterey: "5e41ab94167e7c01f76127ab420188fc0bec5e59ff12fbe427140424444ba674"
-    sha256 sonoma:         "0a2020c31f76ca66dd0d5a090ccf1842108f149b2d2ac7b21ad3d499d953d67f"
-    sha256 ventura:        "c086112e206a2de65f7ea9f40f172f177ac6fda3b16a311b26dd5f18b269ccbc"
-    sha256 monterey:       "bf720d6b9efc49fbbbee5211a2643ba19fd88cdc70151211dbe85f961571b543"
-    sha256 x86_64_linux:   "abc3fb36f5a9003397cd36998f1e26a267b28b7938e0e29fca73ac9ba8ae26a0"
+    sha256 arm64_sonoma:   "cc8d26d442e4decc0da1bd612890576899ad4f7c2942185b37a09ee4533f2a88"
+    sha256 arm64_ventura:  "5a8ed0e8241572c081cb938a1c2caa6224a3566e3247c2ca996fc229eaead845"
+    sha256 arm64_monterey: "5b0797efa728939d5bd974587737342f35f0872640dda1a95dd0961a9624bed1"
+    sha256 sonoma:         "26314d984aef27639c5bb9a7f7f03ba4da069df5ccdddffc86a3a1ffa0a4f9b5"
+    sha256 ventura:        "e6524b284dbd193f446090055b0868a02f4a42cdf6a551544e3d74a0e0e20782"
+    sha256 monterey:       "4ae0d5d6dee8247e974826cab630424a2a0f5b37a73f0337373481c4d5baa751"
+    sha256 x86_64_linux:   "6a54a2cf2e7d7d279eb4f8ca9b3328effc85b0a44192f0a70dcdea59b2aaa563"
   end
 
   depends_on "gi-docgen" => :build
@@ -110,6 +110,6 @@ class Fwupd < Formula
     system "./test"
 
     # this is a lame test, but fwupdtool requires root access to do anything much interesting
-    system "#{bin}/fwupdtool", "-h"
+    system bin/"fwupdtool", "-h"
   end
 end

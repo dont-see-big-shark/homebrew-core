@@ -25,7 +25,7 @@ class Minidlna < Formula
     depends_on "libtool" => :build
   end
 
-  depends_on "ffmpeg@6"
+  depends_on "ffmpeg@6" # ffmpeg 7 issue: https://sourceforge.net/p/minidlna/bugs/363/
   depends_on "flac"
   depends_on "jpeg-turbo"
   depends_on "libexif"
@@ -33,6 +33,10 @@ class Minidlna < Formula
   depends_on "libogg"
   depends_on "libvorbis"
   depends_on "sqlite"
+
+  on_macos do
+    depends_on "gettext"
+  end
 
   fails_with gcc: "5" # ffmpeg is compiled with GCC
 

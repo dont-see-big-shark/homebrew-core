@@ -31,8 +31,8 @@ class GpgTui < Formula
     fish_completion.install "gpg-tui.fish"
     zsh_completion.install "_gpg-tui"
 
-    rm_f bin/"gpg-tui-completions"
-    rm_f Dir[prefix/".crates*"]
+    rm(bin/"gpg-tui-completions")
+    rm(Dir[prefix/".crates*"])
   end
 
   test do
@@ -41,7 +41,7 @@ class GpgTui < Formula
 
     (testpath/"gpg-tui").mkdir
     begin
-      r, w, pid = PTY.spawn "#{bin}/gpg-tui"
+      r, w, pid = PTY.spawn bin/"gpg-tui"
       r.winsize = [80, 43]
       sleep 1
       w.write "q"

@@ -1,25 +1,26 @@
 class Uv < Formula
   desc "Extremely fast Python package installer and resolver, written in Rust"
   homepage "https://github.com/astral-sh/uv"
-  url "https://github.com/astral-sh/uv/archive/refs/tags/0.2.24.tar.gz"
-  sha256 "1d6ca2a678ea71bd7dc66f253aad33f3bc256cf7f462920126e0d0e40f17c681"
+  url "https://github.com/astral-sh/uv/archive/refs/tags/0.2.34.tar.gz"
+  sha256 "b111d5f6c4958bab14a6c4e3c4a77dc576a900aa3ce48caf0c2269901df64652"
   license any_of: ["Apache-2.0", "MIT"]
   head "https://github.com/astral-sh/uv.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "d9218d63f1d3a2021f68dff7deef820f371d90dd4d29092f37aa33a33b13bc7c"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "39108c763de480a6a7f1ca0734b239c8b69c326e8293c2b1c9cecc7c5ddac03d"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "3fa68eedfb4dd78f5ea83bfb77aa4d1e73f9140046a5db382615072e40c4cf0f"
-    sha256 cellar: :any_skip_relocation, sonoma:         "bdf857097789cc17b147d850951dc7aeeb5302dbec618256149594dc86b9f0c4"
-    sha256 cellar: :any_skip_relocation, ventura:        "b3166e8259ddd264cf67169504ba13ab82316d5640d135b80d4851055c8ab58e"
-    sha256 cellar: :any_skip_relocation, monterey:       "5828fe940522bb404a6b7848f71b819a3ebd7ea44e4ba0b5baf9006ef209fe83"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "0d2d538329a9625a343b915ee89e95173ad53042b9040b521c0b0dcc599c96cd"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "fd97c45108fa290bba5dafd133c626a65e66f36ebe801e9220e3724936773d83"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "d6ffd9fa410a1980259bd834295d0eb3f222522fe720361751b7f194c1724506"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "6254fedc3d6cbabfe36ef66e1c99b0cee9dd24eda6c5f74d844a787e4207d47e"
+    sha256 cellar: :any_skip_relocation, sonoma:         "7c7b6b02957a80c36178240ae24a39bd4fa6c3d806a637af7a7e240d6edb4a81"
+    sha256 cellar: :any_skip_relocation, ventura:        "750a646a2ba37a9f08348da25cbe01cef7605fd8fe0df6f2cddc344a9d421457"
+    sha256 cellar: :any_skip_relocation, monterey:       "eb80f2def4c1f476a3232a72e7adb80050700fab8928dab4f8765f5934bdefd5"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "b88f5cc03e1969574284dd7ae0178ab84fba1f8063405af150d4369675a3e377"
   end
 
   depends_on "pkg-config" => :build
   depends_on "rust" => :build
 
   uses_from_macos "python" => :test
+  uses_from_macos "xz"
 
   on_linux do
     # On macOS, bzip2-sys will use the bundled lib as it cannot find the system or brew lib.

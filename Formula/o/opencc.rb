@@ -1,18 +1,18 @@
 class Opencc < Formula
   desc "Simplified-traditional Chinese conversion tool"
   homepage "https://github.com/BYVoid/OpenCC"
-  url "https://github.com/BYVoid/OpenCC/archive/refs/tags/ver.1.1.7.tar.gz"
-  sha256 "80a12675094a0cac90e70ee530e936dc76ca0953cb0443f7283c2b558635e4fe"
+  url "https://github.com/BYVoid/OpenCC/archive/refs/tags/ver.1.1.9.tar.gz"
+  sha256 "ad4bcd8d87219a240a236d4a55c9decd2132a9436697d2882ead85c8939b0a99"
   license "Apache-2.0"
 
   bottle do
-    sha256 arm64_sonoma:   "aa74cb1dcfdc0f882acbca3f671ccbcc805ddfa76ef1d579a7cb3a6dbb441724"
-    sha256 arm64_ventura:  "9a8da24b7dd2febef42257df7e2f072d8ff759e9da1fca7d4ef38767707ccced"
-    sha256 arm64_monterey: "c9b669e17ba4df32320297a8cee6d7738b03d2a3e1d69e5c22e755e671bcd0d4"
-    sha256 sonoma:         "a40362d0f783eeafe97e718956236c7de236ed12fdc0b9f0e8de09dd3f0e7931"
-    sha256 ventura:        "41dca10c1d8cf7bcb829364a9b3d9f03e0bb2557e15f67a6363ce2d795ff9059"
-    sha256 monterey:       "e7e58e4c8a225084a112537ffcc7ecdb08052d13946dea3023c2fa2431f44869"
-    sha256 x86_64_linux:   "ced3e475ceac81b5af845ce43e15fc085afca1db3b74cfdff68628d015a4e808"
+    sha256 arm64_sonoma:   "40bbcc0ea4cceadf579f5bcefded29585f45a18e42bba6ee2a0f0f8b9093f30c"
+    sha256 arm64_ventura:  "517a8dfe20b621aad9d4f8fd9118794b53318f07007ee1ec1fb7081065921184"
+    sha256 arm64_monterey: "addb0ef3712437c10de21dfe670291144d1fa36d6c2661016cfbdba0d6a0e9f1"
+    sha256 sonoma:         "125d0aa542c79a1c64ff50d6bb65f37b8a1df08842d2aadea4de148ad4fd7834"
+    sha256 ventura:        "a6da927e23614ddef3ff4199a162a5ddb81ad3d0414e3943adc1622d5a0eebed"
+    sha256 monterey:       "86fab72d30ba153353798d51f6f1e0ef3136b9edd23d69497fb3b8303cebfb72"
+    sha256 x86_64_linux:   "127925772f41d4145e6f4ee5f74f08cea701fdce389b743174b960dc1e80629d"
   end
 
   depends_on "cmake" => :build
@@ -31,7 +31,7 @@ class Opencc < Formula
 
   test do
     input = "中国鼠标软件打印机"
-    output = pipe_output("#{bin}/opencc", input)
+    output = pipe_output(bin/"opencc", input)
     output = output.force_encoding("UTF-8") if output.respond_to?(:force_encoding)
     assert_match "中國鼠標軟件打印機", output
   end

@@ -1,5 +1,3 @@
-require "language/node"
-
 class WebExt < Formula
   desc "Command-line tool to help build, run, and test web extensions"
   homepage "https://github.com/mozilla/web-ext"
@@ -24,12 +22,12 @@ class WebExt < Formula
   end
 
   def install
-    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
+    system "npm", "install", *std_npm_args
     bin.install_symlink Dir["#{libexec}/bin/*"]
 
     # Remove vendored pre-built binary `terminal-notifier`
     node_notifier_vendor_dir = libexec/"lib/node_modules/web-ext/node_modules/node-notifier/vendor"
-    node_notifier_vendor_dir.rmtree # remove vendored pre-built binaries
+    rm_r(node_notifier_vendor_dir) # remove vendored pre-built binaries
 
     if OS.mac?
       terminal_notifier_dir = node_notifier_vendor_dir/"mac.noindex"

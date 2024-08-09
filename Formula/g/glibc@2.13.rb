@@ -99,11 +99,11 @@ class GlibcAT213 < Formula
     inreplace "configure", 'grep "z relro" 1>&5', 'grep "z relro" 1>&5;true'
 
     # Fix error: inlining failed in call to always_inline function not inlinable
-    # See http://www.yonch.com/tech/78-compiling-glibc
+    # See https://www.yonch.com/tech/78-compiling-glibc
     ENV.append_to_cflags "-U_FORTIFY_SOURCE"
 
     # Fix multiple definition of __libc_multiple_libcs and _dl_addr_inside_object
-    # See http://www.yonch.com/tech/78-compiling-glibc
+    # See https://www.yonch.com/tech/78-compiling-glibc
     ENV.append_to_cflags "-fno-stack-protector"
 
     # Setting RPATH breaks glibc.
@@ -183,7 +183,7 @@ class GlibcAT213 < Formula
 
   test do
     assert_match "Usage", shell_output("#{lib}/ld-#{version}.so 2>&1", 127)
-    safe_system "#{lib}/libc-#{version}.so", "--version"
-    safe_system "#{bin}/locale", "--version"
+    safe_system lib/"libc-#{version}.so", "--version"
+    safe_system bin/"locale", "--version"
   end
 end

@@ -37,30 +37,30 @@ class Cdrtools < Formula
     # This could be done by dropping each occurrence of *_p.mk from the definition
     # of MK_FILES in every lib*/Makefile. But it is much easier to just remove all
     # lib*/*_p.mk files. The latter method produces warnings but works fine.
-    rm_f Dir["lib*/*_p.mk"]
+    rm(Dir["lib*/*_p.mk"])
     # CFLAGS is required to work around autoconf breakages as of 3.02a
     system "smake", "INS_BASE=#{prefix}", "INS_RBASE=#{prefix}",
            "CFLAGS=-Wno-implicit-function-declaration",
            "install"
     # cdrtools tries to install some generic smake headers, libraries and
     # manpages, which conflict with the copies installed by smake itself
-    (include/"schily").rmtree
+    rm_r(include/"schily")
     %w[libschily.a libdeflt.a libfind.a].each do |file|
       (lib/file).unlink
     end
-    man5.rmtree
+    rm_r(man5)
   end
 
   test do
-    system "#{bin}/cdrecord", "-version"
-    system "#{bin}/cdda2wav", "-version"
+    system bin/"cdrecord", "-version"
+    system bin/"cdda2wav", "-version"
     date = shell_output("date")
     mkdir "subdir" do
       (testpath/"subdir/testfile.txt").write(date)
-      system "#{bin}/mkisofs", "-r", "-o", "../test.iso", "."
+      system bin/"mkisofs", "-r", "-o", "../test.iso", "."
     end
     assert_predicate testpath/"test.iso", :exist?
-    system "#{bin}/isoinfo", "-R", "-i", "test.iso", "-X"
+    system bin/"isoinfo", "-R", "-i", "test.iso", "-X"
     assert_predicate testpath/"testfile.txt", :exist?
     assert_equal date, File.read("testfile.txt")
   end

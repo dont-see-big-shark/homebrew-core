@@ -5,11 +5,6 @@ class Hdf5AT110 < Formula
   sha256 "0afc77da5c46217709475bbefbca91c0cb6f1ea628ccd8c36196cf6c5a4de304"
   license "BSD-3-Clause"
 
-  livecheck do
-    url "https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/"
-    regex(%r{href=["']?hdf5[._-]v?(\d+(?:\.\d+)+)/?["' >]}i)
-  end
-
   bottle do
     sha256 cellar: :any,                 arm64_sonoma:   "b85adcde660662f9ed6f4c9740e1c97a8ec2a1b4be7ff3185142801ce7083a5c"
     sha256 cellar: :any,                 arm64_ventura:  "7c8e8deff03df6d11099246b2ab71ed2decdcdbbc395e4803b0a12fb5d0ec672"
@@ -21,6 +16,10 @@ class Hdf5AT110 < Formula
   end
 
   keg_only :versioned_formula
+
+  # 1.10.11 is the last release for 1.10.x
+  # https://github.com/HDFGroup/hdf5#release-schedule
+  deprecate! date: "2024-07-24", because: :unsupported
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
@@ -75,7 +74,7 @@ class Hdf5AT110 < Formula
         return 0;
       }
     EOS
-    system "#{bin}/h5cc", "test.c"
+    system bin/"h5cc", "test.c"
     assert_equal version.to_s, shell_output("./a.out").chomp
 
     (testpath/"test.f90").write <<~EOS
@@ -105,7 +104,7 @@ class Hdf5AT110 < Formula
       write (*,"(I0,'.',I0,'.',I0)") major, minor, rel
       end
     EOS
-    system "#{bin}/h5fc", "test.f90"
+    system bin/"h5fc", "test.f90"
     assert_equal version.to_s, shell_output("./a.out").chomp
   end
 end

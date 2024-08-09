@@ -1,5 +1,3 @@
-require "language/node"
-
 class Ncc < Formula
   desc "Compile a Node.js project into a single file"
   homepage "https://github.com/vercel/ncc"
@@ -8,13 +6,20 @@ class Ncc < Formula
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "3bdd7554a42bdf4b9b98bcfd88f12b6576bd843216bb5a187dbd39da18613340"
+    rebuild 2
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "507cc4d97e59cb966e9a1da8af31b4041afea40cefef244c707bee8a65e92e1a"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "507cc4d97e59cb966e9a1da8af31b4041afea40cefef244c707bee8a65e92e1a"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "507cc4d97e59cb966e9a1da8af31b4041afea40cefef244c707bee8a65e92e1a"
+    sha256 cellar: :any_skip_relocation, sonoma:         "507cc4d97e59cb966e9a1da8af31b4041afea40cefef244c707bee8a65e92e1a"
+    sha256 cellar: :any_skip_relocation, ventura:        "507cc4d97e59cb966e9a1da8af31b4041afea40cefef244c707bee8a65e92e1a"
+    sha256 cellar: :any_skip_relocation, monterey:       "507cc4d97e59cb966e9a1da8af31b4041afea40cefef244c707bee8a65e92e1a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "204def702229d225311c36b5a60152f49d181e968921274198fb331ba0589610"
   end
 
   depends_on "node"
 
   def install
-    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
+    system "npm", "install", *std_npm_args
     bin.install_symlink Dir["#{libexec}/bin/*"]
   end
 

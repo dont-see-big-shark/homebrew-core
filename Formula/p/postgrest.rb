@@ -1,9 +1,8 @@
 class Postgrest < Formula
   desc "Serves a fully RESTful API from any existing PostgreSQL database"
   homepage "https://github.com/PostgREST/postgrest"
-  # TODO: Try to switch `ghc@9.2` to `ghc` when postgrest.cabal allows base>=4.17
-  url "https://github.com/PostgREST/postgrest/archive/refs/tags/v12.0.3.tar.gz"
-  sha256 "cdc3524f5a44a2b6236e7909861d17ae8b8871fc3763d2f1c3c07c56ab52ff70"
+  url "https://github.com/PostgREST/postgrest/archive/refs/tags/v12.2.3.tar.gz"
+  sha256 "52b814cb9255c43d7f59f3be50336ae761e103c7c9b083dc4833d2579dd2abcf"
   license "MIT"
   head "https://github.com/PostgREST/postgrest.git", branch: "main"
 
@@ -13,28 +12,30 @@ class Postgrest < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sonoma:   "2dcfd49829ce31df6445d8b0c8d717584d5d116665b5b3d21addeaef94e55c07"
-    sha256 cellar: :any,                 arm64_ventura:  "e17a8c4b29907fd3cdf89367709cf551557654e417235f1976e62c6506514ee8"
-    sha256 cellar: :any,                 arm64_monterey: "ea3287e2f8210a96a94322a0bd44dfa029480dc42d45b9cb41833c9aca0e43eb"
-    sha256 cellar: :any,                 sonoma:         "274a105ebc1329d288db9004536bfc98b3f0428de2e2195515a5233b12f3f921"
-    sha256 cellar: :any,                 ventura:        "1a42cb8e8e65caa78457ec46230903ca160d9337dd57b5a924215d4dab3058f5"
-    sha256 cellar: :any,                 monterey:       "be7c87e8dcfb8634951c8dd386502290d01f7f3f2de1f4c5ced892647977821b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "923af96f7e1232988be2f694ab1541805314ecc94bc64ccf86d92d5baf2c57ba"
+    sha256 cellar: :any,                 arm64_sonoma:   "68a1b201a0396ca4a9332f68f4a1a039c4239e984dbdd23558778809686237cf"
+    sha256 cellar: :any,                 arm64_ventura:  "73a1a4b53994141d9a64eac3fccc2d174dd899c5ce1c1140b11840929b9ddc25"
+    sha256 cellar: :any,                 arm64_monterey: "d4da709edbc6a334700db58c596495f19690486095c109d175d694346b1c3efc"
+    sha256 cellar: :any,                 sonoma:         "3f8f1332d9b871f608427b742e9d41384a829f21b34bdf1a71a05da6067f8c1e"
+    sha256 cellar: :any,                 ventura:        "24e0aa645cdb647163b94695315dd0cd93d172aed47159caf43e818dee8649a2"
+    sha256 cellar: :any,                 monterey:       "9bc1e3654ec2c4792ca13434f6551af3233d5121db50e1bdfe70c559a041cf5e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "859074efdeb538c72381300a6a9c9e0454fd0927ef4205dbde0ca6bc69cd60b8"
   end
 
   depends_on "cabal-install" => :build
-  depends_on "ghc@9.2" => :build
+  depends_on "ghc@9.8" => :build
   depends_on "libpq"
+
+  uses_from_macos "zlib"
 
   def install
     system "cabal", "v2-update"
-    system "cabal", "v2-install", *std_cabal_v2_args
+    system "cabal", "v2-install", "--ignore-project", *std_cabal_v2_args
   end
 
   test do
     output = shell_output("#{bin}/postgrest --dump-config 2>&1")
     assert_match "db-anon-role", output
-    assert_match "An error ocurred when trying to query database settings", output
+    assert_match "Failed to query database settings for the config parameters", output
 
     assert_match version.to_s, shell_output("#{bin}/postgrest --version")
   end

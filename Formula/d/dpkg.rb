@@ -4,8 +4,8 @@ class Dpkg < Formula
   # Please use a mirror as the primary URL as the
   # dpkg site removes tarballs regularly which means we get issues
   # unnecessarily and older versions of the formula are broken.
-  url "https://deb.debian.org/debian/pool/main/d/dpkg/dpkg_1.22.6.tar.xz"
-  sha256 "4379123466cf1804f82aaac7fbea7133c58aefa178dfbf7029cdc61a8d220655"
+  url "https://deb.debian.org/debian/pool/main/d/dpkg/dpkg_1.22.11.tar.xz"
+  sha256 "f318eb949b8e7ecd802b17b1a7e7cf4b17094c9577e1060653e9b838cdd31d80"
   license "GPL-2.0-only"
 
   livecheck do
@@ -14,13 +14,13 @@ class Dpkg < Formula
   end
 
   bottle do
-    sha256 arm64_sonoma:   "a099f760530677b6febe78c1d5c0dd1e7172a102c31eb0d827745eed2db66123"
-    sha256 arm64_ventura:  "88f3a781c02659030923d7941769b8a70ebb454d2e39315642b8bd483818a820"
-    sha256 arm64_monterey: "db1e703d7644cfe631803ec117ea2ff78252aec49f8394d5140c774032ef36de"
-    sha256 sonoma:         "bd9651bdc947f0a68c56d4946591e87fd506d8aca4d9be34f1d2f098b22aef48"
-    sha256 ventura:        "3e557119b7d65a95994c59833539193e82b774b605e259aed4381eb09e321888"
-    sha256 monterey:       "3ad683d37cb8d6a0c5de95a1fa45a27132127ecf9292e20f9098fc2849ef1346"
-    sha256 x86_64_linux:   "7aacfc7a0d913ad933e1c141b4d0d00e6f7c44bb67e6664b72245ae2516710ea"
+    sha256 arm64_sonoma:   "04254678226ca3ead8f4b54a575cfb9fbb7cdffaaf88b142ca32b20bd50d8f2b"
+    sha256 arm64_ventura:  "17e4f6e7ab267206354c7510faef21b95381fcf400896f7210ae7962f11d48f8"
+    sha256 arm64_monterey: "90073e1eb0d904942d72f4345cc26f60cb59131492faa0f48681b9d26223a3b9"
+    sha256 sonoma:         "a12b3a07225e4d2942cd167e959229960036d39fe05a3398bac21622e66b2aba"
+    sha256 ventura:        "cee1baa5c095a9c2b9caaf3a4dcd286c1395913de390c353d75c0c5119f0b976"
+    sha256 monterey:       "7cdba20b144378fc51930a184f8d36dcd75a874aac59854c0449a1e6633defa5"
+    sha256 x86_64_linux:   "3a16719f2fabf68e87664c86bf8aefc32a3f92abadaea2bb87770b5d01ea7bc0"
   end
 
   depends_on "pkg-config" => :build
@@ -109,7 +109,7 @@ class Dpkg < Formula
     system bin/"dpkg", "-b", testpath/"test", "test.deb"
     assert_predicate testpath/"test.deb", :exist?
 
-    rm_rf "test"
+    rm_r("test")
     system bin/"dpkg", "-x", "test.deb", testpath
     assert_predicate testpath/"data/homebrew.txt", :exist?
   end

@@ -3,18 +3,18 @@ class Abi3audit < Formula
 
   desc "Scans Python packages for abi3 violations and inconsistencies"
   homepage "https://github.com/trailofbits/abi3audit"
-  url "https://files.pythonhosted.org/packages/f1/16/e4388c9681abea98959d16ac31bce69c8140adda8e42bce82b58b673f4a8/abi3audit-0.0.12.tar.gz"
-  sha256 "fbf7651a3289942c93f09bf3edd7110a85eb621e2cf05dc3ddc86cc4cb29f7a2"
+  url "https://files.pythonhosted.org/packages/fc/9f/30f21d93b511e250e5fd4987efffc48e3d840048d9a1fbdbb8f70e2f2387/abi3audit-0.0.14.tar.gz"
+  sha256 "2466815dd3fed35342a708f129962eebb8533eac7bc3bca864c8124b03580e4b"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "9d5a8e3a4c52e4fc71609844a521f08b6c60b729bcadde4f934abb8bb7393e8c"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "9d5a8e3a4c52e4fc71609844a521f08b6c60b729bcadde4f934abb8bb7393e8c"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "9d5a8e3a4c52e4fc71609844a521f08b6c60b729bcadde4f934abb8bb7393e8c"
-    sha256 cellar: :any_skip_relocation, sonoma:         "c6a8df3c7d4e1fd2ce641a63a447e6ff8fb858d241ca996ef1704a202758afd6"
-    sha256 cellar: :any_skip_relocation, ventura:        "c6a8df3c7d4e1fd2ce641a63a447e6ff8fb858d241ca996ef1704a202758afd6"
-    sha256 cellar: :any_skip_relocation, monterey:       "c6a8df3c7d4e1fd2ce641a63a447e6ff8fb858d241ca996ef1704a202758afd6"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "6fd35b515cde9200655f6d1d0e3184409ebf775180726038a833f537de354d5a"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "86095be3cfc643ab9ff507149c39cd0a69959ea2c3c45a4a535f82321837eb21"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "86095be3cfc643ab9ff507149c39cd0a69959ea2c3c45a4a535f82321837eb21"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "86095be3cfc643ab9ff507149c39cd0a69959ea2c3c45a4a535f82321837eb21"
+    sha256 cellar: :any_skip_relocation, sonoma:         "ecbcf0d2258782d2310235bd19eb9457f20ad646f4d971a05de62b7c2dfaee8a"
+    sha256 cellar: :any_skip_relocation, ventura:        "ecbcf0d2258782d2310235bd19eb9457f20ad646f4d971a05de62b7c2dfaee8a"
+    sha256 cellar: :any_skip_relocation, monterey:       "28c4a9b0060fccaf8535cfcdf8c74a3064fd7417e6b158877825a0e7c38a7aa9"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "e6384e9edb179b26adacc2059d96e4250634fbae6910cd084b15b8b80db7c6f7"
   end
 
   depends_on "cmake" => :build

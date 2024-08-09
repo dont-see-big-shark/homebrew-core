@@ -1,5 +1,3 @@
-require "language/node"
-
 class Cdktf < Formula
   desc "Cloud Development Kit for Terraform"
   homepage "https://github.com/hashicorp/terraform-cdk"
@@ -23,8 +21,8 @@ class Cdktf < Formula
   depends_on "terraform"
 
   def install
-    system "npm", "install", *Language::Node.std_npm_install_args(libexec)
-    bin.install_symlink Dir["#{libexec}/bin/*"]
+    system "npm", "install", *std_npm_args
+    bin.install_symlink libexec.glob("bin/*")
 
     # remove non-native architecture pre-built binaries
     os = OS.kernel_name.downcase
@@ -32,7 +30,7 @@ class Cdktf < Formula
     node_modules = libexec/"lib/node_modules/cdktf-cli/node_modules"
     node_pty_prebuilds = node_modules/"@cdktf/node-pty-prebuilt-multiarch/prebuilds"
     (node_pty_prebuilds/"linux-x64").glob("node.abi*.musl.node").map(&:unlink)
-    node_pty_prebuilds.each_child { |dir| dir.rmtree if dir.basename.to_s != "#{os}-#{arch}" }
+    node_pty_prebuilds.each_child { |dir| rm_r(dir) if dir.basename.to_s != "#{os}-#{arch}" }
 
     generate_completions_from_executable(libexec/"bin/cdktf", "completion",
                                          shells: [:bash, :zsh], shell_parameter_format: :none)

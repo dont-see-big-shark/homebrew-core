@@ -3,6 +3,7 @@ class Pioneers < Formula
   homepage "https://pio.sourceforge.net/"
   url "https://downloads.sourceforge.net/project/pio/Source/pioneers-15.6.tar.gz"
   sha256 "9a358d88548e3866e14c46c2707f66c98f8040a7857d47965e1ed9805aeb631d"
+  license "GPL-2.0-or-later"
   revision 1
 
   bottle do
@@ -46,9 +47,9 @@ class Pioneers < Formula
   end
 
   test do
-    system "#{bin}/pioneers-editor", "--help"
+    system bin/"pioneers-editor", "--help"
     server = fork do
-      system "#{bin}/pioneers-server-console"
+      system bin/"pioneers-server-console"
     end
     sleep 5
     Process.kill("TERM", server)

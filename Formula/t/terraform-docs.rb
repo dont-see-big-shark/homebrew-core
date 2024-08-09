@@ -23,7 +23,6 @@ class TerraformDocs < Formula
     os = OS.kernel_name.downcase
 
     bin.install "bin/#{os}-#{cpu}/terraform-docs"
-    prefix.install_metafiles
 
     generate_completions_from_executable(bin/"terraform-docs", "completion", shells: [:bash, :zsh])
   end
@@ -65,6 +64,6 @@ class TerraformDocs < Formula
         value = "vpc-5c1f55fd"
       }
     EOS
-    system "#{bin}/terraform-docs", "json", testpath
+    system bin/"terraform-docs", "json", testpath
   end
 end

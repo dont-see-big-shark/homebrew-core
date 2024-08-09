@@ -27,7 +27,7 @@ class Maven < Formula
 
   def install
     # Remove windows files
-    rm_f Dir["bin/*.cmd"]
+    rm(Dir["bin/*.cmd"])
 
     # Fix the permissions on the global settings file.
     chmod 0644, "conf/settings.xml"
@@ -62,6 +62,7 @@ class Maven < Formula
         </properties>
       </project>
     EOS
+
     (testpath/"src/main/java/org/homebrew/MavenTest.java").write <<~EOS
       package org.homebrew;
       public class MavenTest {
@@ -70,6 +71,7 @@ class Maven < Formula
         }
       }
     EOS
-    system "#{bin}/mvn", "compile", "-Duser.home=#{testpath}"
+
+    system bin/"mvn", "compile", "-Duser.home=#{testpath}"
   end
 end

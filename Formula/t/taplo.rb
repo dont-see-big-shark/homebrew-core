@@ -1,8 +1,8 @@
 class Taplo < Formula
   desc "TOML toolkit written in Rust"
   homepage "https://taplo.tamasfe.dev"
-  url "https://github.com/tamasfe/taplo/archive/refs/tags/release-taplo-cli-0.9.0.tar.gz"
-  sha256 "7d292f52c2d97d9e9c447a725d6d4e59096fce10e2f72ec6b80387034c20ba35"
+  url "https://github.com/tamasfe/taplo/archive/refs/tags/0.9.3.tar.gz"
+  sha256 "65510664071252541e66f603dc9aa04016c38d62299061419c95d3bffaa73125"
   license "MIT"
   head "https://github.com/tamasfe/taplo.git", branch: "master"
 
@@ -13,18 +13,18 @@ class Taplo < Formula
   # to identify the correct version.
   livecheck do
     url :stable
-    regex(/^release-taplo-cli[._-]v?(\d+(?:\.\d+)+)$/i)
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
     strategy :github_releases
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "62dbf06be7cd564a1150d320cd9108971f752941df5def80f5955c0483bda104"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "2632d7667439054b99c9c234df686470ed18a76faa4bd406a4762301ce7b8710"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "050f1e9a2bea07ab48b2935b4ea00e1627e6c1ea77d532451dc9f7d01deb3f3d"
-    sha256 cellar: :any_skip_relocation, sonoma:         "19716fc45124770d7484fe298006a5f2f84e4d551e43409e5d5ab2f0b116bcf3"
-    sha256 cellar: :any_skip_relocation, ventura:        "585c5c8109695af912b4f5ddc9459ad29c816b1c933d427278dec633e507d67c"
-    sha256 cellar: :any_skip_relocation, monterey:       "05468f90d436ce19a8b3ab3ae4322d56565f14038f1b2487d860ca7a47fd3da5"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "e71d04b0eeb619bdc4007e1429162d7d1289ea338b642867450a1505dcfc49f0"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "f866b21d8b368f7a9514e55c10ef5ab404a3a2ddd5acb0f49654637560cacdc4"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "67ca79bc3aa55e7bf9e4b9e58ef6e60156765d9d8b02f0e289de1cf8496212ca"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "280ebeecf1512ff5d7fc178b4286fcf25425e63c9c43aad7504262444a897968"
+    sha256 cellar: :any_skip_relocation, sonoma:         "9c17cc64bb627ac1c19defc9ccc611c4827b69722bd9a906373384ef66bf60ef"
+    sha256 cellar: :any_skip_relocation, ventura:        "ccda266bc89ec48f95c5b13f03d93cd1ebd46ad9f19fbbb6a7aa997b6d217e84"
+    sha256 cellar: :any_skip_relocation, monterey:       "ce4fb0fa18cc75c449de18061f8f1a43b89628e317e0a8df0474721b37805d0c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "0be45406d8eace4a2e68edecbdc12343573bb1cc68da7caafe71c2218b38448e"
   end
 
   depends_on "rust" => :build

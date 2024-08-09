@@ -1,12 +1,10 @@
 class MysqlAT80 < Formula
   desc "Open source relational database management system"
   homepage "https://dev.mysql.com/doc/refman/8.0/en/"
-  # TODO: Check if we can use unversioned `protobuf` at version bump
-  # https://bugs.mysql.com/bug.php?id=111469
-  # https://bugs.mysql.com/bug.php?id=113045
-  url "https://cdn.mysql.com/Downloads/MySQL-8.0/mysql-boost-8.0.38.tar.gz"
-  sha256 "2b8d1620d96e8adda715bf6b060c324223d9e80db487a04cbaa2be8ec5fed718"
+  url "https://cdn.mysql.com/Downloads/MySQL-8.0/mysql-boost-8.0.39.tar.gz"
+  sha256 "93208da9814116d81a384eae42120fd6c2ed507f1696064c510bc36047050241"
   license "GPL-2.0-only" => { with: "Universal-FOSS-exception-1.0" }
+  revision 1
 
   livecheck do
     url "https://dev.mysql.com/downloads/mysql/8.0.html?tpl=files&os=src&version=8.0"
@@ -14,13 +12,13 @@ class MysqlAT80 < Formula
   end
 
   bottle do
-    sha256 arm64_sonoma:   "f6c54ec6b012c959c8f9974d4970fdce9d15ca6eea660626610bb2e4c86d1770"
-    sha256 arm64_ventura:  "61c52c7943b790fdeee80d680311bf72707bb9befc6fef34550fed7468541b21"
-    sha256 arm64_monterey: "723b89c1c8922f14bbfab33ae597fd6ec9931e5b37eeecd767643c3e921a2c14"
-    sha256 sonoma:         "3a7d454d3ddecb4f91f8c286636b820522d5666c751be4fe6268f3ead6425359"
-    sha256 ventura:        "7040b91fbd0d4c630c12fee605b76c277aecf9d5face7663c09c0b4da6f60fee"
-    sha256 monterey:       "a85a095f6d98d340227d789d4d27585de7f0c0bae59b8cd1641b38aa392c3da2"
-    sha256 x86_64_linux:   "24a8b5440d5fd8522ca1a03109565f780291550bbbaa92c36c1ebb40f2469c5e"
+    sha256 arm64_sonoma:   "a1813910bcc6df5f2f8533da573baf48c9919f2a654f2737698fb10b759c4753"
+    sha256 arm64_ventura:  "9c45163ed2b71b6dfc6706769c2f0199d3273673e0f3ea14a9d347038f3dec31"
+    sha256 arm64_monterey: "8377256103122aa9ef3c67744559fbe7c4b37fc784e991e74a344138956dc712"
+    sha256 sonoma:         "9d62d0e134662ee49ad56b7eccf0324d91b7cf3a8710fea1d4750ad22fffe462"
+    sha256 ventura:        "ceeac8d9e3a6406a7e72ce0c1339a9344192f5730c2b658c5e44b58d0fe237bd"
+    sha256 monterey:       "fb77fa698062a9150fac4f7e6137720835d1f26305a81e2ef22b639efce7f4fb"
+    sha256 x86_64_linux:   "53dd31fd7b09579c160001b9981b8f6f54267c1fcbd79eb35732e2fcebb82074"
   end
 
   keg_only :versioned_formula
@@ -28,13 +26,14 @@ class MysqlAT80 < Formula
   depends_on "bison" => :build
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
+  depends_on "abseil"
   depends_on "icu4c"
   depends_on "libevent"
   depends_on "libfido2"
   depends_on "lz4"
   depends_on "openssl@3"
-  depends_on "protobuf@21" # https://bugs.mysql.com/bug.php?id=113045
-  depends_on "zlib" # Zlib 1.2.12+
+  depends_on "protobuf"
+  depends_on "zlib" # Zlib 1.2.13+
   depends_on "zstd"
 
   uses_from_macos "curl"
@@ -46,7 +45,10 @@ class MysqlAT80 < Formula
     depends_on "libtirpc"
   end
 
-  fails_with gcc: "5" # for C++17
+  fails_with :gcc do
+    version "6"
+    cause "Requires C++17"
+  end
 
   # Patch out check for Homebrew `boost`.
   # This should not be necessary when building inside `brew`.
@@ -66,6 +68,14 @@ class MysqlAT80 < Formula
 
       # Disable ABI checking
       inreplace "cmake/abi_check.cmake", "RUN_ABI_CHECK 1", "RUN_ABI_CHECK 0"
+
+      # Work around build issue with Protobuf 22+ on Linux
+      # Ref: https://bugs.mysql.com/bug.php?id=113045
+      # Ref: https://bugs.mysql.com/bug.php?id=115163
+      inreplace "cmake/protobuf.cmake" do |s|
+        s.gsub! 'IF(APPLE AND WITH_PROTOBUF STREQUAL "system"', 'IF(WITH_PROTOBUF STREQUAL "system"'
+        s.gsub! ' INCLUDE REGEX "${HOMEBREW_HOME}.*")', ' INCLUDE REGEX "libabsl.*")'
+      end
     end
 
     # -DINSTALL_* are relative to `CMAKE_INSTALL_PREFIX` (`prefix`)
@@ -99,18 +109,14 @@ class MysqlAT80 < Formula
     system "cmake", "--install", "build"
 
     (prefix/"mysql-test").cd do
-      system "./mysql-test-run.pl", "status", "--vardir=#{Dir.mktmpdir}"
+      system "./mysql-test-run.pl", "status", "--vardir=#{buildpath}/mysql-test-vardir"
     end
 
     # Remove the tests directory
-    rm_rf prefix/"mysql-test"
-
-    # Don't create databases inside of the prefix!
-    # See: https://github.com/Homebrew/homebrew/issues/4975
-    rm_rf prefix/"data"
+    rm_r(prefix/"mysql-test")
 
     # Fix up the control script and link into bin.
-    inreplace "#{prefix}/support-files/mysql.server",
+    inreplace prefix/"support-files/mysql.server",
               /^(PATH=".*)(")/,
               "\\1:#{HOMEBREW_PREFIX}/bin\\2"
     bin.install_symlink prefix/"support-files/mysql.server"
@@ -136,7 +142,7 @@ class MysqlAT80 < Formula
     unless (datadir/"mysql/general_log.CSM").exist?
       ENV["TMPDIR"] = nil
       system bin/"mysqld", "--initialize-insecure", "--user=#{ENV["USER"]}",
-        "--basedir=#{prefix}", "--datadir=#{datadir}", "--tmpdir=/tmp"
+                           "--basedir=#{prefix}", "--datadir=#{datadir}", "--tmpdir=/tmp"
     end
   end
 
@@ -169,17 +175,16 @@ class MysqlAT80 < Formula
   test do
     (testpath/"mysql").mkpath
     (testpath/"tmp").mkpath
-    system bin/"mysqld", "--no-defaults", "--initialize-insecure", "--user=#{ENV["USER"]}",
-      "--basedir=#{prefix}", "--datadir=#{testpath}/mysql", "--tmpdir=#{testpath}/tmp"
+
+    args = %W[--no-defaults --user=#{ENV["USER"]} --datadir=#{testpath}/mysql --tmpdir=#{testpath}/tmp]
+    system bin/"mysqld", *args, "--initialize-insecure", "--basedir=#{prefix}"
     port = free_port
-    fork do
-      system "#{bin}/mysqld", "--no-defaults", "--user=#{ENV["USER"]}",
-        "--datadir=#{testpath}/mysql", "--port=#{port}", "--tmpdir=#{testpath}/tmp"
-    end
+    fork { exec bin/"mysqld", *args, "--port=#{port}" }
     sleep 5
-    assert_match "information_schema",
-      shell_output("#{bin}/mysql --port=#{port} --user=root --password= --execute='show databases;'")
-    system "#{bin}/mysqladmin", "--port=#{port}", "--user=root", "--password=", "shutdown"
+
+    output = shell_output("#{bin}/mysql --port=#{port} --user=root --password= --execute='show databases;'")
+    assert_match "information_schema", output
+    system bin/"mysqladmin", "--port=#{port}", "--user=root", "--password=", "shutdown"
   end
 end
 

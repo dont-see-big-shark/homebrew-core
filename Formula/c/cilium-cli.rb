@@ -1,8 +1,8 @@
 class CiliumCli < Formula
   desc "CLI to install, manage & troubleshoot Kubernetes clusters running Cilium"
   homepage "https://cilium.io"
-  url "https://github.com/cilium/cilium-cli/archive/refs/tags/v0.16.13.tar.gz"
-  sha256 "a2ed98a370d42c7040a5dbefa69c3edfbd143c00412a00a1f980b5e1c203ae1f"
+  url "https://github.com/cilium/cilium-cli/archive/refs/tags/v0.16.15.tar.gz"
+  sha256 "2c3da085574d038c5d456425140177d290c36ccb4dcdb2941357b867876aa48a"
   license "Apache-2.0"
 
   # Upstream uses GitHub releases to indicate that a version is released
@@ -14,13 +14,13 @@ class CiliumCli < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "d592ca4915dc83188db833e39dbc5ad23070af90a1c36686875778a9338f6f4b"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "1be38ce6a23e1d339fb77ddc6621c7e0f7e4b13f860e55899ecc50ece61fe082"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "11c6a38c6a7a5d157c4ccfd07698f37ef2b8d2052341244b0914e59b1d9c88b8"
-    sha256 cellar: :any_skip_relocation, sonoma:         "a217ca9efd69cfe22f7440d54293ab3e7a43d5784942459e29b7bb28173e39f7"
-    sha256 cellar: :any_skip_relocation, ventura:        "6055ede55fe6692bdc9b91ffff43de60fde8eb9508740f212c5b9d3612da5491"
-    sha256 cellar: :any_skip_relocation, monterey:       "cc579bfc47c80eb821efc0b40a65c5094e71adb1a244cd46d0194bb4763a2b0a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "810a57c3f3769b8e0ce84044abc3e7a6d53a3043d3d9e5b89063945d18cabc6f"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "f78f2725fb238bacf407442bf0b0671420c8d6b616596f68ca4b936517782d52"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "ae988301b31ba174453abd6240e22fbf826f38e3e394854478a2528d1e0e219b"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "ca2f003066197c96fc48f07da326bb3c8ae605e22eb18a7399dbbb28dcb817f2"
+    sha256 cellar: :any_skip_relocation, sonoma:         "4f12da66841698aead40bf37cfe90bcd7b30fd21788013a46edf015e315413e2"
+    sha256 cellar: :any_skip_relocation, ventura:        "89d008337b484ae5a15bc39a64e0dfdc2f90e5af0b04f5dee04d9ad1d0cedf92"
+    sha256 cellar: :any_skip_relocation, monterey:       "2cd84bdfdede41fbe556f13aa3f8b2252bd805396f3c7e679dc84529e3fca96e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "f0fee8faeb7854aef8fc253b0c8e7cd2f31c2c70dbb64a00da3b6348cc250f7d"
   end
 
   depends_on "go" => :build

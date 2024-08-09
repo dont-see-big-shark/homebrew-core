@@ -2,7 +2,7 @@ class PariGaldata < Formula
   desc "Galois resolvents data for PARI/GP"
   homepage "https://pari.math.u-bordeaux.fr/packages.html"
   url "https://pari.math.u-bordeaux.fr/pub/pari/packages/galdata.tgz"
-  # Refer to http://pari.math.u-bordeaux.fr/packages.html#packages for most recent package date
+  # Refer to https://pari.math.u-bordeaux.fr/packages.html#packages for most recent package date
   version "20080411"
   sha256 "b7c1650099b24a20bdade47a85a928351c586287f0d4c73933313873e63290dd"
   license "GPL-2.0-or-later"
@@ -18,8 +18,8 @@ class PariGaldata < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, all: "effebc421eaf8df8474e3b80d5e7da743545fba06faf96750a19103884d0cf57"
+    rebuild 2
+    sha256 cellar: :any_skip_relocation, all: "736af19f4079ffbca94f96cc0b4c7d8c325995ccc0c01cef244240d61758b02f"
   end
 
   depends_on "pari"

@@ -1,19 +1,19 @@
 class Votca < Formula
   desc "Versatile Object-oriented Toolkit for Coarse-graining Applications"
   homepage "https://www.votca.org/"
-  url "https://github.com/votca/votca/archive/refs/tags/v2024.tar.gz"
-  sha256 "be1f8ad3de2ce86f0c01014aa5358c181f128a847bc4508ba0a4bffd5c82a1cf"
+  url "https://github.com/votca/votca/archive/refs/tags/v2024.1.tar.gz"
+  sha256 "74d447f976a7d5c05ec65ab99f52b75379cafa3b40b8bc3b9b328f8402bc53dc"
   license "Apache-2.0"
-  revision 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_sonoma:   "504f8ab09074e72ba32a4a295445c25b69b72de16c1250887ce1992c59a56e09"
-    sha256 cellar: :any,                 arm64_ventura:  "7531ab683d8456efbf5ad26e60cd6cbaa47247ca3978d1190c9c76ff5f4a9776"
-    sha256 cellar: :any,                 arm64_monterey: "a8fe9612566ffc9523f848051bea9c34e7647b2f17c90376592e07dc63d33853"
-    sha256 cellar: :any,                 sonoma:         "1f9259d2b6505d7024cef35bf0ac09b594820ae5d024a4afb418d42811f6e939"
-    sha256 cellar: :any,                 ventura:        "d169ac530b6d8fbb309e75baa24d930b4cbb276fb35a7ddda479ec4cd93758fc"
-    sha256 cellar: :any,                 monterey:       "d4a876cb84a7274acf864514c09e87cee8c1dfce0f6152b73f43619f23b4139e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "5172837a798669038f93ed27dad0aec384bbb9f0179131e38b40c43f80f88905"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_sonoma:   "528f109aaeb4bad60365616e2ae9c69ba8520e40fc7b933ef05bdde967084266"
+    sha256 cellar: :any,                 arm64_ventura:  "626419cb9f450f1e806c069e08f2177fdced2f4b8e97fa7b2417aa6d11544e3a"
+    sha256 cellar: :any,                 arm64_monterey: "cd2e2b233adb416508c97793eae83959a50d773fa1d65feca4e7193d0678dcb7"
+    sha256 cellar: :any,                 sonoma:         "5507f809c1f1a79bf0b9bdc7d6882a0993444a895421762059f8b003dfbc1674"
+    sha256 cellar: :any,                 ventura:        "80036e2945f55198de413d036f9f4015866a92c0e26a2047c80b028db291bd21"
+    sha256 cellar: :any,                 monterey:       "917f3a6638f494825e97ae96901127a7c2bdeb2f10344b7161661e9933b2c497"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "0502b5382574920108db15990f74d79f40fe10eee13aeb7cdd1bb4808cb85265"
   end
 
   depends_on "cmake" => :build
@@ -23,8 +23,7 @@ class Votca < Formula
   depends_on "fftw"
   depends_on "gcc" # for OpenMP
   # add gromacs dep back once it was built with clang
-  # Use hdf5@1.10: Unable to determine HDF5 CXX flags from HDF5 wrapper.
-  depends_on "hdf5@1.10"
+  depends_on "hdf5"
   depends_on "libecpint"
   depends_on "libint"
   depends_on "libxc"
@@ -34,13 +33,8 @@ class Votca < Formula
   uses_from_macos "expat"
 
   on_macos do
+    depends_on "libaec"
     depends_on "libomp"
-  end
-
-  # Backport fix for build failure with `boost` 1.85.0. Remove in the next release.
-  patch do
-    url "https://github.com/votca/votca/commit/9a29a3a82ea23c5159d43b0f25218601e12085b4.patch?full_index=1"
-    sha256 "814fad24b533b84855f5171dda6789552872f16e1bbc3bebf8a3ebb2394440af"
   end
 
   def install
@@ -57,12 +51,12 @@ class Votca < Formula
   end
 
   test do
-    system "#{bin}/csg_property", "--help"
+    system bin/"csg_property", "--help"
     (testpath/"table.in").write <<~EOS
       0 0 i
       1 1 i
     EOS
-    system "#{bin}/csg_resample", "--in", "table.in", "--out", "table.out", "--grid", "0:0.1:1", "--type", "linear"
+    system bin/"csg_resample", "--in", "table.in", "--out", "table.out", "--grid", "0:0.1:1", "--type", "linear"
     assert_path_exists "#{testpath}/table.out"
   end
 end

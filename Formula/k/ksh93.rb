@@ -1,22 +1,23 @@
 class Ksh93 < Formula
   desc "KornShell, ksh93"
   homepage "https://github.com/ksh93/ksh"
-  url "https://github.com/ksh93/ksh/archive/refs/tags/v1.0.8.tar.gz"
-  sha256 "b46565045d0eb376d3e6448be6dbc214af454efc405d527f92cb81c244106c8e"
+  url "https://github.com/ksh93/ksh/archive/refs/tags/v1.0.10.tar.gz"
+  sha256 "9f4c7a9531cec6941d6a9fd7fb70a4aeda24ea32800f578fd4099083f98b4e8a"
   license "EPL-2.0"
   head "https://github.com/ksh93/ksh.git", branch: "dev"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "da09a653036fab17064360cfc16c7b08010742a4a63513cc7bc79084fca56a9f"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "b64ad379ff18a29da5db2b64e6f4bc9a66c20e34cb284a3f003ac366f42614ec"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "dfbf0ec44ac74fb3ef30ea4f29b82eb5597cb7194f0e0ffe661aed0f4e9dbb86"
-    sha256 cellar: :any_skip_relocation, sonoma:         "7153cd1fdab030384bfe7cb4881b2c503793ee5ab977ae7b65f08daddd8d795e"
-    sha256 cellar: :any_skip_relocation, ventura:        "5955a0e9881005b0cf8363763cb3beeb1f3d7b9bcc7c81e9ef1d7e52da2b777d"
-    sha256 cellar: :any_skip_relocation, monterey:       "ef891b04516323cfa5ec0deb740c845a9c31473c8f9ecb55300e0f8320e9963b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "f68aab08050e38f79a60f6ff945a6c33005555f4eaab952bf6d763c1ae39af8e"
+    sha256 cellar: :any,                 arm64_sonoma:   "c19642595db560b792a462a2754cdd1c9dcf9cce1206f831e9445f364ddeee9d"
+    sha256 cellar: :any,                 arm64_ventura:  "35617322f558cb0e43a0f265eefaffbe447061bc24acd75452b2b5b084e56acd"
+    sha256 cellar: :any,                 arm64_monterey: "2f7f6d16223a34599d8f5d7a109e3c0b9bf16dbd98758b8c643d9c43ba40001d"
+    sha256                               sonoma:         "b15cd1a4a1052c29217a92cdcc890755a1af17031b0375d2c48218e37de17ed3"
+    sha256                               ventura:        "fd2c2ab5ef6b79db5b99b18775c36806ab45f06dbfde1a19dbba879c88ff02a3"
+    sha256                               monterey:       "4a18d30f5bd6874f925b389150c77864955c33d546025ab87ba95dc36e6287be"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "6e1e57baceef185a21b476c489ec150cbf00729c4b0b31243dd13d5f560376b1"
   end
 
   def install
+    ENV.append "LDFLAGS", "-Wl,-rpath,#{lib}"
     system "bin/package", "verbose", "make"
     system "bin/package", "verbose", "install", prefix
     %w[ksh93 rksh rksh93].each do |alt|

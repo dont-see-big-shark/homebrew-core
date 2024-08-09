@@ -1,8 +1,8 @@
 class Freetds < Formula
   desc "Libraries to talk to Microsoft SQL Server and Sybase databases"
   homepage "https://www.freetds.org/"
-  url "https://www.freetds.org/files/stable/freetds-1.4.19.tar.bz2", using: :homebrew_curl
-  sha256 "90aeb983c34b313f9dc494da005be224d4e84bd119feb2a5b1ecb73a94289f95"
+  url "https://www.freetds.org/files/stable/freetds-1.4.22.tar.bz2", using: :homebrew_curl
+  sha256 "a9a7f24f0a7a871617e76e8cc6e6556ae788042f1c006195665505499b2334b1"
   license "GPL-2.0-or-later"
 
   livecheck do
@@ -11,13 +11,13 @@ class Freetds < Formula
   end
 
   bottle do
-    sha256 arm64_sonoma:   "744b32601a0d8b4f00e2fb41c1e1db6d861eafca5581754e046eadc3ef70f0b7"
-    sha256 arm64_ventura:  "3e3fb9cbe29b114d0a3d5acd07d9c63c49c3d0dc184fc8f562e1cdeaeb56066b"
-    sha256 arm64_monterey: "b752ff6b59104e86bae2af37c367887b9022026d7411135f57aca5b4d844996e"
-    sha256 sonoma:         "a24786717aa1e0c2d8a5d060b2c8da1aac882730e0d87b0fdb32a8c59df414bb"
-    sha256 ventura:        "2d0a3434822cc9178851a63361d358a485fedd45429a6d6d3828f56bd207a95d"
-    sha256 monterey:       "da405414a1a1579fced6233c9b2f7469386e1cbd4492f1db5722e7c78b50da5f"
-    sha256 x86_64_linux:   "e6b6b7a3c6a0d664aa47df506398f943dd7dcacddbdd0c264d04224418fcb220"
+    sha256 arm64_sonoma:   "6b0ba395d6481eaee3b7d22c9ba75a8acfad011574d38fb3cc7114c7703a0a31"
+    sha256 arm64_ventura:  "6a3f546650f661ee8a9fbf795059331b520d79ca9b71501d40976eac02018484"
+    sha256 arm64_monterey: "71626b498421c3a2fff405fabcf719cc281ee741e04015859a10d8d9b4e27903"
+    sha256 sonoma:         "fec7dbfceeac7e55026304016043527306e60c3aa436568e847578bc5e58ec5b"
+    sha256 ventura:        "9ee8c1be602a1a03e6bb2c9ca73301d6caf7b143cbed5a781ddce959085c6afb"
+    sha256 monterey:       "8d6b2f8553ee5946b9d14a0ff3218789498233d28cc44982ef8981c3b708866c"
+    sha256 x86_64_linux:   "95016e2d906b036cabeae6b4d56cd048cc02c39645d0029bec74ef0afcc55e0a"
   end
 
   head do
@@ -63,6 +63,6 @@ class Freetds < Formula
   end
 
   test do
-    system "#{bin}/tsql", "-C"
+    system bin/"tsql", "-C"
   end
 end
