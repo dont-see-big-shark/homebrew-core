@@ -412,6 +412,11 @@
       "google-api-python-client", "google-auth", "google-auth-httplib2", "google-auth-oauthlib", "httplib2"
     ]
   },
+  "harlequin": {
+    "package_name": "harlequin[mysql,postgres]",
+    "exclude_packages": ["psycopg-binary", "tree-sitter-languages"],
+    "extra_packages": ["psycopg-c"]
+  },
   "hatch": {
     "exclude_packages": ["certifi", "cryptography", "uv"]
   },
@@ -694,6 +699,10 @@
     "package_name": "",
     "extra_packages": ["flit-core", "setuptools", "pip", "wheel"]
   },
+  "python-freethreading": {
+    "package_name": "",
+    "extra_packages": ["flit-core", "setuptools", "pip", "wheel"]
+  },
   "python-lsp-server": {
     "package_name": "python-lsp-server[websockets]",
     "extra_packages": ["python-lsp-black", "pylsp-mypy", "python-lsp-ruff", "pylsp-rope"]
@@ -893,6 +902,9 @@
   },
   "weasyprint": {
     "exclude_packages": ["pillow"]
+  },
+  "weaviate-cli": {
+    "exclude_packages": ["certifi", "cryptography"]
   },
   "woob": {
     "exclude_packages": ["certifi", "pillow"]
