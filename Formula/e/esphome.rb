@@ -3,17 +3,18 @@ class Esphome < Formula
 
   desc "Make creating custom firmwares for ESP32/ESP8266 super easy"
   homepage "https://github.com/esphome/esphome"
-  url "https://files.pythonhosted.org/packages/ca/f2/05a08737de801fef339763b342a504c56b6c9ccc77b84f808c02b411183b/esphome-2024.11.2.tar.gz"
-  sha256 "6c9323c5cd5161c49bc088a041de637a436f8ad20fe555cfd39f41bad487de07"
+  url "https://files.pythonhosted.org/packages/28/6b/48222ed16df0e64ceef8a53587f727d56726e45b01297f28a18a16789449/esphome-2024.11.3.tar.gz"
+  sha256 "03c09eea601454e4dac69e918e4de6fd1b7f713746c512207ddca9d4cab5b671"
   license "MIT"
+  revision 1
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "603124d89512acc9faa86d3550e8f5cbd11b36d4f031fff30bf46e365d60724d"
-    sha256 cellar: :any,                 arm64_sonoma:  "3390377775774b83690ec0e066d804fa4f9012c44cabb2c26cfec30388a98874"
-    sha256 cellar: :any,                 arm64_ventura: "ea0d95d29b3cd4b49c0c6b89da07381f0902a5dd7a758d30f33f9cb35fd847b0"
-    sha256 cellar: :any,                 sonoma:        "b5b40e5b6f78754532d82d8d1f73fa7cd1d850892c31a3450c14ade16653d9cf"
-    sha256 cellar: :any,                 ventura:       "cb2a3386ddde538ff03215987ed5c8a310291176a3e55609c8ec8cdce931051d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "bd6d2c8a1e4ef6e42436ab368ab062f190b976d6ead356db538b20749f421c61"
+    sha256 cellar: :any,                 arm64_sequoia: "208f01d6776aac3a7f6166f6c38775c87416e43527d014f24a62ee4b22f915b6"
+    sha256 cellar: :any,                 arm64_sonoma:  "b32b4cfa71a94785e202f9ba0e1619ce288353fe068262cc3cd1ca521e575784"
+    sha256 cellar: :any,                 arm64_ventura: "a7c17c9505b6c24a1194a27f7a7d79c9536fc7ffa26368d72e73c3496a02c62b"
+    sha256 cellar: :any,                 sonoma:        "5321b430af6a2c153099369b7f34ef02756776bdaae733adfa96cd4fdee66fd8"
+    sha256 cellar: :any,                 ventura:       "549d192e11778ed8533cc7033fa654db57939cb37d4f0bba56a177e30a9b7303"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6adb2c7096eb9b3bcb0069423d085dfd936478002abf3d5996510ef09ff60c1e"
   end
 
   depends_on "pkgconf" => :build
@@ -39,8 +40,8 @@ class Esphome < Formula
   end
 
   resource "aiohappyeyeballs" do
-    url "https://files.pythonhosted.org/packages/bc/69/2f6d5a019bd02e920a3417689a89887b39ad1e350b562f9955693d900c40/aiohappyeyeballs-2.4.3.tar.gz"
-    sha256 "75cf88a15106a5002a8eb1dab212525c00d1f4c0fa96e551c9fbe6f09a621586"
+    url "https://files.pythonhosted.org/packages/7f/55/e4373e888fdacb15563ef6fa9fa8c8252476ea071e96fb46defac9f18bf2/aiohappyeyeballs-2.4.4.tar.gz"
+    sha256 "5fdd7d87889c63183afc18ce9271f9b0a7d32c2303e394468dd45d514a757745"
   end
 
   resource "ajsonrpc" do
@@ -49,8 +50,8 @@ class Esphome < Formula
   end
 
   resource "anyio" do
-    url "https://files.pythonhosted.org/packages/9f/09/45b9b7a6d4e45c6bcb5bf61d19e3ab87df68e0601fa8c5293de3542546cc/anyio-4.6.2.post1.tar.gz"
-    sha256 "4c8bc31ccdb51c7f7bd251f51c609e038d63e34219b44aa86e47576389880b4c"
+    url "https://files.pythonhosted.org/packages/f6/40/318e58f669b1a9e00f5c4453910682e2d9dd594334539c7b7817dabb765f/anyio-4.7.0.tar.gz"
+    sha256 "2f834749c602966b7d456a7567cafcb309f96482b5081d14ac93ccd457f9dd48"
   end
 
   resource "appdirs" do
@@ -59,8 +60,8 @@ class Esphome < Formula
   end
 
   resource "argcomplete" do
-    url "https://files.pythonhosted.org/packages/5f/39/27605e133e7f4bb0c8e48c9a6b87101515e3446003e0442761f6a02ac35e/argcomplete-3.5.1.tar.gz"
-    sha256 "eb1ee355aa2557bd3d0145de7b06b2a45b0ce461e1e7813f5d066039ab4177b4"
+    url "https://files.pythonhosted.org/packages/7f/03/581b1c29d88fffaa08abbced2e628c34dd92d32f1adaed7e42fc416938b0/argcomplete-3.5.2.tar.gz"
+    sha256 "23146ed7ac4403b70bd6026402468942ceba34a6732255b9edf5b7354f68a6bb"
   end
 
   resource "async-interrupt" do
@@ -129,8 +130,8 @@ class Esphome < Formula
   end
 
   resource "fonttools" do
-    url "https://files.pythonhosted.org/packages/d7/4e/053fe1b5c0ce346c0a9d0557492c654362bafb14f026eae0d3ee98009152/fonttools-4.55.0.tar.gz"
-    sha256 "7636acc6ab733572d5e7eec922b254ead611f1cdad17be3f0be7418e8bfaca71"
+    url "https://files.pythonhosted.org/packages/f4/3a/6ab28db8f90c99e6b502436fb642912b590c352d5ba83e0b22b46db209da/fonttools-4.55.2.tar.gz"
+    sha256 "45947e7b3f9673f91df125d375eb57b9a23f2a603f438a1aebf3171bffa7a205"
   end
 
   resource "freetype-py" do
@@ -279,8 +280,8 @@ class Esphome < Formula
   end
 
   resource "six" do
-    url "https://files.pythonhosted.org/packages/71/39/171f1c67cd00715f190ba0b100d606d440a28c93c7714febeca8b79af85e/six-1.16.0.tar.gz"
-    sha256 "1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"
+    url "https://files.pythonhosted.org/packages/94/e7/b2c673351809dca68a0e064b6af791aa332cf192da575fd474ed7d6f16a2/six-1.17.0.tar.gz"
+    sha256 "ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81"
   end
 
   resource "sniffio" do

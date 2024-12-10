@@ -1,18 +1,18 @@
 class AwsNuke < Formula
   desc "Nuke a whole AWS account and delete all its resources"
   homepage "https://github.com/ekristen/aws-nuke"
-  url "https://github.com/ekristen/aws-nuke/archive/refs/tags/v3.34.0.tar.gz"
-  sha256 "01da2bfbda59fb318dde4af278090a7066b4a93f19ec316abe0ad59ad5a214aa"
+  url "https://github.com/ekristen/aws-nuke/archive/refs/tags/v3.35.1.tar.gz"
+  sha256 "defc7613790940179d54583c14e05e00d4b74e48d6d35a5d74cd55d609dc8b25"
   license "MIT"
   head "https://github.com/ekristen/aws-nuke.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "8328a06381ca104a275993dc52c9f0726f5ec54d33aa4c850d578c559e19aa53"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "8328a06381ca104a275993dc52c9f0726f5ec54d33aa4c850d578c559e19aa53"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "8328a06381ca104a275993dc52c9f0726f5ec54d33aa4c850d578c559e19aa53"
-    sha256 cellar: :any_skip_relocation, sonoma:        "609acd82c5ca5c1130b8fc21384e141fd3a4870cee5a093dd659b53312f5df4b"
-    sha256 cellar: :any_skip_relocation, ventura:       "609acd82c5ca5c1130b8fc21384e141fd3a4870cee5a093dd659b53312f5df4b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "253f6a99567fa750cc6f2e13c3003e9a0141ab89dd3ec03b6182e42157965264"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "05712bd8305226650883dfdf5ca94d8fcbae6184b82d5a85790e5d5755c6a424"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "05712bd8305226650883dfdf5ca94d8fcbae6184b82d5a85790e5d5755c6a424"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "05712bd8305226650883dfdf5ca94d8fcbae6184b82d5a85790e5d5755c6a424"
+    sha256 cellar: :any_skip_relocation, sonoma:        "86699f5f6cf03577cfabf47bb12dae159e3d87dd5ae018904e41a361d9246935"
+    sha256 cellar: :any_skip_relocation, ventura:       "86699f5f6cf03577cfabf47bb12dae159e3d87dd5ae018904e41a361d9246935"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "af0bc3ed905fdb9bd87bdaf9cc12e60e873660d5caef990fa4b0b79d5d6ee668"
   end
 
   depends_on "go" => :build
