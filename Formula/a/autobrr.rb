@@ -1,17 +1,17 @@
 class Autobrr < Formula
   desc "Modern, easy to use download automation for torrents and usenet"
   homepage "https://autobrr.com/"
-  url "https://github.com/autobrr/autobrr/archive/refs/tags/v1.52.0.tar.gz"
-  sha256 "368c9bd8e044853ba9cf23b9b1db7d2270cc506993c833c64e979032de8edc96"
+  url "https://github.com/autobrr/autobrr/archive/refs/tags/v1.53.1.tar.gz"
+  sha256 "ccfb5540b4b36317628a866948576a4b5f56be9a3a376c8f1a79f19644a7e3bf"
   license "GPL-2.0-or-later"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "8fab70ce3940f892db46c2efcb0cf3dbeecc3e3546e05e59f76f934cde0ab35d"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "8fab70ce3940f892db46c2efcb0cf3dbeecc3e3546e05e59f76f934cde0ab35d"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "8fab70ce3940f892db46c2efcb0cf3dbeecc3e3546e05e59f76f934cde0ab35d"
-    sha256 cellar: :any_skip_relocation, sonoma:        "9b5fcad1cf1ca8c2472ccbe09e575289c9d60dac5f1a8844428e8dee5f9fa249"
-    sha256 cellar: :any_skip_relocation, ventura:       "9b5fcad1cf1ca8c2472ccbe09e575289c9d60dac5f1a8844428e8dee5f9fa249"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "655d0ccb49ae86eed42eeb6c513dd3b072954ea375787f62cc60c273457dedb4"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "0085bae66488a6cd321b33100daff05531d8f71331a7efac10c5fc114c3790b4"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "0085bae66488a6cd321b33100daff05531d8f71331a7efac10c5fc114c3790b4"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "0085bae66488a6cd321b33100daff05531d8f71331a7efac10c5fc114c3790b4"
+    sha256 cellar: :any_skip_relocation, sonoma:        "d09d82fd7e4cb220a55aefe78056c58ff1efe3f2f988dc5f596c0f5dfe2999cc"
+    sha256 cellar: :any_skip_relocation, ventura:       "d09d82fd7e4cb220a55aefe78056c58ff1efe3f2f988dc5f596c0f5dfe2999cc"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d4381c7105df06282345eaa815c4dfa04cffa5cd014261048fb736c8dad91a86"
   end
 
   depends_on "go" => :build

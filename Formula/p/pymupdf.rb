@@ -1,18 +1,17 @@
 class Pymupdf < Formula
   desc "Python bindings for the PDF toolkit and renderer MuPDF"
   homepage "https://pymupdf.readthedocs.io/en/latest/"
-  url "https://files.pythonhosted.org/packages/e0/6b/6bd735144a190d26dcc23f98b4aae0e09b259cc4c87bba266a39b7b91f56/PyMuPDF-1.24.14.tar.gz"
-  sha256 "0eed9f998525eaf39706dbf2d0cf3162150f0f526e4a36b1748ffa50bde581ae"
+  url "https://files.pythonhosted.org/packages/c3/88/76c076c152be6d29a792defc3b3bff73de7f690e55f978b66adf6dbb8a1a/pymupdf-1.25.1.tar.gz"
+  sha256 "6725bec0f37c2380d926f792c262693c926af7cc1aa5aa2b8207e771867f015a"
   license "AGPL-3.0-only"
-  revision 3
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "64cf0006afd80161e68ef5ce0dcdb871c73151dbdad6f2b6b4d7930e3293a63f"
-    sha256 cellar: :any,                 arm64_sonoma:  "e5275dd33e381f0675acc97a48417277abea2ec15442591de5721366adcf6e6c"
-    sha256 cellar: :any,                 arm64_ventura: "59bffec7b21dbf9af7fdf773964d2e057ca6e168da1e5687987e65bfdb84fb08"
-    sha256 cellar: :any,                 sonoma:        "f5aa9121a4391d6837fbb2fc058f375830d581d270ac86aaf92046cbf95e9eb5"
-    sha256 cellar: :any,                 ventura:       "5e091b1a390cde51ef30ec52cb0397b849637b3c2f5fd7cd22cabd50586a0bbb"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f56bb281d7031d5b6a3e3896e5b16a9fec93b8c968aa676699b55c3316d23ed7"
+    sha256 cellar: :any,                 arm64_sequoia: "be92d5188177ced0d861b266c170c8ab7ce173abf42e08caa13c1f3ba9a27781"
+    sha256 cellar: :any,                 arm64_sonoma:  "fe6def3f2d051dfdc0907a07bccd1c8742d57f2fe4eeb930163f137c02a6db4c"
+    sha256 cellar: :any,                 arm64_ventura: "5417f1b35048cce7e5c2c057357342605f03dd2e0a63d6f88ae9817824ee4e56"
+    sha256 cellar: :any,                 sonoma:        "bae7122e5d37c38b3de1a7a72325c9ecb84c700861e77e4ff3b30e788683669f"
+    sha256 cellar: :any,                 ventura:       "400da05009236699d49d1450c7810fe07df70b3fe3aa77061b8318280cea9f97"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a82fba95aeb56cbb6b32bb647f2e02e55aaeed394f2a25276c9818567b97a46f"
   end
 
   depends_on "freetype" => :build
@@ -23,12 +22,6 @@ class Pymupdf < Formula
 
   def python3
     "python3.12"
-  end
-
-  # fix build with mupdf 1.25.0, upstream pr ref, https://github.com/pymupdf/PyMuPDF/pull/4094
-  patch do
-    url "https://github.com/pymupdf/PyMuPDF/commit/8609db72eb59d95ffa37c05991a0b83220865677.patch?full_index=1"
-    sha256 "3582c6ad6dcd5bc476913128fb3e922b6be9b18d6ed51b1fad1e88acd3b0aaa4"
   end
 
   def install

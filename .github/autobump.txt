@@ -18,6 +18,7 @@ adwaita-icon-theme
 aerleon
 aespipe
 afflib
+afl++
 aftman
 agda
 age
@@ -72,6 +73,7 @@ apache-flink
 apache-flink-cdc
 apache-geode
 apache-opennlp
+apache-pulsar
 apache-spark
 apachetop
 apibuilder-cli
@@ -142,6 +144,7 @@ auditbeat
 auditwheel
 austin
 autobrr
+autoconf-archive
 autodiff
 automake
 autopep8
@@ -342,6 +345,7 @@ camlp5
 canfigger
 capnp
 capstone
+carapace
 cargo-about
 cargo-audit
 cargo-auditable
@@ -386,6 +390,7 @@ cctz
 cdebug
 cdk
 cdk8s
+cdktf
 cdogs-sdl
 cdsclient
 cdxgen
@@ -516,7 +521,6 @@ code-cli
 code-minimap
 code-server
 codec2
-codecov-cli
 codelimit
 coder
 codespell
@@ -557,6 +561,7 @@ cortex
 cosign
 cotila
 cotp
+coturn
 couchbase-shell
 couchdb
 countdown
@@ -580,6 +585,7 @@ cpuid
 cql-proxy
 crabz
 crane
+crates-tui
 cri-tools
 crispy-doom
 croaring
@@ -737,6 +743,7 @@ dooit
 doppler
 dosbox-staging
 dosbox-x
+dotbot
 dotenv-linter
 dotnet
 dotslash
@@ -833,6 +840,7 @@ embree
 emqx
 emscripten
 enchant
+energy
 enet
 enpass-cli
 ensmallen
@@ -1022,6 +1030,7 @@ fwup
 fwupd
 fx
 fzf
+fzf-make
 g-ls
 gabo
 gallery-dl
@@ -1191,6 +1200,7 @@ gource
 govc
 govulncheck
 gowsdl
+gpa
 gpac
 gperftools
 gpg-tui
@@ -1209,6 +1219,7 @@ grails
 grap
 graph-tool
 graphicsmagick
+graphql-inspector
 graphqurl
 graphqxl
 graphviz
@@ -1253,6 +1264,7 @@ gwyddion
 gxml
 gyb
 h26forge
+h3
 hackrf
 hadoop
 halide
@@ -1302,6 +1314,7 @@ hopenpgp-tools
 hoverfly
 howard-hinnant-date
 hpack
+hsd
 htmldoc
 htmlq
 htmltest
@@ -1636,6 +1649,7 @@ libfs
 libgedit-amtk
 libgedit-gfls
 libgedit-gtksourceview
+libgedit-tepl
 libgeotiff
 libgetdata
 libgit2
@@ -1672,6 +1686,7 @@ libmicrohttpd
 libmobi
 libmodbus
 libmonome
+libmsquic
 libmtp
 libmxml
 libnetfilter_conntrack
@@ -1837,12 +1852,14 @@ lz4
 lzip
 macchina
 mackup
+macmon
 mactop
 mafft
 mage
 magic-wormhole
 magic-wormhole.rs
 magic_enum
+mago
 mailcatcher
 mailpit
 mailsy
@@ -1866,12 +1883,14 @@ mariadb@10.5
 mariadb@10.6
 mariadb@11.2
 mariadb@11.4
+markdown-oxide
 markdownlint-cli
 markdownlint-cli2
 marked
 marksman
 marp-cli
 massdriver
+massren
 matplotplusplus
 matterbridge
 maturin
@@ -1911,6 +1930,7 @@ metabase
 metals
 metricbeat
 mfem
+mgba
 micro
 micromamba
 micronaut
@@ -2124,6 +2144,7 @@ oasdiff
 oath-toolkit
 oauth2_proxy
 oauth2c
+oauth2l
 objfw
 ocaml-findlib
 ocaml-zarith
@@ -2150,6 +2171,7 @@ okta-awscli
 okteto
 ol
 ollama
+omake
 omega
 omniorb
 onednn
@@ -2337,6 +2359,7 @@ pivit
 pixi
 pixie
 pixman
+pjproject
 pkg-config-wrapper
 pkgconf
 pkl
@@ -2369,6 +2392,7 @@ ponyc
 popeye
 portablegl
 porter
+poselib
 postgis
 postgresql@13
 postgresql@14
@@ -2403,6 +2427,7 @@ proto
 protobuf
 protoc-gen-go
 protoc-gen-go-grpc
+protoc-gen-grpc-java
 protoc-gen-grpc-web
 protolint
 prowler
@@ -2508,12 +2533,12 @@ rancher-cli
 ranger
 rapidfuzz-cpp
 ratchet
+ratfor
 rattler-build
 rav1e
 raven
 raxml-ng
 raylib
-rbtools
 rbw
 rclone
 rcs
@@ -2541,6 +2566,7 @@ remind
 renovate
 repo
 reposurgeon
+repren
 reproc
 restic
 restview
@@ -2653,6 +2679,7 @@ scotch
 scrapy
 scrcpy
 screen
+screenfetch
 scriptisto
 scs
 scummvm
@@ -2671,6 +2698,7 @@ selenium-server
 semgrep
 sentencepiece
 seqkit
+sequin
 sequoia-sq
 ser2net
 serialosc
@@ -2720,6 +2748,7 @@ sip
 sipp
 siril
 sispmctl
+six
 sjk
 sk
 skaffold
@@ -2843,6 +2872,7 @@ stow
 stp
 strace
 streamlink
+streamvbyte
 stress-ng
 stripe-cli
 stripe-mock
@@ -2896,6 +2926,7 @@ talisman
 tanka
 taplo
 tarantool
+tarlz
 tartufo
 task
 taskopen
@@ -2904,6 +2935,7 @@ tbls
 tbox
 tccutil
 tcl-tk
+tcl-tk@8
 tcpdump
 tcpreplay
 tcsh
@@ -2924,6 +2956,7 @@ telnetd
 template-glib
 temporal
 tendermint
+tenere
 tengo
 tenv
 tere
@@ -3042,6 +3075,7 @@ typescript-language-server
 typewritten
 typical
 typos-cli
+typos-lsp
 typst
 typstyle
 tz
@@ -3070,6 +3104,7 @@ urdfdom
 urdfdom_headers
 uriparser
 urlscan
+urlwatch
 usb.ids
 usbredir
 usbutils
@@ -3109,12 +3144,14 @@ verapdf
 vercel-cli
 verilator
 verovio
+versitygw
 vet
 vexctl
 vfox
 vgmstream
 vgrep
 vhs
+victorialogs
 victoriametrics
 viddy
 video-compare
@@ -3162,6 +3199,7 @@ wakatime-cli
 walk
 wallpaper
 wartremover
+wasm-component-ld
 wasm-micro-runtime
 wasm-pack
 wasm-tools
@@ -3176,6 +3214,8 @@ wazero
 wcslib
 wcurl
 weasyprint
+weaviate
+weaviate-cli
 web-ext
 webdis
 webhook
@@ -3295,6 +3335,7 @@ zellij
 zenith
 zenity
 zeromq
+zet
 zf
 zfind
 zig
