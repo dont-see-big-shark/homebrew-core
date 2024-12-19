@@ -3,17 +3,17 @@ class AnsibleCreator < Formula
 
   desc "CLI tool for scaffolding Ansible Content"
   homepage "https://ansible.readthedocs.io/projects/creator/"
-  url "https://files.pythonhosted.org/packages/6c/4e/0e9075f3a4eedcc2a8e87fc126da033a9ddb797279d93ee7132fd87fba6b/ansible_creator-24.11.0.tar.gz"
-  sha256 "21f0baa7a37798f2b3c34a17e1c51873f95a33e8e4d2a68c66e39fd8bd33399f"
+  url "https://files.pythonhosted.org/packages/2a/a9/b4ece27490fa6a94b9dd73cdedd16184ca09b8bd866c13fb2545b5d6e2e5/ansible_creator-24.12.1.tar.gz"
+  sha256 "b739cb96ba17a76edc0bd2f5fcde76d75244ad7ed6afc63bb0cdb5385ba5234b"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "14da9244629ff431f2a464a9932386ca36af77af49b028d1deaad6d9e1ad805c"
-    sha256 cellar: :any,                 arm64_sonoma:  "4b113069073e833c15b33a2bd483814c0b188e18c9f5c4c4c25c37fb326d386e"
-    sha256 cellar: :any,                 arm64_ventura: "1bb7b328d01cb970118e611f4786bd01a30082c7f4861dd004ba0d382ae21cec"
-    sha256 cellar: :any,                 sonoma:        "1990c714f1efe8301ed669281dd6e03d40111dfe473c4665db2db705ee1f0a0f"
-    sha256 cellar: :any,                 ventura:       "b23e57d04fd3ae58a8a5380f011bb91685bc5dbc9db51281f5a66b3b386ebf0e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2c4d0c5d5cec0a3bf184fede354dbbfb6069a65719384b60ea75a94e87e36da6"
+    sha256 cellar: :any,                 arm64_sequoia: "a528a20df14d7c8a02ed7b44b5b182fcaf9c3d388bfb93ef6cc99f796f2780e6"
+    sha256 cellar: :any,                 arm64_sonoma:  "03e6e125d3c89d972227853ba1103a53f15e49864bd96c0bfe43f8541c707345"
+    sha256 cellar: :any,                 arm64_ventura: "275776d0566ccb621660a4522ded6562de2ad92b3e995d584653a15cbafdeaf5"
+    sha256 cellar: :any,                 sonoma:        "762597911fb7d6162523c2c2a4184329a240cc8af430298776ee828af1167878"
+    sha256 cellar: :any,                 ventura:       "5f8fb4ff7acd92d7d61cf92cc5b04cc866f79e82c17b71ce7d66662ef32d4cd0"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d925ae42250f84375d204c3d625c1f58fb7802a7ea83c878a92b6b38b7c20d59"
   end
 
   depends_on "libyaml"

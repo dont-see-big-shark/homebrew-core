@@ -1,8 +1,8 @@
 class Scrcpy < Formula
   desc "Display and control your Android device"
   homepage "https://github.com/Genymobile/scrcpy"
-  url "https://github.com/Genymobile/scrcpy/archive/refs/tags/v3.0.tar.gz"
-  sha256 "6ad2306dcdf17a8c927691d1004ec632a694069187ded73d30113a5db780fc43"
+  url "https://github.com/Genymobile/scrcpy/archive/refs/tags/v3.1.tar.gz"
+  sha256 "beaa5050a3c45faa77cedc70ad13d88ef26b74d29d52f512b7708671e037d24d"
   license "Apache-2.0"
 
   livecheck do
@@ -11,12 +11,12 @@ class Scrcpy < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia: "dc645512230237f88dd769cdd8239e7a2343447b8d029ed1dd4d813bf0f5f04b"
-    sha256 arm64_sonoma:  "4404674f0d68bee3f0654c50b82bf487ecb7d69da2920e4b06d8e318bc4f95fd"
-    sha256 arm64_ventura: "cb4d5ba2ebe83ca9da3388ee3fe4558f29757c4522af714f2a3f160f2b1fb910"
-    sha256 sonoma:        "3c3bcf6550981315c6e45f419b66fcbdc2673b5811408c4acc034ddaaee3e872"
-    sha256 ventura:       "307b9726aa88a54cb4e7ab47aa1e657b40acee79c2c56277d0fc050da8071f44"
-    sha256 x86_64_linux:  "03b4e7857a38b7d7e564293f2c8dbc01d41316b476808c4eb32e13fc5bb86e90"
+    sha256 arm64_sequoia: "c6f8ef723ce1f374f08240647c1a997e4c25b9150a4e8e88e4aaaefd42f2d99f"
+    sha256 arm64_sonoma:  "a8ad50bd1e07b3d2f15b7da4ff3e2bd6404fc6036e373d5b352b5a2e71e3b91c"
+    sha256 arm64_ventura: "5c0f85e90519f82c24ffeb7b8f57f9adb2b7bb1a8e1c3eb4c445b4b279e7a53b"
+    sha256 sonoma:        "e5d5cf95805ccfc0c2bed6166b70c36965b33f28be5076d5bbfb492d2e7866f5"
+    sha256 ventura:       "53bc8478c52ee3a73d0c96099136b40b3be6e2ce75971516794a1d6de19ea0c5"
+    sha256 x86_64_linux:  "c2bb4b247f8143214c3b80310ee2a65b919f8cac2c58d24ec0fd1e568f92e60f"
   end
 
   depends_on "meson" => :build
@@ -27,8 +27,8 @@ class Scrcpy < Formula
   depends_on "sdl2"
 
   resource "prebuilt-server" do
-    url "https://github.com/Genymobile/scrcpy/releases/download/v3.0/scrcpy-server-v3.0", using: :nounzip
-    sha256 "800044c62a94d5fc16f5ab9c86d45b1050eae3eb436514d1b0d2fe2646b894ea"
+    url "https://github.com/Genymobile/scrcpy/releases/download/v3.1/scrcpy-server-v3.1", using: :nounzip
+    sha256 "958f0944a62f23b1f33a16e9eb14844c1a04b882ca175a738c16d23cb22b86c0"
   end
 
   def install

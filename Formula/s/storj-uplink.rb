@@ -1,8 +1,8 @@
 class StorjUplink < Formula
   desc "Uplink CLI for the Storj network"
   homepage "https://storj.io"
-  url "https://github.com/storj/storj/archive/refs/tags/v1.118.7.tar.gz"
-  sha256 "a1550fe9634c8c1cd78b88486ae09e46fddfb653fac56b1a8d71fdca4af097d1"
+  url "https://github.com/storj/storj/archive/refs/tags/v1.119.3.tar.gz"
+  sha256 "0db646795786a5162bed03832024a05fb063c6983af5743be6867f767d7f19f0"
   license "AGPL-3.0-only"
 
   # Upstream creates stable releases and marks them as "pre-release" before
@@ -18,18 +18,18 @@ class StorjUplink < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "50244ae6d776708b4f7092aa9837d1956791c6504f808d38cfe4d26daa176ef6"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "50244ae6d776708b4f7092aa9837d1956791c6504f808d38cfe4d26daa176ef6"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "50244ae6d776708b4f7092aa9837d1956791c6504f808d38cfe4d26daa176ef6"
-    sha256 cellar: :any_skip_relocation, sonoma:        "e91f2c05f5372b6e61218c5549def1d88f6b7335dad79b015d93038040e4ebc3"
-    sha256 cellar: :any_skip_relocation, ventura:       "e91f2c05f5372b6e61218c5549def1d88f6b7335dad79b015d93038040e4ebc3"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "3bd7bf8ed2b0c539c73822b776468ca4f1af0d43fe8fc7c74a20861838135fc7"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "c7e24b401cc43c4ed211a3c5a222e01308cb7d24563b3ed8997959268f4a255b"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c7e24b401cc43c4ed211a3c5a222e01308cb7d24563b3ed8997959268f4a255b"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "c7e24b401cc43c4ed211a3c5a222e01308cb7d24563b3ed8997959268f4a255b"
+    sha256 cellar: :any_skip_relocation, sonoma:        "d7026ce030878484234d650bc401863f4f682f581c5aa4010ca3aeb690532f51"
+    sha256 cellar: :any_skip_relocation, ventura:       "d7026ce030878484234d650bc401863f4f682f581c5aa4010ca3aeb690532f51"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "18538c07766786fe9bed85ebc2fc614e914267d4574e32decb458d48524a825d"
   end
 
   depends_on "go" => :build
 
   def install
-    system "go", "build", *std_go_args(output: bin/"uplink"), "./cmd/uplink"
+    system "go", "build", *std_go_args(ldflags: "-s -w", output: bin/"uplink"), "./cmd/uplink"
   end
 
   test do

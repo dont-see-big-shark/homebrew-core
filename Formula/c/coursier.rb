@@ -1,8 +1,8 @@
 class Coursier < Formula
   desc "Pure Scala Artifact Fetching"
   homepage "https://get-coursier.io/"
-  url "https://github.com/coursier/coursier/releases/download/v2.1.19/coursier.jar"
-  sha256 "5ac0b48426b04df1b7f033ee223cbfd0e622dac97ee86a51130b751b68fd9061"
+  url "https://github.com/coursier/coursier/releases/download/v2.1.22/coursier.jar"
+  sha256 "db7e0a16e79c2600c3c74fb281e7c223844ee10973c4ba5a7d6a1b718c3e9104"
   license "Apache-2.0"
 
   # Upstream creates releases that use a stable tag (e.g., `v1.2.3`) but are
@@ -14,7 +14,7 @@ class Coursier < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "7559184f4afbe83e7b95f619c22be9fbf65fa06d39265a015f8fb7fcba0080b4"
+    sha256 cellar: :any_skip_relocation, all: "46cf11081984302e446ade0bb2a3b074dbdd191e578e0fcedca898ba03c1c00d"
   end
 
   depends_on "openjdk"

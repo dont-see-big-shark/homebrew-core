@@ -1,17 +1,17 @@
 class Mongosh < Formula
   desc "MongoDB Shell to connect, configure, query, and work with your MongoDB database"
   homepage "https://github.com/mongodb-js/mongosh"
-  url "https://registry.npmjs.org/@mongosh/cli-repl/-/cli-repl-2.3.4.tgz"
-  sha256 "3af12ba49f4a3ac239608b013a0cfb05a4f4391e1820261e822c4c6502649c07"
+  url "https://registry.npmjs.org/@mongosh/cli-repl/-/cli-repl-2.3.7.tgz"
+  sha256 "ef43c89db2efb24604debaf946a1d4e258b381dc22f7e64e34fe78bab14f9625"
   license "Apache-2.0"
 
   bottle do
-    sha256                               arm64_sequoia: "e6d76b96884fea12763cd7c9af40e6578a5b52285d3e6b7edce8911b5f9be404"
-    sha256                               arm64_sonoma:  "5b614641adca4b85a1900921aa895a90fc5586b205a4b11242c09a2c2d24f8a1"
-    sha256                               arm64_ventura: "5bcc1b3aba3f961aa50ab5ee99640de78e2cd3130ea729d7ab6803e81f8b2750"
-    sha256                               sonoma:        "351edb557ffa7cd79ce8aa2c5f49a034038a893613fe40ebd5fef8d4ae20a425"
-    sha256                               ventura:       "74b9bed7da244fa1ab239d808d67424fdfc1b11441210701cc28646947790ca6"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "979a27d83a5a932b58449ed4426a71f67fb638d3fce4b6a74ce1a536759ac796"
+    sha256                               arm64_sequoia: "08bc3e7b40db7ad32dbd713cd2bf4a4a908b7d4645e99f955ba641c7fbb6c6d5"
+    sha256                               arm64_sonoma:  "7ba962a70b86a736db3ec5542f4da76a18e1586fe560b0570c2aec9cc28a2ed3"
+    sha256                               arm64_ventura: "0669d778de5dd526b2bdce3aa06cf9535eab09d8b3e28bc88f71b65c8ebf884b"
+    sha256                               sonoma:        "9c998ed06abcf29dc9ce5036cf748d764cdbbc1abe46b4990004f46d78c5e6fc"
+    sha256                               ventura:       "ab1e02f5be6ce47921f04fce3ed268786775c4ea222f8edc0b7f90900292c6de"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ec0aa248696125acef60f9adf7a2e0ae74c7f4d8441147dcef8d6c8ab053aaf1"
   end
 
   depends_on "node"

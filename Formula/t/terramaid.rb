@@ -1,21 +1,22 @@
 class Terramaid < Formula
   desc "Utility for generating Mermaid diagrams from Terraform configurations"
   homepage "https://github.com/RoseSecurity/Terramaid"
-  url "https://github.com/RoseSecurity/Terramaid/archive/refs/tags/v2.0.2.tar.gz"
-  sha256 "1ddf7f16d12e96b3169f92e78415337d76edee9e9576b03f7b844615cb2daaee"
+  url "https://github.com/RoseSecurity/Terramaid/archive/refs/tags/v2.0.3.tar.gz"
+  sha256 "9285972d08be966b697f496d0957ba9436766de1c5291026cce481753a877d02"
   license "Apache-2.0"
   head "https://github.com/RoseSecurity/Terramaid.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "c439ac1215c0344015e2c027a36240c97a339ae1878466cb3821b1a360094616"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "c439ac1215c0344015e2c027a36240c97a339ae1878466cb3821b1a360094616"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "c439ac1215c0344015e2c027a36240c97a339ae1878466cb3821b1a360094616"
-    sha256 cellar: :any_skip_relocation, sonoma:        "45347c94c895dfe6ab06022bdb1b645bdb9fcfa92c47e686c9892d2f9cc63375"
-    sha256 cellar: :any_skip_relocation, ventura:       "45347c94c895dfe6ab06022bdb1b645bdb9fcfa92c47e686c9892d2f9cc63375"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "96c7dcc481717cef4596739b95ded0246e5d5951258c34d9b3fec4b56aabae4c"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "6f49bc604e7847cc9b9f63eea6f92f42e1cadd3302ebe9aa3a03e631ac116bc7"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "6f49bc604e7847cc9b9f63eea6f92f42e1cadd3302ebe9aa3a03e631ac116bc7"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "6f49bc604e7847cc9b9f63eea6f92f42e1cadd3302ebe9aa3a03e631ac116bc7"
+    sha256 cellar: :any_skip_relocation, sonoma:        "7a5ac43e61611a2797737c8c8d317ab8fe7d09ad651afdabe96e60457b717fa5"
+    sha256 cellar: :any_skip_relocation, ventura:       "7a5ac43e61611a2797737c8c8d317ab8fe7d09ad651afdabe96e60457b717fa5"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7cf367c712f6b779154a8946950fe16868379ab50423dc480e12dd7742885244"
   end
 
   depends_on "go" => [:build, :test]
+  depends_on "opentofu" => :test
 
   def install
     ldflags = "-s -w -X github.com/RoseSecurity/terramaid/cmd.Version=#{version}"
@@ -25,19 +26,7 @@ class Terramaid < Formula
   end
 
   test do
-    resource "terraform" do
-      # https://www.hashicorp.com/blog/hashicorp-adopts-business-source-license
-      # Do not update terraform, it switched to the BUSL license
-      # Waiting for https://github.com/runatlantis/atlantis/issues/3741
-      url "https://github.com/hashicorp/terraform/archive/refs/tags/v1.5.7.tar.gz"
-      sha256 "6742fc87cba5e064455393cda12f0e0241c85a7cb2a3558d13289380bb5f26f5"
-    end
-
-    resource("terraform").stage do
-      system "go", "build", *std_go_args(ldflags: "-s -w", output: testpath/"terraform")
-    end
-
-    ENV.prepend_path "PATH", testpath
+    ENV["TERRAMAID_TF_BINARY"] = "tofu"
 
     (testpath/"main.tf").write <<~HCL
       resource "aws_instance" "example" {

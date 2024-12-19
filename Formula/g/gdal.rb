@@ -4,7 +4,7 @@ class Gdal < Formula
   url "https://github.com/OSGeo/gdal/releases/download/v3.10.0/gdal-3.10.0.tar.gz"
   sha256 "946ef444489bedbc1b04bd4c115d67ae8d3f3e4a5798d5a2f1cb2a11014105b2"
   license "MIT"
-  revision 2
+  revision 3
 
   livecheck do
     url "https://download.osgeo.org/gdal/CURRENT/"
@@ -13,12 +13,12 @@ class Gdal < Formula
 
   bottle do
     rebuild 1
-    sha256 arm64_sequoia: "602dcb21615d67e2866c09c50b8aa8f40065853a5ccdfbb55abfded0ca513f23"
-    sha256 arm64_sonoma:  "7901e6e939f0f9c965145daf2a922fb7d66a8e5cc356c431a19251d9c30d8c1a"
-    sha256 arm64_ventura: "dcf669b552fb9b11b667e97e85e5e29189ac74fe6de41281606f65327184480b"
-    sha256 sonoma:        "af8a1edb8ac4e3ff5241c9ec5820c63333507a6a7d2ef650f8e3dc00757ccbbc"
-    sha256 ventura:       "6d5f44b75ac640cf0cdad3723ecad3b42af3256db4fe25c9af4d70a4f49307e8"
-    sha256 x86_64_linux:  "5f846271f9eb598ccd3c05b4f6b1d0bb4e070e564c99486d9901498df57e032d"
+    sha256 arm64_sequoia: "2e7e370c46bd9416b1318a74e846273af14cfaafd8a46f7685dfeb049c794ffe"
+    sha256 arm64_sonoma:  "1329ab093266acc1722ed51022fe189e0728f6a7a78be3e0a0735307a680f3ac"
+    sha256 arm64_ventura: "73735f6e27207776662163d0f027f4f88f21902efc114fb0467e1b08e7f78efc"
+    sha256 sonoma:        "969f23a77e6f48985e1d7859a117391542bdc23843b3c8c28e81a5821c6a9df3"
+    sha256 ventura:       "d1de1e412c17bc979e86cd07900c986d4a3866641c5d439671807afae8d7f295"
+    sha256 x86_64_linux:  "473db1e7bf91c3f1dc616c1b320169411fc277d925e092e6b55e7ee6e62fa24e"
   end
 
   head do
@@ -32,6 +32,7 @@ class Gdal < Formula
   depends_on "python-setuptools" => :build
   depends_on "swig" => :build
   depends_on "apache-arrow"
+  depends_on "c-blosc"
   depends_on "cfitsio"
   depends_on "epsilon"
   depends_on "expat"
@@ -129,5 +130,7 @@ class Gdal < Formula
     system bin/"ogrinfo", "--formats"
     # Changed Python package name from "gdal" to "osgeo.gdal" in 3.2.0.
     system python3, "-c", "import osgeo.gdal"
+    # test for zarr blosc compressor
+    assert_match "BLOSC_COMPRESSORS", shell_output("#{bin}/gdalinfo --format Zarr")
   end
 end

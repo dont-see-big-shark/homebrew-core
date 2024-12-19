@@ -1,19 +1,20 @@
 class Lla < Formula
   desc "High-performance, extensible alternative to ls"
   homepage "https://github.com/triyanox/lla"
-  url "https://github.com/triyanox/lla/archive/refs/tags/v0.2.10.tar.gz"
-  sha256 "f8eb547b66ed541b8c14f86e222ab21be9311debe4a39348be72518de51d1278"
+  url "https://github.com/triyanox/lla/archive/refs/tags/v0.3.6.tar.gz"
+  sha256 "adb4e36e7eb94d537fb218a78474dc61d8fe5384f5130bbafffc3fabdd68d1fd"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "2fc32e5f17c2080f83c6ae40c592e1013dbfe688308907e94f1027fe60e3f790"
-    sha256 cellar: :any,                 arm64_sonoma:  "df3fd22eb7927d287680ab0f28a697a699ff06f46bdd2c1a0fc2eb87d50f8cc4"
-    sha256 cellar: :any,                 arm64_ventura: "993b65cfc2d0972f831327c501f8b654ebbe2bd7e5495ed0c4c48997f7f82a6a"
-    sha256 cellar: :any,                 sonoma:        "72532a59d840e4d9e42cfd64d18e4bcb68c428e98d67fa39289b569c4f94e3ff"
-    sha256 cellar: :any,                 ventura:       "73ecd6feb44b828df32d9678f4bc0c29136ce431d5888c3cebff698752a6c2c3"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d0949461f42ce1dfe90b77412ad3b2b0d459de9b34dbe3054e864c5c3751041c"
+    sha256 cellar: :any,                 arm64_sequoia: "e58f8b5f53f4e074912fdc2a58051a8f5a0b11d7eb3b9558f03fc33fcfa7fa83"
+    sha256 cellar: :any,                 arm64_sonoma:  "d232fe876f89ff1d1166a7e6e81215b13cc9325f483ca816b5d2a217132963a8"
+    sha256 cellar: :any,                 arm64_ventura: "140e7cb12381c1b1f11ac3fed21a1d35ef608c23417210af9696772a5cb7032d"
+    sha256 cellar: :any,                 sonoma:        "a9a53e6c7636dd3498fd49ee246cc85873cc4442e1820212ed7dea9a41f4007e"
+    sha256 cellar: :any,                 ventura:       "c98e823c2cef35d3416351037e5b854f159c9743f9af28f42806a61e88a73a2a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "75c52e5b9594a5e49b77e492370db519211832f1254675ea45a022b324d47d24"
   end
 
+  depends_on "protobuf" => :build
   depends_on "rust" => :build
 
   def install

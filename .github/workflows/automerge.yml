@@ -47,7 +47,7 @@ jobs:
           workflow-name: Triage tasks
 
       - name: Download `event_payload` artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
           name: event_payload
           github-token: ${{ github.token }}

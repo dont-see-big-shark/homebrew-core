@@ -2,23 +2,22 @@ class Auditbeat < Formula
   desc "Lightweight Shipper for Audit Data"
   homepage "https://www.elastic.co/beats/auditbeat"
   url "https://github.com/elastic/beats.git",
-      tag:      "v8.16.1",
-      revision: "f17e0828f1de9f1a256d3f520324fa6da53daee5"
+      tag:      "v8.17.0",
+      revision: "092f0eae4d0d343cc3a142f671c2a0428df67840"
   license "Apache-2.0"
   head "https://github.com/elastic/beats.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "9964347daffbcbe8d9a41721fad49640e8b2a2e7512efdc60baf1ffc9fb4eee3"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "d8c0cad143c5f4868dbfca290cc87537a8cb84c1646c421898e2a6ba2e682d0a"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "a22b3a830e488a5dc294d18bf03b5b5645f8c4ecdd0a1eb8f9ee74e6802441a2"
-    sha256 cellar: :any_skip_relocation, sonoma:        "d1f1f6c680f4d5e3ff1ebf562d4ff026f07683bad61c07cf0a54e9e3a1545d5d"
-    sha256 cellar: :any_skip_relocation, ventura:       "37063da62c8839549b1aca28f9872d691c173710090651b7041b6acc2e831dcc"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ae8dc83a4981735761564f5d4db11209de98b9fca00d581ad0ab8c9f3c77f4fa"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "629e80dc0ecdab2029aa924feda7dafd9e7962980851f7a98c8e358ce0dca89a"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "da9999e1844efd8399bdb6b04fa431dcb3f67a0027adbc7b37a34eb20e9f5973"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "2693ffb263f4a65ff3e2c52c694bdefad4fcd01c1bc9d6b49c642a5c01ed6893"
+    sha256 cellar: :any_skip_relocation, sonoma:        "42387fe099ef0b6dd232aad224487ebd74f70418db89149c763cc41953e39510"
+    sha256 cellar: :any_skip_relocation, ventura:       "1a3e0916daa45a5839bcbab0b91f6687894b4dd6ee858c091cbacaafe15fa402"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0406a989ea15c8fd446eb1c8419cca5d712866dae4374cd57f337dd337643d85"
   end
 
   depends_on "go" => :build
   depends_on "mage" => :build
-  depends_on "python@3.12" => :build
 
   def install
     # remove non open source files
@@ -30,12 +29,10 @@ class Auditbeat < Formula
       inreplace "magefile.go", "devtools.GenerateModuleIncludeListGo, Docs)",
                                "devtools.GenerateModuleIncludeListGo)"
 
-      # prevent downloading binary wheels during python setup
-      system "make", "PIP_INSTALL_PARAMS=--no-binary :all", "python-env"
       system "mage", "-v", "build"
       system "mage", "-v", "update"
 
-      (etc/"auditbeat").install Dir["auditbeat.*", "fields.yml"]
+      pkgetc.install Dir["auditbeat.*", "fields.yml"]
       (libexec/"bin").install "auditbeat"
       prefix.install "build/kibana"
     end
@@ -74,17 +71,19 @@ class Auditbeat < Formula
         path: "#{testpath}/auditbeat"
         filename: auditbeat
     YAML
-    fork do
-      exec bin/"auditbeat", "-path.config", testpath/"config", "-path.data", testpath/"data"
-    end
+
+    pid = spawn bin/"auditbeat", "--path.config", testpath/"config", "--path.data", testpath/"data"
     sleep 5
     touch testpath/"files/touch"
+    sleep 10
+    sleep 20 if OS.mac? && Hardware::CPU.intel?
 
-    sleep 30
-
-    assert_predicate testpath/"data/beat.db", :exist?
+    assert_path_exists testpath/"data/beat.db"
 
     output = JSON.parse((testpath/"data/meta.json").read)
     assert_includes output, "first_start"
+  ensure
+    Process.kill("TERM", pid)
+    Process.wait(pid)
   end
 end

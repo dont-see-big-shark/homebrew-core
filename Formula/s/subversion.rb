@@ -2,12 +2,11 @@ class Subversion < Formula
   desc "Version control system designed to be a better CVS"
   homepage "https://subversion.apache.org/"
   license "Apache-2.0"
-  revision 1
 
   stable do
-    url "https://www.apache.org/dyn/closer.lua?path=subversion/subversion-1.14.4.tar.bz2"
-    mirror "https://archive.apache.org/dist/subversion/subversion-1.14.4.tar.bz2"
-    sha256 "44ead116e72e480f10f123c914bb6f9f8c041711c041ed7abff1b8634a199e3c"
+    url "https://www.apache.org/dyn/closer.lua?path=subversion/subversion-1.14.5.tar.bz2"
+    mirror "https://archive.apache.org/dist/subversion/subversion-1.14.5.tar.bz2"
+    sha256 "e78a29e7766b8b7b354497d08f71a55641abc53675ce1875584781aae35644a1"
 
     # Fix -flat_namespace being used on Big Sur and later.
     patch do
@@ -17,12 +16,13 @@ class Subversion < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia: "219dbd8e67c43d5cd3f4a4d42d8671a71887c16b77bbdf9464295ac4e806bc61"
-    sha256 arm64_sonoma:  "9712ef30bf9739ffafceb6885c31750f8027170cc69cbd05ae77d715289e64e8"
-    sha256 arm64_ventura: "951d415bbac5ccef7497f905a28d0f73f1c188e543de74d8f8b98473fd05c72e"
-    sha256 sonoma:        "7c992a6ae16dd52952c48d16cca55c31c7bb7f05be10342cb4cdebd1005a4db6"
-    sha256 ventura:       "eba166d764e2cafce718a4a179314e97eaf408c03d938055bffb306136338065"
-    sha256 x86_64_linux:  "d8266abb05fe974ed383b243abed2a2371441a9f420eb78ae9b607ce0304f2d6"
+    rebuild 1
+    sha256 arm64_sequoia: "d9eeed61100f3b3a1592d5d5b46909dbdc9f3a4e7c5345ed7102bbe51e185371"
+    sha256 arm64_sonoma:  "4626f478a97f833c72ecb9167c15f31c6b86fa78e74cd299b84a9c2824f67913"
+    sha256 arm64_ventura: "95783f81a10344c8db29cd9f679f2b25f18bea384c7ae764466dee7a8f6a4deb"
+    sha256 sonoma:        "4f5d44cba58d1b6e991d16664e60f27c56fbd6e897c93b92a8f15093b8848433"
+    sha256 ventura:       "786eed3f8da4bde0f91d5421165056c073cae7ebfbbaabbfbfd91e9cca1edc46"
+    sha256 x86_64_linux:  "607b4b1f1c9dd5c071d3dc9bf6a38068245b6c2a58469b5aff61ec4fb0f6339a"
   end
 
   head do
@@ -35,7 +35,7 @@ class Subversion < Formula
 
   depends_on "pkgconf" => :build
   depends_on "python-setuptools" => :build
-  depends_on "python@3.12" => [:build, :test]
+  depends_on "python@3.13" => [:build, :test]
   depends_on "scons" => :build # For Serf
   depends_on "swig" => :build
   depends_on "apr"
@@ -76,7 +76,7 @@ class Subversion < Formula
   end
 
   def python3
-    "python3.12"
+    "python3.13"
   end
 
   def install

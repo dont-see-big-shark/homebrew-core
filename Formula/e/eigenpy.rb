@@ -4,15 +4,16 @@ class Eigenpy < Formula
   url "https://github.com/stack-of-tasks/eigenpy/releases/download/v3.10.1/eigenpy-3.10.1.tar.gz"
   sha256 "7b4ea31c8eda2eeba6b1ebb22ebfe72b650e04da20e6ef48d48008c2afb1bbc4"
   license "BSD-2-Clause"
+  revision 2
   head "https://github.com/stack-of-tasks/eigenpy.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "2873eb6f51db6437e0a463de495856c3c36a95157be2cefaf77923be054b2ac1"
-    sha256 cellar: :any,                 arm64_sonoma:  "178b9c4635958edd26edc9fc3d3f496f77d1425cb2cc0d87bc3f7d8805069844"
-    sha256 cellar: :any,                 arm64_ventura: "9a83b7ebdb25767c84adc267701182830f5f5ad85d20ad1b0abe09138f3e2890"
-    sha256 cellar: :any,                 sonoma:        "8405f62554a5deb4c51c1a751a5eda8797418c4dcdfcf909bcc005607c442b37"
-    sha256 cellar: :any,                 ventura:       "b5c5be71db3f9252241280ab376645a4656c9b67e9449d42fddcea3b63078194"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "96fb6f25e75ddcc3f05d1a6aaa229d5a9450f5ad32b28c24c8db28d7d946307a"
+    sha256 cellar: :any,                 arm64_sequoia: "2181105e8918cc0830f2b8bb38e68e659cb05e24762e4dc556f632870a376f0d"
+    sha256 cellar: :any,                 arm64_sonoma:  "3ff9c1dc7bcd49966cda52dfe41c95c96883bbb269b900c97b0f41f2cf04b38b"
+    sha256 cellar: :any,                 arm64_ventura: "7bfa00ad89a7ad3b8da8e8260cf2a2ca949c21362104b953a54b1ff8be7575f7"
+    sha256 cellar: :any,                 sonoma:        "209161f440d88b9100949353df8e9d8ac0f5d37ea7b76848cd6576fe7add14f2"
+    sha256 cellar: :any,                 ventura:       "a2e020cba8575e069537befe9dd26113e0dac9833e0ae0de7c54f12e5089dd3d"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0aaf303a225e46d59acad36a29648a77fbf95ed22aadc3eb2036017bd0ef66d9"
   end
 
   depends_on "boost" => :build
@@ -22,11 +23,11 @@ class Eigenpy < Formula
   depends_on "boost-python3"
   depends_on "eigen"
   depends_on "numpy"
-  depends_on "python@3.12"
+  depends_on "python@3.13"
   depends_on "scipy"
 
   def python3
-    "python3.12"
+    "python3.13"
   end
 
   def install
@@ -42,7 +43,7 @@ class Eigenpy < Formula
   end
 
   test do
-    system python3, "-c", <<~EOS
+    system python3, "-c", <<~PYTHON
       import numpy as np
       import eigenpy
 
@@ -54,6 +55,6 @@ class Eigenpy < Formula
       P = ldlt.transpositionsP()
 
       assert eigenpy.is_approx(np.transpose(P).dot(L.dot(np.diag(D).dot(np.transpose(L).dot(P)))),A)
-    EOS
+    PYTHON
   end
 end

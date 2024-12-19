@@ -1,9 +1,10 @@
 class BoostPython3 < Formula
   desc "C++ library for C++/Python3 interoperability"
   homepage "https://www.boost.org/"
-  url "https://github.com/boostorg/boost/releases/download/boost-1.86.0/boost-1.86.0-b2-nodocs.tar.xz"
-  sha256 "a4d99d032ab74c9c5e76eddcecc4489134282245fffa7e079c5804b92b45f51d"
+  url "https://github.com/boostorg/boost/releases/download/boost-1.87.0/boost-1.87.0-b2-nodocs.tar.xz"
+  sha256 "3abd7a51118a5dd74673b25e0a3f0a4ab1752d8d618f4b8cea84a603aeecc680"
   license "BSL-1.0"
+  revision 1
   head "https://github.com/boostorg/boost.git", branch: "master"
 
   livecheck do
@@ -11,34 +12,20 @@ class BoostPython3 < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia:  "66e23ad361052f87a6df6b7afaa5724df91f2ffaa482a6795ede1e0832d7b117"
-    sha256 cellar: :any,                 arm64_sonoma:   "f2f55396a7afed649ea03117ac9ac111ed9bcf9d3ce4a0d2bf709e17c41652fc"
-    sha256 cellar: :any,                 arm64_ventura:  "375db655b7ec5f3baa117e2159871434646d150217ab1505bb3e985c4ad66746"
-    sha256 cellar: :any,                 arm64_monterey: "398d0edf6be250a569c26c27f74fefa4582e98df83beabd16565b4fe1d275840"
-    sha256 cellar: :any,                 sonoma:         "37d7b06e4e101373807fa3d55ea0962bd7ca375734e63fcd05a0ded18b27a334"
-    sha256 cellar: :any,                 ventura:        "db5fd6cdd07b5fdc534a420a119dfab593733a25e0af55b6899c149fe63b8910"
-    sha256 cellar: :any,                 monterey:       "a0181c63ba6f93cbc495a6f0664fe7d45db3e1754a20ac8ffda46572866fa19a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "8d0f76e68afe7ed1f5bfc311afc9a7b260b842081a3c988494ce121cea7fe12d"
+    sha256 cellar: :any,                 arm64_sequoia: "1bfc8d16e673420c90d440351214aa003dddce5dd1e5d997750ebfe3f10406af"
+    sha256 cellar: :any,                 arm64_sonoma:  "10316d5c37144f3ee869da4350a160b518570b60334e768ddbe9eacf1fcb7be8"
+    sha256 cellar: :any,                 arm64_ventura: "f5a6b1a59f5d1bd5092b6256a2fcbfd7fb4816205de5cc94f95fce3ffe708ac5"
+    sha256 cellar: :any,                 sonoma:        "c269dac8219d15e78659b3b5f48819d3695a5e9f646111bd30187d24d6e11525"
+    sha256 cellar: :any,                 ventura:       "7232f6b6da751626f3f7a9bc22ecd19e26804dde406de41b683615805bcead1a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c4dde9942cf842fe1a19c561da2f18880467730858f59ce0feaa6895e8517bbb"
   end
 
   depends_on "numpy" => :build
   depends_on "boost"
-  depends_on "python@3.12"
-
-  # Backport support for numpy>=2
-  patch do
-    url "https://github.com/boostorg/python/commit/0474de0f6cc9c6e7230aeb7164af2f7e4ccf74bf.patch?full_index=1"
-    sha256 "ac4f3e7bd4609c464a493cfe6a0e416bcd14fdadfc5c9f59a4c7d14e19aea80b"
-    directory "libs/python"
-  end
-  patch do
-    url "https://github.com/boostorg/python/commit/99a5352b5cf790c559a7b976c1ba99520431d9d1.patch?full_index=1"
-    sha256 "6a15028cb172ebbf3480d3f00d7d5f6cf03d2d3f7f8baf20b9f4250b43da16aa"
-    directory "libs/python"
-  end
+  depends_on "python@3.13"
 
   def python3
-    "python3.12"
+    "python3.13"
   end
 
   def install
@@ -46,10 +33,10 @@ class BoostPython3 < Formula
     args = %W[
       -d2
       -j#{ENV.make_jobs}
-      --layout=tagged-1.66
+      --layout=system
       --user-config=user-config.jam
       install
-      threading=multi,single
+      threading=multi
       link=shared,static
     ]
 
@@ -57,6 +44,10 @@ class BoostPython3 < Formula
     # handling using ENV.cxx14. Using "cxxflags" and "linkflags" still works.
     args << "cxxflags=-std=c++14"
     args << "cxxflags=-stdlib=libc++" << "linkflags=-stdlib=libc++" if ENV.compiler == :clang
+
+    # Avoid linkage to boost container and graph modules
+    # Issue ref: https://github.com/boostorg/boost/issues/985
+    args << "linkflags=-Wl,-dead_strip_dylibs" if OS.mac?
 
     # disable python detection in bootstrap.sh; it guesses the wrong include
     # directory for Python 3 headers, so we configure python manually in
@@ -92,9 +83,8 @@ class BoostPython3 < Formula
                    "python=#{pyver}",
                    *args
 
-    lib.install buildpath.glob("install-python3/lib/*.*")
-    (lib/"cmake").install buildpath.glob("install-python3/lib/cmake/boost_python*")
-    (lib/"cmake").install buildpath.glob("install-python3/lib/cmake/boost_numpy*")
+    lib.install buildpath.glob("install-python3/lib/*{python,numpy}*")
+    (lib/"cmake").install buildpath.glob("install-python3/lib/cmake/*{python,numpy}*")
   end
 
   test do

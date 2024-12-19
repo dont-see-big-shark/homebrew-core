@@ -1,18 +1,18 @@
 class Deno < Formula
   desc "Secure runtime for JavaScript and TypeScript"
   homepage "https://deno.com/"
-  url "https://github.com/denoland/deno/releases/download/v2.1.2/deno_src.tar.gz"
-  sha256 "f892a4f2fd12964dd4a49f4f7e5639911611b202babb3ef523dcb01a4c76e9fb"
+  url "https://github.com/denoland/deno/releases/download/v2.1.4/deno_src.tar.gz"
+  sha256 "f48758771a456db3fabdf8665a4576f6d9dc24ff6d75a82f120d093b0307efd1"
   license "MIT"
   head "https://github.com/denoland/deno.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "df874403526d66f8501e944415dc01c57e6266bb0b64f8bf19693dc176b68321"
-    sha256 cellar: :any,                 arm64_sonoma:  "2e5b6d8d1d3bc5e9801787d80e39857a4e49a36505caa65379e7bb0cf31fe4f0"
-    sha256 cellar: :any,                 arm64_ventura: "6fcd75d29fd2d59a74bda6ce1dbe0a6aa8c25b29e6020d42d58e266d5d78f9c0"
-    sha256 cellar: :any,                 sonoma:        "52c8d060a6ad70cf18ee504e75bffdd7403195ff5a2631b1e741886361a69bb2"
-    sha256 cellar: :any,                 ventura:       "16bb69a804afed777240d7f80fcb02257e19177e6760f510dbe6ad95587d75bd"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "549754577e968aa73750273dbcfb7e34141d9cfeabad2d927b20d40a1a951ce7"
+    sha256 cellar: :any,                 arm64_sequoia: "cbea25eb50e3e253dbca78869a2d27addef495ca29da6eee0cf158c70389bf3d"
+    sha256 cellar: :any,                 arm64_sonoma:  "bbfcdb2d257d4743c4e74b9d3f4c1a20f702b9f95fb13a49ef56fb7ef96d9538"
+    sha256 cellar: :any,                 arm64_ventura: "f903f94f919a7bf0a31c5d6af42108d23aa68eeb6711f5eac16d9b22a4d189d4"
+    sha256 cellar: :any,                 sonoma:        "a55d12685836d6d7b0f08f59c9ba9332d1e6b61d62b6a052687be91b9dc6c541"
+    sha256 cellar: :any,                 ventura:       "ff03a0e42d9073a2bfb5c1a03781efb5a87b8bd3beb83e6dc5eb3e13d1434392"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f3c197e9e6f880a8843d5652321a944699845cdb5e1cef84806c5e1cca2f6e80"
   end
 
   depends_on "cmake" => :build
@@ -27,7 +27,6 @@ class Deno < Formula
   uses_from_macos "python" => :build, since: :catalina
   uses_from_macos "libffi"
   uses_from_macos "xz"
-  uses_from_macos "zlib"
 
   on_linux do
     depends_on "pkgconf" => :build
@@ -53,8 +52,8 @@ class Deno < Formula
 
   # VERSION=#{version} && curl -s https://raw.githubusercontent.com/denoland/deno/v$VERSION/Cargo.lock | grep -C 1 'name = "deno_core"'
   resource "deno_core" do
-    url "https://github.com/denoland/deno_core/archive/refs/tags/0.323.0.tar.gz"
-    sha256 "b1ca6e4fce14eb4518745fb96b0b7032b3d2b01d891dac5d4c930b1f7b931911"
+    url "https://github.com/denoland/deno_core/archive/refs/tags/0.324.0.tar.gz"
+    sha256 "be30758f15fbd47f250d7cc1aeb87bd5eb5618119150c46f9115892c11526fd8"
   end
 
   # The latest commit from `denoland/icu`, go to https://github.com/denoland/rusty_v8/tree/v#{rusty_v8_version}/third_party
@@ -168,7 +167,6 @@ class Deno < Formula
     unless OS.mac?
       linked_libraries += [
         Formula["libffi"].opt_lib/shared_library("libffi"),
-        Formula["zlib"].opt_lib/shared_library("libz"),
       ]
     end
     linked_libraries.each do |library|

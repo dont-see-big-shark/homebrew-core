@@ -1,8 +1,8 @@
 class Teleport < Formula
   desc "Modern SSH server for teams managing distributed infrastructure"
   homepage "https://goteleport.com/"
-  url "https://github.com/gravitational/teleport/archive/refs/tags/v17.0.2.tar.gz"
-  sha256 "213dd9cc016fd8873843d8f7f67a15eb162b61af5986a8b627681b3de24e7aec"
+  url "https://github.com/gravitational/teleport/archive/refs/tags/v17.0.5.tar.gz"
+  sha256 "5fa88afc1ab3b3e172fb16dd1f95513ade163609088f6ea3692cd68ccda1573c"
   license all_of: ["AGPL-3.0-or-later", "Apache-2.0"]
   head "https://github.com/gravitational/teleport.git", branch: "master"
 
@@ -18,12 +18,12 @@ class Teleport < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "5234394250b6af2001b2be0bccfdd2b5f2f2edebd6acd8536e4ca4e43925b359"
-    sha256 cellar: :any,                 arm64_sonoma:  "355ec90750cdf68545b3a3718afea6f0d0ba9a60dc2806379f6de7983102e863"
-    sha256 cellar: :any,                 arm64_ventura: "98df22a6bee26567046e6f880138b7890ec891bc01e36461ce9019d92f0a1d8a"
-    sha256 cellar: :any,                 sonoma:        "3e9d907b426cccf5d3b1ead2aa6aea2b76753a69aefad3cda4ab4fd802ecaf16"
-    sha256 cellar: :any,                 ventura:       "8747688889e5ca7fffc911dcb5711b7434dd88b1394e51c71e61a0113403c6d2"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0cc319d21ba1b6982d2fe482018765460b7524c2b4529822ef3aecf8cf80b1a0"
+    sha256 cellar: :any,                 arm64_sequoia: "7ad886d9e9ccddb179212738af43e91ed21353e286c3db05f61a0b9bc5b6c979"
+    sha256 cellar: :any,                 arm64_sonoma:  "7b018b6c2aecae8afb11832cfae7c5d49b525138a886240c69d5aae53fd06f3c"
+    sha256 cellar: :any,                 arm64_ventura: "9c8746177951208b9fce446f57ff115b0e45fb29a112b38e5c8d3628d39dcb02"
+    sha256 cellar: :any,                 sonoma:        "07df487c9f2ceb684c0a853b751491f32b290dd2795771fa5e15956130fea03d"
+    sha256 cellar: :any,                 ventura:       "57b490042e6cfe74904ffe0a0b57a4ecd61f2cecfe362203dafd0d9412b90f19"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "808f3221f5fce333d175f6afb319464f85f4b372529edd200d12f712dd96c6e6"
   end
 
   depends_on "go" => :build
@@ -43,6 +43,12 @@ class Teleport < Formula
 
   conflicts_with "etsh", because: "both install `tsh` binaries"
   conflicts_with "tctl", because: "both install `tctl` binaries"
+
+  # disable `wasm-opt` for ironrdp pkg release build, upstream pr ref, https://github.com/gravitational/teleport/pull/50178
+  patch do
+    url "https://github.com/gravitational/teleport/commit/994890fb05360b166afd981312345a4cf01bc422.patch?full_index=1"
+    sha256 "9d60180ff69a8a8985773d3b2a107ab910b22040e4cbf6afed11bd2b64fc6996"
+  end
 
   def install
     ENV.prepend_path "PATH", Formula["rustup"].bin

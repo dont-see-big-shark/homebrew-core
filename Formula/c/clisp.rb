@@ -17,8 +17,8 @@ class Clisp < Formula
   end
 
   livecheck do
-    url "https://ftp.gnu.org/gnu/clisp/release/?C=M&O=D"
-    regex(%r{href=.*?v?(\d+(?:\.\d+)+)/?["' >]}i)
+    url "https://alpha.gnu.org/gnu/clisp/?C=M&O=D"
+    regex(/href=.*?clisp[._-]v?(\d+(?:\.\d+)+)\.t/i)
     strategy :page_match
   end
 
@@ -52,9 +52,9 @@ class Clisp < Formula
   end
 
   test do
-    (testpath/"main.lisp").write <<~EOS
+    (testpath/"main.lisp").write <<~LISP
       (format t "Hello, World!")
-    EOS
+    LISP
     assert_equal "Hello, World!", shell_output(bin/"clisp main.lisp").chomp
   end
 end

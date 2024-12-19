@@ -1,17 +1,17 @@
 class Xcresultparser < Formula
   desc "Parse binary .xcresult bundles from Xcode builds and test runs"
   homepage "https://github.com/a7ex/xcresultparser"
-  url "https://github.com/a7ex/xcresultparser/archive/refs/tags/1.8.1.tar.gz"
-  sha256 "6644f6f75eb334cdc09d20acb141ff797d3d60f9fdd37c638a1a14771f941ea0"
+  url "https://github.com/a7ex/xcresultparser/archive/refs/tags/1.8.3.tar.gz"
+  sha256 "7b66a269132379f42617f9338892a28f5695010cb337581007ad8cf6bad7c128"
   license "MIT"
   head "https://github.com/a7ex/xcresultparser.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "9bbd9c81f285a02ea3178831a3dca33f356d6755e77ba464ff14bebfe96b46a5"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "73511f0a89d1161b78439bcad7a53e378597cd63abae10f5ebad40f9fa87e91d"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "701228f543792efa43da2e856015eccde4e571db754d90600e8b006ed244bc62"
-    sha256 cellar: :any_skip_relocation, sonoma:        "5cb3f6f6010b72659ce94ac5e4235122b11b0d01658c9f1745a0bee1dc4ffa77"
-    sha256 cellar: :any_skip_relocation, ventura:       "00bd52c9b3a64da78d12fe2c9497d53c8e8ac84f4343b66b7ce08ce7032b089d"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "d8872ca6d521bd9d2b5eaed72d9a0cb7d93fa72fea9af44b1b2f389c5bce1df8"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "23721a36ccdd1d0e8ccb069482333a9260d145c86609cf4a635753f7f76cd11f"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "b0a26438bbdc7ab721e57ebf88ad6dee0bccc029f9486a8ebc3c41fa620f8200"
+    sha256 cellar: :any_skip_relocation, sonoma:        "6621d94cdf92e1f517a4ce7eb87bd956f86bae53f5bda1ff69f76c257634244a"
+    sha256 cellar: :any_skip_relocation, ventura:       "231fe644267200384a7a32c3f629eddfa4cac93ddf9d728ff8eef52ba7f65f0b"
   end
 
   depends_on xcode: ["15.0", :build]

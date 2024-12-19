@@ -1,18 +1,19 @@
 class Nzbget < Formula
   desc "Binary newsgrabber for nzb files"
   homepage "https://nzbget.com"
-  url "https://github.com/nzbgetcom/nzbget/archive/refs/tags/v24.4.tar.gz"
-  sha256 "ea3ebe13f5d48f040f1614b62bff9b51da134f4f689ec918997f5896cf51f337"
+  url "https://github.com/nzbgetcom/nzbget/archive/refs/tags/v24.5.tar.gz"
+  sha256 "d8a26fef9f92d63258251c69af01f39073a479e48c14114dc96d285470312c83"
   license "GPL-2.0-or-later"
+  revision 1
   head "https://github.com/nzbgetcom/nzbget.git", branch: "develop"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "0478991b7ae356aca4c35a7d036fdcb188988b57811fd2bb1a1d678e9dbc33fc"
-    sha256 cellar: :any,                 arm64_sonoma:  "7af9e5cee1dabae64cd660cbe0fb9bde0aaf3607f80ee798d052483a436f5492"
-    sha256 cellar: :any,                 arm64_ventura: "e353ce5f208b56a48f41656ee35784f74dabe71759e1f676f426f7b67d7694d1"
-    sha256                               sonoma:        "d0ffe0849e5e2135a7405402a55b6787cfe546e7dac732024e1cd9b7737fb103"
-    sha256                               ventura:       "df3636cf74641699384be7edf44b9d7126ec3fa9cf44b81812cfdada38bf3e66"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ea5ef2b5e097844f99a180ccd6c2b9508354c1d8ecf0dcd228de3b71a69173ea"
+    sha256 cellar: :any,                 arm64_sequoia: "cfb625c14570f9ad326f3f92b01383473c94fadedb324f6b51d5f8e58a573558"
+    sha256 cellar: :any,                 arm64_sonoma:  "9a79e5a56c6e0e176711be00a643789561d3422b91adc6f62c013785bb0f54e7"
+    sha256 cellar: :any,                 arm64_ventura: "13ef54d1cb4b17fb7cb91e0fdfa82297c455cd1dd01c63d03fdf385347aaf732"
+    sha256                               sonoma:        "54cf30d56515995e3b417af8927f889b8f8406352ee4c8e302d2e1bfbcb7d73d"
+    sha256                               ventura:       "d6c9ffebed9e93a4b14480f0ed02fee96da6a6ccdd6df7892d3ccdcbbe1afe96"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0038ebe43a06bf603373d93f7d83fcf43504fa81682cad9b63e370935f993fc7"
   end
 
   depends_on "cmake" => :build
@@ -24,30 +25,9 @@ class Nzbget < Formula
   uses_from_macos "ncurses"
   uses_from_macos "zlib"
 
-  resource "par2cmdline-turbo" do
-    url "https://github.com/nzbgetcom/par2cmdline-turbo/archive/refs/tags/v1.1.1-nzbget.tar.gz"
-    sha256 "b471a76e6ac7384da87af9314826bc6d89ce879afb9485136b949cc5ce019ddf"
-  end
-
-  # Use the par2cmdline-turbo resource instead of fetching it
-  patch :DATA
-
   def install
-    # Workaround to fix build on Xcode 16. This was just ignored on older Xcode so no functional impact
-    # Issue ref: https://github.com/nzbgetcom/nzbget/issues/421
-    if DevelopmentTools.clang_build_version >= 1600
-      inreplace "lib/sources.cmake", 'set(NEON_CXXFLAGS "-mfpu=neon")', ""
-    end
-
-    resource("par2cmdline-turbo").stage buildpath/"par2cmdline-turbo"
-
-    system "cmake", "-S", ".", "-B", "build", *std_cmake_args, "-DCURSES_INCLUDE_PATH=/usr/include"
+    system "cmake", "-S", ".", "-B", "build", *std_cmake_args
     system "cmake", "--build", "build"
-
-    # nzbget CMake build does not strip binary
-    # must be removed in v25, tracking issue https://github.com/nzbgetcom/nzbget/issues/257
-    system "strip", "build/nzbget"
-
     system "cmake", "--install", "build"
 
     if OS.mac?
@@ -80,30 +60,3 @@ class Nzbget < Formula
     system bin/"nzbget", "-Q", "-c", etc/"nzbget.conf"
   end
 end
-
-__END__
-
-diff --git a/cmake/par2-turbo.cmake b/cmake/par2-turbo.cmake
-index 8b92c12..cddb1b4 100644
---- a/cmake/par2-turbo.cmake
-+++ b/cmake/par2-turbo.cmake
-@@ -1,17 +1,8 @@
--set(FETCHCONTENT_QUIET FALSE)
--FetchContent_Declare(
--	par2-turbo
--	GIT_REPOSITORY  https://github.com/nzbgetcom/par2cmdline-turbo.git
--	GIT_TAG         v1.1.1-nzbget
--	TLS_VERIFY	    TRUE
--	GIT_SHALLOW     TRUE
--	GIT_PROGRESS	TRUE
--)
--
- add_compile_definitions(HAVE_CONFIG_H PARPAR_ENABLE_HASHER_MD5CRC)
- set(BUILD_TOOL OFF CACHE BOOL "")
- set(BUILD_LIB ON CACHE BOOL "")
--FetchContent_MakeAvailable(par2-turbo)
-+
-+add_subdirectory(${CMAKE_SOURCE_DIR}/par2cmdline-turbo)
- 
- set(LIBS ${LIBS} par2-turbo gf16 hasher)
- set(INCLUDES ${INCLUDES} ${par2_SOURCE_DIR}/include)

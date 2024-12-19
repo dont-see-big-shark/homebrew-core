@@ -3,8 +3,8 @@ class ZabbixCli < Formula
 
   desc "CLI tool for interacting with Zabbix monitoring system"
   homepage "https://unioslo.github.io/zabbix-cli/"
-  url "https://github.com/unioslo/zabbix-cli/archive/refs/tags/3.4.0.tar.gz"
-  sha256 "0b901434c58ea769c2630c8ae4b098db0699ced3c2e499f8ca07de587552b08d"
+  url "https://github.com/unioslo/zabbix-cli/archive/refs/tags/3.4.2.tar.gz"
+  sha256 "30a44797e38070b7b06e125ac55eb47ba1253dea6ab8cc390a4f3087aec26351"
   license "GPL-3.0-or-later"
   head "https://github.com/unioslo/zabbix-cli.git", branch: "master"
 
@@ -14,12 +14,12 @@ class ZabbixCli < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "bb05007137c82e1e3bec4bbe8d1d1d06b45e65a8b37f2aa5982fd52758fb9749"
-    sha256 cellar: :any,                 arm64_sonoma:  "ef9aca7554c51ccc5d682565c4c41b813545cbce041eca79f7a3dc1fd790d24a"
-    sha256 cellar: :any,                 arm64_ventura: "d33b618923065d3a648ce4c96c4b4c35442dd82c670739c9fd3b1ac1e7053798"
-    sha256 cellar: :any,                 sonoma:        "061c0e53e4b486046b32fdf543158010cc6a29e54d9c33c65a500288b785ca02"
-    sha256 cellar: :any,                 ventura:       "819386147ff66d69bbcea4a42514504eb522b21d118002a13114fc95b913a190"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "a6d979f19d161ee5e24d50de82e1f7530279f62c90506e266e2e686c53db0890"
+    sha256 cellar: :any,                 arm64_sequoia: "343ce5c3948344305a14576fe4ccae112ec47045cc8b09f5bdd901ccea4e3327"
+    sha256 cellar: :any,                 arm64_sonoma:  "258710aba35b6f152f251b149cb15659303bb224efdca58d881c3542579d5680"
+    sha256 cellar: :any,                 arm64_ventura: "b704e8e6bf142872da848efd670493a72934f5a3095ecbd187b6ecc64081041c"
+    sha256 cellar: :any,                 sonoma:        "68edeed32d08965b6abb1007856399b57f55bede5b4090c161cd5d3a147c9223"
+    sha256 cellar: :any,                 ventura:       "c21329642f94a24d2d3e39c4585f98e5636adffdaf62cf0c0236e1391105efc7"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e66579132eb42a5e72e5275c52b5a9d5002d36098bb1f10644b1fd3f347c4221"
   end
 
   depends_on "rust" => :build # for pydantic_core
@@ -32,8 +32,8 @@ class ZabbixCli < Formula
   end
 
   resource "anyio" do
-    url "https://files.pythonhosted.org/packages/9f/09/45b9b7a6d4e45c6bcb5bf61d19e3ab87df68e0601fa8c5293de3542546cc/anyio-4.6.2.post1.tar.gz"
-    sha256 "4c8bc31ccdb51c7f7bd251f51c609e038d63e34219b44aa86e47576389880b4c"
+    url "https://files.pythonhosted.org/packages/f6/40/318e58f669b1a9e00f5c4453910682e2d9dd594334539c7b7817dabb765f/anyio-4.7.0.tar.gz"
+    sha256 "2f834749c602966b7d456a7567cafcb309f96482b5081d14ac93ccd457f9dd48"
   end
 
   resource "click" do
@@ -52,8 +52,8 @@ class ZabbixCli < Formula
   end
 
   resource "httpx" do
-    url "https://files.pythonhosted.org/packages/78/82/08f8c936781f67d9e6b9eeb8a0c8b4e406136ea4c3d1f89a5db71d42e0e6/httpx-0.27.2.tar.gz"
-    sha256 "f7c2be1d2f3c3c3160d441802406b206c2b76f5947b11115e6df10c6c65e66c2"
+    url "https://files.pythonhosted.org/packages/b1/df/48c586a5fe32a0f01324ee087459e112ebb7224f646c0b5023f5e79e9956/httpx-0.28.1.tar.gz"
+    sha256 "75e98c5f16b0f35b567856f597f06ff2270a374470a5c2392242528e3e3e42fc"
   end
 
   resource "idna" do
@@ -87,8 +87,8 @@ class ZabbixCli < Formula
   end
 
   resource "pydantic" do
-    url "https://files.pythonhosted.org/packages/41/86/a03390cb12cf64e2a8df07c267f3eb8d5035e0f9a04bb20fb79403d2a00e/pydantic-2.10.2.tar.gz"
-    sha256 "2bc2d7f17232e0841cbba4641e65ba1eb6fafb3a08de3a091ff3ce14a197c4fa"
+    url "https://files.pythonhosted.org/packages/45/0f/27908242621b14e649a84e62b133de45f84c255eecb350ab02979844a788/pydantic-2.10.3.tar.gz"
+    sha256 "cb5ac360ce894ceacd69c403187900a02c4b20b693a9dd1d643e1effab9eadf9"
   end
 
   resource "pydantic-core" do
@@ -143,8 +143,8 @@ class ZabbixCli < Formula
   end
 
   resource "typer" do
-    url "https://files.pythonhosted.org/packages/76/41/49ead3ad3310545e767bcb917c759b026ca9eada5d5c150c2fb6fc555568/typer-0.13.1.tar.gz"
-    sha256 "9d444cb96cc268ce6f8b94e13b4335084cef4c079998a9f4851a90229a3bd25c"
+    url "https://files.pythonhosted.org/packages/cb/ce/dca7b219718afd37a0068f4f2530a727c2b74a8b6e8e0c0080a4c0de4fcd/typer-0.15.1.tar.gz"
+    sha256 "a0588c0a7fa68a1978a069818657778f86abe6ff5ea6abf472f940a08bfe4f0a"
   end
 
   resource "typing-extensions" do

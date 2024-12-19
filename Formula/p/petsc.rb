@@ -1,10 +1,9 @@
 class Petsc < Formula
   desc "Portable, Extensible Toolkit for Scientific Computation (real)"
   homepage "https://petsc.org/"
-  url "https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-3.22.1.tar.gz"
-  sha256 "7117d3ae6827f681ed9737939d4e86896b4751e27cca941bb07e5703f19a0a7b"
+  url "https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-3.22.2.tar.gz"
+  sha256 "83624de0178b42d37ca1f7f905e1093556c6919fe5accd3e9f11d00a66e11256"
   license "BSD-2-Clause"
-  revision 1
 
   livecheck do
     url "https://web.cels.anl.gov/projects/petsc/download/release-snapshots/"
@@ -12,14 +11,16 @@ class Petsc < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia: "55ff508bcf59eb603823520804983d0cd68e205dfcb1aa3a31c38de8b7dd888f"
-    sha256 arm64_sonoma:  "f955b5083e2c4c7143e86682ff56e0210c50a3ef2d8936232ea146fc1b81bab6"
-    sha256 arm64_ventura: "cd9113c9068fe2ca10683b2133bc6a5547837a29d70f9747f14178cdb9907281"
-    sha256 sonoma:        "128902047fda478d0e3e035799d243546cd74f02c7b34dd80116e3e17ae3d828"
-    sha256 ventura:       "2edbbfbb9afe883aab89f3dd87b2ee306cd5662993d5a448e96de441420c95bc"
-    sha256 x86_64_linux:  "b21fca6a385c6379a715368c36506339361ae059f8e6d588d5d2fb9e7d4efdde"
+    rebuild 1
+    sha256 arm64_sequoia: "c6f2699a609b603e9162a9704638e058cb17dd0c7f30075d9a6fdf04c7e227a8"
+    sha256 arm64_sonoma:  "d2b776e79442cadba666805f9f491c040897054af03ed9b37b1b42ef1d1f8523"
+    sha256 arm64_ventura: "b959e714c9c0fe00390de755dc010f570415b840157ff0317cd7337a47edee1f"
+    sha256 sonoma:        "afb7cea8ea8efa54da66caf0822ccca7588ef2f17d1872d5b563f500e579f873"
+    sha256 ventura:       "94d9e611dba8a8f6d16ddf4922c3951ef3a057ff0070fb84742ad53050140ed3"
+    sha256 x86_64_linux:  "31d23ac85ce807347fd06b30bcbf0ac87604db7dc6c8fbea77edba5ac4ee8de7"
   end
 
+  depends_on "fftw"
   depends_on "gcc"
   depends_on "hdf5-mpi"
   depends_on "hwloc"
@@ -42,6 +43,11 @@ class Petsc < Formula
                           "--CXX=mpicxx",
                           "--F77=mpif77",
                           "--FC=mpif90",
+                          "--with-fftw-dir=#{Formula["fftw"].opt_prefix}",
+                          "--with-hdf5-dir=#{Formula["hdf5-mpi"].opt_prefix}",
+                          "--with-hdf5-fortran-bindings=1",
+                          "--with-metis-dir=#{Formula["metis"].opt_prefix}",
+                          "--with-scalapack-dir=#{Formula["scalapack"].opt_prefix}",
                           "MAKEFLAGS=$MAKEFLAGS"
 
     # Avoid references to Homebrew shims (perform replacement before running `make`, or else the shim

@@ -1,8 +1,8 @@
 class Objfw < Formula
   desc "Portable, lightweight framework for the Objective-C language"
   homepage "https://objfw.nil.im/"
-  url "https://objfw.nil.im/downloads/objfw-1.2.1.tar.gz"
-  sha256 "637fdeccae149cec236e62c5289450afad542fe930343918856e76594ab3fcfd"
+  url "https://objfw.nil.im/downloads/objfw-1.2.3.tar.gz"
+  sha256 "8324d3b352121544f817f40f71c21005457ee0255104c7e0d5aedbd6d968bced"
   license "LGPL-3.0-only"
   head "https://objfw.nil.im/", using: :fossil
 
@@ -12,12 +12,13 @@ class Objfw < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia: "2d1bfe25dfaae2537e4cc0e26a2094b02087aafa060c4cbf164a10f1bedda2e5"
-    sha256 arm64_sonoma:  "10b1a4f836b1fe398bde97b7b44c17196dea8cc4a781597b3de6f9309fd45e6e"
-    sha256 arm64_ventura: "02bbeca0dc52ea43096f239061fc13ab1cd3e096aaa599c4f9559c717aaf71c8"
-    sha256 sonoma:        "c672a22de49d0a67e4145f82e08b18ee59318d7eae95e87abb5233c23d1eb4ed"
-    sha256 ventura:       "7d85c355fb692d1e7cda04aa0c4cf0d156987685a936f53e835b755b917222c8"
-    sha256 x86_64_linux:  "a41eff9799f724c8fc305923dd99dc018fbdcbb4563bf46e81ebcb0506c78e6c"
+    rebuild 1
+    sha256 arm64_sequoia: "966443a0101b0f019e8262a412f7da946240e2b5bf0ad1204e00e69ec583caff"
+    sha256 arm64_sonoma:  "41177507640d9144e188db893c30bba5a4b42e4e70950a18fa26a3cefa371305"
+    sha256 arm64_ventura: "b7df0cab9a10b59be982906cbe2c8c9da0cbe13edaaf48f442050587301dab8d"
+    sha256 sonoma:        "f3c5c01bdcbb88edbeb6bcadfbc5dc59d360fa0e453fcf6f66a29f4b81f9a854"
+    sha256 ventura:       "0491d3bef0c7c449afcc2555ebef680fb884c2dfb9c1af17c89aeec2918b809c"
+    sha256 x86_64_linux:  "d13ccc8c605d43fe373327d0588ba5e877f5350866af1b458fb2cd196f66511b"
   end
 
   depends_on "autoconf" => :build
@@ -33,10 +34,15 @@ class Objfw < Formula
   patch :DATA
 
   def install
+    ENV.clang if OS.linux?
+
     system "./autogen.sh"
     system "./configure", "--prefix=#{prefix}"
     system "make", "install"
-    inreplace bin/"objfw-config", "llvm_clang", "clang" if OS.linux?
+
+    return unless OS.mac?
+
+    inreplace bin/"objfw-config", 'OBJC="clang"', 'OBJC="/usr/bin/clang"'
   end
 
   test do

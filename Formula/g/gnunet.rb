@@ -1,18 +1,18 @@
 class Gnunet < Formula
   desc "Framework for distributed, secure and privacy-preserving applications"
   homepage "https://gnunet.org/"
-  url "https://ftp.gnu.org/gnu/gnunet/gnunet-0.22.2.tar.gz"
-  mirror "https://ftpmirror.gnu.org/gnunet/gnunet-0.22.2.tar.gz"
-  sha256 "4e78fdd08b46408ec21b6c05a00d56fd649457123dcd929887264fde51e845e3"
+  url "https://ftp.gnu.org/gnu/gnunet/gnunet-0.23.1.tar.gz"
+  mirror "https://ftpmirror.gnu.org/gnunet/gnunet-0.23.1.tar.gz"
+  sha256 "6fd05b69076b3b1a8e7e20b254e044fdd4c6da5313196317f3de088f7d025cf2"
   license "AGPL-3.0-or-later"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "fc769cbdc29e7e87e826b4aba00be21c12db34d456d2de84e7b46326040c7316"
-    sha256 cellar: :any,                 arm64_sonoma:  "04328fd5df9ab7133f7ee0ed28edf5af6413e5085b1da6f1788f824faef47e45"
-    sha256 cellar: :any,                 arm64_ventura: "c19afb381d719340936388950fc6e7c4fe52e1a65f3624ccd2eca9bb198653ec"
-    sha256 cellar: :any,                 sonoma:        "ae8b36a0e8806ad373afc38850e353053da79aaafb73f45a3063743831a44f2a"
-    sha256 cellar: :any,                 ventura:       "ac78575b4cd919f0583da665d3c122834496dd9eea8aaa41bb9bde02865b7e3c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e5bae678ede4b9bc6b6d9518f455aa7191fc903c939ddd07a5bee3bd8d27586e"
+    sha256 cellar: :any,                 arm64_sequoia: "15797564cf281fc48e58e9d96e1f86348e0320082ea0044e4d2fef8dd35e6e95"
+    sha256 cellar: :any,                 arm64_sonoma:  "ac3646e173da3bed97e3e61e841ebbef29903f3f5899b6df4a27f71df9501ea2"
+    sha256 cellar: :any,                 arm64_ventura: "e527744dd0cdfafad96a34309d4ac4e7328451e15a615436374aa4e3b3819774"
+    sha256 cellar: :any,                 sonoma:        "0fc8d62658746a3a1632ae2a31e4e5af5b5bcf62753492c27476a639be5f501a"
+    sha256 cellar: :any,                 ventura:       "ba21f56397adcad7f116bc24697ee1fe774053fb474f8859cbdb4e3c23601d2a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0ac3072699a9e63f67b894dc08f71c7fa7fcd6e42d59da7617b59b987d0d1c47"
   end
 
   depends_on "pkgconf" => :build

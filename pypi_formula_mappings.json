@@ -112,9 +112,6 @@
   "beancount": {
     "exclude_packages": ["certifi"]
   },
-  "beautysh": {
-    "extra_packages": ["setuptools"]
-  },
   "bilix": {
     "exclude_packages": ["certifi"]
   },
@@ -283,7 +280,7 @@
     "exclude_packages": ["certifi", "cryptography"]
   },
   "duplicity": {
-    "exclude_packages": ["certifi", "cryptography"],
+    "exclude_packages": ["certifi"],
     "extra_packages": ["python-novaclient>18", "stone==3.2.1"]
   },
   "dvc": {
@@ -371,7 +368,7 @@
   },
   "gnuradio": {
     "extra_packages": [
-      "click", "click-plugins", "jsonschema", "lxml", "mako",
+      "click", "jsonschema", "lxml", "mako",
       "packaging", "pygccxml", "pyyaml", "setuptools"
     ]
   },
@@ -405,12 +402,20 @@
   "grokmirror": {
     "exclude_packages": ["certifi"]
   },
+  "gsan": {
+    "exclude_packages": ["cryptography"]
+  },
   "gyb": {
     "package_name": "",
     "exclude_packages": ["certifi"],
     "extra_packages": [
       "google-api-python-client", "google-auth", "google-auth-httplib2", "google-auth-oauthlib", "httplib2"
     ]
+  },
+  "harlequin": {
+    "package_name": "harlequin[mysql,odbc,postgres]",
+    "exclude_packages": ["psycopg-binary", "tree-sitter-languages"],
+    "extra_packages": ["psycopg-c"]
   },
   "hatch": {
     "exclude_packages": ["certifi", "cryptography", "uv"]
@@ -694,6 +699,10 @@
     "package_name": "",
     "extra_packages": ["flit-core", "setuptools", "pip", "wheel"]
   },
+  "python-freethreading": {
+    "package_name": "",
+    "extra_packages": ["flit-core", "setuptools", "pip", "wheel"]
+  },
   "python-lsp-server": {
     "package_name": "python-lsp-server[websockets]",
     "extra_packages": ["python-lsp-black", "pylsp-mypy", "python-lsp-ruff", "pylsp-rope"]
@@ -832,6 +841,9 @@
   "theharvester": {
     "exclude_packages": ["certifi"]
   },
+  "tmt": {
+    "exclude_packages": ["certifi"]
+  },
   "toot": {
     "package_name": "toot[images,richtext]",
     "exclude_packages": ["certifi", "pillow"]
@@ -893,6 +905,9 @@
   },
   "weasyprint": {
     "exclude_packages": ["pillow"]
+  },
+  "weaviate-cli": {
+    "exclude_packages": ["certifi", "cryptography"]
   },
   "woob": {
     "exclude_packages": ["certifi", "pillow"]

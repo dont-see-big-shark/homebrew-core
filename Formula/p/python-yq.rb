@@ -6,15 +6,16 @@ class PythonYq < Formula
   url "https://files.pythonhosted.org/packages/38/6a/eb9721ed0929d0f55d167c2222d288b529723afbef0a07ed7aa6cca72380/yq-3.4.3.tar.gz"
   sha256 "ba586a1a6f30cf705b2f92206712df2281cd320280210e7b7b80adcb8f256e3b"
   license "Apache-2.0"
+  revision 1
 
   bottle do
     rebuild 1
-    sha256 cellar: :any,                 arm64_sequoia: "ade8952a20185a727c65adba3cc9100db7c6ed46f4b78653c4f60679959fbb6f"
-    sha256 cellar: :any,                 arm64_sonoma:  "5ec0178c6e5ee1139e49a6275be61c242faef98fd91ce6dc53640e7ee38bbc9f"
-    sha256 cellar: :any,                 arm64_ventura: "5135368b4db7fb4941565644e449afacb335ca008233e09096b27a5ab50d777a"
-    sha256 cellar: :any,                 sonoma:        "cfa479a7ce3064fda290a1261ede523276defe5ee60260a18982722d9a1cf106"
-    sha256 cellar: :any,                 ventura:       "ad2827c9e10e68e5a58e3bf6c34534c380b66dd16122ffec1b68b59b03546fac"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6a31d246270aa8b514e914937f3ab9d22fd2d4bdd10e7a88e229bd7749ed81a5"
+    sha256 cellar: :any,                 arm64_sequoia: "fc51885dc4afeb945b9da323e5ab75751a5b861f20c0523a79360343cf4f57db"
+    sha256 cellar: :any,                 arm64_sonoma:  "8b33d265380df20b66a575e0b84592c86ba02422298dfb9a095fd46c407f913a"
+    sha256 cellar: :any,                 arm64_ventura: "b7cfa07975355ba6d17eb32c40d7fc6ca2814de0ce84707e242bbf0050758902"
+    sha256 cellar: :any,                 sonoma:        "148ae1e845bfbbc487ae9b2d152eaff0aca6650233a5c613fe06b1fddcf7ccf8"
+    sha256 cellar: :any,                 ventura:       "509f944e20ed31d27571ae35409f52a3af4d2856295882edc4435bc2cd0243a2"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "30bfa94a1f5bc51fffcfebb345afc1e4de7997833264112ce802774131b14278"
   end
 
   depends_on "jq"
@@ -25,8 +26,8 @@ class PythonYq < Formula
   conflicts_with "xq", because: "both install `xq` binaries"
 
   resource "argcomplete" do
-    url "https://files.pythonhosted.org/packages/5f/39/27605e133e7f4bb0c8e48c9a6b87101515e3446003e0442761f6a02ac35e/argcomplete-3.5.1.tar.gz"
-    sha256 "eb1ee355aa2557bd3d0145de7b06b2a45b0ce461e1e7813f5d066039ab4177b4"
+    url "https://files.pythonhosted.org/packages/7f/03/581b1c29d88fffaa08abbced2e628c34dd92d32f1adaed7e42fc416938b0/argcomplete-3.5.2.tar.gz"
+    sha256 "23146ed7ac4403b70bd6026402468942ceba34a6732255b9edf5b7354f68a6bb"
   end
 
   resource "pyyaml" do
@@ -48,16 +49,16 @@ class PythonYq < Formula
     virtualenv_install_with_resources
     %w[yq xq tomlq].each do |script|
       generate_completions_from_executable(libexec/"bin/register-python-argcomplete", script,
-                                           shell_parameter_format: :arg)
+                                           base_name: script, shell_parameter_format: :arg)
     end
   end
 
   test do
-    input = <<~EOS
+    input = <<~YAML
       foo:
        bar: 1
        baz: {bat: 3}
-    EOS
+    YAML
     expected = <<~EOS
       3
       ...

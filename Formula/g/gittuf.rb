@@ -1,18 +1,18 @@
 class Gittuf < Formula
   desc "Security layer for Git repositories"
   homepage "https://gittuf.dev/"
-  url "https://github.com/gittuf/gittuf/archive/refs/tags/v0.7.0.tar.gz"
-  sha256 "8fd7a4dfef419a87c0cde55bcf155f399587b0dfbeb4be8d85b0dddf815803c3"
+  url "https://github.com/gittuf/gittuf/archive/refs/tags/v0.8.1.tar.gz"
+  sha256 "3d85ecc16fe64d58805558d0f7ecfe3c38533f8d145b1b57cad23ad8e40203c5"
   license "Apache-2.0"
   head "https://github.com/gittuf/gittuf.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ea3183c8276427089d5df15b0d8d6740337c9bd4a2c417488004338054196746"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "ea3183c8276427089d5df15b0d8d6740337c9bd4a2c417488004338054196746"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "ea3183c8276427089d5df15b0d8d6740337c9bd4a2c417488004338054196746"
-    sha256 cellar: :any_skip_relocation, sonoma:        "4738b19cf3a71cd477f642775a0ed28b94ada090dc1cd4bdbf27cef723b260d2"
-    sha256 cellar: :any_skip_relocation, ventura:       "50554151a28d7a6479de482ecac9afb786c9fed2b7de88e94d65d1753e4c0ddf"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5ac99566029b1476a0eaf828a7019fad6a05d7cc5407a9e4857ae1927fc53293"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "2eb976a15664e9e7a69eceb526742f7728952ba8fe3ec73c3c34054a3a3742f5"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "2eb976a15664e9e7a69eceb526742f7728952ba8fe3ec73c3c34054a3a3742f5"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "2eb976a15664e9e7a69eceb526742f7728952ba8fe3ec73c3c34054a3a3742f5"
+    sha256 cellar: :any_skip_relocation, sonoma:        "e5d3f803dc139e2e246d4e01e85f4c68d9145a232551447cd6d14c3ff866b07b"
+    sha256 cellar: :any_skip_relocation, ventura:       "49e2360bb36366271721c7910813b52c47dfe0d67615afdaac759fa79829f247"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "104c5b69e5c6ac476e580ee00fc3fa7524de806fd08ef092d51fceaeefe67b81"
   end
 
   depends_on "go" => :build

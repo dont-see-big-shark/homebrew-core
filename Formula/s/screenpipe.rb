@@ -1,15 +1,15 @@
 class Screenpipe < Formula
   desc "Library to build personalized AI powered by what you've seen, said, or heard"
   homepage "https://github.com/mediar-ai/screenpipe"
-  url "https://github.com/mediar-ai/screenpipe/archive/refs/tags/v0.2.7.tar.gz"
-  sha256 "05db0c5dc260d939e14109e2df1e6ee32b562135d6e3e36ec7619471ca8cb7b2"
+  url "https://github.com/mediar-ai/screenpipe/archive/refs/tags/v0.2.13.tar.gz"
+  sha256 "eb3599daabc1312b5c1a7799c1ec8ab715aa02d9216a6aa42d930039c84a70c9"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "ba3ebe387b9a23771606e4c92cf41641543dccd3b7b1a4824f2054fee30ab080"
-    sha256 cellar: :any,                 arm64_sonoma:  "251cb436fc3b1233087d65ea6bae4c3156166470da306cef5c9ef43f8d3828fa"
-    sha256 cellar: :any,                 sonoma:        "abff08008f5ae7b375a1e49fa3f5bc7887798ad94786479f20dfe0afabede9af"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "3474067aaf94e670414d4c66e32bfcf7e5ac7740a17760f598e644e9e22aedaa"
+    sha256 cellar: :any,                 arm64_sequoia: "e19fe81711f2b581441d5ef4e4894229ff0b40bcb7ec97620649b41ccfac3784"
+    sha256 cellar: :any,                 arm64_sonoma:  "b029a73f249a978552cc4d6e7fcd35655bfc466f0f343a8dc7ef3e47feeb6f07"
+    sha256 cellar: :any,                 sonoma:        "fedcdd0173129e061e5dec07b3ee9f178cabb5af29e775038a29de39eec50a63"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c05236a8906e59fcb9a3dd1a8fbe3d0962717af731b1d8894f70235b5b6b6cc6"
   end
 
   depends_on "cmake" => :build

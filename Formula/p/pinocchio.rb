@@ -1,10 +1,10 @@
 class Pinocchio < Formula
   desc "Efficient and fast C++ library implementing Rigid Body Dynamics algorithms"
   homepage "https://stack-of-tasks.github.io/pinocchio"
-  url "https://github.com/stack-of-tasks/pinocchio/releases/download/v3.3.0/pinocchio-3.3.0.tar.gz"
-  sha256 "a86ea06a7b4447d00cc46ed541a105f686957400eebb51b25aa41a93c08d855c"
+  url "https://github.com/stack-of-tasks/pinocchio/releases/download/v3.3.1/pinocchio-3.3.1.tar.gz"
+  sha256 "83f7af674d65ec1a03bf46f0230a227ba0cd696d46047a82fe87a93e710837e8"
   license "BSD-2-Clause"
-  revision 1
+  revision 2
   head "https://github.com/stack-of-tasks/pinocchio.git", branch: "master"
 
   livecheck do
@@ -13,12 +13,12 @@ class Pinocchio < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "a78d5102e37727446e188ae3f2b885116c51e0dd54ca94709d16c43dd1e38684"
-    sha256 cellar: :any,                 arm64_sonoma:  "c8edb4e650e857f57390308388eaedc2b1d17d58cb3dad208e8b30d3593b5f26"
-    sha256 cellar: :any,                 arm64_ventura: "cbd7ce61c6721055bddd60f53b8932d3f0309614a1b6635a225fd409074ea0d4"
-    sha256 cellar: :any,                 sonoma:        "ff5487b53675a5a88cdb0858b0c8df3a6baa17ccdb6ccdea4e3a5a947d6a08cc"
-    sha256 cellar: :any,                 ventura:       "0e48086ae4525d6e3fd7745f704fe8514e0e72b05828e54f6ad71995d4c3cd8a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c162710f44ea4bcdcfb735121c192337454a14a3e55e0a84a8f030a135b6ea34"
+    sha256 cellar: :any,                 arm64_sequoia: "7f247a3e2e2be1c17bebb01a2d647d11576edeeb19e3645fd69f0ec21ba56d04"
+    sha256 cellar: :any,                 arm64_sonoma:  "fc8febc3365404e946d4262cf2728bd0715b6ecfca875aaa4aed7f4c98bbce18"
+    sha256 cellar: :any,                 arm64_ventura: "108d3367f92fa4f8d3b298206a16cb57b0c5fe18105c8b3c6505a7490fb30e5f"
+    sha256 cellar: :any,                 sonoma:        "ef380007857cef57ec5701c8469bc62814f4066eda07fabc8211464a31f9461a"
+    sha256 cellar: :any,                 ventura:       "84159d06a16cd972cbbc4859f32c048e3cc0d1cd10629b1365107b0c05da240e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "45bd97ad141cd6648fd498e6a04a07e2a3c0a4ab6b0b62338012c8a0063ea54e"
   end
 
   depends_on "cmake" => :build
@@ -31,7 +31,7 @@ class Pinocchio < Formula
   depends_on "console_bridge"
   depends_on "eigen"
   depends_on "eigenpy"
-  depends_on "python@3.12"
+  depends_on "python@3.13"
   depends_on "urdfdom"
 
   on_macos do
@@ -39,7 +39,7 @@ class Pinocchio < Formula
   end
 
   def python3
-    "python3.12"
+    "python3.13"
   end
 
   def install

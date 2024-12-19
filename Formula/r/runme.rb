@@ -1,18 +1,18 @@
 class Runme < Formula
   desc "Execute commands inside your runbooks, docs, and READMEs"
   homepage "https://runme.dev/"
-  url "https://github.com/stateful/runme/archive/refs/tags/v3.9.4.tar.gz"
-  sha256 "664ac958b9f690c082f65c09a114e684954eb1f41ffd945b093a966134f09dd1"
+  url "https://github.com/stateful/runme/archive/refs/tags/v3.10.2.tar.gz"
+  sha256 "89f3271cb40b234de2a63527d7b3d5f0cadac45e5a55bd73a65779b2a21c9aab"
   license "Apache-2.0"
   head "https://github.com/stateful/runme.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "4be7c2eedf1789f2b66dae21ef846ce10e9c50ae2627714a2c373fb2805ffa57"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "4be7c2eedf1789f2b66dae21ef846ce10e9c50ae2627714a2c373fb2805ffa57"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "4be7c2eedf1789f2b66dae21ef846ce10e9c50ae2627714a2c373fb2805ffa57"
-    sha256 cellar: :any_skip_relocation, sonoma:        "138a176eb562d58afdad08fc0942c0aa8ab4618c86edae6c96ac263fd6f83e92"
-    sha256 cellar: :any_skip_relocation, ventura:       "138a176eb562d58afdad08fc0942c0aa8ab4618c86edae6c96ac263fd6f83e92"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0a7d1d4d8d868b27c812f38a810b6f4098d5903a04edf6739253a7214b532d91"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "3a0a2570a9dc354dd653743ef4642ae6995ad68eb03c5be068c68c472d16a5ba"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "3a0a2570a9dc354dd653743ef4642ae6995ad68eb03c5be068c68c472d16a5ba"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "3a0a2570a9dc354dd653743ef4642ae6995ad68eb03c5be068c68c472d16a5ba"
+    sha256 cellar: :any_skip_relocation, sonoma:        "12d7563f8640756d1fccfcc7f59837d51bc0bd4335d4c4f6b0f1d9339e35cab6"
+    sha256 cellar: :any_skip_relocation, ventura:       "12d7563f8640756d1fccfcc7f59837d51bc0bd4335d4c4f6b0f1d9339e35cab6"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "71cba60f146abc0807f427f3d0e500514aba35895d7e8c4048906b2fe0964c48"
   end
 
   depends_on "go" => :build
@@ -25,14 +25,14 @@ class Runme < Formula
       -X github.com/stateful/runme/v3/internal/version.Commit=#{tap.user}
     ]
 
-    system "go", "build", "-o", bin, *std_go_args(ldflags:)
+    system "go", "build", *std_go_args(ldflags:)
     generate_completions_from_executable(bin/"runme", "completion")
   end
 
   test do
     system bin/"runme", "--version"
     markdown = (testpath/"README.md")
-    markdown.write <<~EOS
+    markdown.write <<~MARKDOWN
       # Some Markdown
 
       Has some text.
@@ -40,7 +40,7 @@ class Runme < Formula
       ```sh { name=foobar }
       echo "Hello World"
       ```
-    EOS
+    MARKDOWN
     assert_match "Hello World", shell_output("#{bin}/runme run --git-ignore=false foobar")
     assert_match "foobar", shell_output("#{bin}/runme list --git-ignore=false")
   end
