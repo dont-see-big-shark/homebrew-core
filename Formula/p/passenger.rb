@@ -4,15 +4,17 @@ class Passenger < Formula
   url "https://github.com/phusion/passenger/releases/download/release-6.0.24/passenger-6.0.24.tar.gz"
   sha256 "3bc636ecf3e337c9fad13842fa539dabab546d458dfe4e2ae7c83419e7b8839c"
   license "MIT"
+  revision 1
   head "https://github.com/phusion/passenger.git", branch: "stable-6.0"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "4688b322556f5d7675916d2d1d2b036b9803bfac953fa3f26cea1655dbff9aa0"
-    sha256 cellar: :any,                 arm64_sonoma:  "4b4724c8bfac9e671f1fa51b73d27489b81c0d222cb37da330da09c59a38ed1a"
-    sha256 cellar: :any,                 arm64_ventura: "c98a618992ca5a804f63e04c89a4d0d9b11583983e6831ba5de84988a22e16b0"
-    sha256 cellar: :any,                 sonoma:        "067ab1e79d5abdeb161c7e42c3186979d81d92adc9bc8e02d5097707a8734b1b"
-    sha256 cellar: :any,                 ventura:       "7a6cbd725659c4111c5024a3eb065fe4e09afcff09d03e07a35e7326c9d4b20d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9c4bb493b102bf76c78d805d4cffe2d16cddea688ab9e25632172f302f1df4cb"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_sequoia: "ed961f7ab803475f7e25f93b5e5352d89b1f4c95d72cfb21a17227609fa1f983"
+    sha256 cellar: :any,                 arm64_sonoma:  "a7c121bef2ae0ad8946dda5fba8de2ac255dc454f1e81525b285b3e0acbf4555"
+    sha256 cellar: :any,                 arm64_ventura: "0a98b9723f58e9f3229eea6ef919d95f302d919758eed857fd998acee35f6c68"
+    sha256 cellar: :any,                 sonoma:        "c77fc41c83b077bcad91588e4b6c556bf757263ea9dee3b472df26616ba1834c"
+    sha256 cellar: :any,                 ventura:       "508334d834139aee830c243769d2c6f4dafea64bec82e3dbc62816c91ac8b954"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "670207165133288dea2910b5f21617834bb12dc668d9954025456776fc519ede"
   end
 
   depends_on "httpd" => :build # to build the apache2 module
@@ -20,7 +22,6 @@ class Passenger < Formula
   depends_on "apr"
   depends_on "apr-util"
   depends_on "openssl@3"
-  depends_on "pcre"
   depends_on "pcre2"
 
   uses_from_macos "xz" => :build

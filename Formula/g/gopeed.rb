@@ -1,17 +1,17 @@
 class Gopeed < Formula
   desc "Modern download manager that supports all platform"
   homepage "https://gopeed.com"
-  url "https://github.com/GopeedLab/gopeed/archive/refs/tags/v1.6.4.tar.gz"
-  sha256 "73e9fdc4100d1a02d8b0ab442fddaf33e287b58dbdf916c033a312feddc1461f"
+  url "https://github.com/GopeedLab/gopeed/archive/refs/tags/v1.6.6.tar.gz"
+  sha256 "d4a2b4bf5981fa10626243f5824c20a38813d57bbd05f2a81f5ec6f6050bb744"
   license "GPL-3.0-or-later"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ea70bdb86f8c81f89cf034115f9ecd39d8862eae0cd9524eddcfaccb74915981"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "ec735127fa80d2d7a9e157ff9221751e49d9c5f682b90c15c3fab60f547e36c4"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "42c5e12669da3487d7b87fbeb527d87eec81d0222311ec40886917452fa8051b"
-    sha256 cellar: :any_skip_relocation, sonoma:        "46c572fea117f23df571cc32810f7d599a79f49ea4317d971b5a06d72a136933"
-    sha256 cellar: :any_skip_relocation, ventura:       "bdd7e0e6733ce902d3c27416187f717d102791484e4a0c26ecdfe36148969d68"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cb0f579b6c15577d4c631e2037f9da903eaadee612237eff79a2690257211ec5"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "f1d41cc159e143222e3229a3bf7ab819184c97939d70cb0fba99da6de7cc20a1"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "2662c290b99075bc64495153a3455896df1469c9bf682b153ba7869fe8395717"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "905024b6e664056975e32105b03b683d21b40b4ee6c279ddc35590233a71de38"
+    sha256 cellar: :any_skip_relocation, sonoma:        "d008aa8e0f6c337087386946f1ebd46cfd873ef8466539148bc2165396358c0a"
+    sha256 cellar: :any_skip_relocation, ventura:       "315513d186e5430e1548e186900fa1c974ace921ed8969913d9612f88297b054"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ae456baef543b8f1df23df4c9e107cdb71361918dc2b81407df801812b103e4b"
   end
 
   depends_on "go"

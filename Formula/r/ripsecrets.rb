@@ -1,10 +1,19 @@
 class Ripsecrets < Formula
   desc "Prevent committing secret keys into your source code"
   homepage "https://github.com/sirwart/ripsecrets"
-  url "https://github.com/sirwart/ripsecrets/archive/refs/tags/v0.1.8.tar.gz"
-  sha256 "4d7209605d3babde73092fed955628b0ecf280d8d68633b9056d2f859741109d"
   license "MIT"
   head "https://github.com/sirwart/ripsecrets.git", branch: "main"
+
+  stable do
+    url "https://github.com/sirwart/ripsecrets/archive/refs/tags/v0.1.8.tar.gz"
+    sha256 "4d7209605d3babde73092fed955628b0ecf280d8d68633b9056d2f859741109d"
+
+    # shell completion generation patch, upstream pr ref, https://github.com/sirwart/ripsecrets/pull/89
+    patch do
+      url "https://github.com/sirwart/ripsecrets/commit/06168aaa3571503bf191bf8403dcabcd2709c0e7.patch?full_index=1"
+      sha256 "8733b9e9006af2c03312831fb2b67e992f68bcefd5d09ee878f0e8d40ac43039"
+    end
+  end
 
   bottle do
     rebuild 1
@@ -17,12 +26,6 @@ class Ripsecrets < Formula
   end
 
   depends_on "rust" => :build
-
-  # shell completion generation patch, upstream pr ref, https://github.com/sirwart/ripsecrets/pull/89
-  patch do
-    url "https://github.com/sirwart/ripsecrets/commit/06168aaa3571503bf191bf8403dcabcd2709c0e7.patch?full_index=1"
-    sha256 "8733b9e9006af2c03312831fb2b67e992f68bcefd5d09ee878f0e8d40ac43039"
-  end
 
   def install
     system "cargo", "install", *std_cargo_args

@@ -3,11 +3,20 @@ class Gnuradio < Formula
 
   desc "SDK for signal processing blocks to implement software radios"
   homepage "https://gnuradio.org/"
-  url "https://github.com/gnuradio/gnuradio/archive/refs/tags/v3.10.11.0.tar.gz"
-  sha256 "9ca658e6c4af9cfe144770757b34ab0edd23f6dcfaa6c5c46a7546233e5ecd29"
   license "GPL-3.0-or-later"
-  revision 3
+  revision 5
   head "https://github.com/gnuradio/gnuradio.git", branch: "main"
+
+  stable do
+    url "https://github.com/gnuradio/gnuradio/archive/refs/tags/v3.10.11.0.tar.gz"
+    sha256 "9ca658e6c4af9cfe144770757b34ab0edd23f6dcfaa6c5c46a7546233e5ecd29"
+
+    # Backport support for Boost 1.87.0
+    patch do
+      url "https://github.com/gnuradio/gnuradio/commit/111a4ff8b868791dae74d8cdf8c1e0684840f51a.patch?full_index=1"
+      sha256 "1a18b00346a149562ea2a1c8117039162896eb9ccab3290ed2a7a568ca9b642e"
+    end
+  end
 
   livecheck do
     url :stable
@@ -15,12 +24,12 @@ class Gnuradio < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "a68e237184aa8e654424dd61570157af0138a27a3587ef4e7d0b8b51a3c6b2fb"
-    sha256 cellar: :any,                 arm64_sonoma:  "f45f2a919d9c8000066544cd1db5c51cd9cba53f25ca06ccf398b2ecfd7d92d2"
-    sha256 cellar: :any,                 arm64_ventura: "35c82a2d51b34b910d1565e60032670f959893e6e601af3a2d02c1a9f6c0753f"
-    sha256 cellar: :any,                 sonoma:        "f9cc9c15c92e57a380e6b838dd711b2bfd8b5be965c0f15f166f452028f0bdc9"
-    sha256 cellar: :any,                 ventura:       "61f35bb7a8fca7206675c77e4476757b78fc167b5858cb2b6ee5c697a54e8292"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "26a41ea0945823d919a08988b7a02851f4f993e5239c3af216272003e38d6573"
+    sha256 cellar: :any,                 arm64_sequoia: "b5a69ca98194f4a789b67b278e12c5b21a6d55b25759cc1884176c8e26e6015f"
+    sha256 cellar: :any,                 arm64_sonoma:  "f3281080346ffc818c23199ad5d04de2888b824b3b9c0410f1a64805e6c7c824"
+    sha256 cellar: :any,                 arm64_ventura: "f98f7c0aebad4a933246718e007d6b17cd73e695b4589437ac2ee6ec26ac2d13"
+    sha256 cellar: :any,                 sonoma:        "90603f72df66f994cc93b5cf8a551217900fad96053fc8c24d49ffa95b38d617"
+    sha256 cellar: :any,                 ventura:       "72ccfe1ec4474abc73d60dafd1a7843f9e99fb172f9e9a94d46d001e7f3db0bc"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cdd9096bf4fd0914ce2b68483a50ec240ab42ee331dfad7bdc3284de9098161d"
   end
 
   depends_on "cmake" => :build
@@ -29,7 +38,7 @@ class Gnuradio < Formula
   depends_on "pybind11" => :build
   depends_on "rust" => :build # for rpds-py
   depends_on "adwaita-icon-theme"
-  depends_on "boost@1.85" # Boost 1.87+ PR ref: https://github.com/gnuradio/gnuradio/pull/7554
+  depends_on "boost"
   depends_on "cppzmq"
   depends_on "fftw"
   depends_on "fmt"
@@ -245,7 +254,7 @@ class Gnuradio < Formula
       }
     CPP
 
-    boost = Formula["boost@1.85"]
+    boost = Formula["boost"]
     system ENV.cxx, testpath/"test.c++", "-std=c++17", "-I#{boost.opt_include}", "-L#{lib}",
            "-lgnuradio-blocks", "-lgnuradio-runtime", "-lgnuradio-pmt",
            "-L#{boost.opt_lib}", "-lboost_system",

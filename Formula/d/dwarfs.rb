@@ -4,7 +4,7 @@ class Dwarfs < Formula
   url "https://github.com/mhx/dwarfs/releases/download/v0.10.2/dwarfs-0.10.2.tar.xz"
   sha256 "36767290a39f92782e41daaa3eb45e39550ad1a4294a6d8365bc0f456f75f00c"
   license "GPL-3.0-or-later"
-  revision 1
+  revision 3
 
   livecheck do
     url :stable
@@ -12,12 +12,12 @@ class Dwarfs < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "0b37775f9b208571fbe489d10419004a12d083a52ef54b3737b4d8add2cd70eb"
-    sha256 cellar: :any,                 arm64_sonoma:  "cd8af7dcb84a9c5a593100f0d49c06db118c2762987a093861f654940b525cef"
-    sha256 cellar: :any,                 arm64_ventura: "c6f16eab5421027f90fe1424686ac19f8bf0e0aa6976cba0563888f2e273d2dc"
-    sha256 cellar: :any,                 sonoma:        "9f5a52055a38a83e10614e8cacecf0a1998b2082b145534c6a7aa8ba0eb5fde1"
-    sha256 cellar: :any,                 ventura:       "cf5f58b64979a49789882121ab1f21d678b4abe566dde761c8f9b8faff092b84"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ba933a86248c522c065c2fd974d95238086ac5dfdd0a1cb812f88b124df7cc48"
+    sha256 cellar: :any,                 arm64_sequoia: "b3295a906a2769b117158edfadfb182303977fa0c9aa86028c95f3b3069183c5"
+    sha256 cellar: :any,                 arm64_sonoma:  "d4a2d3d472b38ced6d9d646c0cb98fc08fc1b4ba63fcfed9aad35db24a0dc232"
+    sha256 cellar: :any,                 arm64_ventura: "2f36eecea4eb4e7d1bc1698f3b0d098dfb8fd7afad2b3281ae7d8924df685588"
+    sha256 cellar: :any,                 sonoma:        "60d623dd533d8266bcdf05d72a26f047c11c4b8db629ac4742f1c69b0f59d838"
+    sha256 cellar: :any,                 ventura:       "7caf6651292b203f8e45e2447ae89a5c9c05b088932cf6b8f7642ae9e78dad1c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4906a428cf911605baf12d2c8c7e066cb90f231d33019eea5a333424712e7ba6"
   end
 
   depends_on "cmake" => :build

@@ -1,8 +1,8 @@
 class Cp2k < Formula
   desc "Quantum chemistry and solid state physics software package"
   homepage "https://www.cp2k.org/"
-  url "https://github.com/cp2k/cp2k/releases/download/v2024.3/cp2k-2024.3.tar.bz2"
-  sha256 "a6eeee773b6b1fb417def576e4049a89a08a0ed5feffcd7f0b33c7d7b48f19ba"
+  url "https://github.com/cp2k/cp2k/releases/download/v2025.1/cp2k-2025.1.tar.bz2"
+  sha256 "65c8ad5488897b0f995919b9fa77f2aba4b61677ba1e3c19bb093d5c08a8ce1d"
   license "GPL-2.0-or-later"
 
   livecheck do
@@ -11,26 +11,25 @@ class Cp2k < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia:  "59f60c35b214532923c98cb06a3b32cfb9468d76e7383252f6e2262c092ee5f7"
-    sha256 arm64_sonoma:   "656ec352a778c93cf63db2b94fb0a8a4a625ee870cb1142577c37ff0ef955df2"
-    sha256 arm64_ventura:  "395bda322226be6c02c76f2f79c48c22d1a2cf2c1ba840862c5ddcc4f9fddaa8"
-    sha256 arm64_monterey: "2988a43d657dca0e9a8a040bf89cb0432775d20f517c6d26bb78c3c2c4a17ac5"
-    sha256 sonoma:         "34a1c2e1da903636686466c125879207cb1be94b81d7007db2bd2283441b0bd7"
-    sha256 ventura:        "492a1a316203602afc9641c274a3388892a2cf2b930b741f57138fc4c736ac7f"
-    sha256 monterey:       "9075e9f4e099b87b12cf06a413798927f997ba4c345bf676c06ea8e72123b3d5"
-    sha256 x86_64_linux:   "008ca4405c7596399de1a2c31261fa247b85603668f1f5ed86601d7ff1f9df2e"
+    sha256 arm64_sequoia: "46b2e75543dc15952e00a6614a0257225b5ed00d8c038cfb3546061a8e6446bb"
+    sha256 arm64_sonoma:  "c2b1c3f70cc13fb9c89b8b5713a1702715e3ee01584ddb1113780ddfceeaf7ac"
+    sha256 arm64_ventura: "1f4f74b1fcb70f1f88625059dfa197e5fd00cdd6560de061f8b7a709a3abec28"
+    sha256 sonoma:        "d6b69ff15f5582ebe7093c86e9664aae11e1e2670eb428d83f774c2507592133"
+    sha256 ventura:       "da3a27206ed2d1345338e3c764cf485cf003f13db52b38ec99be75eece741913"
+    sha256 x86_64_linux:  "92120af9f50b710a84a8637f0294803f1ec745d4c49f3a9d19258955ded5e5bb"
   end
 
   depends_on "cmake" => :build
+  depends_on "fypp" => :build
   depends_on "pkgconf" => :build
+  depends_on "python@3.13" => :build
   depends_on "fftw"
+
   depends_on "gcc" # for gfortran
   depends_on "libxc"
   depends_on "open-mpi"
   depends_on "openblas"
   depends_on "scalapack"
-
-  uses_from_macos "python" => :build
 
   fails_with :clang # needs OpenMP support
 

@@ -1,12 +1,12 @@
 class MarkdownlintCli2 < Formula
   desc "Fast, flexible, config-based cli for linting Markdown/CommonMark files"
   homepage "https://github.com/DavidAnson/markdownlint-cli2"
-  url "https://registry.npmjs.org/markdownlint-cli2/-/markdownlint-cli2-0.16.0.tgz"
-  sha256 "67117b732b3bc1303dc58100d7cc56f2dbe75297b045cfe04d2b30dfd5d7a213"
+  url "https://registry.npmjs.org/markdownlint-cli2/-/markdownlint-cli2-0.17.1.tgz"
+  sha256 "761592d0d7420be9d178d8e395213ba90adbf9a6372bd9617e81bc35c4576e23"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "b56e00869ca949ea8d282bbd71d984553a1d006aebffd24604d489b41bab412d"
+    sha256 cellar: :any_skip_relocation, all: "97b383102a67fffde63446083104cf39847089b7e17b78ecbed0ece6ef369900"
   end
 
   depends_on "node"
