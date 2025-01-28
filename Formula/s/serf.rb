@@ -1,28 +1,22 @@
 class Serf < Formula
   desc "Service orchestration and management tool"
   homepage "https://serfdom.io/"
-  url "https://github.com/hashicorp/serf.git",
-      tag:      "v0.10.1",
-      revision: "e853b565da00a84dadd5e2ea0dc7919250ddb726"
+  url "https://github.com/hashicorp/serf/archive/refs/tags/v0.10.2.tar.gz"
+  sha256 "bcccbf847024af099e164faf6d6d111345edf166eb24e53e3ccc7f37d6e281a1"
   license "MPL-2.0"
   head "https://github.com/hashicorp/serf.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia:  "a4c0bca56876d18f58bbccf3b9771b404d7d8985d5abab3188de3528008a97cd"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "377f88039309ae3efa86e5ff575f4f3373901d3b4d98cf4e36f1a88e01289030"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "4dc6c50f1b2a6a151d6a1fb0f0cd54b41854d8244efde532a704b99863df8a7d"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "59a8907fb429075617af0dd136dec133ef2d3db717aefdd5d34af24bdb61b8f7"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "62db308d9635a9ea626c57583164787a63384269eb58dac7e73d30a7814032dc"
-    sha256 cellar: :any_skip_relocation, sonoma:         "a893b180e56f83b629e1256c6e09e4dfb74006a57028c79f6e425cfe1f2cc83f"
-    sha256 cellar: :any_skip_relocation, ventura:        "4111e92cbbd321dcb17d6f20e05cabc266ae92df15d31dc45ab426acf8eaf074"
-    sha256 cellar: :any_skip_relocation, monterey:       "93a502382f60b63b45fd43636ac8799831a5a68b26acbde13e34f1b69bc0b813"
-    sha256 cellar: :any_skip_relocation, big_sur:        "35e00fc92e749a4d529e2b7828232b35addf73a83548a01d5ada7616274db7ef"
-    sha256 cellar: :any_skip_relocation, catalina:       "f8711cd1c0eed5c1c2417450a5f75458f81ea4a665a8f064e3a064c2d9c70c4d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "a23cfd0f748a6d4f52803b3ade623bb79691a217e12f185103cb93359cb1c6fb"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "13e3b04200c7af32b917a447452939a6dbf82ebc40e7937465e4150c2fa2418d"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "13e3b04200c7af32b917a447452939a6dbf82ebc40e7937465e4150c2fa2418d"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "13e3b04200c7af32b917a447452939a6dbf82ebc40e7937465e4150c2fa2418d"
+    sha256 cellar: :any_skip_relocation, sonoma:        "d6d6ae5c6519299a5066731b9a37a7503453400849633423839d85cdf80e7d98"
+    sha256 cellar: :any_skip_relocation, ventura:       "d6d6ae5c6519299a5066731b9a37a7503453400849633423839d85cdf80e7d98"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "bd73aa1d5303d52c424bb871db029524e8f64619c0aa0dfd1bccde4f9d023211"
   end
 
-  # use "go" again after https://github.com/hashicorp/serf/issues/736 is fixed and released
-  depends_on "go@1.22" => :build
+  depends_on "go" => :build
 
   uses_from_macos "zip" => :build
 
@@ -37,9 +31,7 @@ class Serf < Formula
   end
 
   test do
-    pid = fork do
-      exec bin/"serf", "agent"
-    end
+    pid = spawn bin/"serf", "agent"
     sleep 1
     assert_match(/:7946.*alive$/, shell_output("#{bin}/serf members"))
   ensure

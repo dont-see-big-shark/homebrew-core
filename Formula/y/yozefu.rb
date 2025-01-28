@@ -1,18 +1,18 @@
 class Yozefu < Formula
   desc "TUI for exploring data in a Kafka cluster"
   homepage "https://github.com/MAIF/yozefu"
-  url "https://github.com/MAIF/yozefu/archive/refs/tags/v0.0.3.tar.gz"
-  sha256 "a31013c493d268a0db840f7c687df33aebd3187cf83d34939de7a819b78947be"
+  url "https://github.com/MAIF/yozefu/archive/refs/tags/v0.0.5.tar.gz"
+  sha256 "aa5d2a37292ee86db12cf3d55eca0021c5e88cbe4c6dd05053608aef2dde0e82"
   license "Apache-2.0"
   head "https://github.com/MAIF/yozefu.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "e7ecd9ed35ccbe7eb210620f074f3aa78cc6fae4d8922820079352a7aa657a0d"
-    sha256 cellar: :any,                 arm64_sonoma:  "08cd90866606b12245b42a4b6a21bf5155ceb8e9da387d0be09d039d0cff6731"
-    sha256 cellar: :any,                 arm64_ventura: "4e77454ba41fd1e17b18a663f4a5992f95e482535a49457ad2e1781d49e6293a"
-    sha256 cellar: :any,                 sonoma:        "fda4ac6587777172546ae27aa1b092ea7f57ed8ae1b9c2615c478875d3621e2a"
-    sha256 cellar: :any,                 ventura:       "cba7bb64282c589dd29e20d62436237a3c447643a944a0bd787ec2eb4ec6a5ed"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "05b2937f8a5d3eb05f2692b144d85904f36932657196571462564563014f5bb2"
+    sha256 cellar: :any,                 arm64_sequoia: "3e98197d4216fd161ffedcb5503897006bf086ca93c5d6defa974ede77ac2d57"
+    sha256 cellar: :any,                 arm64_sonoma:  "0307f37f8537baa23a987746c0dd0a3dfce7645a72eb18dd06d4b7bdcbe00211"
+    sha256 cellar: :any,                 arm64_ventura: "e947e86de3ac7482d3982293038b016611d922049baef493225cf9dcd0712aa8"
+    sha256 cellar: :any,                 sonoma:        "4e1356b6ecb5e64fba32db72c5ccc63ba7f00c446dc68ca1e6d8eab43205c5c8"
+    sha256 cellar: :any,                 ventura:       "afec265fa87d94c98ad3c4c60b533e3a86c9b162c20927ae979b84fcc33ee31c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8e741c1477a40ac07133b58bf1c5f7b2a6ae1b2a04131c580a231c1ee43ec74a"
   end
 
   depends_on "cmake" => :build

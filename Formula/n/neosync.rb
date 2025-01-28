@@ -1,18 +1,18 @@
 class Neosync < Formula
   desc "CLI for interfacing with Neosync"
   homepage "https://www.neosync.dev/"
-  url "https://github.com/nucleuscloud/neosync/archive/refs/tags/v0.5.3.tar.gz"
-  sha256 "e243b720d747c1b959f090a60ab02bad94b11511b9e55d546f56cd1f9000b13f"
+  url "https://github.com/nucleuscloud/neosync/archive/refs/tags/v0.5.10.tar.gz"
+  sha256 "69212c36d29d2c31b06fac983789b85e187b3a94a80a621affea52f1afce7899"
   license "MIT"
   head "https://github.com/nucleuscloud/neosync.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "13186de7e4bb2f7f7dbf3238dade54c014674fca24471d4886ccebcc478b31e1"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "13186de7e4bb2f7f7dbf3238dade54c014674fca24471d4886ccebcc478b31e1"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "13186de7e4bb2f7f7dbf3238dade54c014674fca24471d4886ccebcc478b31e1"
-    sha256 cellar: :any_skip_relocation, sonoma:        "60072151d4dac0620842fd1981509fd8b9a6e9ab8557ec6cc080a3dccc207d78"
-    sha256 cellar: :any_skip_relocation, ventura:       "60072151d4dac0620842fd1981509fd8b9a6e9ab8557ec6cc080a3dccc207d78"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2a1a2e8b9ed88a69cf75e45a9a09a0499572be021a29e6841e930d7f3f07688d"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "f87b66f45ee9eb5e444b75a9b6e1aa8431c9907d66fb632390292bdaaf3a6165"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "f87b66f45ee9eb5e444b75a9b6e1aa8431c9907d66fb632390292bdaaf3a6165"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "f87b66f45ee9eb5e444b75a9b6e1aa8431c9907d66fb632390292bdaaf3a6165"
+    sha256 cellar: :any_skip_relocation, sonoma:        "da709f137295f390e71e75e32032468c2319fe2486f6d27587e033db7617243e"
+    sha256 cellar: :any_skip_relocation, ventura:       "da709f137295f390e71e75e32032468c2319fe2486f6d27587e033db7617243e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b7da4047372226f1854e38d33e1d9e55d4f00487728e8c003d78f7ebf3a1f555"
   end
 
   depends_on "go" => :build

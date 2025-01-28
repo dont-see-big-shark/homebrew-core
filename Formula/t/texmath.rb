@@ -20,10 +20,10 @@ class Texmath < Formula
 
   def install
     system "cabal", "v2-update"
-    system "cabal", "v2-install", *std_cabal_v2_args, "-fexecutable"
+    system "cabal", "v2-install", "--flags=executable", *std_cabal_v2_args
   end
 
   test do
-    assert_match "<mn>2</mn>", pipe_output(bin/"texmath", "a^2 + b^2 = c^2")
+    assert_match "<mn>2</mn>", pipe_output(bin/"texmath", "a^2 + b^2 = c^2", 0)
   end
 end

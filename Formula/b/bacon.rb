@@ -1,22 +1,27 @@
 class Bacon < Formula
   desc "Background rust code check"
   homepage "https://dystroy.org/bacon/"
-  url "https://github.com/Canop/bacon/archive/refs/tags/v3.7.0.tar.gz"
-  sha256 "c439767c6ec59ff91fddfdffd7581697c9db051d086c23e928633f73ae0f8533"
+  url "https://github.com/Canop/bacon/archive/refs/tags/v3.9.0.tar.gz"
+  sha256 "64f65248e4be36347611315b3168b015324b137cb35207342dfdc9712051bd83"
   license "AGPL-3.0-or-later"
   head "https://github.com/Canop/bacon.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "1cdfadc26203028bd28810b9b5d6d3c092a64ab0923c7474f6511aa0907f5a0b"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "a25677036efa8b4be19e8ae3ed7d0e818e51431669109e97abe7baff97e201e7"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "36d37bee11be67380ac69d7b43f1099aa3c12265490e453bede17c06a02df253"
-    sha256 cellar: :any_skip_relocation, sonoma:        "9669f3a172984d7347da897541df9c797cdfe4ba5cfc3d7c02db1a61da6e9298"
-    sha256 cellar: :any_skip_relocation, ventura:       "8b270c281f8e77a87d01ad287d4ac2e87e737238ee6df41f55315043e8d1c4bc"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "750ecb5f1838975eea1e9d402d51df6e91c1dd0b971b997459bd65356e25b165"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e2788faccb99d04ab5b8e7a69589c376456fb668c24d468c2a4e428ccfa82698"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "602db850cbcffe619afeeeec30a9a8b3ea57ed9fef82a408cf6ba17f273e8708"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "4bc6dd3389a3fe67e276df9f75b8da9a35c4e4f357513dd7e3316413fe23c110"
+    sha256 cellar: :any_skip_relocation, sonoma:        "f8bd2119fe7dc22fbae451914946b81e6cee9e95aa01c84b5cf1da2b48ba300b"
+    sha256 cellar: :any_skip_relocation, ventura:       "0048c2f949fe99a3aabc40de4228d7e3f1c4f555547a728a6720c9ecc1b313bd"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "1721e9d8e2d3a402b1c7826c041ce8e2eb6c10ba6748dea96183e8c25f23912d"
   end
 
+  depends_on "pkgconf" => :build
   depends_on "rust" => :build
   depends_on "rustup" => :test
+
+  on_linux do
+    depends_on "alsa-lib"
+  end
 
   def install
     system "cargo", "install", *std_cargo_args

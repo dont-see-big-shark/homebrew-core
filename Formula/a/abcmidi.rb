@@ -1,8 +1,8 @@
 class Abcmidi < Formula
   desc "Converts abc music notation files to MIDI files"
   homepage "https://ifdo.ca/~seymour/runabc/top.html"
-  url "https://ifdo.ca/~seymour/runabc/abcMIDI-2025.01.13.zip"
-  sha256 "619eaecdac956e9e148504cb370f047955250b43a3659d1bbc5562d1105bc5ee"
+  url "https://ifdo.ca/~seymour/runabc/abcMIDI-2025.01.22.zip"
+  sha256 "1f241418fba732326d918bad373b7a3d3b99e993ec075748b717041568085b6e"
   license "GPL-2.0-or-later"
 
   livecheck do
@@ -11,12 +11,12 @@ class Abcmidi < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "5affac3b910c8396b75ac5d5abfc280c8b381773cc77a7b8991fd3a903fb3d27"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "8017e99586b962ec56a67fc5116bb8005599799f647cd5c059400fe0ae17ed93"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "e77c3ab9e33ef92a4a16ddd13da760c61fca1ada2b7d287e284493860fec1528"
-    sha256 cellar: :any_skip_relocation, sonoma:        "b4459d4a6ca24f4f4ff81011687d6233d0cf678f3267ba11a336c6552d92c03d"
-    sha256 cellar: :any_skip_relocation, ventura:       "a05eb9d2a3965a40608af9e3ae7e428b7761c6290eff5a3058cd3476bc73dead"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7d753cd22c36bfed2c113a770e1c35e3cc82f1893c2abf3a12c92ff13c29d462"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e5639f32dad43aa6bcae693ec0cd799475d9b32aa8106dcd3980e9bf5e0988e3"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "4d69143e73b31298cc0b6469492c0e7b443c56249862ee46c13ff32a05877487"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "9513adaec7895f931664855c409b9fdb75d8b269ace58420c8fbaf44e63822bc"
+    sha256 cellar: :any_skip_relocation, sonoma:        "f5e8de43c4dda5846b08198cd64bb604e73a82fb5de965d07fde3b661c85b8d2"
+    sha256 cellar: :any_skip_relocation, ventura:       "ef99c9b37905e4431f7ed0bf61ae4b22d07b254d047323b430c48cc598951912"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8c0096e90749edfb5ecd2671d1f7d52a7672beafb82636312dcdbc11563ade04"
   end
 
   def install

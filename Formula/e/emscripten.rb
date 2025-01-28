@@ -3,8 +3,8 @@ class Emscripten < Formula
   homepage "https://emscripten.org/"
   # To automate fetching the required resource revisions, you can use this helper script:
   #   https://gist.github.com/carlocab/2db1d7245fa0cd3e92e01fe37b164021
-  url "https://github.com/emscripten-core/emscripten/archive/refs/tags/3.1.74.tar.gz"
-  sha256 "07bc112871a4992a9e4bac5131f2f28554e47f826adeca40943144b159ddb700"
+  url "https://github.com/emscripten-core/emscripten/archive/refs/tags/4.0.1.tar.gz"
+  sha256 "bf0d1cba7b05f0eb4814d2278a11ed9c8f1b9724f848c61d63193079d10dd9a7"
   license all_of: [
     "Apache-2.0", # binaryen
     "Apache-2.0" => { with: "LLVM-exception" }, # llvm
@@ -18,12 +18,12 @@ class Emscripten < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "aa5970ff7ede9e0411a6694f6e77f0aceebfbf87de851db281f68d0b780c660b"
-    sha256 cellar: :any,                 arm64_sonoma:  "7109e8d69ee500aae75f3a1e1f61a79029fce5bf76fb05c46b478424747dc6fb"
-    sha256 cellar: :any,                 arm64_ventura: "d45a49dc7adca5f59aacb098a5a0bfdb559f3319121f7938baaa25befbf27540"
-    sha256 cellar: :any,                 sonoma:        "ab04f5e5adf2fdad97b93bbe38305ad6d3c808f3b5125a189487a985cb905aa9"
-    sha256 cellar: :any,                 ventura:       "cd38d2cd2c71c6883476b4b2a6af5215d0d9125d31f62eac1e1ce9377b08cab8"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "bcd9c7050a68949a7dd5ffdfba0e234114e5d3658645922cdc0c110ce54335b9"
+    sha256 cellar: :any,                 arm64_sequoia: "b3dfe758865342c2d0e36c7deeeb06dc5c437c63f3a2671f321ad1e2a932775a"
+    sha256 cellar: :any,                 arm64_sonoma:  "d3083a7fb4f1d309dbb2abe6dccca479e98280303c5a5b15f7eebefedd9e4b8b"
+    sha256 cellar: :any,                 arm64_ventura: "1efb5436cc88243829631028e2bca160d90857e7e9812b83f710261f047371e2"
+    sha256 cellar: :any,                 sonoma:        "5c0f3b5e3ded0336ada62eae10803d348622ad9f5d66e37500c388f40b6d67d1"
+    sha256 cellar: :any,                 ventura:       "a0b7f1a491ff1223763eeb1e51956b3aa86320f7ca3ec18902b9f374814239f1"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f672f4f602d8a6507ce7d3649a870b1bc5c10738e11b661d88dcadcd11569f0d"
   end
 
   depends_on "cmake" => :build
@@ -64,7 +64,7 @@ class Emscripten < Formula
   # Then use the listed binaryen_revision for the revision below.
   resource "binaryen" do
     url "https://github.com/WebAssembly/binaryen.git",
-        revision: "52bc45fc34ec6868400216074744147e9d922685"
+        revision: "e4bfcd2a06db0640bfbf1654f575239ecab72443"
   end
 
   # emscripten does not support using the stable version of LLVM.
@@ -72,8 +72,8 @@ class Emscripten < Formula
   # See binaryen resource above for instructions on how to update this.
   # Then use the listed llvm_project_revision for the tarball below.
   resource "llvm" do
-    url "https://github.com/llvm/llvm-project/archive/322eb1a92e6d4266184060346616fa0dbe39e731.tar.gz"
-    sha256 "528b7a7324343a3241ec211c5fb2c3c0fa56208107969f7deb4e9462bccd25a4"
+    url "https://github.com/llvm/llvm-project/archive/a32e36faf84bd7da3df0c7d50bb9020568128417.tar.gz"
+    sha256 "ef59e10e9df3aa5eb4152871c170be719469e691951c52b310cd0185b7fbde7b"
   end
 
   def install

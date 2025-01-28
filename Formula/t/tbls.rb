@@ -1,18 +1,18 @@
 class Tbls < Formula
   desc "CI-Friendly tool for document a database"
   homepage "https://github.com/k1LoW/tbls"
-  url "https://github.com/k1LoW/tbls/archive/refs/tags/v1.79.4.tar.gz"
-  sha256 "9631c6c1e380eb81add74c5981eb1c328c3d28c118c48d7786ebcd5d173826dd"
+  url "https://github.com/k1LoW/tbls/archive/refs/tags/v1.81.0.tar.gz"
+  sha256 "8616e136efdb1fa97f3804f65037b21c90b469c6a29f51ab3924805cce1522b6"
   license "MIT"
   head "https://github.com/k1LoW/tbls.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "2af6f5554daaf2c02695e8cdcbbdbfc6ab74bca3e18022a9f4a6b666e9dad4ca"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "11ea075ce3a4ffa98d627983474b605a3b4fbe5d189258ab189b53b8f0aec5fa"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "4b62fc78a77c19b9e53d4df3b192ce4d58cdc8dabbc1e7b7645fdebf321609e2"
-    sha256 cellar: :any_skip_relocation, sonoma:        "f67dac0a81bc127104bce479110b7466db83b185aabcca58027bc959b3b4755b"
-    sha256 cellar: :any_skip_relocation, ventura:       "5d79209e53238f73fc71e40545dadc3a91938072131981edb3a600c3a9a82609"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "12dba274b1c2267dd70843ec7ba053232a0bad5fbf9f03912fddb3bb82128629"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "0fe56b6a3afd10dfb7913dc8230aaabef7a6c9ad204d356f18c1ffec006268a4"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "e4a154ec7e0d53fb6e5819f470ce29c42e365b2325a8bd676a50c814ca19e6d6"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "c3de62e760d4b3042b5b60628854b386a2dcc30ca82e0e0ae6d391c359b4f472"
+    sha256 cellar: :any_skip_relocation, sonoma:        "59b3f4f31696fecbdd5ff4309dfd83b81c4faf8c9abad89287f6a9d3d06c5bce"
+    sha256 cellar: :any_skip_relocation, ventura:       "fcce46bbe7411a661798ae0769f296ee31d511720632f245930ef40478d501b8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7685496d19a4ba02ed2b1ae9010964679666ec1688b20c488b8e30ac4eea120a"
   end
 
   depends_on "go" => :build
@@ -30,7 +30,7 @@ class Tbls < Formula
   end
 
   test do
-    assert_match "invalid database scheme", shell_output(bin/"tbls doc", 1)
+    assert_match "unsupported driver", shell_output(bin/"tbls doc", 1)
     assert_match version.to_s, shell_output(bin/"tbls version")
   end
 end

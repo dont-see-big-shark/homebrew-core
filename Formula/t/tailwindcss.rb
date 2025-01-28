@@ -1,37 +1,48 @@
 class Tailwindcss < Formula
   desc "Utility-first CSS framework"
   homepage "https://tailwindcss.com"
-  url "https://github.com/tailwindlabs/tailwindcss/archive/refs/tags/v3.4.17.tar.gz"
-  sha256 "89c0a7027449cbe564f8722e84108f7bfa0224b5d9289c47cc967ffef8e1b016"
+  url "https://registry.npmjs.org/tailwindcss/-/tailwindcss-4.0.0.tgz"
+  sha256 "72309ed7264bb66a0e4ed4171a064f9f4ea3b92906afe67b8afedbd8f9e78b28"
   license "MIT"
+  head "https://github.com/tailwindlabs/tailwindcss.git", branch: "next"
 
-  bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "1ef1e89aab19737e3c66462f57f0f61267e4ed4fdd9967df8f41b37ef66db56a"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "1ef1e89aab19737e3c66462f57f0f61267e4ed4fdd9967df8f41b37ef66db56a"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "8a0a4bcb9fc57504bc217357eb758034d900b5b2040198f1d65153ccbeade325"
-    sha256 cellar: :any_skip_relocation, sonoma:        "9c15b605c267dd61402165f81113bcf07296d6941ef8b574c9b039154fff9651"
-    sha256 cellar: :any_skip_relocation, ventura:       "879e7436c37cb8f65c418009e85216707354285730be1078795405d8ce9dac56"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "646671381a5cbb0a2231f3a40021fbc2790311303f5c131d0d844ef892104ca2"
+  # There can be a notable gap between when a version is added to npm and the
+  # GitHub release is created, so we check the "latest" release on GitHub
+  # instead of the default `Npm` check for the `stable` URL.
+  livecheck do
+    url :head
+    strategy :github_latest
   end
 
-  depends_on "node" => :build
+  bottle do
+    sha256                               arm64_sequoia: "6a0c3745b4c7006283ae59f9a456bd3061d31838eab5c02ddc90f62c8a381ecc"
+    sha256                               arm64_sonoma:  "c97e47d897aa2b72420224639af7e7843ad6277564ae6e570c79cbc50e8cc5e6"
+    sha256                               arm64_ventura: "5508f6e69acfc9edd08303948327aebd434d9acbdd66bea745ccfbd6f1ce8aca"
+    sha256                               sonoma:        "12d7fae1500719207be8f1afa619e9f8ab0222b76712f9f02da43e6b7c181b8e"
+    sha256                               ventura:       "fae76c41673de7042fd257448fbc58b43b23cf56559c1e86f6ef662e753448fd"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9781a9730ee133a7218f96d5bd720ca96aed67d70bd0ae5ec9d0a56a5036930e"
+  end
+
+  depends_on "node"
+
+  resource "tailwind-cli" do
+    url "https://registry.npmjs.org/@tailwindcss/cli/-/cli-4.0.0.tgz"
+    sha256 "a6a772944d048966e9db2bdc7521053ea3d8bd06cfdff7931fdc4bb2313e6369"
+  end
 
   def install
-    system "npm", "install", *std_npm_args(prefix: false)
-    system "npm", "run", "build"
-
-    cd "standalone-cli" do
-      system "npm", "install", *std_npm_args(prefix: false)
-      system "npm", "run", "build"
-      os = OS.mac? ? "macos" : "linux"
-      cpu = Hardware::CPU.arm? ? "arm64" : "x64"
-      bin.install "dist/tailwindcss-#{os}-#{cpu}" => "tailwindcss"
+    # install the dedicated tailwind-cli package
+    resource("tailwind-cli").stage do
+      system "npm", "install", *std_npm_args
     end
+
+    system "npm", "install", *std_npm_args
+    bin.install_symlink libexec.glob("bin/*")
   end
 
   test do
     (testpath/"input.css").write("@tailwind base;")
     system bin/"tailwindcss", "-i", "input.css", "-o", "output.css"
-    assert_predicate testpath/"output.css", :exist?
+    assert_path_exists testpath/"output.css"
   end
 end

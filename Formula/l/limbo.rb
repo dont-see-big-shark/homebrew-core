@@ -1,18 +1,18 @@
 class Limbo < Formula
   desc "Interactive SQL shell for Limbo"
   homepage "https://github.com/tursodatabase/limbo"
-  url "https://github.com/tursodatabase/limbo/archive/refs/tags/v0.0.11.tar.gz"
-  sha256 "901b56096601153346c33036420c71118b9a943f4331efcd4aebad4cbb1380c6"
+  url "https://github.com/tursodatabase/limbo/archive/refs/tags/v0.0.13.tar.gz"
+  sha256 "1b13620223cd2341b103ce4b1cc80f0072645bca1a267a7277e42e5bc65a4c91"
   license "MIT"
   head "https://github.com/tursodatabase/limbo.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "6908c7394631b5088b37a0be2a685819b066c24a465ecb8073afdab41a036b71"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "07c021d0d53468de6e29948cba04fc8cd84fa9b4cebf92800223c04b62b849c8"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "7013d9169ef794fdd7b44c19567187aa68e4bed40234a6a9e9b5d7f122500fa0"
-    sha256 cellar: :any_skip_relocation, sonoma:        "703ad5f904628c3a5f1ed783224ab205d75dde8b28eb87294d56fbb45f3c287d"
-    sha256 cellar: :any_skip_relocation, ventura:       "e5fc640066c6abb9a3f3479f13c9dfc99ae655ede0c148d883a64a03d6495a3a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8086e7f4a16e2d6c63a09864753dcace3c15d93be56d12bf34e63cbf8ee76ed9"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "157877270a39667bbefbc0866e7a382aff7f90f1a7b091fc625bf7091832fed7"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "fb488250867c8afd6d5e435f8309a966b827e60f7fb540254715f74c7781a8c6"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "f921d76ceee558d71a25cad45a3f45041dce3d0c8b93e5644695ac7e60abaa49"
+    sha256 cellar: :any_skip_relocation, sonoma:        "6690560814c95a1352f512b64d93ffca8ba7f3a97bed416bf5f7cf2b7c041165"
+    sha256 cellar: :any_skip_relocation, ventura:       "2721a0ec64d053b6a2fbe0f21d908694e48f65db644680ca4fb31723217820fa"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "159bd72c02e7471aaceee4c1f3b71ac0fbf4569c2f00734841616e4b25f3481b"
   end
 
   depends_on "rust" => :build

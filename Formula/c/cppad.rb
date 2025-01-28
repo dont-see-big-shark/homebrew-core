@@ -1,8 +1,8 @@
 class Cppad < Formula
   desc "Differentiation of C++ Algorithms"
   homepage "https://www.coin-or.org/CppAD"
-  url "https://github.com/coin-or/CppAD/archive/refs/tags/20250000.0.tar.gz"
-  sha256 "5439b4c972ed16f1583f2f41f20bd958019558506626b0e916a3e84bbf06cbc5"
+  url "https://github.com/coin-or/CppAD/archive/refs/tags/20250000.2.tar.gz"
+  sha256 "d6688c7530913dfd286f7db71b007fd96df10a9e8b43ad74539e4450c9917ebf"
   license "EPL-2.0"
   version_scheme 1
   head "https://github.com/coin-or/CppAD.git", branch: "master"
@@ -13,12 +13,12 @@ class Cppad < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "58ad44d410548276d640dcad04df297a7d67dc494514e1765df9280e9511d0a5"
-    sha256 cellar: :any,                 arm64_sonoma:  "7f8b177e706210a4ebd86f4fc723187ee4a1c13b1fcc76709c27739efa086593"
-    sha256 cellar: :any,                 arm64_ventura: "b1e5091aa457c79e72346df4bc8728dddf9ca8d85642d9819305ef34dfaa1ad4"
-    sha256 cellar: :any,                 sonoma:        "b89f703e9b5149ff6e99a75e28f3c2df2b9046e3610123c1c80de5b0066f3679"
-    sha256 cellar: :any,                 ventura:       "f8ad1c0b3f06557e5e9367d5c87003da38decb20646afa1699eb0062a1904344"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "cf3e84f776409bd97c2001c0c6d213219737a6b3100cf2a0df55de558e20f46e"
+    sha256 cellar: :any,                 arm64_sequoia: "6f65c18d0662a88d692f107f438a055b1f2668d5ec7416e563b88b482db789f8"
+    sha256 cellar: :any,                 arm64_sonoma:  "617a8aad764f2c8c33d8e3a252cffaed40eeda79e2248bd7590b254c3053f242"
+    sha256 cellar: :any,                 arm64_ventura: "4b210a927c2c5f55f16ebf358b83ad441d7931b616ee3c72525513db2aff1ba1"
+    sha256 cellar: :any,                 sonoma:        "be977a43d7368711e1cdba74d19b0a9d14babf25c9cccafb98cc28c2ed83725a"
+    sha256 cellar: :any,                 ventura:       "cf71330f98f3ec66673d6475e72b5521656149487d9181f4b11c54703b4e94d4"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "b72d08633d4877ffe165ccdc0569d2c5ba34607534b93d395b52ab1a4aefe882"
   end
 
   depends_on "cmake" => :build

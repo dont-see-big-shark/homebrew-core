@@ -1,18 +1,18 @@
 class Hoverfly < Formula
   desc "API simulations for development and testing"
   homepage "https://hoverfly.io/"
-  url "https://github.com/SpectoLabs/hoverfly/archive/refs/tags/v1.10.7.tar.gz"
-  sha256 "d0203f84a4e1137978d3420eefca13768f85d6dc40d511a184d338fcd240114a"
+  url "https://github.com/SpectoLabs/hoverfly/archive/refs/tags/v1.10.9.tar.gz"
+  sha256 "e03bb5d2182ad2f724d7d2426ae0edcbac5e3ce5fc14d054c2dee0ec41007957"
   license "Apache-2.0"
   head "https://github.com/SpectoLabs/hoverfly.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "b6e96ad474253dcdb1f6300fb3c81095bcf2e48829c1a8ec2af03b99a3b72ebd"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "b6e96ad474253dcdb1f6300fb3c81095bcf2e48829c1a8ec2af03b99a3b72ebd"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "b6e96ad474253dcdb1f6300fb3c81095bcf2e48829c1a8ec2af03b99a3b72ebd"
-    sha256 cellar: :any_skip_relocation, sonoma:        "499108b76825c2602ea9814aa69c93acd75be98507d0c577071921e55d9ae087"
-    sha256 cellar: :any_skip_relocation, ventura:       "499108b76825c2602ea9814aa69c93acd75be98507d0c577071921e55d9ae087"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "982cb424994466bbf66f3f2537c2bc3e1814d4be6774d6e26a4e68234ca5e689"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "30c791a00762c16e8481a2a56c210ab2c5d06a9c1bd2b9b99a1948ce9f9548dc"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "30c791a00762c16e8481a2a56c210ab2c5d06a9c1bd2b9b99a1948ce9f9548dc"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "30c791a00762c16e8481a2a56c210ab2c5d06a9c1bd2b9b99a1948ce9f9548dc"
+    sha256 cellar: :any_skip_relocation, sonoma:        "02786fef7555dcdeb3b2a9a93a6d4ad9d2a24cc5628751eaf0893ba0e2ea47a7"
+    sha256 cellar: :any_skip_relocation, ventura:       "02786fef7555dcdeb3b2a9a93a6d4ad9d2a24cc5628751eaf0893ba0e2ea47a7"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "06c1ba19134776a9bdd5cf23cb621b4bf8ecfb9ae7bf6e51d88a5d8eacd63048"
   end
 
   depends_on "go" => :build

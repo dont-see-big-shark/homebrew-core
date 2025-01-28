@@ -1,10 +1,9 @@
 class PamU2f < Formula
   desc "Provides an easy way to use U2F-compliant authenticators with PAM"
   homepage "https://developers.yubico.com/pam-u2f/"
-  url "https://developers.yubico.com/pam-u2f/Releases/pam_u2f-1.3.0.tar.gz"
-  sha256 "72360c6875485eb4df409da8f8f52b17893f05e4d998529c238814480e115220"
+  url "https://developers.yubico.com/pam-u2f/Releases/pam_u2f-1.3.2.tar.gz"
+  sha256 "38be7d1897271cb3fee391d2383b35afc126ad431a91a9de6e99108c12cc9490"
   license "BSD-2-Clause"
-  revision 1
   head "https://github.com/Yubico/pam-u2f.git", branch: "master"
 
   livecheck do
@@ -13,16 +12,12 @@ class PamU2f < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia:  "fdbd7c54fa5226be9818e5885dfce1aec74ebeb01dfee779814ac6d979c69852"
-    sha256 cellar: :any,                 arm64_sonoma:   "d319d3bb317cedcfa9505c05467673dc8f1a13fbc282518b0d6ee21a6cf59d8b"
-    sha256 cellar: :any,                 arm64_ventura:  "45630c8a3a007708310edd878ce19476d8424244f90275748dde69ca059a8e38"
-    sha256 cellar: :any,                 arm64_monterey: "a276d4e8b21f4b15c46e8d27fb84ba42076aa280a20e3b19ce8cae7c45eedb3d"
-    sha256 cellar: :any,                 arm64_big_sur:  "f8dc0e2ba0fb4fa6e1724e6503a3d553bf2e377d0f7da9ae340e59424c097b82"
-    sha256 cellar: :any,                 sonoma:         "2a1552fdd63938e97265cb694374bc87153d62af389df3a57ce91ec902d8cb66"
-    sha256 cellar: :any,                 ventura:        "20e00da7179d67f0bac63ca36ecc33962dcc087632e0bc98844ad105122f6dd1"
-    sha256 cellar: :any,                 monterey:       "a43bfbe53c8da19aa1f4f24e99af78ffd20855fadbd8cc12fd2e66890e527daf"
-    sha256 cellar: :any,                 big_sur:        "8bb7a56a9a0d3e6547b6d9aa572863e53916bd64fa2cacb2ce7921cc26b56459"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "8d56386b58f24ea34caaa018b2c91c3d6f80b2e83d1c025b929553e5ae73738f"
+    sha256 cellar: :any,                 arm64_sequoia: "6a159e34803506bcb44ff6c28db5879ac4ec11b706eddb6df55c956ee89dcae1"
+    sha256 cellar: :any,                 arm64_sonoma:  "2bc91a296c14948e1a7fb9c61a5e6ba9d6e2d169bdc3f1955f4d7f4586d8bc71"
+    sha256 cellar: :any,                 arm64_ventura: "406d09f9b431e7ac540d312dc0b1dc9f7a7db91e7abb5f23457a2f985b19576c"
+    sha256 cellar: :any,                 sonoma:        "c5aa1b4f377072a8a821f9d711afceb700b0ba786581996efa2601c1906b39ae"
+    sha256 cellar: :any,                 ventura:       "be59022d553d437078dbed6dfd29e39d693caf4ac8bff9cc9bb75063573c24ac"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "68c9f977e803714c2c9cc19dba8716aa68b20a306e358e4d06666e91d0fbb3c9"
   end
 
   depends_on "asciidoc" => :build

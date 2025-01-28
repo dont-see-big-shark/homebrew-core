@@ -1,17 +1,17 @@
 class AwsCAuth < Formula
   desc "C99 library implementation of AWS client-side authentication"
   homepage "https://github.com/awslabs/aws-c-auth"
-  url "https://github.com/awslabs/aws-c-auth/archive/refs/tags/v0.8.0.tar.gz"
-  sha256 "217a0ebf8d7c5ad7e5f5ae814c2a371042164b64b4b9330c1c4bb2c6db1dbd33"
+  url "https://github.com/awslabs/aws-c-auth/archive/refs/tags/v0.8.3.tar.gz"
+  sha256 "369c9b21c2f54fd77d61d2a72ba79e208e24736466ab7f21a140937dc7e9c615"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "f0e670a32f6332167df1da92300073e615ada5d97c3eb521749a90a8ad43f455"
-    sha256 cellar: :any,                 arm64_sonoma:  "b0f3c85c9c911a7ce9d6900a15906e6db65759d4dbc07f4080ea77c8adf70657"
-    sha256 cellar: :any,                 arm64_ventura: "c9fefe246aea02390515230b9db840099bebaf70de69ed01a75a31429f57b36a"
-    sha256 cellar: :any,                 sonoma:        "d24ada67482431127dfbf8073d2e32b5eba77b1a9ba02f0331604cbbd27f7c1d"
-    sha256 cellar: :any,                 ventura:       "d3466a15deda7825361c58485c83a02ee0edfa8880ca27aede5a388386b164c6"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "71003d289a501c8e20696aac4cef02b4edca469f38eff38fafe5a0c84f75c296"
+    sha256 cellar: :any,                 arm64_sequoia: "0b2c0752d5422e3e93700ccddaf38e8edd1625f02ce8b6c1e5e7fbf449cb9c19"
+    sha256 cellar: :any,                 arm64_sonoma:  "75df66fa7fc01a1be0977fbdd63c32d4a4fa93ea14e2e86b9ba1ad3f87eeb48b"
+    sha256 cellar: :any,                 arm64_ventura: "ea2520a3cfa88c65344047bb18c8807c398a94e1e34b08ec60e22ce53d8a9c17"
+    sha256 cellar: :any,                 sonoma:        "8ab4c5434457919e633da2314a678f8e656e53401add5c7ff579803eb3216cc5"
+    sha256 cellar: :any,                 ventura:       "ee575ddf7d2ae633c80d00b9b90dac038352ac4b66fdc3dd9ee29fb6ef7fc045"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "258f964fde6f494cc47237f4e81c69db5e4fb4159347efc7b63e4dc08b5346aa"
   end
 
   depends_on "cmake" => :build

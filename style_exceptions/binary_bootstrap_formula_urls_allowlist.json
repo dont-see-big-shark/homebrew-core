@@ -2,6 +2,7 @@
   "cabal-install",
   "clozure-cl",
   "crystal",
+  "fastbuild",
   "fpc",
   "ghc",
   "ghc@8.10",

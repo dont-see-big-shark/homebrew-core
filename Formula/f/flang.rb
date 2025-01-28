@@ -1,8 +1,8 @@
 class Flang < Formula
   desc "LLVM Fortran Frontend"
   homepage "https://flang.llvm.org/"
-  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.6/llvm-project-19.1.6.src.tar.xz"
-  sha256 "e3f79317adaa9196d2cfffe1c869d7c100b7540832bc44fe0d3f44a12861fa34"
+  url "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.7/llvm-project-19.1.7.src.tar.xz"
+  sha256 "82401fea7b79d0078043f7598b835284d6650a75b93e64b6f761ea7b63097501"
   # The LLVM Project is under the Apache License v2.0 with LLVM Exceptions
   license "Apache-2.0" => { with: "LLVM-exception" }
   head "https://github.com/llvm/llvm-project.git", branch: "main"
@@ -12,12 +12,13 @@ class Flang < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "b2b8d18a9b72618a4fb3d1d30188b1d887633af97a84c26d3088b98181383468"
-    sha256 cellar: :any,                 arm64_sonoma:  "b6234e509f08078a4c155af45936a1563cff77a8985049fb21bbcd5f8756a1b5"
-    sha256 cellar: :any,                 arm64_ventura: "c54f42c807534ea2da8ac0517969a54dcfc82d853d42e322585c0136f0752081"
-    sha256 cellar: :any,                 sonoma:        "14d62644ccb8ebdf65b1a3f640a49005f72a2a1d01bcb1862c82e5e5c39b553b"
-    sha256 cellar: :any,                 ventura:       "390f98ddd205c01015b6f0748627e3de4fb2811db5e566bb3293ecd49081f289"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "24164d7d3ea0733d695afe1bbff76889e49fdaab48cab688d9ed57be56d84647"
+    rebuild 1
+    sha256 cellar: :any,                 arm64_sequoia: "88cd183a3fd754f57ba8b4637ea0f7eebf9ca5f225fc5eb951377a705d3bf7d8"
+    sha256 cellar: :any,                 arm64_sonoma:  "9bf49edca702bfe6554da248bbdeb305d82c4068f75508852064ea13659f99ec"
+    sha256 cellar: :any,                 arm64_ventura: "d9b25602d8deb833264d99dd4c4e051cf3e2dd44bfc3d41a3a1411555d4c89f2"
+    sha256 cellar: :any,                 sonoma:        "8429abc9db2a89890efa451c0a5a110021e7404d86291615e58805a015b956ff"
+    sha256 cellar: :any,                 ventura:       "be9edd442a2109b037409ab71af5ad00860e08ffe40f04f31f403db712465a37"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "db66d721fd417bd732de221ad2d430da6f1195f949d310bb2c115ff4cec6b44d"
   end
 
   depends_on "cmake" => :build
@@ -31,9 +32,12 @@ class Flang < Formula
   end
 
   def install
+    # Generate omp_lib.h and omp_lib.F90 to be used by flang build
+    system "cmake", "-S", "openmp", "-B", "build/projects/openmp", *std_cmake_args
+
     llvm = Formula["llvm"]
-    # NOTE: Setting `BUILD_SHARED_LIBRARIES=ON` causes the just-built flang to throw ICE.
     args = %W[
+      -DLLVM_TOOL_OPENMP_BUILD=ON
       -DCLANG_DIR=#{llvm.opt_lib}/cmake/clang
       -DFLANG_INCLUDE_TESTS=OFF
       -DFLANG_REPOSITORY_STRING=#{tap&.issues_url}
@@ -46,6 +50,8 @@ class Flang < Formula
       -DMLIR_DIR=#{llvm.opt_lib}/cmake/mlir
     ]
     args << "-DFLANG_VENDOR_UTI=sh.brew.flang" if tap&.official?
+    # FIXME: Setting `BUILD_SHARED_LIBS=ON` causes the just-built flang to throw ICE on macOS
+    args << "-DBUILD_SHARED_LIBS=ON" if OS.linux?
 
     ENV.append_to_cflags "-ffat-lto-objects" if OS.linux? # Unsupported on macOS.
     system "cmake", "-S", "flang", "-B", "build", *args, *std_cmake_args
@@ -126,6 +132,37 @@ class Flang < Formula
 
     system bin/flang_driver, "-v", "test.f90", "-o", "test"
     assert_equal "Done", shell_output("./test").chomp
+
+    (testpath/"omptest.f90").write <<~FORTRAN
+      PROGRAM omptest
+      USE omp_lib
+      !$OMP PARALLEL NUM_THREADS(4)
+      WRITE(*,'(A,I1,A,I1)') 'Hello from thread ', OMP_GET_THREAD_NUM(), ', nthreads ', OMP_GET_NUM_THREADS()
+      !$OMP END PARALLEL
+      ENDPROGRAM
+    FORTRAN
+
+    openmp_flags = %w[-fopenmp]
+    openmp_flags += if OS.mac?
+      %W[-L#{Formula["llvm"].opt_lib}]
+    else
+      libomp_dir = Formula["llvm"].opt_lib/"#{Hardware::CPU.arch}-unknown-linux-gnu"
+      %W[-L#{libomp_dir} -Wl,-rpath,#{libomp_dir} -Wl,-rpath,#{lib}]
+    end
+    system bin/flang_driver, "-v", *openmp_flags, "omptest.f90", "-o", "omptest"
+    testresult = shell_output("./omptest")
+
+    expected_result = <<~EOS
+      Hello from thread 0, nthreads 4
+      Hello from thread 1, nthreads 4
+      Hello from thread 2, nthreads 4
+      Hello from thread 3, nthreads 4
+    EOS
+
+    sorted_testresult = testresult.split("\n").sort.join("\n")
+    assert_equal expected_result.strip, sorted_testresult.strip
+
+    return if OS.linux?
 
     system "ar", "x", lib/"libFortranCommon.a"
     testpath.glob("*.o").each do |object_file|

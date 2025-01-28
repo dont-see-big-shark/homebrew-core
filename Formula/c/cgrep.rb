@@ -1,6 +1,7 @@
 class Cgrep < Formula
   desc "Context-aware grep for source code"
   homepage "https://github.com/awgn/cgrep"
+  # TODO: Check if `rawfilepath` workaround can be removed
   url "https://github.com/awgn/cgrep/archive/refs/tags/v8.1.2.tar.gz"
   sha256 "1b705013a432e6ea90247f03e4cfeceb5a37f795d879178e4bf0085ce6191316"
   license "GPL-2.0-or-later"

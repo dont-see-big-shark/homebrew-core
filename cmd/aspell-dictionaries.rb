@@ -22,13 +22,13 @@ module Homebrew
         dictionary_mirror = "https://ftpmirror.gnu.org/aspell/dict"
         languages = {}
 
-        index_output, = Utils::Curl.curl_output("#{dictionary_url}/0index.html")
+        index_output = Utils::Curl.curl_output("#{dictionary_url}/0index.html").stdout
         index_output.split("<tr><td>").each do |line|
           next unless line.start_with?("<a ")
 
           _, language, _, path, = line.split('"')
-          language.tr!("-", "_")
-          languages[language] = path
+          language&.tr!("-", "_")
+          languages[language] = path if language && path
         end
 
         resources = languages.map do |language, path|
