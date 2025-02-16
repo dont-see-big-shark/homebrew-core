@@ -12,6 +12,7 @@ action-validator
 actionlint
 activemq
 ada-url
+adapterremoval
 adb-enhanced
 adios2
 adns
@@ -95,6 +96,7 @@ aravis
 arcade-learning-environment
 archi-steam-farm
 arduino-cli
+arelo
 argc
 argo
 argocd
@@ -198,6 +200,7 @@ b2-tools
 babel
 babl
 bacon
+bacon-ls
 bacula-fd
 badkeys
 bagels
@@ -231,6 +234,7 @@ bazarr
 bazel
 bazel-diff
 bazel-remote
+bazel@7
 bazelisk
 bbot
 bbtools
@@ -514,6 +518,7 @@ clickhouse-cpp
 clickhouse-sql-parser
 cliclick
 clifm
+clinfo
 cling
 clingo
 clipboard
@@ -559,6 +564,7 @@ coconut
 code-cli
 code-minimap
 code-server
+code2prompt
 codeberg-cli
 codec2
 codelimit
@@ -980,6 +986,7 @@ fdupes
 feh
 feishu2md
 felinks
+feluda
 fend
 fennel
 fern-api
@@ -1017,6 +1024,7 @@ flashrom
 flatbuffers
 flawz
 fleet-cli
+flexiblas
 flint
 flit
 flix
@@ -1097,6 +1105,7 @@ g2o
 gabo
 gallery-dl
 gambit
+game-music-emu
 gammaray
 garble
 gat
@@ -1104,6 +1113,7 @@ gateway-go
 gator
 gatsby-cli
 gau
+gauge
 gawk
 gaze
 gcalcli
@@ -1162,6 +1172,7 @@ git-ignore
 git-interactive-rebase-tool
 git-lfs
 git-machete
+git-mob
 git-quick-stats
 git-review
 git-split-diffs
@@ -1402,6 +1413,7 @@ hoverfly
 howard-hinnant-date
 hpack
 hsd
+html-xml-utils
 html2markdown
 htmldoc
 htmlq
@@ -1435,6 +1447,7 @@ ibazel
 icbirc
 icloudpd
 icon
+identme
 ignite
 igraph
 igv
@@ -1567,6 +1580,7 @@ juicefs
 juju
 julia
 jupyterlab
+jupytext
 just
 jwt-cli
 jxl-oxide
@@ -1595,6 +1609,7 @@ kcov
 kcptun
 kea
 keep-sorted
+keeper-commander
 keploy
 kepubify
 kerl
@@ -1618,6 +1633,7 @@ kn
 knot
 knot-resolver
 ko
+koji
 kompose
 kool
 kops
@@ -1693,6 +1709,7 @@ latexml
 latino
 lazydocker
 lazyjj
+lazysql
 lbdb
 lc0
 lcm
@@ -1761,6 +1778,7 @@ libfabric
 libffcall
 libffi
 libfido2
+libfishsound
 libfixbuf
 libfontenc
 libfreenect
@@ -2063,6 +2081,7 @@ mbedtls@2
 mbt
 mcap
 mcfly
+md2pdf
 md4c
 mdbook
 mdbtools
@@ -2758,6 +2777,8 @@ rakudo-star
 rancher-cli
 ranger
 rapidfuzz-cpp
+rapidyaml
+ratarmount
 ratchet
 ratfor
 ratify
@@ -2878,6 +2899,7 @@ rustcat
 rustls-ffi
 rustscan
 rustup
+rustywind
 rye
 ryelang
 s-nail
@@ -2928,6 +2950,7 @@ scrcpy
 screen
 screenfetch
 scriptisto
+scrypt
 scs
 scummvm
 scummvm-tools
@@ -2940,6 +2963,7 @@ sdl2_mixer
 sdl2_sound
 sdl2_ttf
 sdl3
+sdns
 seal
 seam
 seaweedfs
@@ -3091,6 +3115,7 @@ spot
 spotbugs
 spotify_player
 sq
+sql-formatter
 sql-migrate
 sqlancer
 sqlboiler
@@ -3627,6 +3652,7 @@ yaegi
 yaf
 yamale
 yaml-language-server
+yamlfix
 yamlfmt
 yamllint
 yara
