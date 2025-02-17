@@ -1,8 +1,8 @@
 class Lego < Formula
   desc "Let's Encrypt client and ACME library"
   homepage "https://go-acme.github.io/lego/"
-  url "https://github.com/go-acme/lego/archive/refs/tags/v4.21.0.tar.gz"
-  sha256 "21204483e62bff3e762583e42044183dbe6efe6b401772bb186be821501d9463"
+  url "https://github.com/go-acme/lego/archive/refs/tags/v4.22.1.tar.gz"
+  sha256 "5dc69859f5b42034acc0731d5308bc3d9eb35d323d0b6e83ec5d2ab551db43ff"
   license "MIT"
 
   livecheck do
@@ -11,12 +11,12 @@ class Lego < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "22a130780af1ae4102daeb202ed9b06df799d8fba4ee24595709f6a3e928471f"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "22a130780af1ae4102daeb202ed9b06df799d8fba4ee24595709f6a3e928471f"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "22a130780af1ae4102daeb202ed9b06df799d8fba4ee24595709f6a3e928471f"
-    sha256 cellar: :any_skip_relocation, sonoma:        "9e4935c9943b0b018fa7835873f9d3ebb592de50fee14302580e75117de92263"
-    sha256 cellar: :any_skip_relocation, ventura:       "9e4935c9943b0b018fa7835873f9d3ebb592de50fee14302580e75117de92263"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "728dfd9eca049126a1d3b30e9cf78360b8c1721951c3272f01a98b7f87e647d7"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "3f15c0078b95028e294c8e4812f851f571ca4cbe9702eab1d9b2e3e30f498e2d"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "3f15c0078b95028e294c8e4812f851f571ca4cbe9702eab1d9b2e3e30f498e2d"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "3f15c0078b95028e294c8e4812f851f571ca4cbe9702eab1d9b2e3e30f498e2d"
+    sha256 cellar: :any_skip_relocation, sonoma:        "1d67298b522554bc42617704bcf76664ac35bbdf093633842a3372f980b4b70b"
+    sha256 cellar: :any_skip_relocation, ventura:       "1d67298b522554bc42617704bcf76664ac35bbdf093633842a3372f980b4b70b"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "fc09708660f4b244248d2a89f758422c1a2b56624c287c1c5f7cbc2e23c9034f"
   end
 
   depends_on "go" => :build

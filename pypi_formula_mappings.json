@@ -298,7 +298,7 @@
     "package_name": "eralchemy[pygraphviz]"
   },
   "esphome": {
-    "exclude_packages": ["certifi", "cryptography"]
+    "exclude_packages": ["certifi", "cryptography", "pillow"]
   },
   "esptool": {
     "exclude_packages": ["cryptography"]

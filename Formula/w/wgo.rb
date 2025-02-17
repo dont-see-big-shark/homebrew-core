@@ -1,17 +1,17 @@
 class Wgo < Formula
   desc "Watch arbitrary files and respond with arbitrary commands"
   homepage "https://github.com/bokwoon95/wgo"
-  url "https://github.com/bokwoon95/wgo/archive/refs/tags/v0.5.9.tar.gz"
-  sha256 "451f62a114bfd5eed3025c4b80ea99586e2cb2b6a22f610d5d39f66ff458e95e"
+  url "https://github.com/bokwoon95/wgo/archive/refs/tags/v0.5.11.tar.gz"
+  sha256 "43da88bf03296dc8c47d7309dc15d2121fac303e4d78a0db5882363748d4ad12"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "79d2284328fac85aba25665f145a7cb00fdc6682e947dbe5b53ebaaa4a474e82"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "79d2284328fac85aba25665f145a7cb00fdc6682e947dbe5b53ebaaa4a474e82"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "79d2284328fac85aba25665f145a7cb00fdc6682e947dbe5b53ebaaa4a474e82"
-    sha256 cellar: :any_skip_relocation, sonoma:        "a60b2425c23d392f383d74be726721392eae17f7ff74ebea52b5e5116995c467"
-    sha256 cellar: :any_skip_relocation, ventura:       "a60b2425c23d392f383d74be726721392eae17f7ff74ebea52b5e5116995c467"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2dcea8ece21d782265432ecd2a8484d527eff5023f08565d072593b6e81c34e5"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "a078b99cb9070cef3a7ea6cb635fb0df507265703baf8796876862265d1e1143"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "a078b99cb9070cef3a7ea6cb635fb0df507265703baf8796876862265d1e1143"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "a078b99cb9070cef3a7ea6cb635fb0df507265703baf8796876862265d1e1143"
+    sha256 cellar: :any_skip_relocation, sonoma:        "6f955a8850bb8e4f19f8acf3712dcb2c70a082854a9f10c0f229a351b630de16"
+    sha256 cellar: :any_skip_relocation, ventura:       "6f955a8850bb8e4f19f8acf3712dcb2c70a082854a9f10c0f229a351b630de16"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "952cccc76bb62762cfda6e256a1baff764172cf33c61b200647ef18a70282049"
   end
 
   depends_on "go" => :build
