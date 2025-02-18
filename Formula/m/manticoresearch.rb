@@ -19,20 +19,21 @@ class Manticoresearch < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia: "f9cd06d7a60865cb5e903715569159aa0982a43e0c92c88303968d5a6138d1a0"
-    sha256 arm64_sonoma:  "5b3ae70847a9f113129794daf5f6334c5bfdb25cb26d9ace58348ff818757d6e"
-    sha256 arm64_ventura: "4b34465eb0a51a6c8a1d2e445cb29289e064cefdd01e62d1b494a815ffd0d327"
-    sha256 sonoma:        "3eba3b20b169fc783cc4d4263068d4cb4b07f8d6ffa3c4397b71be0a12e6feb7"
-    sha256 ventura:       "f885e6069dedf497b1260e584e597d0b75c69ecc3fef89f90b81f858790b37f4"
-    sha256 x86_64_linux:  "17b7c8d8284cd3d36691c692675d7a266ac733e410b9beb012b64cd36a515b6c"
+    rebuild 2
+    sha256 arm64_sequoia: "23b9f82bba64cd82f47fe1df8c2bcd76563a8270e5ea27d50a2fad2ba5703889"
+    sha256 arm64_sonoma:  "03245d85200575b4e4c87842cf0ebe41b63be66a48dce4d5ec391230ad9c26b5"
+    sha256 arm64_ventura: "94753adf68046638f9773fc1c893629d46409f092982354e929a66b480b23217"
+    sha256 sonoma:        "9ca10dd355103c9d92272466583836b43e2b2feba151448051a0238a7505ee7a"
+    sha256 ventura:       "b9bd3aa87501c7b4acc03ec4f0afe0d85736fd19c9234e79ea26ccf46d94f12a"
+    sha256 x86_64_linux:  "295595ebca01296aabcf0b686ffc589df0ec829ac07c601ad53079b0b090be15"
   end
 
-  depends_on "boost@1.85" => :build
   depends_on "cmake" => :build
   depends_on "nlohmann-json" => :build
   depends_on "snowball" => :build # for libstemmer.a
 
   # NOTE: `libpq`, `mariadb-connector-c`, `unixodbc` and `zstd` are dynamically loaded rather than linked
+  depends_on "boost"
   depends_on "cctz"
   depends_on "icu4c@76"
   depends_on "libpq"
@@ -49,7 +50,14 @@ class Manticoresearch < Formula
   uses_from_macos "libxml2"
   uses_from_macos "zlib"
 
+  # Allow building with Boost 1.87.0. Issue reported upstream following CONTRIBUTING.md
+  # Issue ref: https://github.com/manticoresoftware/manticoresearch/issues/3099
+  patch :DATA
+
   def install
+    # Avoid statically linking to boost
+    inreplace "src/CMakeLists.txt", "set ( Boost_USE_STATIC_LIBS ON )", "set ( Boost_USE_STATIC_LIBS OFF )"
+
     # Work around error when building with GCC
     # Issue ref: https://github.com/manticoresoftware/manticoresearch/issues/2393
     ENV.append_to_cflags "-fpermissive" if OS.linux?
@@ -109,3 +117,36 @@ class Manticoresearch < Formula
     Process.wait(pid)
   end
 end
+
+__END__
+diff --git a/src/searchdbuddy.cpp b/src/searchdbuddy.cpp
+index 7faf78557..36f030edc 100644
+--- a/src/searchdbuddy.cpp
++++ b/src/searchdbuddy.cpp
+@@ -14,7 +14,7 @@
+ #include "netreceive_ql.h"
+ #include "client_session.h"
+ 
+-#include <boost/asio/io_service.hpp>
++#include <boost/asio/io_context.hpp>
+ #include <boost/asio/read_until.hpp>
+ #include <boost/process.hpp>
+ #if _WIN32
+@@ -32,7 +32,7 @@ static CSphString g_sUrlBuddy;
+ static CSphString g_sStartArgs;
+ 
+ static const int PIPE_BUF_SIZE = 2048;
+-static std::unique_ptr<boost::asio::io_service> g_pIOS;
++static std::unique_ptr<boost::asio::io_context> g_pIOS;
+ static std::vector<char> g_dPipeBuf ( PIPE_BUF_SIZE );
+ static CSphVector<char> g_dLogBuf ( PIPE_BUF_SIZE );
+ static std::unique_ptr<boost::process::async_pipe> g_pPipe;
+@@ -357,7 +357,7 @@ BuddyState_e TryToStart ( const char * sArgs, CSphString & sError )
+ 	g_pPipe.reset();
+ 	g_pIOS.reset();
+ 
+-	g_pIOS.reset ( new boost::asio::io_service );
++	g_pIOS.reset ( new boost::asio::io_context );
+ 	g_pPipe.reset ( new boost::process::async_pipe ( *g_pIOS ) );
+ 
+ 	std::unique_ptr<boost::process::child> pBuddy;
