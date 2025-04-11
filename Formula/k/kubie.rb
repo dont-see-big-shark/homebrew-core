@@ -17,6 +17,7 @@ class Kubie < Formula
     sha256 cellar: :any_skip_relocation, arm64_ventura: "69a9ea8f4288fe18075f1b1c71815f94554ad168cb9c8ce0dfb639e677234392"
     sha256 cellar: :any_skip_relocation, sonoma:        "32d2c5ec2ce7902d06cf859253fecf9489d779529f32e318d68a15a16a87a7fc"
     sha256 cellar: :any_skip_relocation, ventura:       "ec6940cb0934fc87b51cb10448b84970752589ef6fd06963ffedcba9e4177617"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "1c53608c2b438262b8d14adbc31cb2524e4e5c75e1b8d4e6791ff9405472392c"
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "988ef522300b19560127b32022aa92d7d27ece39087c747aed21781c22c74812"
   end
 

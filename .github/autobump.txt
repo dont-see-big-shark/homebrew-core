@@ -3532,6 +3532,7 @@ texttest
 tf-profile
 tf-summarize
 tfautomv
+tfcmt
 tfel
 tfmigrate
 tfprovidercheck
@@ -3719,6 +3720,7 @@ vercel-cli
 verilator
 verovio
 versitygw
+veryfasttree
 vet
 vexctl
 vfkit

@@ -20,6 +20,7 @@ class Ekhtml < Formula
     sha256 cellar: :any,                 high_sierra:    "d081597008ebd37b0bc69adeb365bedf296cf9a251cb81fa07671b12143a6aa8"
     sha256 cellar: :any,                 sierra:         "a4e245b9e7b3643dea35dc0b6dece64f92b76d27ec59ba28c30ea7a666254396"
     sha256 cellar: :any,                 el_capitan:     "d606a2fe3d466a5e76f22a0736f0b485be613bad4a09575d496d9396d3a71903"
+    sha256 cellar: :any_skip_relocation, arm64_linux:    "3f2ab2f0d6601017ddf04993f8223350d37b134248701391503ad0914067d902"
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "8841e4eeb677f92be17fbaa26ee2d5d1e2d6ce958eff178fdb4a9fcf33ea1363"
   end
 

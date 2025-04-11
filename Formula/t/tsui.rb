@@ -12,6 +12,7 @@ class Tsui < Formula
     sha256 cellar: :any_skip_relocation, arm64_ventura: "8b6466361263798b364befe5c20bbd1e9190e10192c585f7748dc15c137db5e7"
     sha256 cellar: :any_skip_relocation, sonoma:        "0c4f8cafa900e370bd481d335d58726d48065ec40990d55d4b7ceaf100cc8f4f"
     sha256 cellar: :any_skip_relocation, ventura:       "6fc53cdc2d15c3e8e6c0bfb5e506ecc143e2b674a331d91d2de345de0015177a"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "a10bf1333fdf6ac408c80c36c6259d1b31f8be73d5600909de9b2708f82ccb03"
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "ca260cc4f6d4e96c9067a627aa3b3018f2cedc2f687a9aee134a4367bd4cbefc"
   end
 

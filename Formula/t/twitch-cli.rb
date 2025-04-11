@@ -12,6 +12,7 @@ class TwitchCli < Formula
     sha256 cellar: :any_skip_relocation, arm64_ventura: "5f9c5a15fb1412f96d2db036f72bf1c72dc36643d8f067ff6ed7937d132f7153"
     sha256 cellar: :any_skip_relocation, sonoma:        "7c4a06fb87e8f90426d94117dddd7ccfba176b57084331c9e9b04ca473e71271"
     sha256 cellar: :any_skip_relocation, ventura:       "d6d991cb51f10126ceb455fc579dc97ec278cd14b007d3267670ff09b536d436"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "2d934024bce9a3de783dce2c8929ac17f822ac8632d4b786da4c5953713ade24"
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "fe71e31769022181108b966e4adadaab884c53a3ebdb754b70be5cd613475c23"
   end
 
