@@ -375,10 +375,6 @@
     "package_name": "glances[web]",
     "exclude_packages": ["certifi"]
   },
-  "glib": {
-    "package_name": "",
-    "extra_packages": ["packaging"]
-  },
   "gnuradio": {
     "package_name": "",
     "exclude_packages": ["rpds-py"],
@@ -789,6 +785,9 @@
   },
   "ruff-lsp": {
     "exclude_packages": ["ruff"]
+  },
+  "sacad": {
+    "exclude_packages": ["pillow"]
   },
   "safety": {
     "exclude_packages": ["certifi", "cryptography"]

@@ -3,12 +3,18 @@ class LanggraphCli < Formula
 
   desc "Command-line interface for deploying apps to the LangGraph platform"
   homepage "https://www.github.com/langchain-ai/langgraph"
-  url "https://files.pythonhosted.org/packages/a4/9a/4960e44038a1d30c9edfdf44581777f971db55f13a390143c8cf497df28e/langgraph_cli-0.1.89.tar.gz"
-  sha256 "f772fa76536eed07e9c43aa640f1aa4627bc6ffa53aba50662b3791965215963"
+  url "https://files.pythonhosted.org/packages/ab/bc/186b9445d5baea49b5a07bcaf45ad02e9508a3f5e32098fe51a77e8a7abe/langgraph_cli-0.2.5.tar.gz"
+  sha256 "bd21b0fd4078c33ee8b51025d21f3f4fd78afddbba8bc99f2b13e1d176e1a0c0"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, all: "a3082629d24ebcc2097618815564b8f80f506476af07aa204e2781f3cbd49401"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "9692d331b507fa9eddbb57e5346c1f9b5893eacac414bb590b6c8ca99cc51b55"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "9692d331b507fa9eddbb57e5346c1f9b5893eacac414bb590b6c8ca99cc51b55"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "9692d331b507fa9eddbb57e5346c1f9b5893eacac414bb590b6c8ca99cc51b55"
+    sha256 cellar: :any_skip_relocation, sonoma:        "70f418b32da8d9d1a07dab0f1f4b8041070baee5c713ce8a82e5f85a33204520"
+    sha256 cellar: :any_skip_relocation, ventura:       "70f418b32da8d9d1a07dab0f1f4b8041070baee5c713ce8a82e5f85a33204520"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "9692d331b507fa9eddbb57e5346c1f9b5893eacac414bb590b6c8ca99cc51b55"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "9692d331b507fa9eddbb57e5346c1f9b5893eacac414bb590b6c8ca99cc51b55"
   end
 
   depends_on "python@3.13"

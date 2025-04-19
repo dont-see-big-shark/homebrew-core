@@ -88,6 +88,7 @@ apache-opennlp
 apache-pulsar
 apache-spark
 apachetop
+api-linter
 apibuilder-cli
 apkleaks
 apko
@@ -288,6 +289,7 @@ binsider
 biodiff
 biome
 biosig
+bitcoin
 bitrise
 bittwist
 bitwarden-cli
@@ -337,6 +339,7 @@ bruno-cli
 btrfs-progs
 bubblewrap
 buf
+buffrs
 buildifier
 buildkit
 buildozer
@@ -1128,6 +1131,7 @@ freeglut
 freeipmi
 freerdp
 freeswitch
+freetds
 freetype
 freexl
 frei0r
@@ -1875,6 +1879,7 @@ libcap-ng
 libcbor
 libcdr
 libcec
+libcerf
 libchewing
 libclc
 libcoap
@@ -2057,6 +2062,7 @@ libvirt
 libvirt-python
 libvisio
 libvncserver
+libvpx
 libwbxml
 libwebsockets
 libwpe
@@ -2288,6 +2294,7 @@ minigraph
 minijinja-cli
 minikube
 minimal-racket
+minimap2
 minio
 minio-warp
 minipro
@@ -2341,6 +2348,7 @@ morpheus
 morse
 mosquitto
 moto
+mox
 mpc
 mpd
 mpdecimal
@@ -2650,6 +2658,7 @@ otree
 ots
 ott
 otterdog
+ouch
 ov
 overarch
 overmind
@@ -2864,6 +2873,7 @@ proto
 protobuf
 protobuf-c
 protobuf@29
+protoc-gen-doc
 protoc-gen-go
 protoc-gen-go-grpc
 protoc-gen-grpc-java
@@ -3308,6 +3318,7 @@ soft-serve
 solana
 solargraph
 solarus
+solc-select
 solhint
 sollya
 solr
@@ -3384,6 +3395,7 @@ stanc3
 stanford-corenlp
 star
 starlark-rust
+statesmith
 static-web-server
 staticcheck
 statix
@@ -3817,6 +3829,7 @@ wazero
 wcslib
 wcurl
 weasyprint
+weaver
 weaviate
 weaviate-cli
 web-ext
@@ -3867,9 +3880,11 @@ wush
 wxmaxima
 wxpython
 wxwidgets
+x-cmd
 x265
 x3270
 xa
+xan
 xapian
 xauth
 xbyak
@@ -3895,6 +3910,7 @@ xkeyboard-config
 xlsxio
 xmake
 xmlrpc-c
+xmlsectool
 xmount
 xmq
 xmrig

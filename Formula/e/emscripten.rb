@@ -3,8 +3,8 @@ class Emscripten < Formula
   homepage "https://emscripten.org/"
   # To automate fetching the required resource revisions, you can use this helper script:
   #   https://gist.github.com/carlocab/2db1d7245fa0cd3e92e01fe37b164021
-  url "https://github.com/emscripten-core/emscripten/archive/refs/tags/4.0.6.tar.gz"
-  sha256 "dbb093551cb0a9ac9e873d5ba719e6a3147202cbe0073563ad33dbbf969cd764"
+  url "https://github.com/emscripten-core/emscripten/archive/refs/tags/4.0.7.tar.gz"
+  sha256 "432874e8d2c14a2fe7b19d5dbf31a5fe42c953a15d1a9ffc1db83b93cd2babfc"
   license all_of: [
     "Apache-2.0", # binaryen
     "Apache-2.0" => { with: "LLVM-exception" }, # llvm
@@ -18,12 +18,13 @@ class Emscripten < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "bb8585ef66dd08b3a071923e3baee6f4f5e055b336b6e64fd72b191060bd2678"
-    sha256 cellar: :any,                 arm64_sonoma:  "0d750dca4d78e27de5aab41a5ac5f4c7ceed220dd0dd7e3d28d1e221dc875981"
-    sha256 cellar: :any,                 arm64_ventura: "0d16e993cfe4b1d6df2aabde2b3b3d6b26957cdb6421ff9cf97a1d1fe623b3d2"
-    sha256 cellar: :any,                 sonoma:        "5be5e04d0b9a8208ea4ab205fdce6f4a19fcbba040fa0eeb00895e7e0539f5ee"
-    sha256 cellar: :any,                 ventura:       "09a0f050cd231ba691fe01ce6083c09f399ee1d9789e21f73329f9693b976ab9"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c8bcbffe4761406c1514027396ba1a82219ae23d060919136597551380c1ab28"
+    sha256 cellar: :any,                 arm64_sequoia: "b91aa1250e7bdc9a3193aed31b04d6dc11b426f70beb48e6725478dea8e2457a"
+    sha256 cellar: :any,                 arm64_sonoma:  "f2bc173a7a331ca587daa3a8dfb40990b397d1ff18ef3a4471c1825649ce3196"
+    sha256 cellar: :any,                 arm64_ventura: "5afe49c397677899f749d1dda0c0cdfc6ab454b7b4d2b591da49f5c4635cca36"
+    sha256 cellar: :any,                 sonoma:        "469f5d696ce51eca6578624798a949ad40dd3911ef7e68d3c50bc64c57cda317"
+    sha256 cellar: :any,                 ventura:       "a0dbd479467bda5df9d7f4951b9b08af960db675ffc9f92839adccd498e37c46"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "b4297a8d13fe8059333fc8176d3e309e0889d68399018ad320003ed0647f7942"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "fb9c17ab87e778992a2f4e5a2ec489f4743197add350a7156825f5c67d9f2539"
   end
 
   depends_on "cmake" => :build
@@ -63,8 +64,25 @@ class Emscripten < Formula
   # https://chromium.googlesource.com/emscripten-releases/+/<commit>/DEPS
   # Then use the listed binaryen_revision for the revision below.
   resource "binaryen" do
-    url "https://github.com/WebAssembly/binaryen.git",
-        revision: "8b47ebf8ad8609f7b2f511f268e6b9302979816f"
+    url "https://github.com/WebAssembly/binaryen/archive/e6f1c53a2052d7c1e9e06ace64c7c2833aa82a7d.tar.gz"
+    version "e6f1c53a2052d7c1e9e06ace64c7c2833aa82a7d"
+    sha256 "6a9d5737c936c40bef0e3da4bfc5f00f2fdd2a9f893853043c25968415f5a5b6"
+
+    livecheck do
+      url "https://raw.githubusercontent.com/emscripten-core/emsdk/refs/tags/#{LATEST_VERSION}/emscripten-releases-tags.json"
+      regex(/["']binaryen_revision["']:\s*["']([0-9a-f]+)["']/i)
+      strategy :json do |json, regex|
+        # TODO: Find a way to replace `json.dig("aliases", "latest")` with substituted LATEST_VERSION
+        release_hash = json.dig("releases", json.dig("aliases", "latest"))
+        next if release_hash.blank?
+
+        release_url = "https://chromium.googlesource.com/emscripten-releases/+/#{release_hash}/DEPS?format=TEXT"
+        match = Base64.decode64(Homebrew::Livecheck::Strategy.page_content(release_url)[:content]).match(regex)
+        next if match.blank?
+
+        match[1]
+      end
+    end
   end
 
   # emscripten does not support using the stable version of LLVM.
@@ -72,8 +90,25 @@ class Emscripten < Formula
   # See binaryen resource above for instructions on how to update this.
   # Then use the listed llvm_project_revision for the tarball below.
   resource "llvm" do
-    url "https://github.com/llvm/llvm-project/archive/553da9634dc4bae215e6c850d2de3186d09f9da5.tar.gz"
-    sha256 "ce07ac6c5ef4d1d3a1577b83d5ea144d1b02f46a90a3600e79c3954b9d12b4de"
+    url "https://github.com/llvm/llvm-project/archive/57025b42c43b2f14f7e58692bc19cd53d1b8a45e.tar.gz"
+    version "57025b42c43b2f14f7e58692bc19cd53d1b8a45e"
+    sha256 "bf1ff430f4ccbe8233885676e11479ae299d34393b9343a45d362485a11370f7"
+
+    livecheck do
+      url "https://raw.githubusercontent.com/emscripten-core/emsdk/refs/tags/#{LATEST_VERSION}/emscripten-releases-tags.json"
+      regex(/["']llvm_project_revision["']:\s*["']([0-9a-f]+)["']/i)
+      strategy :json do |json, regex|
+        # TODO: Find a way to replace `json.dig("aliases", "latest")` with substituted LATEST_VERSION
+        release_hash = json.dig("releases", json.dig("aliases", "latest"))
+        next if release_hash.blank?
+
+        release_url = "https://chromium.googlesource.com/emscripten-releases/+/#{release_hash}/DEPS?format=TEXT"
+        match = Base64.decode64(Homebrew::Livecheck::Strategy.page_content(release_url)[:content]).match(regex)
+        next if match.blank?
+
+        match[1]
+      end
+    end
   end
 
   def install
@@ -161,7 +196,9 @@ class Emscripten < Formula
     end
 
     resource("binaryen").stage do
-      system "cmake", "-S", ".", "-B", "build", *std_cmake_args(install_prefix: libexec/"binaryen")
+      system "cmake", "-S", ".", "-B", "build",
+                      "-DBUILD_TESTS=OFF",
+                      *std_cmake_args(install_prefix: libexec/"binaryen")
       system "cmake", "--build", "build"
       system "cmake", "--install", "build"
     end
@@ -169,9 +206,9 @@ class Emscripten < Formula
     cd libexec do
       system "npm", "install", *std_npm_args(prefix: false)
       # Delete native GraalVM image in incompatible platforms.
-      if OS.linux?
+      if OS.linux? && Hardware::CPU.intel?
         rm_r("node_modules/google-closure-compiler-linux")
-      elsif Hardware::CPU.arm?
+      elsif OS.mac? && Hardware::CPU.arm?
         rm_r("node_modules/google-closure-compiler-osx")
       end
 
