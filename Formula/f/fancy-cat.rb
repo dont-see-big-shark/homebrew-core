@@ -4,16 +4,16 @@ class FancyCat < Formula
   url "https://github.com/freref/fancy-cat/archive/refs/tags/v0.4.0.tar.gz"
   sha256 "bce101d5eb009ec9057f7b87f6ad767ee96238abcee8854a9db7febd0229a2bf"
   license "AGPL-3.0-or-later"
-  revision 2
+  revision 4
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia: "a701bbfd37f493909b68c5f13cc3802c1468eb1b291fb4aa955dd6dd4ee9c82d"
-    sha256 cellar: :any,                 arm64_sonoma:  "604b4f4a8a68c7f8405a00930543dbdda592f5939aa8d4ffe16f0868ba3d0952"
-    sha256 cellar: :any,                 arm64_ventura: "9e2ee80fd453a54fe9dfcb0b7670ea9540719eb292227c84a66f995542ffc8b6"
-    sha256 cellar: :any,                 sonoma:        "da434a308c5403ea201190114504160310061026bf7bc773b5bbd73baf139e24"
-    sha256 cellar: :any,                 ventura:       "b1e3e63dad0d297dfabe58a21dff30ff6167612ec6a7fd063c86374f42082b18"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "b388b4d8664618f95007db25995a26d3ea03a5a28243168af333cbf3ca34b592"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8553d25dd61c2ff312bda88e9a468036749be2c9d34bdda45afc1d452c88688d"
+    sha256 cellar: :any,                 arm64_sequoia: "858207c07f258a550d2d97ddd34d25050370a3952a874e88c52fdcfae1367417"
+    sha256 cellar: :any,                 arm64_sonoma:  "2414d4df19efcbf8b6ac444b51506001b6d5dc3569572e6f6735c6a3181421fe"
+    sha256 cellar: :any,                 arm64_ventura: "b062e87e41ba0e891a04f6270889353e0693f744a6e20a1ed1a94f8d53d932d2"
+    sha256 cellar: :any,                 sonoma:        "2ad1b39acc2edbe40af0b4aeb5878f5130c99fb0f109accafdd246671ab15b53"
+    sha256 cellar: :any,                 ventura:       "09831309e4bd91134168aebe7ef9c052bba29aaa8b0958b950a1e71c55507fb4"
+    sha256 cellar: :any_skip_relocation, arm64_linux:   "b84ed2488e51c145f8eecfde84daf86889945904e05df93c1f1cadf8e8bae949"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "06e9a9771687070f658d364a241b312e79a39fad68edf164c396eb4b2f04109e"
   end
 
   depends_on "zig" => :build

@@ -1,18 +1,18 @@
 class GithubMcpServer < Formula
   desc "GitHub Model Context Protocol server for AI tools"
   homepage "https://github.com/github/github-mcp-server"
-  url "https://github.com/github/github-mcp-server/archive/refs/tags/v0.2.1.tar.gz"
-  sha256 "621fd4eca813c715cc64149c4fd6d7ccb193ca9283a761ab129b8f869296217f"
+  url "https://github.com/github/github-mcp-server/archive/refs/tags/v0.4.0.tar.gz"
+  sha256 "824412c08b0fb8f462c6c59cc606791baffaaecb66810f4e274a3a7bd7fa6d99"
   license "MIT"
   head "https://github.com/github/github-mcp-server.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "5095440a17d12556bb8a03bf4a720daa9c12e76b663f7232c7bd6559f9221ca6"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "5095440a17d12556bb8a03bf4a720daa9c12e76b663f7232c7bd6559f9221ca6"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "5095440a17d12556bb8a03bf4a720daa9c12e76b663f7232c7bd6559f9221ca6"
-    sha256 cellar: :any_skip_relocation, sonoma:        "48ed56c4b7967f17e1e3fffa88165bfb32788a2603c8ef23c56eafd522683eb6"
-    sha256 cellar: :any_skip_relocation, ventura:       "48ed56c4b7967f17e1e3fffa88165bfb32788a2603c8ef23c56eafd522683eb6"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "911fbb58aeb6c06114bc826a1d31e6658bcf86982e047ac0d43dbcb9da792c8d"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "db1ff3f7ca90dea5b7b591686008f23a74291efb4bbb7be52b417b2608b404eb"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "db1ff3f7ca90dea5b7b591686008f23a74291efb4bbb7be52b417b2608b404eb"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "db1ff3f7ca90dea5b7b591686008f23a74291efb4bbb7be52b417b2608b404eb"
+    sha256 cellar: :any_skip_relocation, sonoma:        "23a1d199ea1d2cba9b494b3d8535ba7c0d884acf30b9601a8837512314d9283f"
+    sha256 cellar: :any_skip_relocation, ventura:       "23a1d199ea1d2cba9b494b3d8535ba7c0d884acf30b9601a8837512314d9283f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "acfaf80176388285cd66eb52e6a86b5760e3245b08e65e76f2899871f63d7573"
   end
 
   depends_on "go" => :build

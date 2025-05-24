@@ -1,23 +1,23 @@
 class KubectlAi < Formula
   desc "AI powered Kubernetes Assistant"
   homepage "https://github.com/GoogleCloudPlatform/kubectl-ai"
-  url "https://github.com/GoogleCloudPlatform/kubectl-ai/archive/refs/tags/v0.0.8.tar.gz"
-  sha256 "d4547d69a2b1014ed23989349eb210829373d43b94514896d2d4fecb6bb3488a"
+  url "https://github.com/GoogleCloudPlatform/kubectl-ai/archive/refs/tags/v0.0.10.tar.gz"
+  sha256 "a65aacf0b9590d52757b6c7824d2194ed582e8b9bc07aef85199ab9b3dc4acfa"
   license "Apache-2.0"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "ecddd7b1d507131d8eee3d2d0d96a752328c8e8b36eca148d3e9358a97f1699c"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "ecddd7b1d507131d8eee3d2d0d96a752328c8e8b36eca148d3e9358a97f1699c"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "ecddd7b1d507131d8eee3d2d0d96a752328c8e8b36eca148d3e9358a97f1699c"
-    sha256 cellar: :any_skip_relocation, sonoma:        "22491d946f000e2cc97310fba5748fcdb955f49635ba4556b7927dad682fd69d"
-    sha256 cellar: :any_skip_relocation, ventura:       "22491d946f000e2cc97310fba5748fcdb955f49635ba4556b7927dad682fd69d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "0e894616c1423a4a1a75ddcee5782445bf4d6ddfd5e93b7efa1239baf9ee4b7c"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "7a557b4fa3ea59f480ab99eb0e8ebfb18949941659306c21958bcb1771aa235b"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "7a557b4fa3ea59f480ab99eb0e8ebfb18949941659306c21958bcb1771aa235b"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "7a557b4fa3ea59f480ab99eb0e8ebfb18949941659306c21958bcb1771aa235b"
+    sha256 cellar: :any_skip_relocation, sonoma:        "8da27f4014c17b367e8b5e3238dc1534d494cead2ef1d7d7fd834673fa3b2fdb"
+    sha256 cellar: :any_skip_relocation, ventura:       "8da27f4014c17b367e8b5e3238dc1534d494cead2ef1d7d7fd834673fa3b2fdb"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8de8cce18608b061b8a1e6ac9408086db4598144a534ff3aaf683f2cd2d1d86c"
   end
 
   depends_on "go" => :build
 
   def install
-    system "go", "build", *std_go_args(ldflags: "-s -w")
+    system "go", "build", *std_go_args(ldflags: "-s -w"), "./cmd"
   end
 
   test do

@@ -1,18 +1,18 @@
 class LivekitCli < Formula
   desc "Command-line interface to LiveKit"
   homepage "https://livekit.io"
-  url "https://github.com/livekit/livekit-cli/archive/refs/tags/v2.4.8.tar.gz"
-  sha256 "524d2dec529272e05832d0a842973ed7a3e3b4ee1d80bb9d9f1a3e3614979551"
+  url "https://github.com/livekit/livekit-cli/archive/refs/tags/v2.4.10.tar.gz"
+  sha256 "bdf281ceac61ad60908929f3c53f040312dccad594b22f4a4613fb0300f56db4"
   license "Apache-2.0"
   head "https://github.com/livekit/livekit-cli.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "7151806bfd86d58dc49ebf079e3da137ae15e827c3254996187927ea5096aa6c"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "7151806bfd86d58dc49ebf079e3da137ae15e827c3254996187927ea5096aa6c"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "7151806bfd86d58dc49ebf079e3da137ae15e827c3254996187927ea5096aa6c"
-    sha256 cellar: :any_skip_relocation, sonoma:        "d2f49164076745bc6ea192975f98cabe3298312af5bd22acbb0f015b3a05ad91"
-    sha256 cellar: :any_skip_relocation, ventura:       "d2f49164076745bc6ea192975f98cabe3298312af5bd22acbb0f015b3a05ad91"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f8580d4423a8586bdfec8193aa3d65896ac516d867fb6101e348200ae208f407"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "948940571c1baa54d498c7452298f9d159910014dcc0a4265211baf47178deee"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "948940571c1baa54d498c7452298f9d159910014dcc0a4265211baf47178deee"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "948940571c1baa54d498c7452298f9d159910014dcc0a4265211baf47178deee"
+    sha256 cellar: :any_skip_relocation, sonoma:        "bdf6dd1e3a19a3f9e336eb9927c364095329c71fe0447080ba920f8ea2d8c62f"
+    sha256 cellar: :any_skip_relocation, ventura:       "bdf6dd1e3a19a3f9e336eb9927c364095329c71fe0447080ba920f8ea2d8c62f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e29fc66f0af3a6dd14801816c92512fbf7d99aa474013bf2531c166bc674e4a7"
   end
 
   depends_on "go" => :build

@@ -7,15 +7,15 @@ class Ruby < Formula
   stable do
     # Consider changing the default of `Gem.default_user_install` to true with Ruby 3.5.
     # This may depend on https://github.com/rubygems/rubygems/issues/5682.
-    url "https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.3.tar.gz"
-    sha256 "55a4cd1dcbe5ca27cf65e89a935a482c2bb2284832939266551c0ec68b437f46"
+    url "https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.4.tar.gz"
+    sha256 "a0597bfdf312e010efd1effaa8d7f1d7833146fdc17950caa8158ffa3dcbfa85"
 
     # Should be updated only when Ruby is updated (if an update is available).
     # The exception is Rubygem security fixes, which mandate updating this
     # formula & the versioned equivalents and bumping the revisions.
     resource "rubygems" do
-      url "https://rubygems.org/rubygems/rubygems-3.6.8.tgz"
-      sha256 "da5340b42ba3ddc5ede4a6b948ffa5b409d48cb119e2937e27e4c0b13bf9c390"
+      url "https://rubygems.org/rubygems/rubygems-3.6.9.tgz"
+      sha256 "ffdd46c6adbecb9dac561cc003666406efd2ed93ca21b5fcc47062025007209d"
 
       livecheck do
         url "https://rubygems.org/pages/download"
@@ -30,13 +30,14 @@ class Ruby < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia: "086e24aeb4d3563ec7b0cb82cf96d4f54343aecc764d370e1958f04cc5c23585"
-    sha256 arm64_sonoma:  "bf92cea06b2fcedc64bcde22b4054bbdc5373ada4073a1d930b1d797fe80244d"
-    sha256 arm64_ventura: "32a5b8b77db04d6e1f2b5fa0859a795ca6be8a34402eb1413e4b3ebd26449587"
-    sha256 sonoma:        "0ae2e985d6d5e687a7b8f4f48f04783326012090f290fe53cd0a6f7f9df2ecc4"
-    sha256 ventura:       "8ff27dfe6332165600743bc73020da9148a3f1d20d49e9d8a87771baeb71c39b"
-    sha256 arm64_linux:   "f37b0efd457c9d5e5351436f0b03a9b64cb5e580170be2b9966517d664a2513e"
-    sha256 x86_64_linux:  "e2d2ed80d9a01a34ad96a3c2370b5430a9bf22de03aae18bd0fe847a9d29a6b8"
+    rebuild 1
+    sha256 arm64_sequoia: "f91b9870507ed4690914424ea6693cad133a75d062654425fd99b803e37a4d93"
+    sha256 arm64_sonoma:  "c3adf737845d90aa0677eeb0aa0e47d32df406960b75833db68891f73ef849a2"
+    sha256 arm64_ventura: "f65125606d3279b2262a25acb629dc429de665ae7b0a29042be2c20d3b2005e4"
+    sha256 sonoma:        "8086f57d95bbfd253a10310b9da36898cee6955b25d431321acac817cbb2a298"
+    sha256 ventura:       "6dff743916412b2227ee851825737eae59db2696b875120573dfb11b401715d7"
+    sha256 arm64_linux:   "da3abe8bcda1a43b342663d0c668b57ded83b522cd03d01c38a99110ca722d78"
+    sha256 x86_64_linux:  "7d0295b03469cb59ca833318acb453d641406e1a7c07f5761fcd4fe3b6ddbcd3"
   end
 
   keg_only :provided_by_macos
@@ -99,6 +100,10 @@ class Ruby < Formula
 
     # Correct MJIT_CC to not use superenv shim
     args << "MJIT_CC=/usr/bin/#{DevelopmentTools.default_compiler}"
+
+    # Avoid stdckdint.h on macOS 15 as it's not available in Xcode 16.0-16.2,
+    # and if the build system picks it up it'll use it for runtime builds too.
+    args << "ac_cv_header_stdckdint_h=no" if OS.mac? && MacOS.version == :sequoia
 
     system "./configure", *args
 
